@@ -1,0 +1,85 @@
+\hypertarget{tesseract__motion__planners_2include_2tesseract__motion__planners_2trajopt_2deserialize_8h}{}\doxysection{tesseract/tesseract\+\_\+planning/tesseract\+\_\+motion\+\_\+planners/include/tesseract\+\_\+motion\+\_\+planners/trajopt/deserialize.h File Reference}
+\label{tesseract__motion__planners_2include_2tesseract__motion__planners_2trajopt_2deserialize_8h}\index{tesseract/tesseract\_planning/tesseract\_motion\_planners/include/tesseract\_motion\_planners/trajopt/deserialize.h@{tesseract/tesseract\_planning/tesseract\_motion\_planners/include/tesseract\_motion\_planners/trajopt/deserialize.h}}
+
+
+Provide methods for deserialize instructions to xml and deserialization.  
+
+
+{\ttfamily \#include $<$tesseract\+\_\+common/macros.\+h$>$}\newline
+{\ttfamily \#include $<$tinyxml2.\+h$>$}\newline
+{\ttfamily \#include $<$tesseract\+\_\+motion\+\_\+planners/trajopt/profile/trajopt\+\_\+default\+\_\+plan\+\_\+profile.\+h$>$}\newline
+{\ttfamily \#include $<$tesseract\+\_\+motion\+\_\+planners/trajopt/profile/trajopt\+\_\+default\+\_\+composite\+\_\+profile.\+h$>$}\newline
+Include dependency graph for deserialize.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d2/def/tesseract__motion__planners_2include_2tesseract__motion__planners_2trajopt_2deserialize_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=324pt]{dd/d58/tesseract__motion__planners_2include_2tesseract__motion__planners_2trajopt_2deserialize_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespacetesseract__planning}{tesseract\+\_\+planning}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+Traj\+Opt\+Default\+Plan\+Profile \mbox{\hyperlink{namespacetesseract__planning_a71b8091da4834d0db8a14fc29bad929b}{tesseract\+\_\+planning\+::traj\+Opt\+Plan\+Parser}} (const tinyxml2\+::\+X\+M\+L\+Element \&xml\+\_\+element)
+\item 
+Traj\+Opt\+Default\+Plan\+Profile \mbox{\hyperlink{namespacetesseract__planning_a196abf916e5fa3062ff116cbb731367b}{tesseract\+\_\+planning\+::traj\+Opt\+Plan\+From\+X\+M\+L\+Element}} (const tinyxml2\+::\+X\+M\+L\+Element $\ast$profile\+\_\+xml)
+\item 
+Traj\+Opt\+Default\+Plan\+Profile \mbox{\hyperlink{namespacetesseract__planning_a99d0f69362210dd6d63b332698912881}{tesseract\+\_\+planning\+::traj\+Opt\+Plan\+From\+X\+M\+L\+Document}} (const tinyxml2\+::\+X\+M\+L\+Document \&xml\+\_\+doc)
+\item 
+Traj\+Opt\+Default\+Plan\+Profile \mbox{\hyperlink{namespacetesseract__planning_a0760c83c00cbc3225c366ae5692594df}{tesseract\+\_\+planning\+::traj\+Opt\+Plan\+From\+X\+M\+L\+File}} (const std\+::string \&file\+\_\+path)
+\item 
+Traj\+Opt\+Default\+Plan\+Profile \mbox{\hyperlink{namespacetesseract__planning_aea4642f11df2fdfbb605552c11059adb}{tesseract\+\_\+planning\+::traj\+Opt\+Plan\+From\+X\+M\+L\+String}} (const std\+::string \&xml\+\_\+string)
+\item 
+Traj\+Opt\+Default\+Composite\+Profile \mbox{\hyperlink{namespacetesseract__planning_ab6b92684e28ffa3f27c20a04e84f306a}{tesseract\+\_\+planning\+::traj\+Opt\+Composite\+Parser}} (const tinyxml2\+::\+X\+M\+L\+Element \&xml\+\_\+element)
+\item 
+Traj\+Opt\+Default\+Composite\+Profile \mbox{\hyperlink{namespacetesseract__planning_acfb2c5e378608fb0f715ad49db48d923}{tesseract\+\_\+planning\+::traj\+Opt\+Composite\+From\+X\+M\+L\+Element}} (const tinyxml2\+::\+X\+M\+L\+Element $\ast$profile\+\_\+xml)
+\item 
+Traj\+Opt\+Default\+Composite\+Profile \mbox{\hyperlink{namespacetesseract__planning_a08e177e831209e1fdc0d859823302198}{tesseract\+\_\+planning\+::traj\+Opt\+Composite\+From\+X\+M\+L\+Document}} (const tinyxml2\+::\+X\+M\+L\+Document \&xml\+\_\+doc)
+\item 
+Traj\+Opt\+Default\+Composite\+Profile \mbox{\hyperlink{namespacetesseract__planning_a2ec7ec6bb22970c4fc3ed793ff5dcb4d}{tesseract\+\_\+planning\+::traj\+Opt\+Composite\+From\+X\+M\+L\+File}} (const std\+::string \&file\+\_\+path)
+\item 
+Traj\+Opt\+Default\+Composite\+Profile \mbox{\hyperlink{namespacetesseract__planning_a1af88e4a9c01d2926c0c25fbcdc44457}{tesseract\+\_\+planning\+::traj\+Opt\+Composite\+From\+X\+M\+L\+String}} (const std\+::string \&xml\+\_\+string)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Provide methods for deserialize instructions to xml and deserialization. 
+
+\begin{DoxyAuthor}{Author}
+Tyler Marr 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+August 20, 2020 
+\end{DoxyDate}
+\begin{DoxyVersion}{Version}
+T\+O\+DO 
+\end{DoxyVersion}
+\begin{DoxyRefDesc}{Bug}
+\item[\mbox{\hyperlink{bug__bug000180}{Bug}}]No known bugs\end{DoxyRefDesc}
+
+
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2020, Southwest Research Institute
+\end{DoxyCopyright}
+\begin{DoxyParagraph}{License}
+Software License Agreement (Apache License) 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+Licensed under the Apache License, Version 2.\+0 (the \char`\"{}\+License\char`\"{}); you may not use this file except in compliance with the License. You may obtain a copy of the License at \href{http://www.apache.org/licenses/LICENSE-2.0}{\texttt{ http\+://www.\+apache.\+org/licenses/\+L\+I\+C\+E\+N\+S\+E-\/2.\+0}} 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an \char`\"{}\+A\+S I\+S\char`\"{} B\+A\+S\+IS, W\+I\+T\+H\+O\+UT W\+A\+R\+R\+A\+N\+T\+I\+ES OR C\+O\+N\+D\+I\+T\+I\+O\+NS OF A\+NY K\+I\+ND, either express or implied. See the License for the specific language governing permissions and limitations under the License. 
+\end{DoxyParagraph}

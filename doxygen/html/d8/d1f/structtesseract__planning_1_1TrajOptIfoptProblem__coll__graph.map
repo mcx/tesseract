@@ -1,0 +1,9 @@
+<map id="tesseract_planning::TrajOptIfoptProblem" name="tesseract_planning::TrajOptIfoptProblem">
+<area shape="rect" id="node1" title=" " alt="" coords="315,169,460,211"/>
+<area shape="rect" id="node2" title=" " alt="" coords="15,5,166,47"/>
+<area shape="rect" id="node3" title=" " alt="" coords="15,71,166,112"/>
+<area shape="rect" id="node4" title=" " alt="" coords="19,136,162,177"/>
+<area shape="rect" id="node5" title=" " alt="" coords="5,201,176,243"/>
+<area shape="rect" id="node6" title=" " alt="" coords="15,267,166,308"/>
+<area shape="rect" id="node7" title=" " alt="" coords="15,332,166,373"/>
+</map>

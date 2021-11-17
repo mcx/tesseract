@@ -1,0 +1,119 @@
+\hypertarget{classtesseract__collision_1_1ConvexDeompositionVHACD}{}\doxysection{tesseract\+\_\+collision\+::Convex\+Deomposition\+VHACD Class Reference}
+\label{classtesseract__collision_1_1ConvexDeompositionVHACD}\index{tesseract\_collision::ConvexDeompositionVHACD@{tesseract\_collision::ConvexDeompositionVHACD}}
+
+
+{\ttfamily \#include $<$convex\+\_\+decomposition\+\_\+vhacd.\+h$>$}
+
+
+
+Inheritance diagram for tesseract\+\_\+collision\+::Convex\+Deomposition\+VHACD\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=227pt]{d8/d65/classtesseract__collision_1_1ConvexDeompositionVHACD__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for tesseract\+\_\+collision\+::Convex\+Deomposition\+VHACD\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=322pt]{dd/d6a/classtesseract__collision_1_1ConvexDeompositionVHACD__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{classtesseract__collision_1_1ConvexDeompositionVHACD_a10de038d5f18b9bf496b7e988b2022db}{Ptr}} = std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classtesseract__collision_1_1ConvexDeompositionVHACD}{Convex\+Deomposition\+VHACD}} $>$
+\item 
+using \mbox{\hyperlink{classtesseract__collision_1_1ConvexDeompositionVHACD_a7af2ca8c02a89dbb3b0d9b2590d171ba}{Const\+Ptr}} = std\+::shared\+\_\+ptr$<$ const \mbox{\hyperlink{classtesseract__collision_1_1ConvexDeompositionVHACD}{Convex\+Deomposition\+VHACD}} $>$
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classtesseract__collision_1_1ConvexDeompositionVHACD_addcdb434415aeacc064a1d11e66ae0bb}{Convex\+Deomposition\+VHACD}} ()=default
+\item 
+\mbox{\hyperlink{classtesseract__collision_1_1ConvexDeompositionVHACD_a318e99608c729923f25b707ece0450b5}{Convex\+Deomposition\+VHACD}} (const \mbox{\hyperlink{structtesseract__collision_1_1VHACDParameters}{VHACDParameters}} \&params)
+\item 
+\mbox{\hyperlink{vhacdRaycastMesh_8cpp_adcf134d50025cc52907d0c8ac798d89d}{std\+::vector}}$<$ \mbox{\hyperlink{classtesseract__geometry_1_1ConvexMesh_aecd145c5f75117ff7a3bab1fb921e4c0}{tesseract\+\_\+geometry\+::\+Convex\+Mesh\+::\+Ptr}} $>$ \mbox{\hyperlink{classtesseract__collision_1_1ConvexDeompositionVHACD_a925a97cc5a78a332cd504597dc3de5d6}{compute}} (const \mbox{\hyperlink{namespacetesseract__common_af89ed6517f4c84bdb2b037bb40f7d9d9}{tesseract\+\_\+common\+::\+Vector\+Vector3d}} \&vertices, const Eigen\+::\+Vector\+Xi \&faces) const override
+\begin{DoxyCompactList}\small\item\em Run convex decomposition algorithm. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structtesseract__collision_1_1VHACDParameters}{VHACDParameters}} \mbox{\hyperlink{classtesseract__collision_1_1ConvexDeompositionVHACD_a35a591dc327996169cac045e73c9c4bb}{params\+\_\+}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{classtesseract__collision_1_1ConvexDeompositionVHACD_a7af2ca8c02a89dbb3b0d9b2590d171ba}\label{classtesseract__collision_1_1ConvexDeompositionVHACD_a7af2ca8c02a89dbb3b0d9b2590d171ba}} 
+\index{tesseract\_collision::ConvexDeompositionVHACD@{tesseract\_collision::ConvexDeompositionVHACD}!ConstPtr@{ConstPtr}}
+\index{ConstPtr@{ConstPtr}!tesseract\_collision::ConvexDeompositionVHACD@{tesseract\_collision::ConvexDeompositionVHACD}}
+\doxysubsubsection{\texorpdfstring{ConstPtr}{ConstPtr}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{classtesseract__collision_1_1ConvexDeompositionVHACD_a7af2ca8c02a89dbb3b0d9b2590d171ba}{tesseract\+\_\+collision\+::\+Convex\+Deomposition\+VHACD\+::\+Const\+Ptr}} =  std\+::shared\+\_\+ptr$<$const \mbox{\hyperlink{classtesseract__collision_1_1ConvexDeompositionVHACD}{Convex\+Deomposition\+VHACD}}$>$}
+
+\mbox{\Hypertarget{classtesseract__collision_1_1ConvexDeompositionVHACD_a10de038d5f18b9bf496b7e988b2022db}\label{classtesseract__collision_1_1ConvexDeompositionVHACD_a10de038d5f18b9bf496b7e988b2022db}} 
+\index{tesseract\_collision::ConvexDeompositionVHACD@{tesseract\_collision::ConvexDeompositionVHACD}!Ptr@{Ptr}}
+\index{Ptr@{Ptr}!tesseract\_collision::ConvexDeompositionVHACD@{tesseract\_collision::ConvexDeompositionVHACD}}
+\doxysubsubsection{\texorpdfstring{Ptr}{Ptr}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{classtesseract__collision_1_1ConvexDeompositionVHACD_a10de038d5f18b9bf496b7e988b2022db}{tesseract\+\_\+collision\+::\+Convex\+Deomposition\+VHACD\+::\+Ptr}} =  std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classtesseract__collision_1_1ConvexDeompositionVHACD}{Convex\+Deomposition\+VHACD}}$>$}
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classtesseract__collision_1_1ConvexDeompositionVHACD_addcdb434415aeacc064a1d11e66ae0bb}\label{classtesseract__collision_1_1ConvexDeompositionVHACD_addcdb434415aeacc064a1d11e66ae0bb}} 
+\index{tesseract\_collision::ConvexDeompositionVHACD@{tesseract\_collision::ConvexDeompositionVHACD}!ConvexDeompositionVHACD@{ConvexDeompositionVHACD}}
+\index{ConvexDeompositionVHACD@{ConvexDeompositionVHACD}!tesseract\_collision::ConvexDeompositionVHACD@{tesseract\_collision::ConvexDeompositionVHACD}}
+\doxysubsubsection{\texorpdfstring{ConvexDeompositionVHACD()}{ConvexDeompositionVHACD()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily tesseract\+\_\+collision\+::\+Convex\+Deomposition\+VHACD\+::\+Convex\+Deomposition\+VHACD (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\mbox{\Hypertarget{classtesseract__collision_1_1ConvexDeompositionVHACD_a318e99608c729923f25b707ece0450b5}\label{classtesseract__collision_1_1ConvexDeompositionVHACD_a318e99608c729923f25b707ece0450b5}} 
+\index{tesseract\_collision::ConvexDeompositionVHACD@{tesseract\_collision::ConvexDeompositionVHACD}!ConvexDeompositionVHACD@{ConvexDeompositionVHACD}}
+\index{ConvexDeompositionVHACD@{ConvexDeompositionVHACD}!tesseract\_collision::ConvexDeompositionVHACD@{tesseract\_collision::ConvexDeompositionVHACD}}
+\doxysubsubsection{\texorpdfstring{ConvexDeompositionVHACD()}{ConvexDeompositionVHACD()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily tesseract\+\_\+collision\+::\+Convex\+Deomposition\+VHACD\+::\+Convex\+Deomposition\+VHACD (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structtesseract__collision_1_1VHACDParameters}{VHACDParameters}} \&}]{params }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classtesseract__collision_1_1ConvexDeompositionVHACD_a925a97cc5a78a332cd504597dc3de5d6}\label{classtesseract__collision_1_1ConvexDeompositionVHACD_a925a97cc5a78a332cd504597dc3de5d6}} 
+\index{tesseract\_collision::ConvexDeompositionVHACD@{tesseract\_collision::ConvexDeompositionVHACD}!compute@{compute}}
+\index{compute@{compute}!tesseract\_collision::ConvexDeompositionVHACD@{tesseract\_collision::ConvexDeompositionVHACD}}
+\doxysubsubsection{\texorpdfstring{compute()}{compute()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{vhacdRaycastMesh_8cpp_adcf134d50025cc52907d0c8ac798d89d}{std\+::vector}}$<$ \mbox{\hyperlink{classtesseract__geometry_1_1ConvexMesh_aecd145c5f75117ff7a3bab1fb921e4c0}{tesseract\+\_\+geometry\+::\+Convex\+Mesh\+::\+Ptr}} $>$ tesseract\+\_\+collision\+::\+Convex\+Deomposition\+VHACD\+::compute (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespacetesseract__common_af89ed6517f4c84bdb2b037bb40f7d9d9}{tesseract\+\_\+common\+::\+Vector\+Vector3d}} \&}]{vertices,  }\item[{const Eigen\+::\+Vector\+Xi \&}]{faces }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Run convex decomposition algorithm. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vertices} & The vertices \\
+\hline
+{\em faces} & A vector of triangle indicies. Every face starts with the number of vertices followed the the vertice index \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classtesseract__collision_1_1ConvexDecomposition_ac295b00a6ad94925f107cd6ca6f167f7}{tesseract\+\_\+collision\+::\+Convex\+Decomposition}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classtesseract__collision_1_1ConvexDeompositionVHACD_a35a591dc327996169cac045e73c9c4bb}\label{classtesseract__collision_1_1ConvexDeompositionVHACD_a35a591dc327996169cac045e73c9c4bb}} 
+\index{tesseract\_collision::ConvexDeompositionVHACD@{tesseract\_collision::ConvexDeompositionVHACD}!params\_@{params\_}}
+\index{params\_@{params\_}!tesseract\_collision::ConvexDeompositionVHACD@{tesseract\_collision::ConvexDeompositionVHACD}}
+\doxysubsubsection{\texorpdfstring{params\_}{params\_}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structtesseract__collision_1_1VHACDParameters}{VHACDParameters}} tesseract\+\_\+collision\+::\+Convex\+Deomposition\+VHACD\+::params\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+tesseract\+\_\+collision/include/tesseract\+\_\+collision/convex\+\_\+decomposition/\mbox{\hyperlink{convex__decomposition__vhacd_8h}{convex\+\_\+decomposition\+\_\+vhacd.\+h}}\item 
+tesseract\+\_\+collision/src/convex\+\_\+decomposition/\mbox{\hyperlink{convex__decomposition__vhacd_8cpp}{convex\+\_\+decomposition\+\_\+vhacd.\+cpp}}\end{DoxyCompactItemize}
