@@ -1,5 +1,5 @@
 <map id="tesseract_collision::ContactManagerConfig" name="tesseract_collision::ContactManagerConfig">
-<area shape="rect" id="node1" title="Contains parameters used to configure a contact manager before a series of contact checks." alt="" coords="1067,68,1225,109"/>
+<area shape="rect" id="node1" title="Contains parameters used to configure a contact manager before a series of contact checks." alt="" coords="1012,68,1171,109"/>
 <area shape="rect" id="node2" href="$d7/d4e/classtesseract__common_1_1AllowedCollisionMatrix.html" title=" " alt="" coords="703,28,888,69"/>
 <area shape="rect" id="node3" title=" " alt="" coords="363,5,569,76"/>
 <area shape="rect" id="node4" title=" " alt="" coords="179,27,257,54"/>
