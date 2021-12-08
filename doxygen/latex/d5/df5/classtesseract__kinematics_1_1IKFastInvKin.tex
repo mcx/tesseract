@@ -53,7 +53,7 @@ using \mbox{\hyperlink{classtesseract__kinematics_1_1IKFastInvKin_aee3cab97112bb
 \item 
 \mbox{\hyperlink{classtesseract__kinematics_1_1IKFastInvKin}{IKFast\+Inv\+Kin}} \& \mbox{\hyperlink{classtesseract__kinematics_1_1IKFastInvKin_a36c70141163df3b372933c121894b1b0}{operator=}} (\mbox{\hyperlink{classtesseract__kinematics_1_1IKFastInvKin}{IKFast\+Inv\+Kin}} \&\&)=default
 \item 
-\mbox{\hyperlink{classtesseract__kinematics_1_1IKFastInvKin_a4084c9f127bed21a8e4ec12ed50a8380}{IKFast\+Inv\+Kin}} (std\+::string base\+\_\+link\+\_\+name, std\+::string tip\+\_\+link\+\_\+name, \mbox{\hyperlink{vhacdRaycastMesh_8cpp_adcf134d50025cc52907d0c8ac798d89d}{std\+::vector}}$<$ std\+::string $>$ joint\+\_\+names, std\+::string solver\+\_\+name=\mbox{\hyperlink{namespacetesseract__kinematics_ac29892c9bb7ec49301f7dd901ff8e356}{IKFAST\+\_\+\+INV\+\_\+\+KIN\+\_\+\+CHAIN\+\_\+\+SOLVER\+\_\+\+NAME}}, \mbox{\hyperlink{vhacdRaycastMesh_8cpp_adcf134d50025cc52907d0c8ac798d89d}{std\+::vector}}$<$ \mbox{\hyperlink{vhacdRaycastMesh_8cpp_adcf134d50025cc52907d0c8ac798d89d}{std\+::vector}}$<$ double $>$$>$ free\+\_\+joint\+\_\+states=\{\})
+\mbox{\hyperlink{classtesseract__kinematics_1_1IKFastInvKin_a5f2b34f40970d121d7b600ece66c6a17}{IKFast\+Inv\+Kin}} (std\+::string base\+\_\+link\+\_\+name, std\+::string tip\+\_\+link\+\_\+name, \mbox{\hyperlink{vhacdRaycastMesh_8cpp_adcf134d50025cc52907d0c8ac798d89d}{std\+::vector}}$<$ std\+::string $>$ joint\+\_\+names, \mbox{\hyperlink{vhacdRaycastMesh_8cpp_adcf134d50025cc52907d0c8ac798d89d}{std\+::vector}}$<$ Eigen\+::\+Index $>$ redundancy\+\_\+capable\+\_\+joints, std\+::string solver\+\_\+name=\mbox{\hyperlink{namespacetesseract__kinematics_ac29892c9bb7ec49301f7dd901ff8e356}{IKFAST\+\_\+\+INV\+\_\+\+KIN\+\_\+\+CHAIN\+\_\+\+SOLVER\+\_\+\+NAME}}, \mbox{\hyperlink{vhacdRaycastMesh_8cpp_adcf134d50025cc52907d0c8ac798d89d}{std\+::vector}}$<$ \mbox{\hyperlink{vhacdRaycastMesh_8cpp_adcf134d50025cc52907d0c8ac798d89d}{std\+::vector}}$<$ double $>$$>$ free\+\_\+joint\+\_\+states=\{\})
 \begin{DoxyCompactList}\small\item\em Construct IKFast Inverse Kinematics. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{namespacetesseract__kinematics_af12a01d2264e3371dc9bc7db2a7b59ac}{IKSolutions}} \mbox{\hyperlink{classtesseract__kinematics_1_1IKFastInvKin_a8d4ceb3a73931703fa00ef9d1433780d}{calc\+Inv\+Kin}} (const \mbox{\hyperlink{namespacetesseract__common_a67bde3cb7bb235f0f61c370ef8bc74d8}{tesseract\+\_\+common\+::\+Transform\+Map}} \&tip\+\_\+link\+\_\+poses, const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&seed) const override
 \begin{DoxyCompactList}\small\item\em Calculates joint solutions given a pose for each tip link. \end{DoxyCompactList}\item 
@@ -85,8 +85,10 @@ std\+::string \mbox{\hyperlink{classtesseract__kinematics_1_1IKFastInvKin_aff430
 \begin{DoxyCompactList}\small\item\em Link name of last kink in the kinematic object. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{vhacdRaycastMesh_8cpp_adcf134d50025cc52907d0c8ac798d89d}{std\+::vector}}$<$ std\+::string $>$ \mbox{\hyperlink{classtesseract__kinematics_1_1IKFastInvKin_a2b4be6412d6a25f271914bcccc407bfd}{joint\+\_\+names\+\_\+}}
 \begin{DoxyCompactList}\small\item\em Joint names for the kinematic object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{vhacdRaycastMesh_8cpp_adcf134d50025cc52907d0c8ac798d89d}{std\+::vector}}$<$ Eigen\+::\+Index $>$ \mbox{\hyperlink{classtesseract__kinematics_1_1IKFastInvKin_a1cf52903cc9c500e8d65755c00ce4122}{redundancy\+\_\+capable\+\_\+joints\+\_\+}}
+\item 
 std\+::string \mbox{\hyperlink{classtesseract__kinematics_1_1IKFastInvKin_ac122d5be325b8e4f4e6e064179ecbeb2}{solver\+\_\+name\+\_\+}} \{ \mbox{\hyperlink{namespacetesseract__kinematics_ac29892c9bb7ec49301f7dd901ff8e356}{IKFAST\+\_\+\+INV\+\_\+\+KIN\+\_\+\+CHAIN\+\_\+\+SOLVER\+\_\+\+NAME}} \}
-\begin{DoxyCompactList}\small\item\em Name of this solver. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Redundancy capable joints. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{vhacdRaycastMesh_8cpp_adcf134d50025cc52907d0c8ac798d89d}{std\+::vector}}$<$ \mbox{\hyperlink{vhacdRaycastMesh_8cpp_adcf134d50025cc52907d0c8ac798d89d}{std\+::vector}}$<$ double $>$ $>$ \mbox{\hyperlink{classtesseract__kinematics_1_1IKFastInvKin_a139663aac5dd1256626d7270cb0481a9}{free\+\_\+joint\+\_\+states\+\_\+}}
 \end{DoxyCompactItemize}
 
@@ -154,11 +156,11 @@ namespace fanuc\+\_\+p50ib\+\_\+15\+\_\+ikfast\+\_\+wrapper \{ Fanuc\+P50i\+BInv
 \doxysubsubsection{\texorpdfstring{IKFastInvKin()}{IKFastInvKin()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
 {\footnotesize\ttfamily tesseract\+\_\+kinematics\+::\+IKFast\+Inv\+Kin\+::\+IKFast\+Inv\+Kin (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classtesseract__kinematics_1_1IKFastInvKin}{IKFast\+Inv\+Kin}} \&\&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
 
-\mbox{\Hypertarget{classtesseract__kinematics_1_1IKFastInvKin_a4084c9f127bed21a8e4ec12ed50a8380}\label{classtesseract__kinematics_1_1IKFastInvKin_a4084c9f127bed21a8e4ec12ed50a8380}} 
+\mbox{\Hypertarget{classtesseract__kinematics_1_1IKFastInvKin_a5f2b34f40970d121d7b600ece66c6a17}\label{classtesseract__kinematics_1_1IKFastInvKin_a5f2b34f40970d121d7b600ece66c6a17}} 
 \index{tesseract\_kinematics::IKFastInvKin@{tesseract\_kinematics::IKFastInvKin}!IKFastInvKin@{IKFastInvKin}}
 \index{IKFastInvKin@{IKFastInvKin}!tesseract\_kinematics::IKFastInvKin@{tesseract\_kinematics::IKFastInvKin}}
 \doxysubsubsection{\texorpdfstring{IKFastInvKin()}{IKFastInvKin()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
-{\footnotesize\ttfamily tesseract\+\_\+kinematics\+::\+IKFast\+Inv\+Kin\+::\+IKFast\+Inv\+Kin (\begin{DoxyParamCaption}\item[{std\+::string}]{base\+\_\+link\+\_\+name,  }\item[{std\+::string}]{tip\+\_\+link\+\_\+name,  }\item[{\mbox{\hyperlink{vhacdRaycastMesh_8cpp_adcf134d50025cc52907d0c8ac798d89d}{std\+::vector}}$<$ std\+::string $>$}]{joint\+\_\+names,  }\item[{std\+::string}]{solver\+\_\+name = {\ttfamily \mbox{\hyperlink{namespacetesseract__kinematics_ac29892c9bb7ec49301f7dd901ff8e356}{IKFAST\+\_\+\+INV\+\_\+\+KIN\+\_\+\+CHAIN\+\_\+\+SOLVER\+\_\+\+NAME}}},  }\item[{\mbox{\hyperlink{vhacdRaycastMesh_8cpp_adcf134d50025cc52907d0c8ac798d89d}{std\+::vector}}$<$ \mbox{\hyperlink{vhacdRaycastMesh_8cpp_adcf134d50025cc52907d0c8ac798d89d}{std\+::vector}}$<$ double $>$$>$}]{free\+\_\+joint\+\_\+states = {\ttfamily \{\}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily tesseract\+\_\+kinematics\+::\+IKFast\+Inv\+Kin\+::\+IKFast\+Inv\+Kin (\begin{DoxyParamCaption}\item[{std\+::string}]{base\+\_\+link\+\_\+name,  }\item[{std\+::string}]{tip\+\_\+link\+\_\+name,  }\item[{\mbox{\hyperlink{vhacdRaycastMesh_8cpp_adcf134d50025cc52907d0c8ac798d89d}{std\+::vector}}$<$ std\+::string $>$}]{joint\+\_\+names,  }\item[{\mbox{\hyperlink{vhacdRaycastMesh_8cpp_adcf134d50025cc52907d0c8ac798d89d}{std\+::vector}}$<$ Eigen\+::\+Index $>$}]{redundancy\+\_\+capable\+\_\+joints,  }\item[{std\+::string}]{solver\+\_\+name = {\ttfamily \mbox{\hyperlink{namespacetesseract__kinematics_ac29892c9bb7ec49301f7dd901ff8e356}{IKFAST\+\_\+\+INV\+\_\+\+KIN\+\_\+\+CHAIN\+\_\+\+SOLVER\+\_\+\+NAME}}},  }\item[{\mbox{\hyperlink{vhacdRaycastMesh_8cpp_adcf134d50025cc52907d0c8ac798d89d}{std\+::vector}}$<$ \mbox{\hyperlink{vhacdRaycastMesh_8cpp_adcf134d50025cc52907d0c8ac798d89d}{std\+::vector}}$<$ double $>$$>$}]{free\+\_\+joint\+\_\+states = {\ttfamily \{\}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -368,6 +370,12 @@ Link name of first link in the kinematic object.
 
 Joint names for the kinematic object. 
 
+\mbox{\Hypertarget{classtesseract__kinematics_1_1IKFastInvKin_a1cf52903cc9c500e8d65755c00ce4122}\label{classtesseract__kinematics_1_1IKFastInvKin_a1cf52903cc9c500e8d65755c00ce4122}} 
+\index{tesseract\_kinematics::IKFastInvKin@{tesseract\_kinematics::IKFastInvKin}!redundancy\_capable\_joints\_@{redundancy\_capable\_joints\_}}
+\index{redundancy\_capable\_joints\_@{redundancy\_capable\_joints\_}!tesseract\_kinematics::IKFastInvKin@{tesseract\_kinematics::IKFastInvKin}}
+\doxysubsubsection{\texorpdfstring{redundancy\_capable\_joints\_}{redundancy\_capable\_joints\_}}
+{\footnotesize\ttfamily \mbox{\hyperlink{vhacdRaycastMesh_8cpp_adcf134d50025cc52907d0c8ac798d89d}{std\+::vector}}$<$Eigen\+::\+Index$>$ tesseract\+\_\+kinematics\+::\+IKFast\+Inv\+Kin\+::redundancy\+\_\+capable\+\_\+joints\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
+
 \mbox{\Hypertarget{classtesseract__kinematics_1_1IKFastInvKin_ac122d5be325b8e4f4e6e064179ecbeb2}\label{classtesseract__kinematics_1_1IKFastInvKin_ac122d5be325b8e4f4e6e064179ecbeb2}} 
 \index{tesseract\_kinematics::IKFastInvKin@{tesseract\_kinematics::IKFastInvKin}!solver\_name\_@{solver\_name\_}}
 \index{solver\_name\_@{solver\_name\_}!tesseract\_kinematics::IKFastInvKin@{tesseract\_kinematics::IKFastInvKin}}
@@ -376,7 +384,9 @@ Joint names for the kinematic object.
 
 
 
-Name of this solver. 
+Redundancy capable joints. 
+
+Name of this solver
 
 combinations of free joints to sample when computing IK Example\+: Given 3 free joints, a valid input would be \mbox{[}\mbox{[}0,0,0\mbox{]}\mbox{[}0,0,1\mbox{]}\mbox{[}-\/1,0,1\mbox{]}\mbox{[}0,2,0\mbox{]}\mbox{]} \mbox{\Hypertarget{classtesseract__kinematics_1_1IKFastInvKin_aff4307652e3959810f431fcb4895e5e8}\label{classtesseract__kinematics_1_1IKFastInvKin_aff4307652e3959810f431fcb4895e5e8}} 
 \index{tesseract\_kinematics::IKFastInvKin@{tesseract\_kinematics::IKFastInvKin}!tip\_link\_name\_@{tip\_link\_name\_}}

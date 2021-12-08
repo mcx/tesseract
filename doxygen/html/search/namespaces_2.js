@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['mine_5fpackage_5finfo_3341',['mine_package_info',['../dd/d17/namespacemine__package__info.html',1,'']]]
+  ['mine_5fpackage_5finfo_3343',['mine_package_info',['../dd/d17/namespacemine__package__info.html',1,'']]]
 ];
