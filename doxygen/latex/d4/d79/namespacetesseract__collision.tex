@@ -140,10 +140,10 @@ std\+::size\+\_\+t \mbox{\hyperlink{namespacetesseract__collision_a3d63942ad37df
 \item 
 \mbox{\hyperlink{namespacetesseract__collision_abe7752ce161fbd1139533ac566fec1cb}{Is\+Contact\+Allowed\+Fn}} \mbox{\hyperlink{namespacetesseract__collision_aad4f0e4f914b130332a1de2e10f62f23}{combine\+Contact\+Allowed\+Fn}} (const \mbox{\hyperlink{namespacetesseract__collision_abe7752ce161fbd1139533ac566fec1cb}{Is\+Contact\+Allowed\+Fn}} \&original, const \mbox{\hyperlink{namespacetesseract__collision_abe7752ce161fbd1139533ac566fec1cb}{Is\+Contact\+Allowed\+Fn}} \&override, \mbox{\hyperlink{namespacetesseract__collision_ab4aafe369f7930ea6a356f0b578c16af}{ACMOverride\+Type}} type=\mbox{\hyperlink{namespacetesseract__collision_ab4aafe369f7930ea6a356f0b578c16afa1d00e7dce692e8dc3f6877f035e3a616}{ACMOverride\+Type\+::\+OR}})
 \begin{DoxyCompactList}\small\item\em Combines two Is\+Contact\+Allowed\+Fns using the override type. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{namespacetesseract__collision_aaaf4c8b445be1be3e0770d5b5af8d2ee}{apply\+Is\+Contact\+Allowed\+Fn\+Override}} (\mbox{\hyperlink{classtesseract__collision_1_1ContinuousContactManager}{tesseract\+\_\+collision\+::\+Continuous\+Contact\+Manager}} \&manager, const \mbox{\hyperlink{classtesseract__common_1_1AllowedCollisionMatrix}{tesseract\+\_\+common\+::\+Allowed\+Collision\+Matrix}} \&acm, \mbox{\hyperlink{namespacetesseract__collision_ab4aafe369f7930ea6a356f0b578c16af}{ACMOverride\+Type}} type=\mbox{\hyperlink{namespacetesseract__collision_ab4aafe369f7930ea6a356f0b578c16afa1d00e7dce692e8dc3f6877f035e3a616}{ACMOverride\+Type\+::\+OR}})
+{\footnotesize template$<$typename Manager\+Type $>$ }\\void \mbox{\hyperlink{namespacetesseract__collision_aa9ae658359b35f57bc35258fb31d2404}{apply\+Is\+Contact\+Allowed\+Fn\+Override}} (Manager\+Type \&manager, const \mbox{\hyperlink{classtesseract__common_1_1AllowedCollisionMatrix}{tesseract\+\_\+common\+::\+Allowed\+Collision\+Matrix}} \&acm, \mbox{\hyperlink{namespacetesseract__collision_ab4aafe369f7930ea6a356f0b578c16af}{ACMOverride\+Type}} type)
 \begin{DoxyCompactList}\small\item\em Applies ACM to contact manager using override type. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{namespacetesseract__collision_af9664441afb85ebcab42826b5104616f}{apply\+Is\+Contact\+Allowed\+Fn\+Override}} (\mbox{\hyperlink{classtesseract__collision_1_1DiscreteContactManager}{tesseract\+\_\+collision\+::\+Discrete\+Contact\+Manager}} \&manager, const \mbox{\hyperlink{classtesseract__common_1_1AllowedCollisionMatrix}{tesseract\+\_\+common\+::\+Allowed\+Collision\+Matrix}} \&acm, \mbox{\hyperlink{namespacetesseract__collision_ab4aafe369f7930ea6a356f0b578c16af}{ACMOverride\+Type}} type=\mbox{\hyperlink{namespacetesseract__collision_ab4aafe369f7930ea6a356f0b578c16afa1d00e7dce692e8dc3f6877f035e3a616}{ACMOverride\+Type\+::\+OR}})
-\begin{DoxyCompactList}\small\item\em Applies ACM to contact manager using override type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+{\footnotesize template$<$typename Manager\+Type $>$ }\\void \mbox{\hyperlink{namespacetesseract__collision_ab3fcf1e185d880f2ac9f1ad911a736ec}{apply\+Modify\+Object\+Enabled}} (Manager\+Type \&manager, const std\+::unordered\+\_\+map$<$ std\+::string, bool $>$ \&modify\+\_\+object\+\_\+enabled)
+\begin{DoxyCompactList}\small\item\em Loops over the map and for every object string either enables or disables it based on the value (true=enable, false=disable) \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
@@ -340,11 +340,12 @@ CCType\+\_\+\+Between&\\
 
 
 \doxysubsection{Function Documentation}
-\mbox{\Hypertarget{namespacetesseract__collision_aaaf4c8b445be1be3e0770d5b5af8d2ee}\label{namespacetesseract__collision_aaaf4c8b445be1be3e0770d5b5af8d2ee}} 
+\mbox{\Hypertarget{namespacetesseract__collision_aa9ae658359b35f57bc35258fb31d2404}\label{namespacetesseract__collision_aa9ae658359b35f57bc35258fb31d2404}} 
 \index{tesseract\_collision@{tesseract\_collision}!applyIsContactAllowedFnOverride@{applyIsContactAllowedFnOverride}}
 \index{applyIsContactAllowedFnOverride@{applyIsContactAllowedFnOverride}!tesseract\_collision@{tesseract\_collision}}
-\doxysubsubsection{\texorpdfstring{applyIsContactAllowedFnOverride()}{applyIsContactAllowedFnOverride()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
-{\footnotesize\ttfamily void tesseract\+\_\+collision\+::apply\+Is\+Contact\+Allowed\+Fn\+Override (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classtesseract__collision_1_1ContinuousContactManager}{tesseract\+\_\+collision\+::\+Continuous\+Contact\+Manager}} \&}]{manager,  }\item[{const \mbox{\hyperlink{classtesseract__common_1_1AllowedCollisionMatrix}{tesseract\+\_\+common\+::\+Allowed\+Collision\+Matrix}} \&}]{acm,  }\item[{\mbox{\hyperlink{namespacetesseract__collision_ab4aafe369f7930ea6a356f0b578c16af}{ACMOverride\+Type}}}]{type = {\ttfamily \mbox{\hyperlink{namespacetesseract__collision_ab4aafe369f7930ea6a356f0b578c16afa1d00e7dce692e8dc3f6877f035e3a616}{ACMOverride\+Type\+::\+OR}}} }\end{DoxyParamCaption})}
+\doxysubsubsection{\texorpdfstring{applyIsContactAllowedFnOverride()}{applyIsContactAllowedFnOverride()}}
+{\footnotesize\ttfamily template$<$typename Manager\+Type $>$ \\
+void tesseract\+\_\+collision\+::apply\+Is\+Contact\+Allowed\+Fn\+Override (\begin{DoxyParamCaption}\item[{Manager\+Type \&}]{manager,  }\item[{const \mbox{\hyperlink{classtesseract__common_1_1AllowedCollisionMatrix}{tesseract\+\_\+common\+::\+Allowed\+Collision\+Matrix}} \&}]{acm,  }\item[{\mbox{\hyperlink{namespacetesseract__collision_ab4aafe369f7930ea6a356f0b578c16af}{ACMOverride\+Type}}}]{type }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -359,23 +360,22 @@ Applies ACM to contact manager using override type.
 {\em type} & Determines how the two Is\+Contact\+Allowed\+Fns are combined \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{namespacetesseract__collision_af9664441afb85ebcab42826b5104616f}\label{namespacetesseract__collision_af9664441afb85ebcab42826b5104616f}} 
-\index{tesseract\_collision@{tesseract\_collision}!applyIsContactAllowedFnOverride@{applyIsContactAllowedFnOverride}}
-\index{applyIsContactAllowedFnOverride@{applyIsContactAllowedFnOverride}!tesseract\_collision@{tesseract\_collision}}
-\doxysubsubsection{\texorpdfstring{applyIsContactAllowedFnOverride()}{applyIsContactAllowedFnOverride()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily void tesseract\+\_\+collision\+::apply\+Is\+Contact\+Allowed\+Fn\+Override (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classtesseract__collision_1_1DiscreteContactManager}{tesseract\+\_\+collision\+::\+Discrete\+Contact\+Manager}} \&}]{manager,  }\item[{const \mbox{\hyperlink{classtesseract__common_1_1AllowedCollisionMatrix}{tesseract\+\_\+common\+::\+Allowed\+Collision\+Matrix}} \&}]{acm,  }\item[{\mbox{\hyperlink{namespacetesseract__collision_ab4aafe369f7930ea6a356f0b578c16af}{ACMOverride\+Type}}}]{type = {\ttfamily \mbox{\hyperlink{namespacetesseract__collision_ab4aafe369f7930ea6a356f0b578c16afa1d00e7dce692e8dc3f6877f035e3a616}{ACMOverride\+Type\+::\+OR}}} }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{namespacetesseract__collision_ab3fcf1e185d880f2ac9f1ad911a736ec}\label{namespacetesseract__collision_ab3fcf1e185d880f2ac9f1ad911a736ec}} 
+\index{tesseract\_collision@{tesseract\_collision}!applyModifyObjectEnabled@{applyModifyObjectEnabled}}
+\index{applyModifyObjectEnabled@{applyModifyObjectEnabled}!tesseract\_collision@{tesseract\_collision}}
+\doxysubsubsection{\texorpdfstring{applyModifyObjectEnabled()}{applyModifyObjectEnabled()}}
+{\footnotesize\ttfamily template$<$typename Manager\+Type $>$ \\
+void tesseract\+\_\+collision\+::apply\+Modify\+Object\+Enabled (\begin{DoxyParamCaption}\item[{Manager\+Type \&}]{manager,  }\item[{const std\+::unordered\+\_\+map$<$ std\+::string, bool $>$ \&}]{modify\+\_\+object\+\_\+enabled }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
-Applies ACM to contact manager using override type. 
+Loops over the map and for every object string either enables or disables it based on the value (true=enable, false=disable) 
 
 
 \begin{DoxyParams}{Parameters}
-{\em manager} & Manager whose Is\+Contact\+Allowed\+Fn will be overwritten \\
+{\em manager} & Manager that will be modified \\
 \hline
-{\em acm} & ACM used to create Is\+Contact\+Allowed\+Fn \\
-\hline
-{\em type} & Determines how the two Is\+Contact\+Allowed\+Fns are combined \\
+{\em modify\+\_\+object\+\_\+enabled} & Map of \mbox{[}key\mbox{]}\+:value = \mbox{[}object name\mbox{]}\+:disable or enable \\
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{namespacetesseract__collision_aad4f0e4f914b130332a1de2e10f62f23}\label{namespacetesseract__collision_aad4f0e4f914b130332a1de2e10f62f23}} 

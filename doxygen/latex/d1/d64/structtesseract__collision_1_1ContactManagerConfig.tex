@@ -37,13 +37,20 @@ Collaboration diagram for tesseract\+\_\+collision\+::Contact\+Manager\+Config\+
 \begin{DoxyCompactList}\small\item\em Additional Allowed\+Collision\+Matrix to consider for this collision check. ~\newline
  \end{DoxyCompactList}\item 
 \mbox{\hyperlink{namespacetesseract__collision_ab4aafe369f7930ea6a356f0b578c16af}{ACMOverride\+Type}} \mbox{\hyperlink{structtesseract__collision_1_1ContactManagerConfig_a1e26a636ac0d2f0868ed4063a9838bf9}{acm\+\_\+override\+\_\+type}} \{ \mbox{\hyperlink{namespacetesseract__collision_ab4aafe369f7930ea6a356f0b578c16afa1d00e7dce692e8dc3f6877f035e3a616}{ACMOverride\+Type\+::\+OR}} \}
-\begin{DoxyCompactList}\small\item\em Specifies how to combine the Is\+Contact\+Allowed\+Fn from acm with the one preset in the contact manager. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Specifies how to combine the Is\+Contact\+Allowed\+Fn from acm with the one preset in the contact manager. \end{DoxyCompactList}\item 
+std\+::unordered\+\_\+map$<$ std\+::string, bool $>$ \mbox{\hyperlink{structtesseract__collision_1_1ContactManagerConfig_a7e54e61c7eb4d580a10dfc2bc3dc0e74}{modify\+\_\+object\+\_\+enabled}}
+\begin{DoxyCompactList}\small\item\em Each key is an object name. Objects will be enabled/disabled based on the value. Objects that aren\textquotesingle{}t in the map are unmodified from the defaults. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
 Contains parameters used to configure a contact manager before a series of contact checks. 
 
-It should not contain information that is usually specific to a single contact\+Test such as Collision\+Object\+Transforms or specific to the way contact\+Tests are carried out such as LVS parameters 
+It should not contain information that is usually specific to a single contact\+Test such as Collision\+Object\+Transforms or specific to the way contact\+Tests are carried out such as LVS parameters
+
+\begin{DoxyNote}{Note}
+Active links were not added to this config since this config could be shared by multiple manipulators, and those are set based on which one is being checked 
+\end{DoxyNote}
+
 
 \doxysubsection{Constructor \& Destructor Documentation}
 \mbox{\Hypertarget{structtesseract__collision_1_1ContactManagerConfig_a7e3ac3b3098999827ee460327a6fd11b}\label{structtesseract__collision_1_1ContactManagerConfig_a7e3ac3b3098999827ee460327a6fd11b}} 
@@ -101,6 +108,16 @@ Stores information about how the margins allowed between collision objects.
 
 
 Identify how the collision margin data should be applied to the contact manager. 
+
+\mbox{\Hypertarget{structtesseract__collision_1_1ContactManagerConfig_a7e54e61c7eb4d580a10dfc2bc3dc0e74}\label{structtesseract__collision_1_1ContactManagerConfig_a7e54e61c7eb4d580a10dfc2bc3dc0e74}} 
+\index{tesseract\_collision::ContactManagerConfig@{tesseract\_collision::ContactManagerConfig}!modify\_object\_enabled@{modify\_object\_enabled}}
+\index{modify\_object\_enabled@{modify\_object\_enabled}!tesseract\_collision::ContactManagerConfig@{tesseract\_collision::ContactManagerConfig}}
+\doxysubsubsection{\texorpdfstring{modify\_object\_enabled}{modify\_object\_enabled}}
+{\footnotesize\ttfamily std\+::unordered\+\_\+map$<$std\+::string, bool$>$ tesseract\+\_\+collision\+::\+Contact\+Manager\+Config\+::modify\+\_\+object\+\_\+enabled}
+
+
+
+Each key is an object name. Objects will be enabled/disabled based on the value. Objects that aren\textquotesingle{}t in the map are unmodified from the defaults. 
 
 
 

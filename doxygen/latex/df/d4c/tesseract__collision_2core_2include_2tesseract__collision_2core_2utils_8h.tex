@@ -35,10 +35,10 @@ This graph shows which files directly or indirectly include this file\+:
 \item 
 Is\+Contact\+Allowed\+Fn \mbox{\hyperlink{namespacetesseract__collision_aad4f0e4f914b130332a1de2e10f62f23}{tesseract\+\_\+collision\+::combine\+Contact\+Allowed\+Fn}} (const Is\+Contact\+Allowed\+Fn \&original, const Is\+Contact\+Allowed\+Fn \&override, ACMOverride\+Type type=ACMOverride\+Type\+::\+OR)
 \begin{DoxyCompactList}\small\item\em Combines two Is\+Contact\+Allowed\+Fns using the override type. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{namespacetesseract__collision_aaaf4c8b445be1be3e0770d5b5af8d2ee}{tesseract\+\_\+collision\+::apply\+Is\+Contact\+Allowed\+Fn\+Override}} (\mbox{\hyperlink{classtesseract__collision_1_1ContinuousContactManager}{tesseract\+\_\+collision\+::\+Continuous\+Contact\+Manager}} \&manager, const \mbox{\hyperlink{classtesseract__common_1_1AllowedCollisionMatrix}{tesseract\+\_\+common\+::\+Allowed\+Collision\+Matrix}} \&acm, ACMOverride\+Type type=ACMOverride\+Type\+::\+OR)
+{\footnotesize template$<$typename Manager\+Type $>$ }\\void \mbox{\hyperlink{namespacetesseract__collision_aa9ae658359b35f57bc35258fb31d2404}{tesseract\+\_\+collision\+::apply\+Is\+Contact\+Allowed\+Fn\+Override}} (Manager\+Type \&manager, const \mbox{\hyperlink{classtesseract__common_1_1AllowedCollisionMatrix}{tesseract\+\_\+common\+::\+Allowed\+Collision\+Matrix}} \&acm, ACMOverride\+Type type)
 \begin{DoxyCompactList}\small\item\em Applies ACM to contact manager using override type. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{namespacetesseract__collision_af9664441afb85ebcab42826b5104616f}{tesseract\+\_\+collision\+::apply\+Is\+Contact\+Allowed\+Fn\+Override}} (\mbox{\hyperlink{classtesseract__collision_1_1DiscreteContactManager}{tesseract\+\_\+collision\+::\+Discrete\+Contact\+Manager}} \&manager, const \mbox{\hyperlink{classtesseract__common_1_1AllowedCollisionMatrix}{tesseract\+\_\+common\+::\+Allowed\+Collision\+Matrix}} \&acm, ACMOverride\+Type type=ACMOverride\+Type\+::\+OR)
-\begin{DoxyCompactList}\small\item\em Applies ACM to contact manager using override type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+{\footnotesize template$<$typename Manager\+Type $>$ }\\void \mbox{\hyperlink{namespacetesseract__collision_ab3fcf1e185d880f2ac9f1ad911a736ec}{tesseract\+\_\+collision\+::apply\+Modify\+Object\+Enabled}} (Manager\+Type \&manager, const std\+::unordered\+\_\+map$<$ std\+::string, bool $>$ \&modify\+\_\+object\+\_\+enabled)
+\begin{DoxyCompactList}\small\item\em Loops over the map and for every object string either enables or disables it based on the value (true=enable, false=disable) \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
