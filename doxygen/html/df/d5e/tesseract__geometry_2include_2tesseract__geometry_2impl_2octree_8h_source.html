@@ -216,54 +216,55 @@ $(function() {
 <div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
 <div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;  }</div>
 <div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160; </div>
-<div class="line"><a name="l00179"></a><span class="lineno"><a class="line" href="../../d3/d4b/classtesseract__geometry_1_1Octree.html#a87de9242d4b911819da17bc2d6f1034a">  179</a></span>&#160;  <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="../../d3/d4b/classtesseract__geometry_1_1Octree.html#a87de9242d4b911819da17bc2d6f1034a">pruneRecurs</a>(octomap::OcTree&amp; octree,</div>
-<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;                          octomap::OcTreeNode* node,</div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;                          <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> depth,</div>
-<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;                          <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> max_depth,</div>
-<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;                          <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>&amp; num_pruned)</div>
-<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;  {</div>
-<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;    assert(node);</div>
-<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160; </div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;    <span class="keywordflow">if</span> (depth &lt; max_depth)</div>
-<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;    {</div>
-<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;      <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i = 0; i &lt; 8; i++)</div>
-<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;      {</div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;        <span class="keywordflow">if</span> (octree.nodeChildExists(node, i))</div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;        {</div>
-<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;          <a class="code" href="../../d3/d4b/classtesseract__geometry_1_1Octree.html#a87de9242d4b911819da17bc2d6f1034a">pruneRecurs</a>(octree, octree.getNodeChild(node, i), depth + 1, max_depth, num_pruned);</div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;        }</div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;      }</div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;    }  <span class="comment">// end if depth</span></div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160; </div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;    <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;    {</div>
-<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;      <span class="comment">// max level reached</span></div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;      <span class="keywordflow">if</span> (<a class="code" href="../../d3/d4b/classtesseract__geometry_1_1Octree.html#ae9d3f0673522f423474ca3cfa9f1aabe">pruneNode</a>(octree, node))</div>
-<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;      {</div>
-<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;        num_pruned++;</div>
-<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;      }</div>
-<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;    }</div>
-<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;  }</div>
-<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160; </div>
-<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;<span class="preprocessor">#ifndef SWIG</span></div>
-<div class="line"><a name="l00218"></a><span class="lineno"><a class="line" href="../../d3/d4b/classtesseract__geometry_1_1Octree.html#a6869e2482754d630b7c15b9b6c428fa9">  218</a></span>&#160;  <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="../../d3/d4b/classtesseract__geometry_1_1Octree.html#a6869e2482754d630b7c15b9b6c428fa9">prune</a>(octomap::OcTree&amp; octree)</div>
-<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;  {</div>
-<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;    <span class="keywordflow">if</span> (octree.getRoot() == <span class="keyword">nullptr</span>)</div>
-<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;      <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160; </div>
-<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> depth = octree.getTreeDepth() - 1; depth &gt; 0; --depth)</div>
-<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;    {</div>
-<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;      <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> num_pruned = 0;</div>
-<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;      <a class="code" href="../../d3/d4b/classtesseract__geometry_1_1Octree.html#a87de9242d4b911819da17bc2d6f1034a">pruneRecurs</a>(octree, octree.getRoot(), 0, depth, num_pruned);</div>
-<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;      <span class="keywordflow">if</span> (num_pruned == 0)</div>
-<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;        <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;    }</div>
-<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;  }</div>
-<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;<span class="preprocessor">#endif  </span><span class="comment">// SWIG</span></div>
-<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;};</div>
-<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;}  <span class="comment">// namespace tesseract_geometry</span></div>
-<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;  <span class="comment">// NOLINTNEXTLINE(misc-no-recursion)</span></div>
+<div class="line"><a name="l00180"></a><span class="lineno"><a class="line" href="../../d3/d4b/classtesseract__geometry_1_1Octree.html#a87de9242d4b911819da17bc2d6f1034a">  180</a></span>&#160;  <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="../../d3/d4b/classtesseract__geometry_1_1Octree.html#a87de9242d4b911819da17bc2d6f1034a">pruneRecurs</a>(octomap::OcTree&amp; octree,</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;                          octomap::OcTreeNode* node,</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;                          <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> depth,</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;                          <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> max_depth,</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;                          <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>&amp; num_pruned)</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;  {</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;    assert(node);</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160; </div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;    <span class="keywordflow">if</span> (depth &lt; max_depth)</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;    {</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;      <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i = 0; i &lt; 8; i++)</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;      {</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;        <span class="keywordflow">if</span> (octree.nodeChildExists(node, i))</div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;        {</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;          <a class="code" href="../../d3/d4b/classtesseract__geometry_1_1Octree.html#a87de9242d4b911819da17bc2d6f1034a">pruneRecurs</a>(octree, octree.getNodeChild(node, i), depth + 1, max_depth, num_pruned);</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;        }</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;      }</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;    }  <span class="comment">// end if depth</span></div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160; </div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;    <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;    {</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;      <span class="comment">// max level reached</span></div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;      <span class="keywordflow">if</span> (<a class="code" href="../../d3/d4b/classtesseract__geometry_1_1Octree.html#ae9d3f0673522f423474ca3cfa9f1aabe">pruneNode</a>(octree, node))</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;      {</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;        num_pruned++;</div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;      }</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;    }</div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;  }</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160; </div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;<span class="preprocessor">#ifndef SWIG</span></div>
+<div class="line"><a name="l00219"></a><span class="lineno"><a class="line" href="../../d3/d4b/classtesseract__geometry_1_1Octree.html#a6869e2482754d630b7c15b9b6c428fa9">  219</a></span>&#160;  <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="../../d3/d4b/classtesseract__geometry_1_1Octree.html#a6869e2482754d630b7c15b9b6c428fa9">prune</a>(octomap::OcTree&amp; octree)</div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;  {</div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;    <span class="keywordflow">if</span> (octree.getRoot() == <span class="keyword">nullptr</span>)</div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;      <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160; </div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> depth = octree.getTreeDepth() - 1; depth &gt; 0; --depth)</div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;    {</div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;      <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> num_pruned = 0;</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;      <a class="code" href="../../d3/d4b/classtesseract__geometry_1_1Octree.html#a87de9242d4b911819da17bc2d6f1034a">pruneRecurs</a>(octree, octree.getRoot(), 0, depth, num_pruned);</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;      <span class="keywordflow">if</span> (num_pruned == 0)</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;        <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;    }</div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;  }</div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;<span class="preprocessor">#endif  </span><span class="comment">// SWIG</span></div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;};</div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;}  <span class="comment">// namespace tesseract_geometry</span></div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="aclasstesseract__geometry_1_1Geometry_html"><div class="ttname"><a href="../../df/d1a/classtesseract__geometry_1_1Geometry.html">tesseract_geometry::Geometry</a></div><div class="ttdef"><b>Definition:</b> geometry.h:63</div></div>
 <div class="ttc" id="aclasstesseract__geometry_1_1Geometry_html_a755a973394d2ccb45ad53a5e11ff03c7"><div class="ttname"><a href="../../df/d1a/classtesseract__geometry_1_1Geometry.html#a755a973394d2ccb45ad53a5e11ff03c7">tesseract_geometry::Geometry::ConstPtr</a></div><div class="ttdeci">std::shared_ptr&lt; const Geometry &gt; ConstPtr</div><div class="ttdef"><b>Definition:</b> geometry.h:66</div></div>
 <div class="ttc" id="aclasstesseract__geometry_1_1Geometry_html_acd91c55fb9604ed374446c029b6f2d08"><div class="ttname"><a href="../../df/d1a/classtesseract__geometry_1_1Geometry.html#acd91c55fb9604ed374446c029b6f2d08">tesseract_geometry::Geometry::Ptr</a></div><div class="ttdeci">std::shared_ptr&lt; Geometry &gt; Ptr</div><div class="ttdef"><b>Definition:</b> geometry.h:65</div></div>
@@ -278,9 +279,9 @@ $(function() {
 <div class="ttc" id="aclasstesseract__geometry_1_1Octree_html_a50b534fbd4a871cd257ac52d6009af00a474a03c0f9a733d18169249b3103e629"><div class="ttname"><a href="../../d3/d4b/classtesseract__geometry_1_1Octree.html#a50b534fbd4a871cd257ac52d6009af00a474a03c0f9a733d18169249b3103e629">tesseract_geometry::Octree::SPHERE_OUTSIDE</a></div><div class="ttdeci">@ SPHERE_OUTSIDE</div><div class="ttdef"><b>Definition:</b> octree.h:57</div></div>
 <div class="ttc" id="aclasstesseract__geometry_1_1Octree_html_a50b534fbd4a871cd257ac52d6009af00a779662c05992d34ec76271438b7def72"><div class="ttname"><a href="../../d3/d4b/classtesseract__geometry_1_1Octree.html#a50b534fbd4a871cd257ac52d6009af00a779662c05992d34ec76271438b7def72">tesseract_geometry::Octree::SPHERE_INSIDE</a></div><div class="ttdeci">@ SPHERE_INSIDE</div><div class="ttdef"><b>Definition:</b> octree.h:56</div></div>
 <div class="ttc" id="aclasstesseract__geometry_1_1Octree_html_a68382c0ccbf7e6db4e5e96fbaec2bd27"><div class="ttname"><a href="../../d3/d4b/classtesseract__geometry_1_1Octree.html#a68382c0ccbf7e6db4e5e96fbaec2bd27">tesseract_geometry::Octree::getOctree</a></div><div class="ttdeci">const std::shared_ptr&lt; const octomap::OcTree &gt; &amp; getOctree() const</div><div class="ttdef"><b>Definition:</b> octree.h:96</div></div>
-<div class="ttc" id="aclasstesseract__geometry_1_1Octree_html_a6869e2482754d630b7c15b9b6c428fa9"><div class="ttname"><a href="../../d3/d4b/classtesseract__geometry_1_1Octree.html#a6869e2482754d630b7c15b9b6c428fa9">tesseract_geometry::Octree::prune</a></div><div class="ttdeci">static void prune(octomap::OcTree &amp;octree)</div><div class="ttdoc">A custom octree prune which will prune if all children are above the occupancy threshold.</div><div class="ttdef"><b>Definition:</b> octree.h:218</div></div>
+<div class="ttc" id="aclasstesseract__geometry_1_1Octree_html_a6869e2482754d630b7c15b9b6c428fa9"><div class="ttname"><a href="../../d3/d4b/classtesseract__geometry_1_1Octree.html#a6869e2482754d630b7c15b9b6c428fa9">tesseract_geometry::Octree::prune</a></div><div class="ttdeci">static void prune(octomap::OcTree &amp;octree)</div><div class="ttdoc">A custom octree prune which will prune if all children are above the occupancy threshold.</div><div class="ttdef"><b>Definition:</b> octree.h:219</div></div>
 <div class="ttc" id="aclasstesseract__geometry_1_1Octree_html_a806c462d66b9ddedef51ec7069b3d17b"><div class="ttname"><a href="../../d3/d4b/classtesseract__geometry_1_1Octree.html#a806c462d66b9ddedef51ec7069b3d17b">tesseract_geometry::Octree::clone</a></div><div class="ttdeci">Geometry::Ptr clone() const override</div><div class="ttdoc">Create a copy of this shape.</div><div class="ttdef"><b>Definition:</b> octree.h:102</div></div>
-<div class="ttc" id="aclasstesseract__geometry_1_1Octree_html_a87de9242d4b911819da17bc2d6f1034a"><div class="ttname"><a href="../../d3/d4b/classtesseract__geometry_1_1Octree.html#a87de9242d4b911819da17bc2d6f1034a">tesseract_geometry::Octree::pruneRecurs</a></div><div class="ttdeci">static void pruneRecurs(octomap::OcTree &amp;octree, octomap::OcTreeNode *node, unsigned int depth, unsigned int max_depth, unsigned int &amp;num_pruned)</div><div class="ttdef"><b>Definition:</b> octree.h:179</div></div>
+<div class="ttc" id="aclasstesseract__geometry_1_1Octree_html_a87de9242d4b911819da17bc2d6f1034a"><div class="ttname"><a href="../../d3/d4b/classtesseract__geometry_1_1Octree.html#a87de9242d4b911819da17bc2d6f1034a">tesseract_geometry::Octree::pruneRecurs</a></div><div class="ttdeci">static void pruneRecurs(octomap::OcTree &amp;octree, octomap::OcTreeNode *node, unsigned int depth, unsigned int max_depth, unsigned int &amp;num_pruned)</div><div class="ttdef"><b>Definition:</b> octree.h:180</div></div>
 <div class="ttc" id="aclasstesseract__geometry_1_1Octree_html_a88e61844187d8947b0978dfd7b4a6579"><div class="ttname"><a href="../../d3/d4b/classtesseract__geometry_1_1Octree.html#a88e61844187d8947b0978dfd7b4a6579">tesseract_geometry::Octree::Octree</a></div><div class="ttdeci">Octree(const PointT &amp;point_cloud, const double resolution, const SubType sub_type, const bool prune)</div><div class="ttdef"><b>Definition:</b> octree.h:67</div></div>
 <div class="ttc" id="aclasstesseract__geometry_1_1Octree_html_a90a701b0f4f93fe9f80b01001f9a5166"><div class="ttname"><a href="../../d3/d4b/classtesseract__geometry_1_1Octree.html#a90a701b0f4f93fe9f80b01001f9a5166">tesseract_geometry::Octree::sub_type_</a></div><div class="ttdeci">SubType sub_type_</div><div class="ttdef"><b>Definition:</b> octree.h:131</div></div>
 <div class="ttc" id="aclasstesseract__geometry_1_1Octree_html_aaccb7432efaf7ef69b7e23fe467f838c"><div class="ttname"><a href="../../d3/d4b/classtesseract__geometry_1_1Octree.html#aaccb7432efaf7ef69b7e23fe467f838c">tesseract_geometry::Octree::operator=</a></div><div class="ttdeci">Octree &amp; operator=(Octree &amp;&amp;)=delete</div></div>
@@ -302,7 +303,7 @@ $(function() {
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Dec 13 2021 17:59:32 for Tesseract by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Wed Dec 15 2021 04:06:28 for Tesseract by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>
