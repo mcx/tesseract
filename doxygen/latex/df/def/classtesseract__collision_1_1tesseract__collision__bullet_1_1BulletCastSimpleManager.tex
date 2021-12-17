@@ -73,6 +73,8 @@ bool \mbox{\hyperlink{classtesseract__collision_1_1tesseract__collision__bullet_
 \begin{DoxyCompactList}\small\item\em Enable an object. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{classtesseract__collision_1_1tesseract__collision__bullet_1_1BulletCastSimpleManager_a4eff8234b39c43aa9a5933c240b6faba}{disable\+Collision\+Object}} (const std\+::string \&name) override final
 \begin{DoxyCompactList}\small\item\em Disable an object. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classtesseract__collision_1_1tesseract__collision__bullet_1_1BulletCastSimpleManager_a6d78537e3f79a51052eb5fb85e3599bc}{is\+Collision\+Object\+Enabled}} (const std\+::string \&name) const override final
+\begin{DoxyCompactList}\small\item\em Check if collision object is enabled. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classtesseract__collision_1_1tesseract__collision__bullet_1_1BulletCastSimpleManager_aac572be892e53f09b31e42a7d98da3be}{set\+Collision\+Objects\+Transform}} (const std\+::string \&name, const Eigen\+::\+Isometry3d \&pose) override final
 \begin{DoxyCompactList}\small\item\em Set a single static collision object\textquotesingle{}s tansforms. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classtesseract__collision_1_1tesseract__collision__bullet_1_1BulletCastSimpleManager_a56b37cbadf28dfb345bfbaf1f0eb09b7}{set\+Collision\+Objects\+Transform}} (const \mbox{\hyperlink{vhacdRaycastMesh_8cpp_adcf134d50025cc52907d0c8ac798d89d}{std\+::vector}}$<$ std\+::string $>$ \&names, const \mbox{\hyperlink{namespacetesseract__common_a94d9921fc7ed323609ac57d06f939cb6}{tesseract\+\_\+common\+::\+Vector\+Isometry3d}} \&poses) override final
@@ -466,6 +468,28 @@ true if it exists, otherwise false.
 
 
 Implements \mbox{\hyperlink{classtesseract__collision_1_1ContinuousContactManager_a311b50cd68a685538a25f9f39e7626b6}{tesseract\+\_\+collision\+::\+Continuous\+Contact\+Manager}}.
+
+\mbox{\Hypertarget{classtesseract__collision_1_1tesseract__collision__bullet_1_1BulletCastSimpleManager_a6d78537e3f79a51052eb5fb85e3599bc}\label{classtesseract__collision_1_1tesseract__collision__bullet_1_1BulletCastSimpleManager_a6d78537e3f79a51052eb5fb85e3599bc}} 
+\index{tesseract\_collision::tesseract\_collision\_bullet::BulletCastSimpleManager@{tesseract\_collision::tesseract\_collision\_bullet::BulletCastSimpleManager}!isCollisionObjectEnabled@{isCollisionObjectEnabled}}
+\index{isCollisionObjectEnabled@{isCollisionObjectEnabled}!tesseract\_collision::tesseract\_collision\_bullet::BulletCastSimpleManager@{tesseract\_collision::tesseract\_collision\_bullet::BulletCastSimpleManager}}
+\doxysubsubsection{\texorpdfstring{isCollisionObjectEnabled()}{isCollisionObjectEnabled()}}
+{\footnotesize\ttfamily bool tesseract\+\_\+collision\+::tesseract\+\_\+collision\+\_\+bullet\+::\+Bullet\+Cast\+Simple\+Manager\+::is\+Collision\+Object\+Enabled (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [final]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Check if collision object is enabled. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the object \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if enabled, otherwise false 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classtesseract__collision_1_1ContinuousContactManager_a0b4cf474dcc2d1f5f9d904f6ba9e48d3}{tesseract\+\_\+collision\+::\+Continuous\+Contact\+Manager}}.
 
 \mbox{\Hypertarget{classtesseract__collision_1_1tesseract__collision__bullet_1_1BulletCastSimpleManager_ab78cc17cd78d12451ebf6d67f9c9e2a0}\label{classtesseract__collision_1_1tesseract__collision__bullet_1_1BulletCastSimpleManager_ab78cc17cd78d12451ebf6d67f9c9e2a0}} 
 \index{tesseract\_collision::tesseract\_collision\_bullet::BulletCastSimpleManager@{tesseract\_collision::tesseract\_collision\_bullet::BulletCastSimpleManager}!onCollisionMarginDataChanged@{onCollisionMarginDataChanged}}

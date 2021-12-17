@@ -73,12 +73,14 @@ bool \mbox{\hyperlink{classtesseract__collision_1_1tesseract__collision__fcl_1_1
 \begin{DoxyCompactList}\small\item\em Enable an object. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{classtesseract__collision_1_1tesseract__collision__fcl_1_1FCLDiscreteBVHManager_afa4c8a76c9d6d402ad5802e16d95cb2f}{disable\+Collision\+Object}} (const std\+::string \&name) override final
 \begin{DoxyCompactList}\small\item\em Disable an object. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classtesseract__collision_1_1tesseract__collision__fcl_1_1FCLDiscreteBVHManager_ae7fa738f144cd0105bc1927489d4174c}{is\+Collision\+Object\+Enabled}} (const std\+::string \&name) const override final
+\begin{DoxyCompactList}\small\item\em Check if collision object is enabled. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classtesseract__collision_1_1tesseract__collision__fcl_1_1FCLDiscreteBVHManager_a13bf9fe72bbd5510f555b6819d73ccfc}{set\+Collision\+Objects\+Transform}} (const std\+::string \&name, const Eigen\+::\+Isometry3d \&pose) override final
-\begin{DoxyCompactList}\small\item\em Set a single collision object\textquotesingle{}s tansforms. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Set a single collision object\textquotesingle{}s transforms. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classtesseract__collision_1_1tesseract__collision__fcl_1_1FCLDiscreteBVHManager_abce6513c0ea67149662cbe93f36a0081}{set\+Collision\+Objects\+Transform}} (const \mbox{\hyperlink{vhacdRaycastMesh_8cpp_adcf134d50025cc52907d0c8ac798d89d}{std\+::vector}}$<$ std\+::string $>$ \&names, const \mbox{\hyperlink{namespacetesseract__common_a94d9921fc7ed323609ac57d06f939cb6}{tesseract\+\_\+common\+::\+Vector\+Isometry3d}} \&poses) override final
-\begin{DoxyCompactList}\small\item\em Set a series of collision object\textquotesingle{}s tranforms. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Set a series of collision object\textquotesingle{}s transforms. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classtesseract__collision_1_1tesseract__collision__fcl_1_1FCLDiscreteBVHManager_abebd6616325e4793772e7c8c83a4ff0a}{set\+Collision\+Objects\+Transform}} (const \mbox{\hyperlink{namespacetesseract__common_a67bde3cb7bb235f0f61c370ef8bc74d8}{tesseract\+\_\+common\+::\+Transform\+Map}} \&transforms) override final
-\begin{DoxyCompactList}\small\item\em Set a series of collision object\textquotesingle{}s tranforms. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Set a series of collision object\textquotesingle{}s transforms. \end{DoxyCompactList}\item 
 const \mbox{\hyperlink{vhacdRaycastMesh_8cpp_adcf134d50025cc52907d0c8ac798d89d}{std\+::vector}}$<$ std\+::string $>$ \& \mbox{\hyperlink{classtesseract__collision_1_1tesseract__collision__fcl_1_1FCLDiscreteBVHManager_ae81c41ef313be9dd6ee5953a77d29267}{get\+Collision\+Objects}} () const override final
 \begin{DoxyCompactList}\small\item\em Get all collision objects. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classtesseract__collision_1_1tesseract__collision__fcl_1_1FCLDiscreteBVHManager_a2103cf389fd40b54c72321d7b0e89424}{set\+Active\+Collision\+Objects}} (const \mbox{\hyperlink{vhacdRaycastMesh_8cpp_adcf134d50025cc52907d0c8ac798d89d}{std\+::vector}}$<$ std\+::string $>$ \&names) override final
@@ -455,6 +457,28 @@ true if it exists, otherwise false.
 
 Implements \mbox{\hyperlink{classtesseract__collision_1_1DiscreteContactManager_a88de26744511600a096f25d37eebd5c9}{tesseract\+\_\+collision\+::\+Discrete\+Contact\+Manager}}.
 
+\mbox{\Hypertarget{classtesseract__collision_1_1tesseract__collision__fcl_1_1FCLDiscreteBVHManager_ae7fa738f144cd0105bc1927489d4174c}\label{classtesseract__collision_1_1tesseract__collision__fcl_1_1FCLDiscreteBVHManager_ae7fa738f144cd0105bc1927489d4174c}} 
+\index{tesseract\_collision::tesseract\_collision\_fcl::FCLDiscreteBVHManager@{tesseract\_collision::tesseract\_collision\_fcl::FCLDiscreteBVHManager}!isCollisionObjectEnabled@{isCollisionObjectEnabled}}
+\index{isCollisionObjectEnabled@{isCollisionObjectEnabled}!tesseract\_collision::tesseract\_collision\_fcl::FCLDiscreteBVHManager@{tesseract\_collision::tesseract\_collision\_fcl::FCLDiscreteBVHManager}}
+\doxysubsubsection{\texorpdfstring{isCollisionObjectEnabled()}{isCollisionObjectEnabled()}}
+{\footnotesize\ttfamily bool tesseract\+\_\+collision\+::tesseract\+\_\+collision\+\_\+fcl\+::\+FCLDiscrete\+BVHManager\+::is\+Collision\+Object\+Enabled (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [final]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Check if collision object is enabled. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the object \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if enabled, otherwise false 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classtesseract__collision_1_1DiscreteContactManager_a08fe68873a15051d9b7ac5ad501c3de8}{tesseract\+\_\+collision\+::\+Discrete\+Contact\+Manager}}.
+
 \mbox{\Hypertarget{classtesseract__collision_1_1tesseract__collision__fcl_1_1FCLDiscreteBVHManager_a506b420ed6d525100b7c3fcb33dc54c0}\label{classtesseract__collision_1_1tesseract__collision__fcl_1_1FCLDiscreteBVHManager_a506b420ed6d525100b7c3fcb33dc54c0}} 
 \index{tesseract\_collision::tesseract\_collision\_fcl::FCLDiscreteBVHManager@{tesseract\_collision::tesseract\_collision\_fcl::FCLDiscreteBVHManager}!onCollisionMarginDataChanged@{onCollisionMarginDataChanged}}
 \index{onCollisionMarginDataChanged@{onCollisionMarginDataChanged}!tesseract\_collision::tesseract\_collision\_fcl::FCLDiscreteBVHManager@{tesseract\_collision::tesseract\_collision\_fcl::FCLDiscreteBVHManager}}
@@ -547,13 +571,13 @@ Implements \mbox{\hyperlink{classtesseract__collision_1_1DiscreteContactManager_
 
 
 
-Set a single collision object\textquotesingle{}s tansforms. 
+Set a single collision object\textquotesingle{}s transforms. 
 
 
 \begin{DoxyParams}{Parameters}
 {\em name} & The name of the object \\
 \hline
-{\em pose} & The tranformation in world \\
+{\em pose} & The transformation in world \\
 \hline
 \end{DoxyParams}
 
@@ -568,13 +592,13 @@ Implements \mbox{\hyperlink{classtesseract__collision_1_1DiscreteContactManager_
 
 
 
-Set a series of collision object\textquotesingle{}s tranforms. 
+Set a series of collision object\textquotesingle{}s transforms. 
 
 
 \begin{DoxyParams}{Parameters}
 {\em names} & The name of the object \\
 \hline
-{\em poses} & The tranformation in world \\
+{\em poses} & The transformation in world \\
 \hline
 \end{DoxyParams}
 
@@ -589,7 +613,7 @@ Implements \mbox{\hyperlink{classtesseract__collision_1_1DiscreteContactManager_
 
 
 
-Set a series of collision object\textquotesingle{}s tranforms. 
+Set a series of collision object\textquotesingle{}s transforms. 
 
 
 \begin{DoxyParams}{Parameters}

@@ -182,6 +182,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a2c791b512535955408bd3af41f6a5652"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/dd0/classtesseract__collision_1_1tesseract__collision__bullet_1_1BulletCastBVHManager.html#a2c791b512535955408bd3af41f6a5652">disableCollisionObject</a> (const std::string &amp;name) override final</td></tr>
 <tr class="memdesc:a2c791b512535955408bd3af41f6a5652"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disable an object.  <a href="../../dc/dd0/classtesseract__collision_1_1tesseract__collision__bullet_1_1BulletCastBVHManager.html#a2c791b512535955408bd3af41f6a5652">More...</a><br /></td></tr>
 <tr class="separator:a2c791b512535955408bd3af41f6a5652"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad3d29ea6433cc70d3df6d5b23b9fdf9c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/dd0/classtesseract__collision_1_1tesseract__collision__bullet_1_1BulletCastBVHManager.html#ad3d29ea6433cc70d3df6d5b23b9fdf9c">isCollisionObjectEnabled</a> (const std::string &amp;name) const override final</td></tr>
+<tr class="memdesc:ad3d29ea6433cc70d3df6d5b23b9fdf9c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if collision object is enabled.  <a href="../../dc/dd0/classtesseract__collision_1_1tesseract__collision__bullet_1_1BulletCastBVHManager.html#ad3d29ea6433cc70d3df6d5b23b9fdf9c">More...</a><br /></td></tr>
+<tr class="separator:ad3d29ea6433cc70d3df6d5b23b9fdf9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2145fd58e4fc165ee4fe573607668dbb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/dd0/classtesseract__collision_1_1tesseract__collision__bullet_1_1BulletCastBVHManager.html#a2145fd58e4fc165ee4fe573607668dbb">setCollisionObjectsTransform</a> (const std::string &amp;name, const Eigen::Isometry3d &amp;pose) override final</td></tr>
 <tr class="memdesc:a2145fd58e4fc165ee4fe573607668dbb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set a single static collision object's tansforms.  <a href="../../dc/dd0/classtesseract__collision_1_1tesseract__collision__bullet_1_1BulletCastBVHManager.html#a2145fd58e4fc165ee4fe573607668dbb">More...</a><br /></td></tr>
 <tr class="separator:a2145fd58e4fc165ee4fe573607668dbb"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -951,6 +954,43 @@ Private Attributes</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>true if it exists, otherwise false. </dd></dl>
 
 <p>Implements <a class="el" href="../../de/d3a/classtesseract__collision_1_1ContinuousContactManager.html#a311b50cd68a685538a25f9f39e7626b6">tesseract_collision::ContinuousContactManager</a>.</p>
+
+</div>
+</div>
+<a id="ad3d29ea6433cc70d3df6d5b23b9fdf9c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad3d29ea6433cc70d3df6d5b23b9fdf9c">&#9670;&nbsp;</a></span>isCollisionObjectEnabled()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool tesseract_collision::tesseract_collision_bullet::BulletCastBVHManager::isCollisionObjectEnabled </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>name</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">final</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Check if collision object is enabled. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>The name of the object </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if enabled, otherwise false </dd></dl>
+
+<p>Implements <a class="el" href="../../de/d3a/classtesseract__collision_1_1ContinuousContactManager.html#a0b4cf474dcc2d1f5f9d904f6ba9e48d3">tesseract_collision::ContinuousContactManager</a>.</p>
 
 </div>
 </div>
@@ -1832,7 +1872,7 @@ Private Attributes</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Dec 16 2021 21:00:39 for Tesseract by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Fri Dec 17 2021 15:58:59 for Tesseract by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>
