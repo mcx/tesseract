@@ -27,6 +27,11 @@ Collaboration diagram for tesseract\+\_\+geometry\+::Convex\+Mesh\+:
 \doxysubsection*{Public Types}
 \begin{DoxyCompactItemize}
 \item 
+enum \mbox{\hyperlink{classtesseract__geometry_1_1ConvexMesh_aa89b924e13d31f22ab307d8b2939afda}{Creation\+Method}} \{ \mbox{\hyperlink{classtesseract__geometry_1_1ConvexMesh_aa89b924e13d31f22ab307d8b2939afdaab60f7059125307bcf8ad12166e12f398}{DEFAULT}}
+, \mbox{\hyperlink{classtesseract__geometry_1_1ConvexMesh_aa89b924e13d31f22ab307d8b2939afdaacc269086ebef2c36f2003822fe6bb64c}{MESH}}
+, \mbox{\hyperlink{classtesseract__geometry_1_1ConvexMesh_aa89b924e13d31f22ab307d8b2939afdaa4128ed88ee78e14b6dc73b21e4a289c8}{CONVERTED}}
+ \}
+\item 
 using \mbox{\hyperlink{classtesseract__geometry_1_1ConvexMesh_aecd145c5f75117ff7a3bab1fb921e4c0}{Ptr}} = std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classtesseract__geometry_1_1ConvexMesh}{Convex\+Mesh}} $>$
 \item 
 using \mbox{\hyperlink{classtesseract__geometry_1_1ConvexMesh_a891ee4bcb9a02f4d57f1400bc32f561a}{Const\+Ptr}} = std\+::shared\+\_\+ptr$<$ const \mbox{\hyperlink{classtesseract__geometry_1_1ConvexMesh}{Convex\+Mesh}} $>$
@@ -48,8 +53,17 @@ using \mbox{\hyperlink{classtesseract__geometry_1_1ConvexMesh_a891ee4bcb9a02f4d5
 \item 
 \mbox{\hyperlink{classtesseract__geometry_1_1ConvexMesh}{Convex\+Mesh}} \& \mbox{\hyperlink{classtesseract__geometry_1_1ConvexMesh_af66ac89ddeb0a2818a6e6ccf8ef665c6}{operator=}} (\mbox{\hyperlink{classtesseract__geometry_1_1ConvexMesh}{Convex\+Mesh}} \&\&)=delete
 \item 
+\mbox{\hyperlink{classtesseract__geometry_1_1ConvexMesh_aa89b924e13d31f22ab307d8b2939afda}{Creation\+Method}} \mbox{\hyperlink{classtesseract__geometry_1_1ConvexMesh_abea9b7ccada14ee56fa90542487b2800}{get\+Creation\+Method}} () const
+\begin{DoxyCompactList}\small\item\em Get how the convex hull was created. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classtesseract__geometry_1_1ConvexMesh_a2b2d1d0194d7204445647e040669f1b1}{set\+Creation\+Method}} (\mbox{\hyperlink{classtesseract__geometry_1_1ConvexMesh_aa89b924e13d31f22ab307d8b2939afda}{Creation\+Method}} method)
+\begin{DoxyCompactList}\small\item\em Set the method used to create the convex mesh. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classtesseract__geometry_1_1Geometry_acd91c55fb9604ed374446c029b6f2d08}{Geometry\+::\+Ptr}} \mbox{\hyperlink{classtesseract__geometry_1_1ConvexMesh_a7e1398fbaf4c54744e38484e30df98f1}{clone}} () const override
 \begin{DoxyCompactList}\small\item\em Create a copy of this shape. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classtesseract__geometry_1_1ConvexMesh_aa89b924e13d31f22ab307d8b2939afda}{Creation\+Method}} \mbox{\hyperlink{classtesseract__geometry_1_1ConvexMesh_afbf89354c8966f200b46cdaf2ff558f7}{creation\+\_\+method\+\_\+}} \{ \mbox{\hyperlink{classtesseract__geometry_1_1ConvexMesh_aa89b924e13d31f22ab307d8b2939afdaab60f7059125307bcf8ad12166e12f398}{DEFAULT}} \}
+\end{DoxyCompactItemize}
 
 
 \doxysubsection{Member Typedef Documentation}
@@ -65,6 +79,29 @@ using \mbox{\hyperlink{classtesseract__geometry_1_1ConvexMesh_a891ee4bcb9a02f4d5
 \doxysubsubsection{\texorpdfstring{Ptr}{Ptr}}
 {\footnotesize\ttfamily using \mbox{\hyperlink{classtesseract__geometry_1_1ConvexMesh_aecd145c5f75117ff7a3bab1fb921e4c0}{tesseract\+\_\+geometry\+::\+Convex\+Mesh\+::\+Ptr}} =  std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classtesseract__geometry_1_1ConvexMesh}{Convex\+Mesh}}$>$}
 
+
+
+\doxysubsection{Member Enumeration Documentation}
+\mbox{\Hypertarget{classtesseract__geometry_1_1ConvexMesh_aa89b924e13d31f22ab307d8b2939afda}\label{classtesseract__geometry_1_1ConvexMesh_aa89b924e13d31f22ab307d8b2939afda}} 
+\index{tesseract\_geometry::ConvexMesh@{tesseract\_geometry::ConvexMesh}!CreationMethod@{CreationMethod}}
+\index{CreationMethod@{CreationMethod}!tesseract\_geometry::ConvexMesh@{tesseract\_geometry::ConvexMesh}}
+\doxysubsubsection{\texorpdfstring{CreationMethod}{CreationMethod}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{classtesseract__geometry_1_1ConvexMesh_aa89b924e13d31f22ab307d8b2939afda}{tesseract\+\_\+geometry\+::\+Convex\+Mesh\+::\+Creation\+Method}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DEFAULT@{DEFAULT}!tesseract\_geometry::ConvexMesh@{tesseract\_geometry::ConvexMesh}}\index{tesseract\_geometry::ConvexMesh@{tesseract\_geometry::ConvexMesh}!DEFAULT@{DEFAULT}}}\mbox{\Hypertarget{classtesseract__geometry_1_1ConvexMesh_aa89b924e13d31f22ab307d8b2939afdaab60f7059125307bcf8ad12166e12f398}\label{classtesseract__geometry_1_1ConvexMesh_aa89b924e13d31f22ab307d8b2939afdaab60f7059125307bcf8ad12166e12f398}} 
+DEFAULT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MESH@{MESH}!tesseract\_geometry::ConvexMesh@{tesseract\_geometry::ConvexMesh}}\index{tesseract\_geometry::ConvexMesh@{tesseract\_geometry::ConvexMesh}!MESH@{MESH}}}\mbox{\Hypertarget{classtesseract__geometry_1_1ConvexMesh_aa89b924e13d31f22ab307d8b2939afdaacc269086ebef2c36f2003822fe6bb64c}\label{classtesseract__geometry_1_1ConvexMesh_aa89b924e13d31f22ab307d8b2939afdaacc269086ebef2c36f2003822fe6bb64c}} 
+MESH&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CONVERTED@{CONVERTED}!tesseract\_geometry::ConvexMesh@{tesseract\_geometry::ConvexMesh}}\index{tesseract\_geometry::ConvexMesh@{tesseract\_geometry::ConvexMesh}!CONVERTED@{CONVERTED}}}\mbox{\Hypertarget{classtesseract__geometry_1_1ConvexMesh_aa89b924e13d31f22ab307d8b2939afdaa4128ed88ee78e14b6dc73b21e4a289c8}\label{classtesseract__geometry_1_1ConvexMesh_aa89b924e13d31f22ab307d8b2939afdaa4128ed88ee78e14b6dc73b21e4a289c8}} 
+CONVERTED&\\
+\hline
+
+\end{DoxyEnumFields}
 
 
 \doxysubsection{Constructor \& Destructor Documentation}
@@ -163,6 +200,22 @@ Create a copy of this shape.
 
 Implements \mbox{\hyperlink{classtesseract__geometry_1_1Geometry_ae8e12b3ae80b55eff558ce4feea1efcd}{tesseract\+\_\+geometry\+::\+Geometry}}.
 
+\mbox{\Hypertarget{classtesseract__geometry_1_1ConvexMesh_abea9b7ccada14ee56fa90542487b2800}\label{classtesseract__geometry_1_1ConvexMesh_abea9b7ccada14ee56fa90542487b2800}} 
+\index{tesseract\_geometry::ConvexMesh@{tesseract\_geometry::ConvexMesh}!getCreationMethod@{getCreationMethod}}
+\index{getCreationMethod@{getCreationMethod}!tesseract\_geometry::ConvexMesh@{tesseract\_geometry::ConvexMesh}}
+\doxysubsubsection{\texorpdfstring{getCreationMethod()}{getCreationMethod()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classtesseract__geometry_1_1ConvexMesh_aa89b924e13d31f22ab307d8b2939afda}{Creation\+Method}} tesseract\+\_\+geometry\+::\+Convex\+Mesh\+::get\+Creation\+Method (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get how the convex hull was created. 
+
+\begin{DoxyNote}{Note}
+This used when writing back out to urdf 
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+The Creation\+Method 
+\end{DoxyReturn}
 \mbox{\Hypertarget{classtesseract__geometry_1_1ConvexMesh_acbb57d884d35cf0f1d94cd3109f7dec2}\label{classtesseract__geometry_1_1ConvexMesh_acbb57d884d35cf0f1d94cd3109f7dec2}} 
 \index{tesseract\_geometry::ConvexMesh@{tesseract\_geometry::ConvexMesh}!operator=@{operator=}}
 \index{operator=@{operator=}!tesseract\_geometry::ConvexMesh@{tesseract\_geometry::ConvexMesh}}
@@ -174,6 +227,33 @@ Implements \mbox{\hyperlink{classtesseract__geometry_1_1Geometry_ae8e12b3ae80b55
 \index{operator=@{operator=}!tesseract\_geometry::ConvexMesh@{tesseract\_geometry::ConvexMesh}}
 \doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
 {\footnotesize\ttfamily \mbox{\hyperlink{classtesseract__geometry_1_1ConvexMesh}{Convex\+Mesh}}\& tesseract\+\_\+geometry\+::\+Convex\+Mesh\+::operator= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classtesseract__geometry_1_1ConvexMesh}{Convex\+Mesh}} \&\&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+\mbox{\Hypertarget{classtesseract__geometry_1_1ConvexMesh_a2b2d1d0194d7204445647e040669f1b1}\label{classtesseract__geometry_1_1ConvexMesh_a2b2d1d0194d7204445647e040669f1b1}} 
+\index{tesseract\_geometry::ConvexMesh@{tesseract\_geometry::ConvexMesh}!setCreationMethod@{setCreationMethod}}
+\index{setCreationMethod@{setCreationMethod}!tesseract\_geometry::ConvexMesh@{tesseract\_geometry::ConvexMesh}}
+\doxysubsubsection{\texorpdfstring{setCreationMethod()}{setCreationMethod()}}
+{\footnotesize\ttfamily void tesseract\+\_\+geometry\+::\+Convex\+Mesh\+::set\+Creation\+Method (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classtesseract__geometry_1_1ConvexMesh_aa89b924e13d31f22ab307d8b2939afda}{Creation\+Method}}}]{method }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set the method used to create the convex mesh. 
+
+\begin{DoxyNote}{Note}
+This used when writing back out to urdf 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em value} & The Creation\+Method \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classtesseract__geometry_1_1ConvexMesh_afbf89354c8966f200b46cdaf2ff558f7}\label{classtesseract__geometry_1_1ConvexMesh_afbf89354c8966f200b46cdaf2ff558f7}} 
+\index{tesseract\_geometry::ConvexMesh@{tesseract\_geometry::ConvexMesh}!creation\_method\_@{creation\_method\_}}
+\index{creation\_method\_@{creation\_method\_}!tesseract\_geometry::ConvexMesh@{tesseract\_geometry::ConvexMesh}}
+\doxysubsubsection{\texorpdfstring{creation\_method\_}{creation\_method\_}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classtesseract__geometry_1_1ConvexMesh_aa89b924e13d31f22ab307d8b2939afda}{Creation\+Method}} tesseract\+\_\+geometry\+::\+Convex\+Mesh\+::creation\+\_\+method\+\_\+ \{ \mbox{\hyperlink{classtesseract__geometry_1_1ConvexMesh_aa89b924e13d31f22ab307d8b2939afdaab60f7059125307bcf8ad12166e12f398}{DEFAULT}} \}\hspace{0.3cm}{\ttfamily [private]}}
 
 
 

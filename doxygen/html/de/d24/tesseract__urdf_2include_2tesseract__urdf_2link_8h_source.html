@@ -107,12 +107,12 @@ $(function() {
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;          std::unordered_map&lt;std::string, std::shared_ptr&lt;tesseract_scene_graph::Material&gt;&gt;&amp; available_materials,</div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;          <span class="keywordtype">int</span> version);</div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;tinyxml2::XMLElement* <a class="code" href="../../d5/d8c/namespacetesseract__urdf.html#ae1937c14c5a62dc74b747d153d1ded8e">writeLink</a>(<span class="keyword">const</span> std::shared_ptr&lt;const tesseract_scene_graph::Link&gt;&amp; link,</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;                                tinyxml2::XMLDocument&amp; doc,</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;                                <span class="keyword">const</span> std::string&amp; directory);</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;}  <span class="comment">// namespace tesseract_urdf</span></div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="preprocessor">#endif  </span><span class="comment">// TESSERACT_URDF_LINK_H</span></div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;tinyxml2::XMLElement* <a class="code" href="../../d5/d8c/namespacetesseract__urdf.html#a6a89ba9313d15f089c3c7575f5b44836">writeLink</a>(<span class="keyword">const</span> std::shared_ptr&lt;const tesseract_scene_graph::Link&gt;&amp; link,</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;                                tinyxml2::XMLDocument&amp; doc,</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;                                <span class="keyword">const</span> std::string&amp; package_path);</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160; </div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;}  <span class="comment">// namespace tesseract_urdf</span></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="preprocessor">#endif  </span><span class="comment">// TESSERACT_URDF_LINK_H</span></div>
 <div class="ttc" id="aclasstesseract__common_1_1ResourceLocator_html"><div class="ttname"><a href="../../d0/de6/classtesseract__common_1_1ResourceLocator.html">tesseract_common::ResourceLocator</a></div><div class="ttdoc">Abstract class for resource loaders.</div><div class="ttdef"><b>Definition:</b> resource_locator.h:54</div></div>
 <div class="ttc" id="amacros_8h_html"><div class="ttname"><a href="../../de/d3c/macros_8h.html">macros.h</a></div><div class="ttdoc">Common Tesseract Macros.</div></div>
 <div class="ttc" id="amacros_8h_html_a8cc0e3c6a3382c5c0b19eb9e676fc2db"><div class="ttname"><a href="../../de/d3c/macros_8h.html#a8cc0e3c6a3382c5c0b19eb9e676fc2db">TESSERACT_COMMON_IGNORE_WARNINGS_PUSH</a></div><div class="ttdeci">#define TESSERACT_COMMON_IGNORE_WARNINGS_PUSH</div><div class="ttdef"><b>Definition:</b> macros.h:69</div></div>
@@ -121,12 +121,12 @@ $(function() {
 <div class="ttc" id="anamespacetesseract__scene__graph_html"><div class="ttname"><a href="../../d9/d42/namespacetesseract__scene__graph.html">tesseract_scene_graph</a></div><div class="ttdef"><b>Definition:</b> allowed_collision_matrix.h:135</div></div>
 <div class="ttc" id="anamespacetesseract__urdf_html"><div class="ttname"><a href="../../d5/d8c/namespacetesseract__urdf.html">tesseract_urdf</a></div><div class="ttdef"><b>Definition:</b> box.h:45</div></div>
 <div class="ttc" id="anamespacetesseract__urdf_html_a0969004a0f2cc8d3e45e93b52c6ec566"><div class="ttname"><a href="../../d5/d8c/namespacetesseract__urdf.html#a0969004a0f2cc8d3e45e93b52c6ec566">tesseract_urdf::parseLink</a></div><div class="ttdeci">std::shared_ptr&lt; tesseract_scene_graph::Link &gt; parseLink(const tinyxml2::XMLElement *xml_element, const tesseract_common::ResourceLocator &amp;locator, std::unordered_map&lt; std::string, std::shared_ptr&lt; tesseract_scene_graph::Material &gt;&gt; &amp;available_materials, int version)</div><div class="ttdoc">Parse xml element link.</div></div>
-<div class="ttc" id="anamespacetesseract__urdf_html_ae1937c14c5a62dc74b747d153d1ded8e"><div class="ttname"><a href="../../d5/d8c/namespacetesseract__urdf.html#ae1937c14c5a62dc74b747d153d1ded8e">tesseract_urdf::writeLink</a></div><div class="ttdeci">tinyxml2::XMLElement * writeLink(const std::shared_ptr&lt; const tesseract_scene_graph::Link &gt; &amp;link, tinyxml2::XMLDocument &amp;doc, const std::string &amp;directory)</div><div class="ttdef"><b>Definition:</b> link.cpp:106</div></div>
+<div class="ttc" id="anamespacetesseract__urdf_html_a6a89ba9313d15f089c3c7575f5b44836"><div class="ttname"><a href="../../d5/d8c/namespacetesseract__urdf.html#a6a89ba9313d15f089c3c7575f5b44836">tesseract_urdf::writeLink</a></div><div class="ttdeci">tinyxml2::XMLElement * writeLink(const std::shared_ptr&lt; const tesseract_scene_graph::Link &gt; &amp;link, tinyxml2::XMLDocument &amp;doc, const std::string &amp;package_path)</div><div class="ttdoc">writeLink Write a link to URDF XML</div><div class="ttdef"><b>Definition:</b> link.cpp:109</div></div>
 <div class="ttc" id="anamespacetinyxml2_html"><div class="ttname"><a href="../../da/dce/namespacetinyxml2.html">tinyxml2</a></div><div class="ttdef"><b>Definition:</b> collision_margins.h:36</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Dec 17 2021 17:17:58 for Tesseract by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Thu Dec 30 2021 22:19:17 for Tesseract by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

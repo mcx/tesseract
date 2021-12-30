@@ -81,18 +81,18 @@ $(function() {
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;<a class="el" href="../../de/d3c/macros_8h_source.html">tesseract_common/macros.h</a>&gt;</code><br />
 <code>#include &lt;memory&gt;</code><br />
-<code>#include &lt;vector&gt;</code><br />
 <code>#include &lt;unordered_map&gt;</code><br />
+<code>#include &lt;vector&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for visual.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../de/dfc/visual_8h__incl.png" border="0" usemap="#atesseract__urdf_2include_2tesseract__urdf_2visual_8h" alt=""/></div>
 <map name="atesseract__urdf_2include_2tesseract__urdf_2visual_8h" id="atesseract__urdf_2include_2tesseract__urdf_2visual_8h">
-<area shape="rect" title="Parse visual from xml string." alt="" coords="219,5,377,47"/>
+<area shape="rect" title="Parse visual from xml string." alt="" coords="231,5,389,47"/>
 <area shape="rect" href="../../de/d3c/macros_8h.html" title="Common Tesseract Macros." alt="" coords="5,95,196,121"/>
 <area shape="rect" title=" " alt="" coords="220,95,288,121"/>
-<area shape="rect" title=" " alt="" coords="313,95,371,121"/>
-<area shape="rect" title=" " alt="" coords="396,95,507,121"/>
+<area shape="rect" title=" " alt="" coords="312,95,423,121"/>
+<area shape="rect" title=" " alt="" coords="447,95,506,121"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -125,9 +125,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a160b8320c86bad3619167c034a838dfe"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/dad/vhacdRaycastMesh_8cpp.html#adcf134d50025cc52907d0c8ac798d89d">std::vector</a>&lt; std::shared_ptr&lt; <a class="el" href="../../dd/db7/classtesseract__scene__graph_1_1Visual.html">tesseract_scene_graph::Visual</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d8c/namespacetesseract__urdf.html#a160b8320c86bad3619167c034a838dfe">tesseract_urdf::parseVisual</a> (const tinyxml2::XMLElement *xml_element, const <a class="el" href="../../d0/de6/classtesseract__common_1_1ResourceLocator.html">tesseract_common::ResourceLocator</a> &amp;locator, std::unordered_map&lt; std::string, std::shared_ptr&lt; <a class="el" href="../../d9/d0f/classtesseract__scene__graph_1_1Material.html">tesseract_scene_graph::Material</a> &gt;&gt; &amp;available_materials, int version)</td></tr>
 <tr class="memdesc:a160b8320c86bad3619167c034a838dfe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse xml element visual.  <a href="../../d5/d8c/namespacetesseract__urdf.html#a160b8320c86bad3619167c034a838dfe">More...</a><br /></td></tr>
 <tr class="separator:a160b8320c86bad3619167c034a838dfe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4b61483133ef4879c328b9d6624a64e3"><td class="memItemLeft" align="right" valign="top">tinyxml2::XMLElement *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d8c/namespacetesseract__urdf.html#a4b61483133ef4879c328b9d6624a64e3">tesseract_urdf::writeVisual</a> (const std::shared_ptr&lt; const <a class="el" href="../../dd/db7/classtesseract__scene__graph_1_1Visual.html">tesseract_scene_graph::Visual</a> &gt; &amp;visual, tinyxml2::XMLDocument &amp;doc, const std::string &amp;directory, const std::string &amp;link_name, int id)</td></tr>
-<tr class="memdesc:a4b61483133ef4879c328b9d6624a64e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">writeVisual - call once per visual geometry  <a href="../../d5/d8c/namespacetesseract__urdf.html#a4b61483133ef4879c328b9d6624a64e3">More...</a><br /></td></tr>
-<tr class="separator:a4b61483133ef4879c328b9d6624a64e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f523f3ac83d901507393b791c07515b"><td class="memItemLeft" align="right" valign="top">tinyxml2::XMLElement *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d8c/namespacetesseract__urdf.html#a6f523f3ac83d901507393b791c07515b">tesseract_urdf::writeVisual</a> (const std::shared_ptr&lt; const <a class="el" href="../../dd/db7/classtesseract__scene__graph_1_1Visual.html">tesseract_scene_graph::Visual</a> &gt; &amp;visual, tinyxml2::XMLDocument &amp;doc, const std::string &amp;package_path, const std::string &amp;link_name, int id)</td></tr>
+<tr class="memdesc:a6f523f3ac83d901507393b791c07515b"><td class="mdescLeft">&#160;</td><td class="mdescRight">writeVisual Write one visual geometry object to URDF XML  <a href="../../d5/d8c/namespacetesseract__urdf.html#a6f523f3ac83d901507393b791c07515b">More...</a><br /></td></tr>
+<tr class="separator:a6f523f3ac83d901507393b791c07515b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Parse visual from xml string. </p>
@@ -142,7 +142,7 @@ Functions</h2></td></tr>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Dec 17 2021 17:18:00 for Tesseract by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Thu Dec 30 2021 22:19:18 for Tesseract by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

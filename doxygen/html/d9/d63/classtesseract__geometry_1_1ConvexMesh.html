@@ -72,6 +72,7 @@ $(function() {
   <div class="summary">
 <a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="../../d1/d30/classtesseract__geometry_1_1ConvexMesh-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">tesseract_geometry::ConvexMesh Class Reference</div>  </div>
@@ -108,6 +109,11 @@ Collaboration diagram for tesseract_geometry::ConvexMesh:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
+<tr class="memitem:aa89b924e13d31f22ab307d8b2939afda"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d63/classtesseract__geometry_1_1ConvexMesh.html#aa89b924e13d31f22ab307d8b2939afda">CreationMethod</a> { <a class="el" href="../../d9/d63/classtesseract__geometry_1_1ConvexMesh.html#aa89b924e13d31f22ab307d8b2939afdaab60f7059125307bcf8ad12166e12f398">DEFAULT</a>
+, <a class="el" href="../../d9/d63/classtesseract__geometry_1_1ConvexMesh.html#aa89b924e13d31f22ab307d8b2939afdaacc269086ebef2c36f2003822fe6bb64c">MESH</a>
+, <a class="el" href="../../d9/d63/classtesseract__geometry_1_1ConvexMesh.html#aa89b924e13d31f22ab307d8b2939afdaa4128ed88ee78e14b6dc73b21e4a289c8">CONVERTED</a>
+ }</td></tr>
+<tr class="separator:aa89b924e13d31f22ab307d8b2939afda"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aecd145c5f75117ff7a3bab1fb921e4c0"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d63/classtesseract__geometry_1_1ConvexMesh.html#aecd145c5f75117ff7a3bab1fb921e4c0">Ptr</a> = std::shared_ptr&lt; <a class="el" href="../../d9/d63/classtesseract__geometry_1_1ConvexMesh.html">ConvexMesh</a> &gt;</td></tr>
 <tr class="separator:aecd145c5f75117ff7a3bab1fb921e4c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a891ee4bcb9a02f4d57f1400bc32f561a"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d63/classtesseract__geometry_1_1ConvexMesh.html#a891ee4bcb9a02f4d57f1400bc32f561a">ConstPtr</a> = std::shared_ptr&lt; const <a class="el" href="../../d9/d63/classtesseract__geometry_1_1ConvexMesh.html">ConvexMesh</a> &gt;</td></tr>
@@ -141,6 +147,12 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:acf678f29fa7ceb105256581f1ff716ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af66ac89ddeb0a2818a6e6ccf8ef665c6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d63/classtesseract__geometry_1_1ConvexMesh.html">ConvexMesh</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d63/classtesseract__geometry_1_1ConvexMesh.html#af66ac89ddeb0a2818a6e6ccf8ef665c6">operator=</a> (<a class="el" href="../../d9/d63/classtesseract__geometry_1_1ConvexMesh.html">ConvexMesh</a> &amp;&amp;)=delete</td></tr>
 <tr class="separator:af66ac89ddeb0a2818a6e6ccf8ef665c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abea9b7ccada14ee56fa90542487b2800"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d63/classtesseract__geometry_1_1ConvexMesh.html#aa89b924e13d31f22ab307d8b2939afda">CreationMethod</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d63/classtesseract__geometry_1_1ConvexMesh.html#abea9b7ccada14ee56fa90542487b2800">getCreationMethod</a> () const</td></tr>
+<tr class="memdesc:abea9b7ccada14ee56fa90542487b2800"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get how the convex hull was created.  <a href="../../d9/d63/classtesseract__geometry_1_1ConvexMesh.html#abea9b7ccada14ee56fa90542487b2800">More...</a><br /></td></tr>
+<tr class="separator:abea9b7ccada14ee56fa90542487b2800"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b2d1d0194d7204445647e040669f1b1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d63/classtesseract__geometry_1_1ConvexMesh.html#a2b2d1d0194d7204445647e040669f1b1">setCreationMethod</a> (<a class="el" href="../../d9/d63/classtesseract__geometry_1_1ConvexMesh.html#aa89b924e13d31f22ab307d8b2939afda">CreationMethod</a> method)</td></tr>
+<tr class="memdesc:a2b2d1d0194d7204445647e040669f1b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the method used to create the convex mesh.  <a href="../../d9/d63/classtesseract__geometry_1_1ConvexMesh.html#a2b2d1d0194d7204445647e040669f1b1">More...</a><br /></td></tr>
+<tr class="separator:a2b2d1d0194d7204445647e040669f1b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7e1398fbaf4c54744e38484e30df98f1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../df/d1a/classtesseract__geometry_1_1Geometry.html#acd91c55fb9604ed374446c029b6f2d08">Geometry::Ptr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d63/classtesseract__geometry_1_1ConvexMesh.html#a7e1398fbaf4c54744e38484e30df98f1">clone</a> () const override</td></tr>
 <tr class="memdesc:a7e1398fbaf4c54744e38484e30df98f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a copy of this shape.  <a href="../../d9/d63/classtesseract__geometry_1_1ConvexMesh.html#a7e1398fbaf4c54744e38484e30df98f1">More...</a><br /></td></tr>
 <tr class="separator:a7e1398fbaf4c54744e38484e30df98f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -212,6 +224,11 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a773529c24891aaab37668be5ea66690c inherit pub_methods_classtesseract__geometry_1_1Geometry"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad9677ec5e4e7c3de63b98dcd823a4922 inherit pub_methods_classtesseract__geometry_1_1Geometry"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d0/d17/namespacetesseract__geometry.html#a7543d6c1dc8947a3274abdd21fb56feb">GeometryType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/d1a/classtesseract__geometry_1_1Geometry.html#ad9677ec5e4e7c3de63b98dcd823a4922">getType</a> () const</td></tr>
 <tr class="separator:ad9677ec5e4e7c3de63b98dcd823a4922 inherit pub_methods_classtesseract__geometry_1_1Geometry"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:afbf89354c8966f200b46cdaf2ff558f7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d63/classtesseract__geometry_1_1ConvexMesh.html#aa89b924e13d31f22ab307d8b2939afda">CreationMethod</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d63/classtesseract__geometry_1_1ConvexMesh.html#afbf89354c8966f200b46cdaf2ff558f7">creation_method_</a> { <a class="el" href="../../d9/d63/classtesseract__geometry_1_1ConvexMesh.html#aa89b924e13d31f22ab307d8b2939afdaab60f7059125307bcf8ad12166e12f398">DEFAULT</a> }</td></tr>
+<tr class="separator:afbf89354c8966f200b46cdaf2ff558f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Typedef Documentation</h2>
 <a id="a891ee4bcb9a02f4d57f1400bc32f561a"></a>
@@ -239,6 +256,26 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Enumeration Documentation</h2>
+<a id="aa89b924e13d31f22ab307d8b2939afda"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa89b924e13d31f22ab307d8b2939afda">&#9670;&nbsp;</a></span>CreationMethod</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="../../d9/d63/classtesseract__geometry_1_1ConvexMesh.html#aa89b924e13d31f22ab307d8b2939afda">tesseract_geometry::ConvexMesh::CreationMethod</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="aa89b924e13d31f22ab307d8b2939afdaab60f7059125307bcf8ad12166e12f398"></a>DEFAULT&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="aa89b924e13d31f22ab307d8b2939afdaacc269086ebef2c36f2003822fe6bb64c"></a>MESH&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="aa89b924e13d31f22ab307d8b2939afdaa4128ed88ee78e14b6dc73b21e4a289c8"></a>CONVERTED&#160;</td><td class="fielddoc"></td></tr>
+</table>
 
 </div>
 </div>
@@ -531,6 +568,35 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="abea9b7ccada14ee56fa90542487b2800"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abea9b7ccada14ee56fa90542487b2800">&#9670;&nbsp;</a></span>getCreationMethod()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d9/d63/classtesseract__geometry_1_1ConvexMesh.html#aa89b924e13d31f22ab307d8b2939afda">CreationMethod</a> tesseract_geometry::ConvexMesh::getCreationMethod </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get how the convex hull was created. </p>
+<dl class="section note"><dt>Note</dt><dd>This used when writing back out to urdf </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The CreationMethod </dd></dl>
+
+</div>
+</div>
 <a id="acbb57d884d35cf0f1d94cd3109f7dec2"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#acbb57d884d35cf0f1d94cd3109f7dec2">&#9670;&nbsp;</a></span>operator=() <span class="overload">[1/2]</span></h2>
 
@@ -583,13 +649,71 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a2b2d1d0194d7204445647e040669f1b1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2b2d1d0194d7204445647e040669f1b1">&#9670;&nbsp;</a></span>setCreationMethod()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void tesseract_geometry::ConvexMesh::setCreationMethod </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d9/d63/classtesseract__geometry_1_1ConvexMesh.html#aa89b924e13d31f22ab307d8b2939afda">CreationMethod</a>&#160;</td>
+          <td class="paramname"><em>method</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Set the method used to create the convex mesh. </p>
+<dl class="section note"><dt>Note</dt><dd>This used when writing back out to urdf </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td>The CreationMethod </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="afbf89354c8966f200b46cdaf2ff558f7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afbf89354c8966f200b46cdaf2ff558f7">&#9670;&nbsp;</a></span>creation_method_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d9/d63/classtesseract__geometry_1_1ConvexMesh.html#aa89b924e13d31f22ab307d8b2939afda">CreationMethod</a> tesseract_geometry::ConvexMesh::creation_method_ { <a class="el" href="../../d9/d63/classtesseract__geometry_1_1ConvexMesh.html#aa89b924e13d31f22ab307d8b2939afdaab60f7059125307bcf8ad12166e12f398">DEFAULT</a> }</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>tesseract_geometry/include/tesseract_geometry/impl/<a class="el" href="../../de/dd2/tesseract__geometry_2include_2tesseract__geometry_2impl_2convex__mesh_8h_source.html">convex_mesh.h</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Dec 17 2021 17:18:01 for Tesseract by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Thu Dec 30 2021 22:19:19 for Tesseract by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

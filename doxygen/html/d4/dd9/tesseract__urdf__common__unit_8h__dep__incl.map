@@ -1,5 +1,5 @@
 <map id="tesseract_urdf/test/tesseract_urdf_common_unit.h" name="tesseract_urdf/test/tesseract_urdf_common_unit.h">
-<area shape="rect" id="node1" title=" " alt="" coords="2162,5,2329,61"/>
+<area shape="rect" id="node1" title=" " alt="" coords="2245,5,2411,61"/>
 <area shape="rect" id="node2" href="$d2/db2/tesseract__urdf__box__unit_8cpp.html" title=" " alt="" coords="5,109,141,165"/>
 <area shape="rect" id="node3" href="$db/dd5/tesseract__urdf__calibration__unit_8cpp.html" title=" " alt="" coords="166,109,341,165"/>
 <area shape="rect" id="node4" href="$db/db4/tesseract__urdf__capsule__unit_8cpp.html" title=" " alt="" coords="365,109,526,165"/>
@@ -24,5 +24,6 @@
 <area shape="rect" id="node23" href="$d6/d3c/tesseract__urdf__sdf__mesh__unit_8cpp.html" title=" " alt="" coords="3731,109,3866,165"/>
 <area shape="rect" id="node24" href="$d3/d3f/tesseract__urdf__sphere__unit_8cpp.html" title=" " alt="" coords="3891,109,4045,165"/>
 <area shape="rect" id="node25" href="$d0/d71/tesseract__urdf__urdf__unit_8cpp.html" title=" " alt="" coords="4069,109,4208,165"/>
-<area shape="rect" id="node26" href="$d1/d04/tesseract__urdf__visual__unit_8cpp.html" title=" " alt="" coords="4233,109,4383,165"/>
+<area shape="rect" id="node26" href="$da/d3d/tesseract__urdf__utils__unit_8cpp.html" title=" " alt="" coords="4233,109,4373,165"/>
+<area shape="rect" id="node27" href="$d1/d04/tesseract__urdf__visual__unit_8cpp.html" title=" " alt="" coords="4397,109,4547,165"/>
 </map>
