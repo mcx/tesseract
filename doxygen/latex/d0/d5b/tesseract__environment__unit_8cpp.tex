@@ -111,6 +111,18 @@ void \mbox{\hyperlink{tesseract__environment__unit_8cpp_ac8f0778a6392acc9f7d18b2
 \item 
 \mbox{\hyperlink{tesseract__environment__unit_8cpp_abca0bfe315f2ddb9dc2a3a2be6f71f49}{TEST}} (Tesseract\+Environment\+Unit, get\+Active\+Link\+Names\+Recursive\+Unit)
 \item 
+void \mbox{\hyperlink{tesseract__environment__unit_8cpp_a86a442e801942820ab5bc850cc79e13d}{check\+Process\+Interpolated\+Results}} (const \mbox{\hyperlink{vhacdRaycastMesh_8cpp_adcf134d50025cc52907d0c8ac798d89d}{std\+::vector}}$<$ \mbox{\hyperlink{namespacetesseract__collision_a1eeace4cc41027dbde8e7dbeb77ca7cf}{tesseract\+\_\+collision\+::\+Contact\+Result\+Map}} $>$ \&contacts)
+\item 
+void \mbox{\hyperlink{tesseract__environment__unit_8cpp_aef8afef2358e4343715d8ddd3d4a1a2f}{check\+Process\+Interpolated\+Results\+No\+Time0}} (const \mbox{\hyperlink{namespacetesseract__collision_a1eeace4cc41027dbde8e7dbeb77ca7cf}{tesseract\+\_\+collision\+::\+Contact\+Result\+Map}} \&contacts)
+\begin{DoxyCompactList}\small\item\em Verify that no contact results is at Time0. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{tesseract__environment__unit_8cpp_a7b6d07ba680d798e1d656e06d0c926c7}{check\+Process\+Interpolated\+Results\+No\+Time1}} (const \mbox{\hyperlink{namespacetesseract__collision_a1eeace4cc41027dbde8e7dbeb77ca7cf}{tesseract\+\_\+collision\+::\+Contact\+Result\+Map}} \&contacts)
+\begin{DoxyCompactList}\small\item\em Verify that no contact results is at Time1. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{tesseract__environment__unit_8cpp_aa4a5603260d574a4a6c5eb98827066a6}{has\+Process\+Interpolated\+Results\+Time0}} (const \mbox{\hyperlink{namespacetesseract__collision_a1eeace4cc41027dbde8e7dbeb77ca7cf}{tesseract\+\_\+collision\+::\+Contact\+Result\+Map}} \&contacts)
+\begin{DoxyCompactList}\small\item\em Verify that the results contain Time0. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{tesseract__environment__unit_8cpp_aab93ac038b6195c29f1be09bddf595f4}{has\+Process\+Interpolated\+Results\+Time1}} (const \mbox{\hyperlink{namespacetesseract__collision_a1eeace4cc41027dbde8e7dbeb77ca7cf}{tesseract\+\_\+collision\+::\+Contact\+Result\+Map}} \&contacts)
+\begin{DoxyCompactList}\small\item\em Verify that the results contain Time1. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{tesseract__environment__unit_8cpp_a6c9e3ed6bbb8edd2185b965adf665eac}{get\+Contact\+Count}} (const \mbox{\hyperlink{vhacdRaycastMesh_8cpp_adcf134d50025cc52907d0c8ac798d89d}{std\+::vector}}$<$ \mbox{\hyperlink{namespacetesseract__collision_a1eeace4cc41027dbde8e7dbeb77ca7cf}{tesseract\+\_\+collision\+::\+Contact\+Result\+Map}} $>$ \&contacts)
+\begin{DoxyCompactList}\small\item\em Get the total number of contacts. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{tesseract__environment__unit_8cpp_a0d0135e86e53fd517ae04252a6fd398c}{TEST}} (Tesseract\+Environment\+Unit, check\+Trajectory\+Unit)
 \item 
 int \mbox{\hyperlink{tesseract__environment__unit_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main}} (int argc, char $\ast$$\ast$argv)
@@ -141,6 +153,52 @@ FILEPATH&\\
 
 
 \doxysubsection{Function Documentation}
+\mbox{\Hypertarget{tesseract__environment__unit_8cpp_a86a442e801942820ab5bc850cc79e13d}\label{tesseract__environment__unit_8cpp_a86a442e801942820ab5bc850cc79e13d}} 
+\index{tesseract\_environment\_unit.cpp@{tesseract\_environment\_unit.cpp}!checkProcessInterpolatedResults@{checkProcessInterpolatedResults}}
+\index{checkProcessInterpolatedResults@{checkProcessInterpolatedResults}!tesseract\_environment\_unit.cpp@{tesseract\_environment\_unit.cpp}}
+\doxysubsubsection{\texorpdfstring{checkProcessInterpolatedResults()}{checkProcessInterpolatedResults()}}
+{\footnotesize\ttfamily void check\+Process\+Interpolated\+Results (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{vhacdRaycastMesh_8cpp_adcf134d50025cc52907d0c8ac798d89d}{std\+::vector}}$<$ \mbox{\hyperlink{namespacetesseract__collision_a1eeace4cc41027dbde8e7dbeb77ca7cf}{tesseract\+\_\+collision\+::\+Contact\+Result\+Map}} $>$ \&}]{contacts }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{tesseract__environment__unit_8cpp_aef8afef2358e4343715d8ddd3d4a1a2f}\label{tesseract__environment__unit_8cpp_aef8afef2358e4343715d8ddd3d4a1a2f}} 
+\index{tesseract\_environment\_unit.cpp@{tesseract\_environment\_unit.cpp}!checkProcessInterpolatedResultsNoTime0@{checkProcessInterpolatedResultsNoTime0}}
+\index{checkProcessInterpolatedResultsNoTime0@{checkProcessInterpolatedResultsNoTime0}!tesseract\_environment\_unit.cpp@{tesseract\_environment\_unit.cpp}}
+\doxysubsubsection{\texorpdfstring{checkProcessInterpolatedResultsNoTime0()}{checkProcessInterpolatedResultsNoTime0()}}
+{\footnotesize\ttfamily void check\+Process\+Interpolated\+Results\+No\+Time0 (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespacetesseract__collision_a1eeace4cc41027dbde8e7dbeb77ca7cf}{tesseract\+\_\+collision\+::\+Contact\+Result\+Map}} \&}]{contacts }\end{DoxyParamCaption})}
+
+
+
+Verify that no contact results is at Time0. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em contacts} & The contacts to check \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{tesseract__environment__unit_8cpp_a7b6d07ba680d798e1d656e06d0c926c7}\label{tesseract__environment__unit_8cpp_a7b6d07ba680d798e1d656e06d0c926c7}} 
+\index{tesseract\_environment\_unit.cpp@{tesseract\_environment\_unit.cpp}!checkProcessInterpolatedResultsNoTime1@{checkProcessInterpolatedResultsNoTime1}}
+\index{checkProcessInterpolatedResultsNoTime1@{checkProcessInterpolatedResultsNoTime1}!tesseract\_environment\_unit.cpp@{tesseract\_environment\_unit.cpp}}
+\doxysubsubsection{\texorpdfstring{checkProcessInterpolatedResultsNoTime1()}{checkProcessInterpolatedResultsNoTime1()}}
+{\footnotesize\ttfamily void check\+Process\+Interpolated\+Results\+No\+Time1 (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespacetesseract__collision_a1eeace4cc41027dbde8e7dbeb77ca7cf}{tesseract\+\_\+collision\+::\+Contact\+Result\+Map}} \&}]{contacts }\end{DoxyParamCaption})}
+
+
+
+Verify that no contact results is at Time1. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em contacts} & The contacts to check \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{tesseract__environment__unit_8cpp_a6c9e3ed6bbb8edd2185b965adf665eac}\label{tesseract__environment__unit_8cpp_a6c9e3ed6bbb8edd2185b965adf665eac}} 
+\index{tesseract\_environment\_unit.cpp@{tesseract\_environment\_unit.cpp}!getContactCount@{getContactCount}}
+\index{getContactCount@{getContactCount}!tesseract\_environment\_unit.cpp@{tesseract\_environment\_unit.cpp}}
+\doxysubsubsection{\texorpdfstring{getContactCount()}{getContactCount()}}
+{\footnotesize\ttfamily int get\+Contact\+Count (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{vhacdRaycastMesh_8cpp_adcf134d50025cc52907d0c8ac798d89d}{std\+::vector}}$<$ \mbox{\hyperlink{namespacetesseract__collision_a1eeace4cc41027dbde8e7dbeb77ca7cf}{tesseract\+\_\+collision\+::\+Contact\+Result\+Map}} $>$ \&}]{contacts }\end{DoxyParamCaption})}
+
+
+
+Get the total number of contacts. 
+
 \mbox{\Hypertarget{tesseract__environment__unit_8cpp_a5aa46320c824270edbeafe6b0356835d}\label{tesseract__environment__unit_8cpp_a5aa46320c824270edbeafe6b0356835d}} 
 \index{tesseract\_environment\_unit.cpp@{tesseract\_environment\_unit.cpp}!getEnvironment@{getEnvironment}}
 \index{getEnvironment@{getEnvironment}!tesseract\_environment\_unit.cpp@{tesseract\_environment\_unit.cpp}}
@@ -183,6 +241,36 @@ FILEPATH&\\
 \doxysubsubsection{\texorpdfstring{getSubSceneGraph()}{getSubSceneGraph()}}
 {\footnotesize\ttfamily \mbox{\hyperlink{classtesseract__scene__graph_1_1SceneGraph_a4421b8568bd664cf203613a054e1847b}{Scene\+Graph\+::\+Ptr}} get\+Sub\+Scene\+Graph (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
+\mbox{\Hypertarget{tesseract__environment__unit_8cpp_aa4a5603260d574a4a6c5eb98827066a6}\label{tesseract__environment__unit_8cpp_aa4a5603260d574a4a6c5eb98827066a6}} 
+\index{tesseract\_environment\_unit.cpp@{tesseract\_environment\_unit.cpp}!hasProcessInterpolatedResultsTime0@{hasProcessInterpolatedResultsTime0}}
+\index{hasProcessInterpolatedResultsTime0@{hasProcessInterpolatedResultsTime0}!tesseract\_environment\_unit.cpp@{tesseract\_environment\_unit.cpp}}
+\doxysubsubsection{\texorpdfstring{hasProcessInterpolatedResultsTime0()}{hasProcessInterpolatedResultsTime0()}}
+{\footnotesize\ttfamily bool has\+Process\+Interpolated\+Results\+Time0 (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespacetesseract__collision_a1eeace4cc41027dbde8e7dbeb77ca7cf}{tesseract\+\_\+collision\+::\+Contact\+Result\+Map}} \&}]{contacts }\end{DoxyParamCaption})}
+
+
+
+Verify that the results contain Time0. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em contacts} & The contacts to check \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{tesseract__environment__unit_8cpp_aab93ac038b6195c29f1be09bddf595f4}\label{tesseract__environment__unit_8cpp_aab93ac038b6195c29f1be09bddf595f4}} 
+\index{tesseract\_environment\_unit.cpp@{tesseract\_environment\_unit.cpp}!hasProcessInterpolatedResultsTime1@{hasProcessInterpolatedResultsTime1}}
+\index{hasProcessInterpolatedResultsTime1@{hasProcessInterpolatedResultsTime1}!tesseract\_environment\_unit.cpp@{tesseract\_environment\_unit.cpp}}
+\doxysubsubsection{\texorpdfstring{hasProcessInterpolatedResultsTime1()}{hasProcessInterpolatedResultsTime1()}}
+{\footnotesize\ttfamily bool has\+Process\+Interpolated\+Results\+Time1 (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespacetesseract__collision_a1eeace4cc41027dbde8e7dbeb77ca7cf}{tesseract\+\_\+collision\+::\+Contact\+Result\+Map}} \&}]{contacts }\end{DoxyParamCaption})}
+
+
+
+Verify that the results contain Time1. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em contacts} & The contacts to check \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{tesseract__environment__unit_8cpp_ad43b67aac2fb3de014c67c88f9dc4db9}\label{tesseract__environment__unit_8cpp_ad43b67aac2fb3de014c67c88f9dc4db9}} 
 \index{tesseract\_environment\_unit.cpp@{tesseract\_environment\_unit.cpp}!locateResource@{locateResource}}
 \index{locateResource@{locateResource}!tesseract\_environment\_unit.cpp@{tesseract\_environment\_unit.cpp}}
@@ -225,6 +313,32 @@ FILEPATH&\\
 \doxysubsubsection{\texorpdfstring{TEST()}{TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [1/28]}}
 {\footnotesize\ttfamily TEST (\begin{DoxyParamCaption}\item[{Tesseract\+Environment\+Unit}]{,  }\item[{check\+Trajectory\+Unit}]{ }\end{DoxyParamCaption})}
 
+$<$ \begin{DoxyRefDesc}{Todo}
+\item[\mbox{\hyperlink{todo__todo000009}{Todo}}]we are getting 9 instead of 6 because duplicate contacts at states \end{DoxyRefDesc}
+
+
+$<$ \begin{DoxyRefDesc}{Todo}
+\item[\mbox{\hyperlink{todo__todo000010}{Todo}}]we are getting 9 instead of 6 because duplicate contacts at states \end{DoxyRefDesc}
+
+
+$<$ \begin{DoxyRefDesc}{Todo}
+\item[\mbox{\hyperlink{todo__todo000011}{Todo}}]we are getting 9 instead of 6 because duplicate contacts at states \end{DoxyRefDesc}
+
+
+$<$ \begin{DoxyRefDesc}{Todo}
+\item[\mbox{\hyperlink{todo__todo000012}{Todo}}]we are getting 288 instead of 285 because duplicate contacts at states \end{DoxyRefDesc}
+
+
+$<$ \begin{DoxyRefDesc}{Todo}
+\item[\mbox{\hyperlink{todo__todo000013}{Todo}}]we are getting 9 instead of 6 because duplicate contacts at states \end{DoxyRefDesc}
+
+
+$<$ \begin{DoxyRefDesc}{Todo}
+\item[\mbox{\hyperlink{todo__todo000014}{Todo}}]we are getting 9 instead of 6 because duplicate contacts at states \end{DoxyRefDesc}
+
+
+$<$ \begin{DoxyRefDesc}{Todo}
+\item[\mbox{\hyperlink{todo__todo000015}{Todo}}]we are getting 288 instead of 285 because duplicate contacts at states \end{DoxyRefDesc}
 \mbox{\Hypertarget{tesseract__environment__unit_8cpp_ab5930f64e7cbfcb77aae6eeadc5c5b13}\label{tesseract__environment__unit_8cpp_ab5930f64e7cbfcb77aae6eeadc5c5b13}} 
 \index{tesseract\_environment\_unit.cpp@{tesseract\_environment\_unit.cpp}!TEST@{TEST}}
 \index{TEST@{TEST}!tesseract\_environment\_unit.cpp@{tesseract\_environment\_unit.cpp}}
