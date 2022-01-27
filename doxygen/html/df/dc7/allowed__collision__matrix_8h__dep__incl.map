@@ -1,11 +1,11 @@
 <map id="tesseract_common/include/tesseract_common/allowed_collision_matrix.h" name="tesseract_common/include/tesseract_common/allowed_collision_matrix.h">
-<area shape="rect" id="node1" title=" " alt="" coords="3563,5,3749,61"/>
+<area shape="rect" id="node1" title=" " alt="" coords="3530,5,3715,61"/>
 <area shape="rect" id="node2" href="$d3/db3/tesseract__collision_2core_2include_2tesseract__collision_2core_2types_8h.html" title="Tesseracts Collision Common Types." alt="" coords="1499,317,1653,373"/>
 <area shape="rect" id="node25" href="$dc/d79/tesseract__common_2include_2tesseract__common_2utils_8h.html" title="Common Tesseract Utility Functions." alt="" coords="3057,117,3236,158"/>
 <area shape="rect" id="node27" href="$d0/d42/srdf__model_8h.html" title="Parse srdf xml." alt="" coords="2564,325,2751,366"/>
-<area shape="rect" id="node28" href="$d3/d2e/parse__srdf__example_8cpp.html" title=" " alt="" coords="5391,436,5558,477"/>
-<area shape="rect" id="node47" href="$dd/d18/disabled__collisions_8cpp.html" title="Parse disabled collision data from srdf file." alt="" coords="3986,221,4145,262"/>
-<area shape="rect" id="node50" href="$d6/df3/graph_8h.html" title="A basic scene graph using boost." alt="" coords="5057,109,5223,165"/>
+<area shape="rect" id="node28" href="$d3/d2e/parse__srdf__example_8cpp.html" title=" " alt="" coords="5323,436,5490,477"/>
+<area shape="rect" id="node48" href="$dd/d18/disabled__collisions_8cpp.html" title="Parse disabled collision data from srdf file." alt="" coords="3918,221,4077,262"/>
+<area shape="rect" id="node50" href="$d6/df3/graph_8h.html" title="A basic scene graph using boost." alt="" coords="4989,109,5155,165"/>
 <area shape="rect" id="node3" href="$d6/d91/bullet__utils_8h.html" title="Tesseract ROS Bullet environment utility function." alt="" coords="712,540,872,611"/>
 <area shape="rect" id="node4" href="$dc/dcd/tesseract__convex__convex__algorithm_8h.html" title=" " alt="" coords="814,421,1002,492"/>
 <area shape="rect" id="node5" href="$d6/ddf/tesseract__gjk__pair__detector_8h.html" title=" " alt="" coords="1026,421,1195,492"/>
@@ -41,12 +41,12 @@
 <area shape="rect" id="node38" href="$da/d3e/joint__group_8cpp.html" title=" " alt="" coords="2963,221,3127,262"/>
 <area shape="rect" id="node39" href="$de/db2/kinematic__group_8cpp.html" title="A kinematic group with forward and inverse kinematics methods." alt="" coords="3151,221,3347,262"/>
 <area shape="rect" id="node40" href="$dd/d93/validate_8cpp.html" title="This contains utility function validate things like forward kinematics match inverse kinematics." alt="" coords="620,221,767,262"/>
-<area shape="rect" id="node41" href="$d5/d7a/build__scene__graph__example_8cpp.html" title=" " alt="" coords="4169,213,4327,269"/>
-<area shape="rect" id="node42" href="$d7/d75/graph_8cpp.html" title="A basic scene graph using boost." alt="" coords="4351,221,4508,262"/>
-<area shape="rect" id="node43" href="$dd/dc3/tesseract__scene__graph__joint__unit_8cpp.html" title=" " alt="" coords="4532,213,4689,269"/>
-<area shape="rect" id="node44" href="$d3/de4/tesseract__scene__graph__link__unit_8cpp.html" title=" " alt="" coords="4713,213,4871,269"/>
-<area shape="rect" id="node45" href="$d3/d30/tesseract__scene__graph__unit_8cpp.html" title=" " alt="" coords="4895,213,5052,269"/>
+<area shape="rect" id="node41" href="$d5/d7a/build__scene__graph__example_8cpp.html" title=" " alt="" coords="4101,213,4259,269"/>
+<area shape="rect" id="node42" href="$d7/d75/graph_8cpp.html" title="A basic scene graph using boost." alt="" coords="4283,221,4440,262"/>
+<area shape="rect" id="node43" href="$dd/dc3/tesseract__scene__graph__joint__unit_8cpp.html" title=" " alt="" coords="4464,213,4621,269"/>
+<area shape="rect" id="node44" href="$d3/de4/tesseract__scene__graph__link__unit_8cpp.html" title=" " alt="" coords="4645,213,4803,269"/>
+<area shape="rect" id="node45" href="$d3/d30/tesseract__scene__graph__unit_8cpp.html" title=" " alt="" coords="4827,213,4984,269"/>
 <area shape="rect" id="node46" href="$d3/d7a/kinematics__information_8h.html" title="This hold the kinematics information." alt="" coords="2763,213,2939,269"/>
-<area shape="rect" id="node48" href="$db/df1/group__states_8cpp.html" title="Parse group states data from srdf file." alt="" coords="5077,221,5203,262"/>
-<area shape="rect" id="node49" href="$d7/dfc/group__tool__center__points_8cpp.html" title="Parse group tool center points data from srdf file." alt="" coords="3767,221,3961,262"/>
+<area shape="rect" id="node47" href="$db/d1b/configs_8cpp.html" title=" " alt="" coords="5009,221,5135,262"/>
+<area shape="rect" id="node49" href="$db/df1/group__states_8cpp.html" title="Parse group states data from srdf file." alt="" coords="3767,221,3894,262"/>
 </map>

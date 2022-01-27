@@ -48,6 +48,14 @@ using \mbox{\hyperlink{namespacetesseract__srdf_aa970aeb01dbd4da4f4291a20d8510c2
 \item 
 std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classtesseract__common_1_1CollisionMarginData}{tesseract\+\_\+common\+::\+Collision\+Margin\+Data}} $>$ \mbox{\hyperlink{namespacetesseract__srdf_aa5ca32390e313ab0fe3507ae8406ff69}{parse\+Collision\+Margins}} (const \mbox{\hyperlink{classtesseract__scene__graph_1_1SceneGraph}{tesseract\+\_\+scene\+\_\+graph\+::\+Scene\+Graph}} \&scene\+\_\+graph, const tinyxml2\+::\+XMLElement $\ast$srdf\+\_\+xml, const std\+::array$<$ int, 3 $>$ \&version)
 \begin{DoxyCompactList}\small\item\em Parse allowed collisions from srdf xml element. \end{DoxyCompactList}\item 
+tesseract\+\_\+common\+::fs\+::path \mbox{\hyperlink{namespacetesseract__srdf_aeb2ffa42272bb3ace08062a7667f8878}{parse\+Config\+File\+Path}} (const \mbox{\hyperlink{classtesseract__common_1_1ResourceLocator}{tesseract\+\_\+common\+::\+Resource\+Locator}} \&locator, const tinyxml2\+::\+XMLElement $\ast$xml\+\_\+element, const std\+::array$<$ int, 3 $>$ \&version)
+\begin{DoxyCompactList}\small\item\em Parse a config xml element. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structtesseract__common_1_1CalibrationInfo}{tesseract\+\_\+common\+::\+Calibration\+Info}} \mbox{\hyperlink{namespacetesseract__srdf_a9c5feb0240a817b9102e17090df6b7d1}{parse\+Calibration\+Config}} (const \mbox{\hyperlink{classtesseract__scene__graph_1_1SceneGraph}{tesseract\+\_\+scene\+\_\+graph\+::\+Scene\+Graph}} \&scene\+\_\+graph, const \mbox{\hyperlink{classtesseract__common_1_1ResourceLocator}{tesseract\+\_\+common\+::\+Resource\+Locator}} \&locator, const tinyxml2\+::\+XMLElement $\ast$xml\+\_\+element, const std\+::array$<$ int, 3 $>$ \&version)
+\begin{DoxyCompactList}\small\item\em Parse calibration config xml element. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structtesseract__common_1_1KinematicsPluginInfo}{tesseract\+\_\+common\+::\+Kinematics\+Plugin\+Info}} \mbox{\hyperlink{namespacetesseract__srdf_a47ed21f8af4ee8a93f3baba6f146e70c}{parse\+Kinematics\+Plugin\+Config}} (const \mbox{\hyperlink{classtesseract__common_1_1ResourceLocator}{tesseract\+\_\+common\+::\+Resource\+Locator}} \&locator, const tinyxml2\+::\+XMLElement $\ast$xml\+\_\+element, const std\+::array$<$ int, 3 $>$ \&version)
+\begin{DoxyCompactList}\small\item\em Parse kinematics plugin config xml element. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structtesseract__common_1_1ContactManagersPluginInfo}{tesseract\+\_\+common\+::\+Contact\+Managers\+Plugin\+Info}} \mbox{\hyperlink{namespacetesseract__srdf_a330ce7d0553d5cebe49335676946f253}{parse\+Contact\+Managers\+Plugin\+Config}} (const \mbox{\hyperlink{classtesseract__common_1_1ResourceLocator}{tesseract\+\_\+common\+::\+Resource\+Locator}} \&locator, const tinyxml2\+::\+XMLElement $\ast$xml\+\_\+element, const std\+::array$<$ int, 3 $>$ \&version)
+\begin{DoxyCompactList}\small\item\em Parse contact managers plugin config xml element. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classtesseract__common_1_1AllowedCollisionMatrix}{tesseract\+\_\+common\+::\+Allowed\+Collision\+Matrix}} \mbox{\hyperlink{namespacetesseract__srdf_a008c165807f11a523fbe608a21874271}{parse\+Disabled\+Collisions}} (const \mbox{\hyperlink{classtesseract__scene__graph_1_1SceneGraph}{tesseract\+\_\+scene\+\_\+graph\+::\+Scene\+Graph}} \&scene\+\_\+graph, const tinyxml2\+::\+XMLElement $\ast$srdf\+\_\+xml, const std\+::array$<$ int, 3 $>$ \&version)
 \begin{DoxyCompactList}\small\item\em Parse allowed collisions from srdf xml element. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{namespacetesseract__srdf_a893adac8aedb290029dd8c0c1227bb2a}{Group\+Joint\+States}} \mbox{\hyperlink{namespacetesseract__srdf_aba8979d03bb64d50118e55dcd390e2b4}{parse\+Group\+States}} (const \mbox{\hyperlink{classtesseract__scene__graph_1_1SceneGraph}{tesseract\+\_\+scene\+\_\+graph\+::\+Scene\+Graph}} \&scene\+\_\+graph, const \mbox{\hyperlink{namespacetesseract__srdf_a4521a965628b7a88ca489d6c3c5f56ff}{Group\+Names}} \&group\+\_\+names, const tinyxml2\+::\+XMLElement $\ast$srdf\+\_\+xml, const std\+::array$<$ int, 3 $>$ \&version)
@@ -151,6 +159,30 @@ Main namespace.
 
 
 \doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespacetesseract__srdf_a9c5feb0240a817b9102e17090df6b7d1}\label{namespacetesseract__srdf_a9c5feb0240a817b9102e17090df6b7d1}} 
+\index{tesseract\_srdf@{tesseract\_srdf}!parseCalibrationConfig@{parseCalibrationConfig}}
+\index{parseCalibrationConfig@{parseCalibrationConfig}!tesseract\_srdf@{tesseract\_srdf}}
+\doxysubsubsection{\texorpdfstring{parseCalibrationConfig()}{parseCalibrationConfig()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structtesseract__common_1_1CalibrationInfo}{tesseract\+\_\+common\+::\+Calibration\+Info}} tesseract\+\_\+srdf\+::parse\+Calibration\+Config (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classtesseract__scene__graph_1_1SceneGraph}{tesseract\+\_\+scene\+\_\+graph\+::\+Scene\+Graph}} \&}]{scene\+\_\+graph,  }\item[{const \mbox{\hyperlink{classtesseract__common_1_1ResourceLocator}{tesseract\+\_\+common\+::\+Resource\+Locator}} \&}]{locator,  }\item[{const tinyxml2\+::\+XMLElement $\ast$}]{xml\+\_\+element,  }\item[{const std\+::array$<$ int, 3 $>$ \&}]{version }\end{DoxyParamCaption})}
+
+
+
+Parse calibration config xml element. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em scene\+\_\+graph} & The scene graph \\
+\hline
+{\em locator} & The locator used to process the file name URL \\
+\hline
+{\em xml\+\_\+element} & The xml element to process \\
+\hline
+{\em version} & The SRDF version \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The calibration information 
+\end{DoxyReturn}
 \mbox{\Hypertarget{namespacetesseract__srdf_aa5ca32390e313ab0fe3507ae8406ff69}\label{namespacetesseract__srdf_aa5ca32390e313ab0fe3507ae8406ff69}} 
 \index{tesseract\_srdf@{tesseract\_srdf}!parseCollisionMargins@{parseCollisionMargins}}
 \index{parseCollisionMargins@{parseCollisionMargins}!tesseract\_srdf@{tesseract\_srdf}}
@@ -172,6 +204,50 @@ Parse allowed collisions from srdf xml element.
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 Allowed Collision Matrix 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespacetesseract__srdf_aeb2ffa42272bb3ace08062a7667f8878}\label{namespacetesseract__srdf_aeb2ffa42272bb3ace08062a7667f8878}} 
+\index{tesseract\_srdf@{tesseract\_srdf}!parseConfigFilePath@{parseConfigFilePath}}
+\index{parseConfigFilePath@{parseConfigFilePath}!tesseract\_srdf@{tesseract\_srdf}}
+\doxysubsubsection{\texorpdfstring{parseConfigFilePath()}{parseConfigFilePath()}}
+{\footnotesize\ttfamily tesseract\+\_\+common\+::fs\+::path tesseract\+\_\+srdf\+::parse\+Config\+File\+Path (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classtesseract__common_1_1ResourceLocator}{tesseract\+\_\+common\+::\+Resource\+Locator}} \&}]{locator,  }\item[{const tinyxml2\+::\+XMLElement $\ast$}]{xml\+\_\+element,  }\item[{const std\+::array$<$ int, 3 $>$ \&}]{version }\end{DoxyParamCaption})}
+
+
+
+Parse a config xml element. 
+
+It expects the element to have the attribute \textquotesingle{}filename\textquotesingle{} 
+\begin{DoxyParams}{Parameters}
+{\em locator} & The locator used to process the file name URL \\
+\hline
+{\em xml\+\_\+element} & The xml element to process \\
+\hline
+{\em version} & The SRDF version \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The extracted file path 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespacetesseract__srdf_a330ce7d0553d5cebe49335676946f253}\label{namespacetesseract__srdf_a330ce7d0553d5cebe49335676946f253}} 
+\index{tesseract\_srdf@{tesseract\_srdf}!parseContactManagersPluginConfig@{parseContactManagersPluginConfig}}
+\index{parseContactManagersPluginConfig@{parseContactManagersPluginConfig}!tesseract\_srdf@{tesseract\_srdf}}
+\doxysubsubsection{\texorpdfstring{parseContactManagersPluginConfig()}{parseContactManagersPluginConfig()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structtesseract__common_1_1ContactManagersPluginInfo}{tesseract\+\_\+common\+::\+Contact\+Managers\+Plugin\+Info}} tesseract\+\_\+srdf\+::parse\+Contact\+Managers\+Plugin\+Config (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classtesseract__common_1_1ResourceLocator}{tesseract\+\_\+common\+::\+Resource\+Locator}} \&}]{locator,  }\item[{const tinyxml2\+::\+XMLElement $\ast$}]{xml\+\_\+element,  }\item[{const std\+::array$<$ int, 3 $>$ \&}]{version }\end{DoxyParamCaption})}
+
+
+
+Parse contact managers plugin config xml element. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em locator} & The locator used to process the file name URL \\
+\hline
+{\em xml\+\_\+element} & The xml element to process \\
+\hline
+{\em version} & The SRDF version \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The contact managers plugin information 
 \end{DoxyReturn}
 \mbox{\Hypertarget{namespacetesseract__srdf_a008c165807f11a523fbe608a21874271}\label{namespacetesseract__srdf_a008c165807f11a523fbe608a21874271}} 
 \index{tesseract\_srdf@{tesseract\_srdf}!parseDisabledCollisions@{parseDisabledCollisions}}
@@ -260,6 +336,28 @@ Parse groups tool center points from srdf xml element.
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 Group Tool Center Points 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespacetesseract__srdf_a47ed21f8af4ee8a93f3baba6f146e70c}\label{namespacetesseract__srdf_a47ed21f8af4ee8a93f3baba6f146e70c}} 
+\index{tesseract\_srdf@{tesseract\_srdf}!parseKinematicsPluginConfig@{parseKinematicsPluginConfig}}
+\index{parseKinematicsPluginConfig@{parseKinematicsPluginConfig}!tesseract\_srdf@{tesseract\_srdf}}
+\doxysubsubsection{\texorpdfstring{parseKinematicsPluginConfig()}{parseKinematicsPluginConfig()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structtesseract__common_1_1KinematicsPluginInfo}{tesseract\+\_\+common\+::\+Kinematics\+Plugin\+Info}} tesseract\+\_\+srdf\+::parse\+Kinematics\+Plugin\+Config (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classtesseract__common_1_1ResourceLocator}{tesseract\+\_\+common\+::\+Resource\+Locator}} \&}]{locator,  }\item[{const tinyxml2\+::\+XMLElement $\ast$}]{xml\+\_\+element,  }\item[{const std\+::array$<$ int, 3 $>$ \&}]{version }\end{DoxyParamCaption})}
+
+
+
+Parse kinematics plugin config xml element. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em locator} & The locator used to process the file name URL \\
+\hline
+{\em xml\+\_\+element} & The xml element to process \\
+\hline
+{\em version} & The SRDF version \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The kinematics plugin information 
 \end{DoxyReturn}
 \mbox{\Hypertarget{namespacetesseract__srdf_adcdb768e9ca515371c6a23778844f738}\label{namespacetesseract__srdf_adcdb768e9ca515371c6a23778844f738}} 
 \index{tesseract\_srdf@{tesseract\_srdf}!processSRDFAllowedCollisions@{processSRDFAllowedCollisions}}
