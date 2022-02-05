@@ -1,0 +1,41 @@
+\hypertarget{move__joint__command_8h_source}{}\doxysection{move\+\_\+joint\+\_\+command.\+h}
+\label{move__joint__command_8h_source}\index{tesseract\_environment/include/tesseract\_environment/commands/move\_joint\_command.h@{tesseract\_environment/include/tesseract\_environment/commands/move\_joint\_command.h}}
+\mbox{\hyperlink{move__joint__command_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#ifndef TESSERACT\_ENVIRONMENT\_MOVE\_JOINT\_COMMAND\_H}}
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#define TESSERACT\_ENVIRONMENT\_MOVE\_JOINT\_COMMAND\_H}}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{macros_8h}{tesseract\_common/macros.h}}>}}
+\DoxyCodeLine{30 \mbox{\hyperlink{macros_8h_a8cc0e3c6a3382c5c0b19eb9e676fc2db}{TESSERACT\_COMMON\_IGNORE\_WARNINGS\_PUSH}}}
+\DoxyCodeLine{31 \textcolor{preprocessor}{\#include <memory>}}
+\DoxyCodeLine{32 \mbox{\hyperlink{namespaceTESSERACT__COMMON__IGNORE__WARNINGS__POP}{TESSERACT\_COMMON\_IGNORE\_WARNINGS\_POP}}}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{command_8h}{tesseract\_environment/command.h}}>}}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespacetesseract__environment}{tesseract\_environment}}}
+\DoxyCodeLine{37 \{}
+\DoxyCodeLine{38 \textcolor{keyword}{class }\mbox{\hyperlink{classtesseract__environment_1_1MoveJointCommand}{MoveJointCommand}} : \textcolor{keyword}{public} \mbox{\hyperlink{classtesseract__environment_1_1Command}{Command}}}
+\DoxyCodeLine{39 \{}
+\DoxyCodeLine{40 \textcolor{keyword}{public}:}
+\DoxyCodeLine{41   \textcolor{keyword}{using} \mbox{\hyperlink{classtesseract__environment_1_1Command_a26e9088280770d9887b52cef37e731db}{Ptr}} = std::shared\_ptr<MoveJointCommand>;}
+\DoxyCodeLine{42   \textcolor{keyword}{using} \mbox{\hyperlink{classtesseract__environment_1_1Command_a71f41840ff091003233e7ddaff1c4081}{ConstPtr}} = std::shared\_ptr<const MoveJointCommand>;}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{52   \mbox{\hyperlink{classtesseract__environment_1_1MoveJointCommand_a161201491387a039e988f8266ed7221f}{MoveJointCommand}}(std::string joint\_name, std::string parent\_link)}
+\DoxyCodeLine{53     : \mbox{\hyperlink{classtesseract__environment_1_1MoveJointCommand_a56bb2f6bc14bbb532a14fcfd0dbe5426}{joint\_name\_}}(std::move(joint\_name)), \mbox{\hyperlink{classtesseract__environment_1_1MoveJointCommand_a303538d674b2c61a25ff63113f268551}{parent\_link\_}}(std::move(parent\_link))}
+\DoxyCodeLine{54   \{}
+\DoxyCodeLine{55   \}}
+\DoxyCodeLine{56 }
+\DoxyCodeLine{57   \mbox{\hyperlink{namespacetesseract__environment_afc00c1aecb519acba3afc24dbd367029}{CommandType}} \mbox{\hyperlink{classtesseract__environment_1_1MoveJointCommand_a394dd31cd89db36d26cbfc17ff3c13f7}{getType}}() const final \{ \textcolor{keywordflow}{return} \mbox{\hyperlink{namespacetesseract__environment_afc00c1aecb519acba3afc24dbd367029a4ca2d320bdf40df7e6f465d21e268ec4}{CommandType::MOVE\_JOINT}}; \}}
+\DoxyCodeLine{58   \textcolor{keyword}{const} std::string\& \mbox{\hyperlink{classtesseract__environment_1_1MoveJointCommand_a23d2f658de2666028c65ac38eba014da}{getJointName}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classtesseract__environment_1_1MoveJointCommand_a56bb2f6bc14bbb532a14fcfd0dbe5426}{joint\_name\_}}; \}}
+\DoxyCodeLine{59   \textcolor{keyword}{const} std::string\& \mbox{\hyperlink{classtesseract__environment_1_1MoveJointCommand_a3a490a71c5dff6ac1306cc69cd006f1e}{getParentLink}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classtesseract__environment_1_1MoveJointCommand_a303538d674b2c61a25ff63113f268551}{parent\_link\_}}; \}}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{61 \textcolor{keyword}{private}:}
+\DoxyCodeLine{62   std::string \mbox{\hyperlink{classtesseract__environment_1_1MoveJointCommand_a56bb2f6bc14bbb532a14fcfd0dbe5426}{joint\_name\_}};}
+\DoxyCodeLine{63   std::string \mbox{\hyperlink{classtesseract__environment_1_1MoveJointCommand_a303538d674b2c61a25ff63113f268551}{parent\_link\_}};}
+\DoxyCodeLine{64 \};}
+\DoxyCodeLine{65 \}  \textcolor{comment}{// namespace tesseract\_environment}}
+\DoxyCodeLine{66 }
+\DoxyCodeLine{67 \textcolor{preprocessor}{\#endif  }\textcolor{comment}{// TESSERACT\_ENVIRONMENT\_MOVE\_JOINT\_COMMAND\_H}}
+
+\end{DoxyCode}

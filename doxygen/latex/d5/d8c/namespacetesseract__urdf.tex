@@ -51,11 +51,11 @@ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classtesseract__scene__graph_1_1Joint
 \begin{DoxyCompactList}\small\item\em Parse xml element limits. \end{DoxyCompactList}\item 
 tinyxml2\+::\+XMLElement $\ast$ \mbox{\hyperlink{namespacetesseract__urdf_a15e81c523f376e754316282f0b8dbebd}{write\+Limits}} (const std\+::shared\+\_\+ptr$<$ const \mbox{\hyperlink{classtesseract__scene__graph_1_1JointLimits}{tesseract\+\_\+scene\+\_\+graph\+::\+Joint\+Limits}} $>$ \&limits, tinyxml2\+::\+XMLDocument \&doc)
 \item 
-std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classtesseract__scene__graph_1_1Link}{tesseract\+\_\+scene\+\_\+graph\+::\+Link}} $>$ \mbox{\hyperlink{namespacetesseract__urdf_a0969004a0f2cc8d3e45e93b52c6ec566}{parse\+Link}} (const tinyxml2\+::\+XMLElement $\ast$xml\+\_\+element, const \mbox{\hyperlink{classtesseract__common_1_1ResourceLocator}{tesseract\+\_\+common\+::\+Resource\+Locator}} \&locator, std\+::unordered\+\_\+map$<$ std\+::string, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classtesseract__scene__graph_1_1Material}{tesseract\+\_\+scene\+\_\+graph\+::\+Material}} $>$$>$ \&available\+\_\+materials, int version)
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classtesseract__scene__graph_1_1Link}{tesseract\+\_\+scene\+\_\+graph\+::\+Link}} $>$ \mbox{\hyperlink{namespacetesseract__urdf_a5e0ce0a914b59745c8b3be4f94611dbc}{parse\+Link}} (const tinyxml2\+::\+XMLElement $\ast$xml\+\_\+element, const \mbox{\hyperlink{classtesseract__common_1_1ResourceLocator}{tesseract\+\_\+common\+::\+Resource\+Locator}} \&locator, std\+::unordered\+\_\+map$<$ std\+::string, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classtesseract__scene__graph_1_1Material}{tesseract\+\_\+scene\+\_\+graph\+::\+Material}} $>$ $>$ \&available\+\_\+materials, int version)
 \begin{DoxyCompactList}\small\item\em Parse xml element link. \end{DoxyCompactList}\item 
 tinyxml2\+::\+XMLElement $\ast$ \mbox{\hyperlink{namespacetesseract__urdf_a6a89ba9313d15f089c3c7575f5b44836}{write\+Link}} (const std\+::shared\+\_\+ptr$<$ const \mbox{\hyperlink{classtesseract__scene__graph_1_1Link}{tesseract\+\_\+scene\+\_\+graph\+::\+Link}} $>$ \&link, tinyxml2\+::\+XMLDocument \&doc, const std\+::string \&package\+\_\+path)
 \begin{DoxyCompactList}\small\item\em write\+Link Write a link to URDF XML \end{DoxyCompactList}\item 
-std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classtesseract__scene__graph_1_1Material}{tesseract\+\_\+scene\+\_\+graph\+::\+Material}} $>$ \mbox{\hyperlink{namespacetesseract__urdf_ac667bc9e9e20f0747279a479cfada4a5}{parse\+Material}} (const tinyxml2\+::\+XMLElement $\ast$xml\+\_\+element, std\+::unordered\+\_\+map$<$ std\+::string, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classtesseract__scene__graph_1_1Material}{tesseract\+\_\+scene\+\_\+graph\+::\+Material}} $>$$>$ \&available\+\_\+materials, bool allow\+\_\+anonymous, int version)
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classtesseract__scene__graph_1_1Material}{tesseract\+\_\+scene\+\_\+graph\+::\+Material}} $>$ \mbox{\hyperlink{namespacetesseract__urdf_abcb2a8cb7772e07c3c36c3b1a46e2162}{parse\+Material}} (const tinyxml2\+::\+XMLElement $\ast$xml\+\_\+element, std\+::unordered\+\_\+map$<$ std\+::string, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classtesseract__scene__graph_1_1Material}{tesseract\+\_\+scene\+\_\+graph\+::\+Material}} $>$ $>$ \&available\+\_\+materials, bool allow\+\_\+anonymous, int version)
 \begin{DoxyCompactList}\small\item\em Parse xml element material. \end{DoxyCompactList}\item 
 tinyxml2\+::\+XMLElement $\ast$ \mbox{\hyperlink{namespacetesseract__urdf_ab1fcba4c6fb26d4987068e770c44ea6a}{write\+Material}} (const std\+::shared\+\_\+ptr$<$ const \mbox{\hyperlink{classtesseract__scene__graph_1_1Material}{tesseract\+\_\+scene\+\_\+graph\+::\+Material}} $>$ \&material, tinyxml2\+::\+XMLDocument \&doc)
 \item 
@@ -73,7 +73,7 @@ tinyxml2\+::\+XMLElement $\ast$ \mbox{\hyperlink{namespacetesseract__urdf_afae40
 \begin{DoxyCompactList}\small\item\em write\+Octomap Write octomap to URDF XML. This is non-\/standard URDF / tesseract-\/exclusive \end{DoxyCompactList}\item 
 std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classtesseract__geometry_1_1Octree}{tesseract\+\_\+geometry\+::\+Octree}} $>$ \mbox{\hyperlink{namespacetesseract__urdf_af8b0a3512961e67023233cfe45f97c0b}{parse\+Octree}} (const tinyxml2\+::\+XMLElement $\ast$xml\+\_\+element, const \mbox{\hyperlink{classtesseract__common_1_1ResourceLocator}{tesseract\+\_\+common\+::\+Resource\+Locator}} \&locator, \mbox{\hyperlink{classtesseract__geometry_1_1Octree_a50b534fbd4a871cd257ac52d6009af00}{tesseract\+\_\+geometry\+::\+Octree\+::\+Sub\+Type}} shape\+\_\+type, bool prune, int version)
 \begin{DoxyCompactList}\small\item\em Parse xml element octree. \end{DoxyCompactList}\item 
-tinyxml2\+::\+XMLElement $\ast$ \mbox{\hyperlink{namespacetesseract__urdf_a666951a89fc1cf390faed4ca456ae31c}{write\+Octree}} (const std\+::shared\+\_\+ptr$<$ const \mbox{\hyperlink{classtesseract__geometry_1_1Octree}{tesseract\+\_\+geometry\+::\+Octree}} $>$ \&octree, tinyxml2\+::\+XMLDocument \&doc, const std\+::string \&package\+\_\+path, const std\+::string \&filename)
+tinyxml2\+::\+XMLElement $\ast$ \mbox{\hyperlink{namespacetesseract__urdf_aabbe72b35c36fd6db4f2a59ad869ce38}{write\+Octree}} (const std\+::shared\+\_\+ptr$<$ const \mbox{\hyperlink{classtesseract__geometry_1_1Octree}{tesseract\+\_\+geometry\+::\+Octree}} $>$ \&octree, tinyxml2\+::\+XMLDocument \&doc, const std\+::string \&package\+\_\+path, const std\+::string \&filename)
 \begin{DoxyCompactList}\small\item\em write\+Octree Write octree out to file, and generate appropriate xml \end{DoxyCompactList}\item 
 Eigen\+::\+Isometry3d \mbox{\hyperlink{namespacetesseract__urdf_a3dca8f3d3dc6bcb661e3e55cc7b3e2f3}{parse\+Origin}} (const tinyxml2\+::\+XMLElement $\ast$xml\+\_\+element, int version)
 \begin{DoxyCompactList}\small\item\em Parse xml element origin. \end{DoxyCompactList}\item 
@@ -111,7 +111,7 @@ std\+::string \mbox{\hyperlink{namespacetesseract__urdf_a5550cf6550b323ffe8ea174
 \item 
 void \mbox{\hyperlink{namespacetesseract__urdf_ac2da54aa674868713d9f86a6a99f347d}{write\+Mesh\+To\+File}} (const std\+::shared\+\_\+ptr$<$ const \mbox{\hyperlink{classtesseract__geometry_1_1PolygonMesh}{tesseract\+\_\+geometry\+::\+Polygon\+Mesh}} $>$ \&mesh, const std\+::string \&filepath)
 \item 
-\mbox{\hyperlink{vhacdRaycastMesh_8cpp_adcf134d50025cc52907d0c8ac798d89d}{std\+::vector}}$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classtesseract__scene__graph_1_1Visual}{tesseract\+\_\+scene\+\_\+graph\+::\+Visual}} $>$ $>$ \mbox{\hyperlink{namespacetesseract__urdf_a160b8320c86bad3619167c034a838dfe}{parse\+Visual}} (const tinyxml2\+::\+XMLElement $\ast$xml\+\_\+element, const \mbox{\hyperlink{classtesseract__common_1_1ResourceLocator}{tesseract\+\_\+common\+::\+Resource\+Locator}} \&locator, std\+::unordered\+\_\+map$<$ std\+::string, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classtesseract__scene__graph_1_1Material}{tesseract\+\_\+scene\+\_\+graph\+::\+Material}} $>$$>$ \&available\+\_\+materials, int version)
+\mbox{\hyperlink{vhacdRaycastMesh_8cpp_adcf134d50025cc52907d0c8ac798d89d}{std\+::vector}}$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classtesseract__scene__graph_1_1Visual}{tesseract\+\_\+scene\+\_\+graph\+::\+Visual}} $>$ $>$ \mbox{\hyperlink{namespacetesseract__urdf_aa3db06e9831237d67bfe6b249595b385}{parse\+Visual}} (const tinyxml2\+::\+XMLElement $\ast$xml\+\_\+element, const \mbox{\hyperlink{classtesseract__common_1_1ResourceLocator}{tesseract\+\_\+common\+::\+Resource\+Locator}} \&locator, std\+::unordered\+\_\+map$<$ std\+::string, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classtesseract__scene__graph_1_1Material}{tesseract\+\_\+scene\+\_\+graph\+::\+Material}} $>$ $>$ \&available\+\_\+materials, int version)
 \begin{DoxyCompactList}\small\item\em Parse xml element visual. \end{DoxyCompactList}\item 
 tinyxml2\+::\+XMLElement $\ast$ \mbox{\hyperlink{namespacetesseract__urdf_a6f523f3ac83d901507393b791c07515b}{write\+Visual}} (const std\+::shared\+\_\+ptr$<$ const \mbox{\hyperlink{classtesseract__scene__graph_1_1Visual}{tesseract\+\_\+scene\+\_\+graph\+::\+Visual}} $>$ \&visual, tinyxml2\+::\+XMLDocument \&doc, const std\+::string \&package\+\_\+path, const std\+::string \&link\+\_\+name, int id)
 \begin{DoxyCompactList}\small\item\em write\+Visual Write one visual geometry object to URDF XML \end{DoxyCompactList}\end{DoxyCompactItemize}
@@ -374,11 +374,11 @@ Parse xml element limits.
 \begin{DoxyReturn}{Returns}
 A Tesseract Joint\+Limits 
 \end{DoxyReturn}
-\mbox{\Hypertarget{namespacetesseract__urdf_a0969004a0f2cc8d3e45e93b52c6ec566}\label{namespacetesseract__urdf_a0969004a0f2cc8d3e45e93b52c6ec566}} 
+\mbox{\Hypertarget{namespacetesseract__urdf_a5e0ce0a914b59745c8b3be4f94611dbc}\label{namespacetesseract__urdf_a5e0ce0a914b59745c8b3be4f94611dbc}} 
 \index{tesseract\_urdf@{tesseract\_urdf}!parseLink@{parseLink}}
 \index{parseLink@{parseLink}!tesseract\_urdf@{tesseract\_urdf}}
 \doxysubsubsection{\texorpdfstring{parseLink()}{parseLink()}}
-{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classtesseract__scene__graph_1_1Link}{tesseract\+\_\+scene\+\_\+graph\+::\+Link}}$>$ tesseract\+\_\+urdf\+::parse\+Link (\begin{DoxyParamCaption}\item[{const tinyxml2\+::\+XMLElement $\ast$}]{xml\+\_\+element,  }\item[{const \mbox{\hyperlink{classtesseract__common_1_1ResourceLocator}{tesseract\+\_\+common\+::\+Resource\+Locator}} \&}]{locator,  }\item[{std\+::unordered\+\_\+map$<$ std\+::string, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classtesseract__scene__graph_1_1Material}{tesseract\+\_\+scene\+\_\+graph\+::\+Material}} $>$$>$ \&}]{available\+\_\+materials,  }\item[{int}]{version }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classtesseract__scene__graph_1_1Link}{tesseract\+\_\+scene\+\_\+graph\+::\+Link}} $>$ tesseract\+\_\+urdf\+::parse\+Link (\begin{DoxyParamCaption}\item[{const tinyxml2\+::\+XMLElement $\ast$}]{xml\+\_\+element,  }\item[{const \mbox{\hyperlink{classtesseract__common_1_1ResourceLocator}{tesseract\+\_\+common\+::\+Resource\+Locator}} \&}]{locator,  }\item[{std\+::unordered\+\_\+map$<$ std\+::string, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classtesseract__scene__graph_1_1Material}{tesseract\+\_\+scene\+\_\+graph\+::\+Material}} $>$ $>$ \&}]{available\+\_\+materials,  }\item[{int}]{version }\end{DoxyParamCaption})}
 
 
 
@@ -398,11 +398,11 @@ Parse xml element link.
 \begin{DoxyReturn}{Returns}
 A Tesseract Link 
 \end{DoxyReturn}
-\mbox{\Hypertarget{namespacetesseract__urdf_ac667bc9e9e20f0747279a479cfada4a5}\label{namespacetesseract__urdf_ac667bc9e9e20f0747279a479cfada4a5}} 
+\mbox{\Hypertarget{namespacetesseract__urdf_abcb2a8cb7772e07c3c36c3b1a46e2162}\label{namespacetesseract__urdf_abcb2a8cb7772e07c3c36c3b1a46e2162}} 
 \index{tesseract\_urdf@{tesseract\_urdf}!parseMaterial@{parseMaterial}}
 \index{parseMaterial@{parseMaterial}!tesseract\_urdf@{tesseract\_urdf}}
 \doxysubsubsection{\texorpdfstring{parseMaterial()}{parseMaterial()}}
-{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classtesseract__scene__graph_1_1Material}{tesseract\+\_\+scene\+\_\+graph\+::\+Material}}$>$ tesseract\+\_\+urdf\+::parse\+Material (\begin{DoxyParamCaption}\item[{const tinyxml2\+::\+XMLElement $\ast$}]{xml\+\_\+element,  }\item[{std\+::unordered\+\_\+map$<$ std\+::string, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classtesseract__scene__graph_1_1Material}{tesseract\+\_\+scene\+\_\+graph\+::\+Material}} $>$$>$ \&}]{available\+\_\+materials,  }\item[{bool}]{allow\+\_\+anonymous,  }\item[{int}]{version }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classtesseract__scene__graph_1_1Material}{tesseract\+\_\+scene\+\_\+graph\+::\+Material}} $>$ tesseract\+\_\+urdf\+::parse\+Material (\begin{DoxyParamCaption}\item[{const tinyxml2\+::\+XMLElement $\ast$}]{xml\+\_\+element,  }\item[{std\+::unordered\+\_\+map$<$ std\+::string, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classtesseract__scene__graph_1_1Material}{tesseract\+\_\+scene\+\_\+graph\+::\+Material}} $>$ $>$ \&}]{available\+\_\+materials,  }\item[{bool}]{allow\+\_\+anonymous,  }\item[{int}]{version }\end{DoxyParamCaption})}
 
 
 
@@ -672,11 +672,11 @@ Parse a URDF string into a Tesseract Scene Graph.
 \begin{DoxyReturn}{Returns}
 Tesseract Scene Graph, nullptr if failed to parse URDF 
 \end{DoxyReturn}
-\mbox{\Hypertarget{namespacetesseract__urdf_a160b8320c86bad3619167c034a838dfe}\label{namespacetesseract__urdf_a160b8320c86bad3619167c034a838dfe}} 
+\mbox{\Hypertarget{namespacetesseract__urdf_aa3db06e9831237d67bfe6b249595b385}\label{namespacetesseract__urdf_aa3db06e9831237d67bfe6b249595b385}} 
 \index{tesseract\_urdf@{tesseract\_urdf}!parseVisual@{parseVisual}}
 \index{parseVisual@{parseVisual}!tesseract\_urdf@{tesseract\_urdf}}
 \doxysubsubsection{\texorpdfstring{parseVisual()}{parseVisual()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{vhacdRaycastMesh_8cpp_adcf134d50025cc52907d0c8ac798d89d}{std\+::vector}}$<$std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classtesseract__scene__graph_1_1Visual}{tesseract\+\_\+scene\+\_\+graph\+::\+Visual}}$>$ $>$ tesseract\+\_\+urdf\+::parse\+Visual (\begin{DoxyParamCaption}\item[{const tinyxml2\+::\+XMLElement $\ast$}]{xml\+\_\+element,  }\item[{const \mbox{\hyperlink{classtesseract__common_1_1ResourceLocator}{tesseract\+\_\+common\+::\+Resource\+Locator}} \&}]{locator,  }\item[{std\+::unordered\+\_\+map$<$ std\+::string, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classtesseract__scene__graph_1_1Material}{tesseract\+\_\+scene\+\_\+graph\+::\+Material}} $>$$>$ \&}]{available\+\_\+materials,  }\item[{int}]{version }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{vhacdRaycastMesh_8cpp_adcf134d50025cc52907d0c8ac798d89d}{std\+::vector}}$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classtesseract__scene__graph_1_1Visual}{tesseract\+\_\+scene\+\_\+graph\+::\+Visual}} $>$ $>$ tesseract\+\_\+urdf\+::parse\+Visual (\begin{DoxyParamCaption}\item[{const tinyxml2\+::\+XMLElement $\ast$}]{xml\+\_\+element,  }\item[{const \mbox{\hyperlink{classtesseract__common_1_1ResourceLocator}{tesseract\+\_\+common\+::\+Resource\+Locator}} \&}]{locator,  }\item[{std\+::unordered\+\_\+map$<$ std\+::string, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classtesseract__scene__graph_1_1Material}{tesseract\+\_\+scene\+\_\+graph\+::\+Material}} $>$ $>$ \&}]{available\+\_\+materials,  }\item[{int}]{version }\end{DoxyParamCaption})}
 
 
 
@@ -740,7 +740,7 @@ write\+Collision Write collision object to URDF XML
 \hline
 {\em doc} & XML Document to which XML will belong \\
 \hline
-{\em package\+\_\+path} & /$<$path$>$/$<$to$>$/$<$your-\/package$>$. If set, geometry will be saved relative to the package. If not set, geometry will be saved with absolute paths. \\
+{\em package\+\_\+path} & /$<$path$>$/$<$to$>$/\texorpdfstring{$<$}{<}your-\/package\texorpdfstring{$>$}{>}. If set, geometry will be saved relative to the package. If not set, geometry will be saved with absolute paths. \\
 \hline
 {\em link\+\_\+name} & Name of link to which collision object is attached \\
 \hline
@@ -772,7 +772,7 @@ write\+Convex\+Mesh Write convex mesh to URDF XML. This is non-\/standard URDF /
 \hline
 {\em doc} & XML document to which xml will belong \\
 \hline
-{\em package\+\_\+path} & /$<$path$>$/$<$to$>$/$<$your-\/package$>$. If set, geometry will be saved relative to the package. If not set, geometry will be saved with absolute paths. \\
+{\em package\+\_\+path} & /$<$path$>$/$<$to$>$/\texorpdfstring{$<$}{<}your-\/package\texorpdfstring{$>$}{>}. If set, geometry will be saved relative to the package. If not set, geometry will be saved with absolute paths. \\
 \hline
 {\em filename} & Desired file location. If package\+\_\+path is set, this should be relative to the package. If not, this should be an absolute path. \\
 \hline
@@ -808,7 +808,7 @@ write\+Geometry Write geometry to URDF XML
 \hline
 {\em doc} & XML Document to which xml will belong \\
 \hline
-{\em package\+\_\+path} & /$<$path$>$/$<$to$>$/$<$your-\/package$>$. If set, geometry will be saved relative to the package. If not set, geometry will be saved with absolute paths. \\
+{\em package\+\_\+path} & /$<$path$>$/$<$to$>$/\texorpdfstring{$<$}{<}your-\/package\texorpdfstring{$>$}{>}. If set, geometry will be saved relative to the package. If not set, geometry will be saved with absolute paths. \\
 \hline
 {\em filename} & The desired filename. The extension will be added according to geometry type. If package\+\_\+path is set, this should be relative to the package (e.\+g. \char`\"{}collision/link1\+\_\+geometry\char`\"{}). If package\+\_\+path is not set, this should be an absolute path (e.\+g. \char`\"{}/tmp/link1\+\_\+geometry\char`\"{}) \\
 \hline
@@ -850,7 +850,7 @@ write\+Link Write a link to URDF XML
 \hline
 {\em doc} & XML Document to which element will belong \\
 \hline
-{\em package\+\_\+path} & /$<$path$>$/$<$to$>$/$<$your-\/package$>$. If set, geometry will be saved relative to the package. If not set, geometry will be saved with absolute paths. \\
+{\em package\+\_\+path} & /$<$path$>$/$<$to$>$/\texorpdfstring{$<$}{<}your-\/package\texorpdfstring{$>$}{>}. If set, geometry will be saved relative to the package. If not set, geometry will be saved with absolute paths. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -878,7 +878,7 @@ write\+Mesh Write a mesh to URDF XML and PLY file
 \hline
 {\em doc} & XML Document to manage generated XML \\
 \hline
-{\em package\+\_\+path} & /$<$path$>$/$<$to$>$/$<$your-\/package$>$. If set, geometry will be saved relative to the package. If not set, geometry will be saved with absolute paths. \\
+{\em package\+\_\+path} & /$<$path$>$/$<$to$>$/\texorpdfstring{$<$}{<}your-\/package\texorpdfstring{$>$}{>}. If set, geometry will be saved relative to the package. If not set, geometry will be saved with absolute paths. \\
 \hline
 {\em filename} & Desired file location. If package\+\_\+path is set, this should be relative to the package, If not, this should be an absolute path \\
 \hline
@@ -914,7 +914,7 @@ write\+Octomap Write octomap to URDF XML. This is non-\/standard URDF / tesserac
 \hline
 {\em doc} & XML document to manage generated xml \\
 \hline
-{\em package\+\_\+path} & /$<$path$>$/$<$to$>$/$<$your-\/package$>$. If set, geometry will be saved relative to the package. If not set, geometry will be saved with absolute paths. \\
+{\em package\+\_\+path} & /$<$path$>$/$<$to$>$/\texorpdfstring{$<$}{<}your-\/package\texorpdfstring{$>$}{>}. If set, geometry will be saved relative to the package. If not set, geometry will be saved with absolute paths. \\
 \hline
 {\em filename} & Desired file location. If package\+\_\+path is set, this should be relative to the package. Otherwise, this should be an absolute path. \\
 \hline
@@ -922,11 +922,11 @@ write\+Octomap Write octomap to URDF XML. This is non-\/standard URDF / tesserac
 \begin{DoxyReturn}{Returns}
 XML element representing the octomap object in URDF Format 
 \end{DoxyReturn}
-\mbox{\Hypertarget{namespacetesseract__urdf_a666951a89fc1cf390faed4ca456ae31c}\label{namespacetesseract__urdf_a666951a89fc1cf390faed4ca456ae31c}} 
+\mbox{\Hypertarget{namespacetesseract__urdf_aabbe72b35c36fd6db4f2a59ad869ce38}\label{namespacetesseract__urdf_aabbe72b35c36fd6db4f2a59ad869ce38}} 
 \index{tesseract\_urdf@{tesseract\_urdf}!writeOctree@{writeOctree}}
 \index{writeOctree@{writeOctree}!tesseract\_urdf@{tesseract\_urdf}}
 \doxysubsubsection{\texorpdfstring{writeOctree()}{writeOctree()}}
-{\footnotesize\ttfamily tinyxml2\+::\+XMLElement$\ast$ tesseract\+\_\+urdf\+::write\+Octree (\begin{DoxyParamCaption}\item[{const std\+::shared\+\_\+ptr$<$ const \mbox{\hyperlink{classtesseract__geometry_1_1Octree}{tesseract\+\_\+geometry\+::\+Octree}} $>$ \&}]{octree,  }\item[{tinyxml2\+::\+XMLDocument \&}]{doc,  }\item[{const std\+::string \&}]{package\+\_\+path,  }\item[{const std\+::string \&}]{filename }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily tinyxml2\+::\+XMLElement $\ast$ tesseract\+\_\+urdf\+::write\+Octree (\begin{DoxyParamCaption}\item[{const std\+::shared\+\_\+ptr$<$ const \mbox{\hyperlink{classtesseract__geometry_1_1Octree}{tesseract\+\_\+geometry\+::\+Octree}} $>$ \&}]{octree,  }\item[{tinyxml2\+::\+XMLDocument \&}]{doc,  }\item[{const std\+::string \&}]{package\+\_\+path,  }\item[{const std\+::string \&}]{filename }\end{DoxyParamCaption})}
 
 
 
@@ -938,7 +938,7 @@ write\+Octree Write octree out to file, and generate appropriate xml
 \hline
 {\em doc} & The XML document to which to add the xml data \\
 \hline
-{\em package\+\_\+path} & /$<$path$>$/$<$to$>$/$<$your-\/package$>$. If set, geometry will be saved relative to the package. If not set, geometry will be saved with absolute paths. \\
+{\em package\+\_\+path} & /$<$path$>$/$<$to$>$/\texorpdfstring{$<$}{<}your-\/package\texorpdfstring{$>$}{>}. If set, geometry will be saved relative to the package. If not set, geometry will be saved with absolute paths. \\
 \hline
 {\em filename} & Desired filename relative to the working directory (\char`\"{}octree.\+ot\char`\"{} or \char`\"{}collision/octree.\+ot\char`\"{}) \\
 \hline
@@ -974,7 +974,7 @@ write\+SDFMesh Write SDF Mesh to URDF XML. This is non-\/standard URDF / tessera
 \hline
 {\em doc} & XML Document to manage generated XML \\
 \hline
-{\em package\+\_\+path} & /$<$path$>$/$<$to$>$/$<$your-\/package$>$. If set, geometry will be saved relative to the package. If not set, geometry will be saved with absolute paths. \\
+{\em package\+\_\+path} & /$<$path$>$/$<$to$>$/\texorpdfstring{$<$}{<}your-\/package\texorpdfstring{$>$}{>}. If set, geometry will be saved relative to the package. If not set, geometry will be saved with absolute paths. \\
 \hline
 {\em filename} & Desired file location. If package\+\_\+path is set, this should be relative to the package. Otherwise, this should be an absolute path \\
 \hline
@@ -1010,7 +1010,7 @@ write\+Visual Write one visual geometry object to URDF XML
 \hline
 {\em doc} & XML Document to which XML will belong \\
 \hline
-{\em package\+\_\+path} & /$<$path$>$/$<$to$>$/$<$your-\/package$>$. If set, geometry will be saved relative to the package. If not set, geometry will be saved with absolute paths. \\
+{\em package\+\_\+path} & /$<$path$>$/$<$to$>$/\texorpdfstring{$<$}{<}your-\/package\texorpdfstring{$>$}{>}. If set, geometry will be saved relative to the package. If not set, geometry will be saved with absolute paths. \\
 \hline
 {\em link\+\_\+name} & Name of link to which collision object is attached \\
 \hline

@@ -1,0 +1,36 @@
+\hypertarget{remove__joint__command_8h_source}{}\doxysection{remove\+\_\+joint\+\_\+command.\+h}
+\label{remove__joint__command_8h_source}\index{tesseract\_environment/include/tesseract\_environment/commands/remove\_joint\_command.h@{tesseract\_environment/include/tesseract\_environment/commands/remove\_joint\_command.h}}
+\mbox{\hyperlink{remove__joint__command_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#ifndef TESSERACT\_ENVIRONMENT\_REMOVE\_JOINT\_COMMAND\_H}}
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#define TESSERACT\_ENVIRONMENT\_REMOVE\_JOINT\_COMMAND\_H}}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{macros_8h}{tesseract\_common/macros.h}}>}}
+\DoxyCodeLine{30 \mbox{\hyperlink{macros_8h_a8cc0e3c6a3382c5c0b19eb9e676fc2db}{TESSERACT\_COMMON\_IGNORE\_WARNINGS\_PUSH}}}
+\DoxyCodeLine{31 \textcolor{preprocessor}{\#include <memory>}}
+\DoxyCodeLine{32 \mbox{\hyperlink{namespaceTESSERACT__COMMON__IGNORE__WARNINGS__POP}{TESSERACT\_COMMON\_IGNORE\_WARNINGS\_POP}}}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{command_8h}{tesseract\_environment/command.h}}>}}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespacetesseract__environment}{tesseract\_environment}}}
+\DoxyCodeLine{37 \{}
+\DoxyCodeLine{38 \textcolor{keyword}{class }\mbox{\hyperlink{classtesseract__environment_1_1RemoveJointCommand}{RemoveJointCommand}} : \textcolor{keyword}{public} \mbox{\hyperlink{classtesseract__environment_1_1Command}{Command}}}
+\DoxyCodeLine{39 \{}
+\DoxyCodeLine{40 \textcolor{keyword}{public}:}
+\DoxyCodeLine{41   \textcolor{keyword}{using} \mbox{\hyperlink{classtesseract__environment_1_1Command_a26e9088280770d9887b52cef37e731db}{Ptr}} = std::shared\_ptr<RemoveJointCommand>;}
+\DoxyCodeLine{42   \textcolor{keyword}{using} \mbox{\hyperlink{classtesseract__environment_1_1Command_a71f41840ff091003233e7ddaff1c4081}{ConstPtr}} = std::shared\_ptr<const RemoveJointCommand>;}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{51   \mbox{\hyperlink{classtesseract__environment_1_1RemoveJointCommand_a60f8c1e7be3534ffb7b93c12f9e3d1c7}{RemoveJointCommand}}(std::string joint\_name) : \mbox{\hyperlink{classtesseract__environment_1_1RemoveJointCommand_a015ca83b00510ecfc96925ba460fe765}{joint\_name\_}}(std::move(joint\_name)) \{\}}
+\DoxyCodeLine{52 }
+\DoxyCodeLine{53   \mbox{\hyperlink{namespacetesseract__environment_afc00c1aecb519acba3afc24dbd367029}{CommandType}} \mbox{\hyperlink{classtesseract__environment_1_1RemoveJointCommand_a8249d1a967fd6f091bd829df86ce7d11}{getType}}() const final \{ \textcolor{keywordflow}{return} \mbox{\hyperlink{namespacetesseract__environment_afc00c1aecb519acba3afc24dbd367029a6721b27017cd21a598f1740481167224}{CommandType::REMOVE\_JOINT}}; \}}
+\DoxyCodeLine{54   \textcolor{keyword}{const} std::string\& \mbox{\hyperlink{classtesseract__environment_1_1RemoveJointCommand_a7e0d71dcd72753d7de09e7e9f9fca62b}{getJointName}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classtesseract__environment_1_1RemoveJointCommand_a015ca83b00510ecfc96925ba460fe765}{joint\_name\_}}; \}}
+\DoxyCodeLine{55 }
+\DoxyCodeLine{56 \textcolor{keyword}{private}:}
+\DoxyCodeLine{57   std::string \mbox{\hyperlink{classtesseract__environment_1_1RemoveJointCommand_a015ca83b00510ecfc96925ba460fe765}{joint\_name\_}};}
+\DoxyCodeLine{58 \};}
+\DoxyCodeLine{59 \}  \textcolor{comment}{// namespace tesseract\_environment}}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{61 \textcolor{preprocessor}{\#endif  }\textcolor{comment}{// TESSERACT\_ENVIRONMENT\_REMOVE\_JOINT\_COMMAND\_H}}
+
+\end{DoxyCode}

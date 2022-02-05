@@ -1,0 +1,53 @@
+\hypertarget{add__scene__graph__command_8h_source}{}\doxysection{add\+\_\+scene\+\_\+graph\+\_\+command.\+h}
+\label{add__scene__graph__command_8h_source}\index{tesseract\_environment/include/tesseract\_environment/commands/add\_scene\_graph\_command.h@{tesseract\_environment/include/tesseract\_environment/commands/add\_scene\_graph\_command.h}}
+\mbox{\hyperlink{add__scene__graph__command_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#ifndef TESSERACT\_ENVIRONMENT\_ADD\_SCENE\_GRAPH\_COMMAND\_H}}
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#define TESSERACT\_ENVIRONMENT\_ADD\_SCENE\_GRAPH\_COMMAND\_H}}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{macros_8h}{tesseract\_common/macros.h}}>}}
+\DoxyCodeLine{30 \mbox{\hyperlink{macros_8h_a8cc0e3c6a3382c5c0b19eb9e676fc2db}{TESSERACT\_COMMON\_IGNORE\_WARNINGS\_PUSH}}}
+\DoxyCodeLine{31 \textcolor{preprocessor}{\#include <memory>}}
+\DoxyCodeLine{32 \mbox{\hyperlink{namespaceTESSERACT__COMMON__IGNORE__WARNINGS__POP}{TESSERACT\_COMMON\_IGNORE\_WARNINGS\_POP}}}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{command_8h}{tesseract\_environment/command.h}}>}}
+\DoxyCodeLine{35 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{graph_8h}{tesseract\_scene\_graph/graph.h}}>}}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespacetesseract__environment}{tesseract\_environment}}}
+\DoxyCodeLine{38 \{}
+\DoxyCodeLine{39 \textcolor{keyword}{class }\mbox{\hyperlink{classtesseract__environment_1_1AddSceneGraphCommand}{AddSceneGraphCommand}} : \textcolor{keyword}{public} \mbox{\hyperlink{classtesseract__environment_1_1Command}{Command}}}
+\DoxyCodeLine{40 \{}
+\DoxyCodeLine{41 \textcolor{keyword}{public}:}
+\DoxyCodeLine{42   \textcolor{keyword}{using} \mbox{\hyperlink{classtesseract__environment_1_1Command_a26e9088280770d9887b52cef37e731db}{Ptr}} = std::shared\_ptr<AddSceneGraphCommand>;}
+\DoxyCodeLine{43   \textcolor{keyword}{using} \mbox{\hyperlink{classtesseract__environment_1_1Command_a71f41840ff091003233e7ddaff1c4081}{ConstPtr}} = std::shared\_ptr<const AddSceneGraphCommand>;}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{55   \mbox{\hyperlink{classtesseract__environment_1_1AddSceneGraphCommand_a77e1445e0b9da1fd2b9c29b14fde6d17}{AddSceneGraphCommand}}(\textcolor{keyword}{const} \mbox{\hyperlink{classtesseract__scene__graph_1_1SceneGraph}{tesseract\_scene\_graph::SceneGraph}}\& scene\_graph, std::string prefix = \textcolor{stringliteral}{"{}"{}})}
+\DoxyCodeLine{56     : \mbox{\hyperlink{classtesseract__environment_1_1AddSceneGraphCommand_a98f4790d09aedb976015f618341195e1}{scene\_graph\_}}(scene\_graph.clone()), \mbox{\hyperlink{classtesseract__environment_1_1AddSceneGraphCommand_a67d795bc4d43bf94e4db702f975645ef}{joint\_}}(nullptr), \mbox{\hyperlink{classtesseract__environment_1_1AddSceneGraphCommand_a6a21ce3bc3c8b303d437bc4ceb6864d8}{prefix\_}}(std::move(prefix))}
+\DoxyCodeLine{57   \{}
+\DoxyCodeLine{58   \}}
+\DoxyCodeLine{59 }
+\DoxyCodeLine{70   \mbox{\hyperlink{classtesseract__environment_1_1AddSceneGraphCommand_a63152226cad7a1a39609d85750422b86}{AddSceneGraphCommand}}(\textcolor{keyword}{const} \mbox{\hyperlink{classtesseract__scene__graph_1_1SceneGraph}{tesseract\_scene\_graph::SceneGraph}}\& scene\_graph,}
+\DoxyCodeLine{71                        \textcolor{keyword}{const} \mbox{\hyperlink{classtesseract__scene__graph_1_1Joint}{tesseract\_scene\_graph::Joint}}\& joint,}
+\DoxyCodeLine{72                        std::string prefix = \textcolor{stringliteral}{"{}"{}})}
+\DoxyCodeLine{73     : \mbox{\hyperlink{classtesseract__environment_1_1AddSceneGraphCommand_a98f4790d09aedb976015f618341195e1}{scene\_graph\_}}(scene\_graph.clone())}
+\DoxyCodeLine{74     , \mbox{\hyperlink{classtesseract__environment_1_1AddSceneGraphCommand_a67d795bc4d43bf94e4db702f975645ef}{joint\_}}(std::make\_shared<\mbox{\hyperlink{namespacetesseract__scene__graph}{tesseract\_scene\_graph}}::Joint>(joint.clone()))}
+\DoxyCodeLine{75     , \mbox{\hyperlink{classtesseract__environment_1_1AddSceneGraphCommand_a6a21ce3bc3c8b303d437bc4ceb6864d8}{prefix\_}}(std::move(prefix))}
+\DoxyCodeLine{76   \{}
+\DoxyCodeLine{77   \}}
+\DoxyCodeLine{78 }
+\DoxyCodeLine{79   \mbox{\hyperlink{namespacetesseract__environment_afc00c1aecb519acba3afc24dbd367029}{CommandType}} \mbox{\hyperlink{classtesseract__environment_1_1AddSceneGraphCommand_a50f4212c7e99297c264f0452ab1b7d5f}{getType}}() const final \{ \textcolor{keywordflow}{return} \mbox{\hyperlink{namespacetesseract__environment_afc00c1aecb519acba3afc24dbd367029abad512ee301f85596f24ccb211411856}{CommandType::ADD\_SCENE\_GRAPH}}; \}}
+\DoxyCodeLine{80   \textcolor{keyword}{const} \mbox{\hyperlink{classtesseract__scene__graph_1_1SceneGraph_a9ee303b2514bfedd8c914d09551b00ff}{tesseract\_scene\_graph::SceneGraph::ConstPtr}}\& \mbox{\hyperlink{classtesseract__environment_1_1AddSceneGraphCommand_af9559e8af1beb71d0b603ee1d2990094}{getSceneGraph}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classtesseract__environment_1_1AddSceneGraphCommand_a98f4790d09aedb976015f618341195e1}{scene\_graph\_}}; \}}
+\DoxyCodeLine{81   \textcolor{keyword}{const} \mbox{\hyperlink{classtesseract__scene__graph_1_1Joint_a705d1f0a066833444550aa0c7f6d16b9}{tesseract\_scene\_graph::Joint::ConstPtr}}\& \mbox{\hyperlink{classtesseract__environment_1_1AddSceneGraphCommand_a9b6098342bd15baf8a9d903f76dbfe88}{getJoint}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classtesseract__environment_1_1AddSceneGraphCommand_a67d795bc4d43bf94e4db702f975645ef}{joint\_}}; \}}
+\DoxyCodeLine{82   \textcolor{keyword}{const} std::string\& \mbox{\hyperlink{classtesseract__environment_1_1AddSceneGraphCommand_a03414551ef25d84ede320303debe43d8}{getPrefix}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classtesseract__environment_1_1AddSceneGraphCommand_a6a21ce3bc3c8b303d437bc4ceb6864d8}{prefix\_}}; \}}
+\DoxyCodeLine{83 }
+\DoxyCodeLine{84 \textcolor{keyword}{private}:}
+\DoxyCodeLine{85   \mbox{\hyperlink{classtesseract__scene__graph_1_1SceneGraph_a9ee303b2514bfedd8c914d09551b00ff}{tesseract\_scene\_graph::SceneGraph::ConstPtr}} \mbox{\hyperlink{classtesseract__environment_1_1AddSceneGraphCommand_a98f4790d09aedb976015f618341195e1}{scene\_graph\_}};}
+\DoxyCodeLine{86   \mbox{\hyperlink{classtesseract__scene__graph_1_1Joint_a705d1f0a066833444550aa0c7f6d16b9}{tesseract\_scene\_graph::Joint::ConstPtr}} \mbox{\hyperlink{classtesseract__environment_1_1AddSceneGraphCommand_a67d795bc4d43bf94e4db702f975645ef}{joint\_}};}
+\DoxyCodeLine{87   std::string \mbox{\hyperlink{classtesseract__environment_1_1AddSceneGraphCommand_a6a21ce3bc3c8b303d437bc4ceb6864d8}{prefix\_}};}
+\DoxyCodeLine{88 \};}
+\DoxyCodeLine{89 \}  \textcolor{comment}{// namespace tesseract\_environment}}
+\DoxyCodeLine{90 }
+\DoxyCodeLine{91 \textcolor{preprocessor}{\#endif  }\textcolor{comment}{// TESSERACT\_ENVIRONMENT\_ADD\_SCENE\_GRAPH\_COMMAND\_H}}
+
+\end{DoxyCode}

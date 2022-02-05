@@ -35,7 +35,7 @@ struct \mbox{\hyperlink{structtesseract__common_1_1has__member}{tesseract\+\_\+c
 \doxysubsection*{Namespaces}
 \begin{DoxyCompactItemize}
 \item 
- \mbox{\hyperlink{namespacetesseract__common}{tesseract\+\_\+common}}
+namespace \mbox{\hyperlink{namespacetesseract__common}{tesseract\+\_\+common}}
 \end{DoxyCompactItemize}
 \doxysubsection*{Macros}
 \begin{DoxyCompactItemize}
@@ -68,9 +68,9 @@ struct \mbox{\hyperlink{structtesseract__common_1_1has__member}{tesseract\+\_\+c
 \DoxyCodeLine{  struct Alias\_\#\#member;                                                                                               \(\backslash\)}
 \DoxyCodeLine{                                                                                                                       \(\backslash\)}
 \DoxyCodeLine{  template <typename T>                                                                                                \(\backslash\)}
-\DoxyCodeLine{  struct Alias\_\#\#member<T, std::integral\_constant<bool, \mbox{\hyperlink{structtesseract__common_1_1got__type}{tesseract\_common::got\_type}}<decltype(\&T::member)>::value>>      \(\backslash\)}
+\DoxyCodeLine{  struct Alias\_\#\#member<T, std::integral\_constant<bool, \mbox{\hyperlink{structtesseract__common_1_1got__type}{tesseract\_common::got\_type}}<\textcolor{keyword}{decltype}(\&T::member)>::value>>      \(\backslash\)}
 \DoxyCodeLine{  \{                                                                                                                    \(\backslash\)}
-\DoxyCodeLine{    static \textcolor{keyword}{const} decltype(\&T::member) value;                                                                           \(\backslash\)}
+\DoxyCodeLine{    static \textcolor{keyword}{const} \textcolor{keyword}{decltype}(\&T::member) value;                                                                           \(\backslash\)}
 \DoxyCodeLine{  \};                                                                                                                   \(\backslash\)}
 \DoxyCodeLine{                                                                                                                       \(\backslash\)}
 \DoxyCodeLine{  struct AmbiguitySeed\_\#\#member                                                                                        \(\backslash\)}
@@ -113,7 +113,7 @@ Also useful to add static assert in constructor to provide useful message static
 \DoxyCodeLine{  template <typename T>                                                                                                \(\backslash\)}
 \DoxyCodeLine{  struct has\_member\_func\_invocable\_\#\#func\_name<                                                                        \(\backslash\)}
 \DoxyCodeLine{      T,                                                                                                               \(\backslash\)}
-\DoxyCodeLine{      std::integral\_constant<bool, std::is\_invocable<decltype(\&T::func\_name), T, \_\_VA\_ARGS\_\_>::value>>                 \(\backslash\)}
+\DoxyCodeLine{      std::integral\_constant<bool, std::is\_invocable<\textcolor{keyword}{decltype}(\&T::func\_name), T, \_\_VA\_ARGS\_\_>::value>>                 \(\backslash\)}
 \DoxyCodeLine{    : std::true\_type                                                                                                   \(\backslash\)}
 \DoxyCodeLine{  \{                                                                                                                    \(\backslash\)}
 \DoxyCodeLine{  \};}
@@ -141,7 +141,7 @@ Check if the class has a function named add which takes two double as arguments 
 \DoxyCodeLine{  struct has\_member\_func\_return\_type\_\#\#func\_name<                                                                      \(\backslash\)}
 \DoxyCodeLine{      T,                                                                                                               \(\backslash\)}
 \DoxyCodeLine{      std::integral\_constant<bool,                                                                                     \(\backslash\)}
-\DoxyCodeLine{                             std::is\_same<\textcolor{keyword}{typename} std::invoke\_result<decltype(\&T::func\_name), T, \_\_VA\_ARGS\_\_>::type,  \(\backslash\)}
+\DoxyCodeLine{                             std::is\_same<\textcolor{keyword}{typename} std::invoke\_result<\textcolor{keyword}{decltype}(\&T::func\_name), T, \_\_VA\_ARGS\_\_>::type,  \(\backslash\)}
 \DoxyCodeLine{                                          return\_type>::value>> : std::true\_type                                       \(\backslash\)}
 \DoxyCodeLine{  \{                                                                                                                    \(\backslash\)}
 \DoxyCodeLine{  \};}
@@ -170,7 +170,7 @@ Check if the class has a function named add with return type followed function p
 \DoxyCodeLine{      T,                                                                                                               \(\backslash\)}
 \DoxyCodeLine{      std::integral\_constant<                                                                                          \(\backslash\)}
 \DoxyCodeLine{          bool,                                                                                                        \(\backslash\)}
-\DoxyCodeLine{          std::is\_same<\textcolor{keyword}{typename} std::invoke\_result<decltype(\&T::func\_name), T>::type, return\_type>::value>>            \(\backslash\)}
+\DoxyCodeLine{          std::is\_same<\textcolor{keyword}{typename} std::invoke\_result<\textcolor{keyword}{decltype}(\&T::func\_name), T>::type, return\_type>::value>>            \(\backslash\)}
 \DoxyCodeLine{    : std::true\_type                                                                                                   \(\backslash\)}
 \DoxyCodeLine{  \{                                                                                                                    \(\backslash\)}
 \DoxyCodeLine{  \};}
@@ -199,8 +199,8 @@ Check if the class has a function named add with return type \mbox{\hyperlink{sf
 \DoxyCodeLine{      T,                                                                                                               \(\backslash\)}
 \DoxyCodeLine{      std::integral\_constant<                                                                                          \(\backslash\)}
 \DoxyCodeLine{          bool,                                                                                                        \(\backslash\)}
-\DoxyCodeLine{          std::is\_invocable<decltype(\&T::func\_name), T, \_\_VA\_ARGS\_\_>::value \&\&                                         \(\backslash\)}
-\DoxyCodeLine{              std::is\_same<\textcolor{keyword}{typename} std::invoke\_result<decltype(\&T::func\_name), T, \_\_VA\_ARGS\_\_>::type,                 \(\backslash\)}
+\DoxyCodeLine{          std::is\_invocable<\textcolor{keyword}{decltype}(\&T::func\_name), T, \_\_VA\_ARGS\_\_>::value \&\&                                         \(\backslash\)}
+\DoxyCodeLine{              std::is\_same<\textcolor{keyword}{typename} std::invoke\_result<\textcolor{keyword}{decltype}(\&T::func\_name), T, \_\_VA\_ARGS\_\_>::type,                 \(\backslash\)}
 \DoxyCodeLine{                           return\_type>::value>> : std::true\_type                                                      \(\backslash\)}
 \DoxyCodeLine{  \{                                                                                                                    \(\backslash\)}
 \DoxyCodeLine{  \};}
@@ -229,8 +229,8 @@ Check if the class has a function named add with return type followed function p
 \DoxyCodeLine{      T,                                                                                                               \(\backslash\)}
 \DoxyCodeLine{      std::integral\_constant<                                                                                          \(\backslash\)}
 \DoxyCodeLine{          bool,                                                                                                        \(\backslash\)}
-\DoxyCodeLine{          std::is\_invocable<decltype(\&T::func\_name), T>::value \&\&                                                      \(\backslash\)}
-\DoxyCodeLine{              std::is\_same<\textcolor{keyword}{typename} std::invoke\_result<decltype(\&T::func\_name), T>::type, return\_type>::value>>        \(\backslash\)}
+\DoxyCodeLine{          std::is\_invocable<\textcolor{keyword}{decltype}(\&T::func\_name), T>::value \&\&                                                      \(\backslash\)}
+\DoxyCodeLine{              std::is\_same<\textcolor{keyword}{typename} std::invoke\_result<\textcolor{keyword}{decltype}(\&T::func\_name), T>::type, return\_type>::value>>        \(\backslash\)}
 \DoxyCodeLine{    : std::true\_type                                                                                                   \(\backslash\)}
 \DoxyCodeLine{  \{                                                                                                                    \(\backslash\)}
 \DoxyCodeLine{  \};}

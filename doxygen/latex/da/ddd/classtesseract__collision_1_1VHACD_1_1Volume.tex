@@ -23,9 +23,9 @@ Collaboration diagram for tesseract\+\_\+collision\+::VHACD\+::Volume\+:
 \begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
 {\footnotesize template$<$class T $>$ }\\void \mbox{\hyperlink{classtesseract__collision_1_1VHACD_1_1Volume_a118bbbebbecdeacc390292193f9bc660}{Voxelize}} (const T $\ast$const points, const uint32\+\_\+t stride\+Points, const uint32\+\_\+t n\+Points, const int32\+\_\+t $\ast$const triangles, const uint32\+\_\+t stride\+Triangles, const uint32\+\_\+t n\+Triangles, const size\+\_\+t dim, const \mbox{\hyperlink{classtesseract__collision_1_1VHACD_1_1Vec3}{Vec3}}$<$ double $>$ \&barycenter, const double(\&rot)\mbox{[}3\mbox{]}\mbox{[}3\mbox{]})
 \begin{DoxyCompactList}\small\item\em Voxelize. \end{DoxyCompactList}\item 
-unsigned char \& \mbox{\hyperlink{classtesseract__collision_1_1VHACD_1_1Volume_ad911dd9f3c77996fa6f2ca9591734f78}{Get\+Voxel}} (const size\+\_\+t i, const size\+\_\+t j, const size\+\_\+t k)
+unsigned char \& \mbox{\hyperlink{classtesseract__collision_1_1VHACD_1_1Volume_ab448eeed2db563499603bddf017b0d7d}{Get\+Voxel}} (const size\+\_\+t i, const size\+\_\+t j, const size\+\_\+t k)
 \item 
-const unsigned char \& \mbox{\hyperlink{classtesseract__collision_1_1VHACD_1_1Volume_a363ac2d186222718df87b0dd630a5a88}{Get\+Voxel}} (const size\+\_\+t i, const size\+\_\+t j, const size\+\_\+t k) const
+const unsigned char \& \mbox{\hyperlink{classtesseract__collision_1_1VHACD_1_1Volume_aeb510b86fdbf1a0255d5ed4dc948648c}{Get\+Voxel}} (const size\+\_\+t i, const size\+\_\+t j, const size\+\_\+t k) const
 \item 
 size\+\_\+t \mbox{\hyperlink{classtesseract__collision_1_1VHACD_1_1Volume_a00af05ebb4e70c034e538c63dddcc238}{Get\+NPrimitives\+On\+Surf}} () const
 \item 
@@ -164,17 +164,17 @@ void tesseract\+\_\+collision\+::\+VHACD\+::\+Volume\+::\+Compute\+BB (\begin{Do
 \doxysubsubsection{\texorpdfstring{GetNPrimitivesOnSurf()}{GetNPrimitivesOnSurf()}}
 {\footnotesize\ttfamily size\+\_\+t tesseract\+\_\+collision\+::\+VHACD\+::\+Volume\+::\+Get\+NPrimitives\+On\+Surf (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
-\mbox{\Hypertarget{classtesseract__collision_1_1VHACD_1_1Volume_ad911dd9f3c77996fa6f2ca9591734f78}\label{classtesseract__collision_1_1VHACD_1_1Volume_ad911dd9f3c77996fa6f2ca9591734f78}} 
+\mbox{\Hypertarget{classtesseract__collision_1_1VHACD_1_1Volume_ab448eeed2db563499603bddf017b0d7d}\label{classtesseract__collision_1_1VHACD_1_1Volume_ab448eeed2db563499603bddf017b0d7d}} 
 \index{tesseract\_collision::VHACD::Volume@{tesseract\_collision::VHACD::Volume}!GetVoxel@{GetVoxel}}
 \index{GetVoxel@{GetVoxel}!tesseract\_collision::VHACD::Volume@{tesseract\_collision::VHACD::Volume}}
 \doxysubsubsection{\texorpdfstring{GetVoxel()}{GetVoxel()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
-{\footnotesize\ttfamily unsigned char\& tesseract\+\_\+collision\+::\+VHACD\+::\+Volume\+::\+Get\+Voxel (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{i,  }\item[{const size\+\_\+t}]{j,  }\item[{const size\+\_\+t}]{k }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily unsigned char \& tesseract\+\_\+collision\+::\+VHACD\+::\+Volume\+::\+Get\+Voxel (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{i,  }\item[{const size\+\_\+t}]{j,  }\item[{const size\+\_\+t}]{k }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-\mbox{\Hypertarget{classtesseract__collision_1_1VHACD_1_1Volume_a363ac2d186222718df87b0dd630a5a88}\label{classtesseract__collision_1_1VHACD_1_1Volume_a363ac2d186222718df87b0dd630a5a88}} 
+\mbox{\Hypertarget{classtesseract__collision_1_1VHACD_1_1Volume_aeb510b86fdbf1a0255d5ed4dc948648c}\label{classtesseract__collision_1_1VHACD_1_1Volume_aeb510b86fdbf1a0255d5ed4dc948648c}} 
 \index{tesseract\_collision::VHACD::Volume@{tesseract\_collision::VHACD::Volume}!GetVoxel@{GetVoxel}}
 \index{GetVoxel@{GetVoxel}!tesseract\_collision::VHACD::Volume@{tesseract\_collision::VHACD::Volume}}
 \doxysubsubsection{\texorpdfstring{GetVoxel()}{GetVoxel()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily const unsigned char\& tesseract\+\_\+collision\+::\+VHACD\+::\+Volume\+::\+Get\+Voxel (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{i,  }\item[{const size\+\_\+t}]{j,  }\item[{const size\+\_\+t}]{k }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily const unsigned char \& tesseract\+\_\+collision\+::\+VHACD\+::\+Volume\+::\+Get\+Voxel (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{i,  }\item[{const size\+\_\+t}]{j,  }\item[{const size\+\_\+t}]{k }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 \mbox{\Hypertarget{classtesseract__collision_1_1VHACD_1_1Volume_a118bbbebbecdeacc390292193f9bc660}\label{classtesseract__collision_1_1VHACD_1_1Volume_a118bbbebbecdeacc390292193f9bc660}} 
 \index{tesseract\_collision::VHACD::Volume@{tesseract\_collision::VHACD::Volume}!Voxelize@{Voxelize}}

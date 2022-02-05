@@ -43,11 +43,11 @@ struct \mbox{\hyperlink{structtesseract__collision_1_1tesseract__collision__bull
 \item 
 \mbox{\hyperlink{classtesseract__collision_1_1tesseract__collision__bullet_1_1TesseractConvexConvexAlgorithm_a4dfb9d2db441165c59ce04d51a170c9c}{Tesseract\+Convex\+Convex\+Algorithm}} (const \mbox{\hyperlink{classtesseract__collision_1_1tesseract__collision__bullet_1_1TesseractConvexConvexAlgorithm}{Tesseract\+Convex\+Convex\+Algorithm}} \&)=delete
 \item 
-\mbox{\hyperlink{classtesseract__collision_1_1tesseract__collision__bullet_1_1TesseractConvexConvexAlgorithm}{Tesseract\+Convex\+Convex\+Algorithm}} \& \mbox{\hyperlink{classtesseract__collision_1_1tesseract__collision__bullet_1_1TesseractConvexConvexAlgorithm_a2fe8002d0ce74d9caf90e5ef0b20b57d}{operator=}} (const \mbox{\hyperlink{classtesseract__collision_1_1tesseract__collision__bullet_1_1TesseractConvexConvexAlgorithm}{Tesseract\+Convex\+Convex\+Algorithm}} \&)=delete
+\mbox{\hyperlink{classtesseract__collision_1_1tesseract__collision__bullet_1_1TesseractConvexConvexAlgorithm}{Tesseract\+Convex\+Convex\+Algorithm}} \& \mbox{\hyperlink{classtesseract__collision_1_1tesseract__collision__bullet_1_1TesseractConvexConvexAlgorithm_ad9391e623823afe3a47573d8598a9bc7}{operator=}} (const \mbox{\hyperlink{classtesseract__collision_1_1tesseract__collision__bullet_1_1TesseractConvexConvexAlgorithm}{Tesseract\+Convex\+Convex\+Algorithm}} \&)=delete
 \item 
 \mbox{\hyperlink{classtesseract__collision_1_1tesseract__collision__bullet_1_1TesseractConvexConvexAlgorithm_a1b7016b1c8bd803fa85f987a8171d57f}{Tesseract\+Convex\+Convex\+Algorithm}} (\mbox{\hyperlink{classtesseract__collision_1_1tesseract__collision__bullet_1_1TesseractConvexConvexAlgorithm}{Tesseract\+Convex\+Convex\+Algorithm}} \&\&)=delete
 \item 
-\mbox{\hyperlink{classtesseract__collision_1_1tesseract__collision__bullet_1_1TesseractConvexConvexAlgorithm}{Tesseract\+Convex\+Convex\+Algorithm}} \& \mbox{\hyperlink{classtesseract__collision_1_1tesseract__collision__bullet_1_1TesseractConvexConvexAlgorithm_ad281113a53a5e29ed42229e90c56750f}{operator=}} (\mbox{\hyperlink{classtesseract__collision_1_1tesseract__collision__bullet_1_1TesseractConvexConvexAlgorithm}{Tesseract\+Convex\+Convex\+Algorithm}} \&\&)=delete
+\mbox{\hyperlink{classtesseract__collision_1_1tesseract__collision__bullet_1_1TesseractConvexConvexAlgorithm}{Tesseract\+Convex\+Convex\+Algorithm}} \& \mbox{\hyperlink{classtesseract__collision_1_1tesseract__collision__bullet_1_1TesseractConvexConvexAlgorithm_afb206386584c43fd8fc9b0e8e45f8659}{operator=}} (\mbox{\hyperlink{classtesseract__collision_1_1tesseract__collision__bullet_1_1TesseractConvexConvexAlgorithm}{Tesseract\+Convex\+Convex\+Algorithm}} \&\&)=delete
 \item 
 void \mbox{\hyperlink{classtesseract__collision_1_1tesseract__collision__bullet_1_1TesseractConvexConvexAlgorithm_a0545feb266ace41eeaa1c4a1192d4f79}{process\+Collision}} (const bt\+Collision\+Object\+Wrapper $\ast$body0\+Wrap, const bt\+Collision\+Object\+Wrapper $\ast$body1\+Wrap, const bt\+Dispatcher\+Info \&dispatch\+Info, bt\+Manifold\+Result $\ast$result\+Out) override
 \item 
@@ -57,7 +57,7 @@ void \mbox{\hyperlink{classtesseract__collision_1_1tesseract__collision__bullet_
 \item 
 void \mbox{\hyperlink{classtesseract__collision_1_1tesseract__collision__bullet_1_1TesseractConvexConvexAlgorithm_a0ca8b86980c40a772f93e05c29769b88}{set\+Low\+Level\+Of\+Detail}} (bool use\+Low\+Level)
 \item 
-const bt\+Persistent\+Manifold $\ast$ \mbox{\hyperlink{classtesseract__collision_1_1tesseract__collision__bullet_1_1TesseractConvexConvexAlgorithm_ad744ec85c1d72a229f74356112c705d3}{get\+Manifold}} ()
+const bt\+Persistent\+Manifold $\ast$ \mbox{\hyperlink{classtesseract__collision_1_1tesseract__collision__bullet_1_1TesseractConvexConvexAlgorithm_a00a2078024a55ae9b76da720b8587207}{get\+Manifold}} ()
 \end{DoxyCompactItemize}
 \doxysubsection*{Private Attributes}
 \begin{DoxyCompactItemize}
@@ -131,7 +131,7 @@ cache separating vector to speedup collision detection
 
 Rather then checking ALL pairs, only calculate TOI when motion exceeds threshold
 
-Linear motion for one of objects needs to exceed m\+\_\+ccd\+Square\+Motion\+Threshold col0-\/$>$m\+\_\+world\+Transform,
+Linear motion for one of objects needs to exceed m\+\_\+ccd\+Square\+Motion\+Threshold col0-\/\texorpdfstring{$>$}{>}m\+\_\+world\+Transform,
 
 Convex0 against sphere for Convex1
 
@@ -145,23 +145,23 @@ Simplification, one object is simplified as a sphere\mbox{\Hypertarget{classtess
 \doxysubsubsection{\texorpdfstring{getAllContactManifolds()}{getAllContactManifolds()}}
 {\footnotesize\ttfamily void tesseract\+\_\+collision\+::tesseract\+\_\+collision\+\_\+bullet\+::\+Tesseract\+Convex\+Convex\+Algorithm\+::get\+All\+Contact\+Manifolds (\begin{DoxyParamCaption}\item[{bt\+Manifold\+Array \&}]{manifold\+Array }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}}
 
-should we use m\+\_\+own\+Manifold to avoid adding duplicates?\mbox{\Hypertarget{classtesseract__collision_1_1tesseract__collision__bullet_1_1TesseractConvexConvexAlgorithm_ad744ec85c1d72a229f74356112c705d3}\label{classtesseract__collision_1_1tesseract__collision__bullet_1_1TesseractConvexConvexAlgorithm_ad744ec85c1d72a229f74356112c705d3}} 
+should we use m\+\_\+own\+Manifold to avoid adding duplicates?\mbox{\Hypertarget{classtesseract__collision_1_1tesseract__collision__bullet_1_1TesseractConvexConvexAlgorithm_a00a2078024a55ae9b76da720b8587207}\label{classtesseract__collision_1_1tesseract__collision__bullet_1_1TesseractConvexConvexAlgorithm_a00a2078024a55ae9b76da720b8587207}} 
 \index{tesseract\_collision::tesseract\_collision\_bullet::TesseractConvexConvexAlgorithm@{tesseract\_collision::tesseract\_collision\_bullet::TesseractConvexConvexAlgorithm}!getManifold@{getManifold}}
 \index{getManifold@{getManifold}!tesseract\_collision::tesseract\_collision\_bullet::TesseractConvexConvexAlgorithm@{tesseract\_collision::tesseract\_collision\_bullet::TesseractConvexConvexAlgorithm}}
 \doxysubsubsection{\texorpdfstring{getManifold()}{getManifold()}}
-{\footnotesize\ttfamily const bt\+Persistent\+Manifold$\ast$ tesseract\+\_\+collision\+::tesseract\+\_\+collision\+\_\+bullet\+::\+Tesseract\+Convex\+Convex\+Algorithm\+::get\+Manifold (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily const bt\+Persistent\+Manifold $\ast$ tesseract\+\_\+collision\+::tesseract\+\_\+collision\+\_\+bullet\+::\+Tesseract\+Convex\+Convex\+Algorithm\+::get\+Manifold (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-\mbox{\Hypertarget{classtesseract__collision_1_1tesseract__collision__bullet_1_1TesseractConvexConvexAlgorithm_a2fe8002d0ce74d9caf90e5ef0b20b57d}\label{classtesseract__collision_1_1tesseract__collision__bullet_1_1TesseractConvexConvexAlgorithm_a2fe8002d0ce74d9caf90e5ef0b20b57d}} 
+\mbox{\Hypertarget{classtesseract__collision_1_1tesseract__collision__bullet_1_1TesseractConvexConvexAlgorithm_ad9391e623823afe3a47573d8598a9bc7}\label{classtesseract__collision_1_1tesseract__collision__bullet_1_1TesseractConvexConvexAlgorithm_ad9391e623823afe3a47573d8598a9bc7}} 
 \index{tesseract\_collision::tesseract\_collision\_bullet::TesseractConvexConvexAlgorithm@{tesseract\_collision::tesseract\_collision\_bullet::TesseractConvexConvexAlgorithm}!operator=@{operator=}}
 \index{operator=@{operator=}!tesseract\_collision::tesseract\_collision\_bullet::TesseractConvexConvexAlgorithm@{tesseract\_collision::tesseract\_collision\_bullet::TesseractConvexConvexAlgorithm}}
 \doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
-{\footnotesize\ttfamily \mbox{\hyperlink{classtesseract__collision_1_1tesseract__collision__bullet_1_1TesseractConvexConvexAlgorithm}{Tesseract\+Convex\+Convex\+Algorithm}}\& tesseract\+\_\+collision\+::tesseract\+\_\+collision\+\_\+bullet\+::\+Tesseract\+Convex\+Convex\+Algorithm\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classtesseract__collision_1_1tesseract__collision__bullet_1_1TesseractConvexConvexAlgorithm}{Tesseract\+Convex\+Convex\+Algorithm}} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classtesseract__collision_1_1tesseract__collision__bullet_1_1TesseractConvexConvexAlgorithm}{Tesseract\+Convex\+Convex\+Algorithm}} \& tesseract\+\_\+collision\+::tesseract\+\_\+collision\+\_\+bullet\+::\+Tesseract\+Convex\+Convex\+Algorithm\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classtesseract__collision_1_1tesseract__collision__bullet_1_1TesseractConvexConvexAlgorithm}{Tesseract\+Convex\+Convex\+Algorithm}} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
 
-\mbox{\Hypertarget{classtesseract__collision_1_1tesseract__collision__bullet_1_1TesseractConvexConvexAlgorithm_ad281113a53a5e29ed42229e90c56750f}\label{classtesseract__collision_1_1tesseract__collision__bullet_1_1TesseractConvexConvexAlgorithm_ad281113a53a5e29ed42229e90c56750f}} 
+\mbox{\Hypertarget{classtesseract__collision_1_1tesseract__collision__bullet_1_1TesseractConvexConvexAlgorithm_afb206386584c43fd8fc9b0e8e45f8659}\label{classtesseract__collision_1_1tesseract__collision__bullet_1_1TesseractConvexConvexAlgorithm_afb206386584c43fd8fc9b0e8e45f8659}} 
 \index{tesseract\_collision::tesseract\_collision\_bullet::TesseractConvexConvexAlgorithm@{tesseract\_collision::tesseract\_collision\_bullet::TesseractConvexConvexAlgorithm}!operator=@{operator=}}
 \index{operator=@{operator=}!tesseract\_collision::tesseract\_collision\_bullet::TesseractConvexConvexAlgorithm@{tesseract\_collision::tesseract\_collision\_bullet::TesseractConvexConvexAlgorithm}}
 \doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily \mbox{\hyperlink{classtesseract__collision_1_1tesseract__collision__bullet_1_1TesseractConvexConvexAlgorithm}{Tesseract\+Convex\+Convex\+Algorithm}}\& tesseract\+\_\+collision\+::tesseract\+\_\+collision\+\_\+bullet\+::\+Tesseract\+Convex\+Convex\+Algorithm\+::operator= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classtesseract__collision_1_1tesseract__collision__bullet_1_1TesseractConvexConvexAlgorithm}{Tesseract\+Convex\+Convex\+Algorithm}} \&\&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classtesseract__collision_1_1tesseract__collision__bullet_1_1TesseractConvexConvexAlgorithm}{Tesseract\+Convex\+Convex\+Algorithm}} \& tesseract\+\_\+collision\+::tesseract\+\_\+collision\+\_\+bullet\+::\+Tesseract\+Convex\+Convex\+Algorithm\+::operator= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classtesseract__collision_1_1tesseract__collision__bullet_1_1TesseractConvexConvexAlgorithm}{Tesseract\+Convex\+Convex\+Algorithm}} \&\&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
 
 \mbox{\Hypertarget{classtesseract__collision_1_1tesseract__collision__bullet_1_1TesseractConvexConvexAlgorithm_a0545feb266ace41eeaa1c4a1192d4f79}\label{classtesseract__collision_1_1tesseract__collision__bullet_1_1TesseractConvexConvexAlgorithm_a0545feb266ace41eeaa1c4a1192d4f79}} 
 \index{tesseract\_collision::tesseract\_collision\_bullet::TesseractConvexConvexAlgorithm@{tesseract\_collision::tesseract\_collision\_bullet::TesseractConvexConvexAlgorithm}!processCollision@{processCollision}}

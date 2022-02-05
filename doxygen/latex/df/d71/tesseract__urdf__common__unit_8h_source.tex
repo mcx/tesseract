@@ -1,0 +1,337 @@
+\hypertarget{tesseract__urdf__common__unit_8h_source}{}\doxysection{tesseract\+\_\+urdf\+\_\+common\+\_\+unit.\+h}
+\label{tesseract__urdf__common__unit_8h_source}\index{tesseract\_urdf/test/tesseract\_urdf\_common\_unit.h@{tesseract\_urdf/test/tesseract\_urdf\_common\_unit.h}}
+\mbox{\hyperlink{tesseract__urdf__common__unit_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef TESSERACT\_URDF\_COMMON\_UNIT\_H}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define TESSERACT\_URDF\_COMMON\_UNIT\_H}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{macros_8h}{tesseract\_common/macros.h}}>}}
+\DoxyCodeLine{5 \mbox{\hyperlink{macros_8h_a8cc0e3c6a3382c5c0b19eb9e676fc2db}{TESSERACT\_COMMON\_IGNORE\_WARNINGS\_PUSH}}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <fstream>}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{9 }
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <gtest/gtest.h>}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <console\_bridge/console.h>}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{resource__locator_8h}{tesseract\_common/resource\_locator.h}}>}}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{tesseract__common_2include_2tesseract__common_2utils_8h}{tesseract\_common/utils.h}}>}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{urdf__parser_8h}{tesseract\_urdf/urdf\_parser.h}}>}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#include <tinyxml2.h>}}
+\DoxyCodeLine{16 \mbox{\hyperlink{namespaceTESSERACT__COMMON__IGNORE__WARNINGS__POP}{TESSERACT\_COMMON\_IGNORE\_WARNINGS\_POP}}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 \textcolor{keyword}{inline} std::string \mbox{\hyperlink{tesseract__urdf__common__unit_8h_a093896878775ab688c91d8ef6b92150d}{locateResource}}(\textcolor{keyword}{const} std::string\& url)}
+\DoxyCodeLine{19 \{}
+\DoxyCodeLine{20   std::string mod\_url = url;}
+\DoxyCodeLine{21   \textcolor{keywordflow}{if} (url.find(\textcolor{stringliteral}{"{}package://tesseract\_support"{}}) == 0)}
+\DoxyCodeLine{22   \{}
+\DoxyCodeLine{23     mod\_url.erase(0, strlen(\textcolor{stringliteral}{"{}package://tesseract\_support"{}}));}
+\DoxyCodeLine{24     \textcolor{keywordtype}{size\_t} pos = mod\_url.find(\textcolor{charliteral}{'/'});}
+\DoxyCodeLine{25     \textcolor{keywordflow}{if} (pos == std::string::npos)}
+\DoxyCodeLine{26     \{}
+\DoxyCodeLine{27       \textcolor{keywordflow}{return} std::string();}
+\DoxyCodeLine{28     \}}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30     std::string \textcolor{keyword}{package }= mod\_url.substr(0, pos);}
+\DoxyCodeLine{31     mod\_url.erase(0, pos);}
+\DoxyCodeLine{32     std::string package\_path = std::string(TESSERACT\_SUPPORT\_DIR);}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34     \textcolor{keywordflow}{if} (package\_path.empty())}
+\DoxyCodeLine{35     \{}
+\DoxyCodeLine{36       \textcolor{keywordflow}{return} std::string();}
+\DoxyCodeLine{37     \}}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{39     mod\_url = package\_path + mod\_url;}
+\DoxyCodeLine{40   \}}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{42   \textcolor{keywordflow}{return} mod\_url;}
+\DoxyCodeLine{43 \}}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45 \textcolor{keyword}{template} <\textcolor{keyword}{typename} ElementType>}
+\DoxyCodeLine{46 \textcolor{keywordtype}{bool} \mbox{\hyperlink{tesseract__urdf__common__unit_8h_ad922a39e6c66bcc8db2c0da160185793}{runTest}}(ElementType\& type,}
+\DoxyCodeLine{47              std::function<ElementType(\textcolor{keyword}{const} tinyxml2::XMLElement*, \textcolor{keyword}{const} \textcolor{keywordtype}{int})> func,}
+\DoxyCodeLine{48              \textcolor{keyword}{const} std::string\& xml\_string,}
+\DoxyCodeLine{49              \textcolor{keyword}{const} std::string\& element\_name,}
+\DoxyCodeLine{50              \textcolor{keywordtype}{int} version)}
+\DoxyCodeLine{51 \{}
+\DoxyCodeLine{52   tinyxml2::XMLDocument xml\_doc;}
+\DoxyCodeLine{53   EXPECT\_TRUE(xml\_doc.Parse(xml\_string.c\_str()) == tinyxml2::XML\_SUCCESS);}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{55   tinyxml2::XMLElement* element = xml\_doc.FirstChildElement(element\_name.c\_str());}
+\DoxyCodeLine{56   EXPECT\_TRUE(element != \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{58   \textcolor{keywordflow}{try}}
+\DoxyCodeLine{59   \{}
+\DoxyCodeLine{60     type = func(element, version);}
+\DoxyCodeLine{61   \}}
+\DoxyCodeLine{62   \textcolor{keywordflow}{catch} (\textcolor{keyword}{const} std::exception\& e)}
+\DoxyCodeLine{63   \{}
+\DoxyCodeLine{64     \mbox{\hyperlink{namespacetesseract__common_ac4e9558332430365cd69cb2eec1784c8}{tesseract\_common::printNestedException}}(e);}
+\DoxyCodeLine{65     \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{66   \}}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{68   \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{69 \}}
+\DoxyCodeLine{70 }
+\DoxyCodeLine{71 \textcolor{keyword}{template} <\textcolor{keyword}{typename} ElementType>}
+\DoxyCodeLine{72 \textcolor{keywordtype}{bool} \mbox{\hyperlink{tesseract__urdf__common__unit_8h_ad922a39e6c66bcc8db2c0da160185793}{runTest}}(}
+\DoxyCodeLine{73     ElementType\& type,}
+\DoxyCodeLine{74     std::function<ElementType(\textcolor{keyword}{const} tinyxml2::XMLElement*, \textcolor{keyword}{const} \mbox{\hyperlink{classtesseract__common_1_1ResourceLocator}{tesseract\_common::ResourceLocator}}\&, \textcolor{keywordtype}{bool}, \textcolor{keyword}{const} \textcolor{keywordtype}{int})>}
+\DoxyCodeLine{75         func,}
+\DoxyCodeLine{76     \textcolor{keyword}{const} std::string\& xml\_string,}
+\DoxyCodeLine{77     \textcolor{keyword}{const} std::string\& element\_name,}
+\DoxyCodeLine{78     \textcolor{keyword}{const} \mbox{\hyperlink{classtesseract__common_1_1ResourceLocator}{tesseract\_common::ResourceLocator}}\& locator,}
+\DoxyCodeLine{79     \textcolor{keywordtype}{int} version,}
+\DoxyCodeLine{80     \textcolor{keywordtype}{bool} visual)}
+\DoxyCodeLine{81 \{}
+\DoxyCodeLine{82   tinyxml2::XMLDocument xml\_doc;}
+\DoxyCodeLine{83   EXPECT\_TRUE(xml\_doc.Parse(xml\_string.c\_str()) == tinyxml2::XML\_SUCCESS);}
+\DoxyCodeLine{84 }
+\DoxyCodeLine{85   tinyxml2::XMLElement* element = xml\_doc.FirstChildElement(element\_name.c\_str());}
+\DoxyCodeLine{86   EXPECT\_TRUE(element != \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{87 }
+\DoxyCodeLine{88   \textcolor{keywordflow}{try}}
+\DoxyCodeLine{89   \{}
+\DoxyCodeLine{90     type = func(element, locator, visual, version);}
+\DoxyCodeLine{91   \}}
+\DoxyCodeLine{92   \textcolor{keywordflow}{catch} (\textcolor{keyword}{const} std::exception\& e)}
+\DoxyCodeLine{93   \{}
+\DoxyCodeLine{94     \mbox{\hyperlink{namespacetesseract__common_ac4e9558332430365cd69cb2eec1784c8}{tesseract\_common::printNestedException}}(e);}
+\DoxyCodeLine{95     \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{96   \}}
+\DoxyCodeLine{97 }
+\DoxyCodeLine{98   \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{99 \}}
+\DoxyCodeLine{100 }
+\DoxyCodeLine{101 \textcolor{keyword}{template} <\textcolor{keyword}{typename} ElementType>}
+\DoxyCodeLine{102 \textcolor{keywordtype}{bool} \mbox{\hyperlink{tesseract__urdf__common__unit_8h_ad922a39e6c66bcc8db2c0da160185793}{runTest}}(}
+\DoxyCodeLine{103     ElementType\& type,}
+\DoxyCodeLine{104     std::function<ElementType(\textcolor{keyword}{const} tinyxml2::XMLElement*, \textcolor{keyword}{const} \mbox{\hyperlink{classtesseract__common_1_1ResourceLocator}{tesseract\_common::ResourceLocator}}\&, \textcolor{keyword}{const} \textcolor{keywordtype}{int})> func,}
+\DoxyCodeLine{105     \textcolor{keyword}{const} std::string\& xml\_string,}
+\DoxyCodeLine{106     \textcolor{keyword}{const} std::string\& element\_name,}
+\DoxyCodeLine{107     \textcolor{keyword}{const} \mbox{\hyperlink{classtesseract__common_1_1ResourceLocator}{tesseract\_common::ResourceLocator}}\& locator,}
+\DoxyCodeLine{108     \textcolor{keywordtype}{int} version)}
+\DoxyCodeLine{109 \{}
+\DoxyCodeLine{110   tinyxml2::XMLDocument xml\_doc;}
+\DoxyCodeLine{111   EXPECT\_TRUE(xml\_doc.Parse(xml\_string.c\_str()) == tinyxml2::XML\_SUCCESS);}
+\DoxyCodeLine{112 }
+\DoxyCodeLine{113   tinyxml2::XMLElement* element = xml\_doc.FirstChildElement(element\_name.c\_str());}
+\DoxyCodeLine{114   EXPECT\_TRUE(element != \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{115 }
+\DoxyCodeLine{116   \textcolor{keywordflow}{try}}
+\DoxyCodeLine{117   \{}
+\DoxyCodeLine{118     type = func(element, locator, version);}
+\DoxyCodeLine{119   \}}
+\DoxyCodeLine{120   \textcolor{keywordflow}{catch} (\textcolor{keyword}{const} std::exception\& e)}
+\DoxyCodeLine{121   \{}
+\DoxyCodeLine{122     \mbox{\hyperlink{namespacetesseract__common_ac4e9558332430365cd69cb2eec1784c8}{tesseract\_common::printNestedException}}(e);}
+\DoxyCodeLine{123     \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{124   \}}
+\DoxyCodeLine{125 }
+\DoxyCodeLine{126   \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{127 \}}
+\DoxyCodeLine{128 }
+\DoxyCodeLine{129 \textcolor{keyword}{template} <\textcolor{keyword}{typename} ElementType>}
+\DoxyCodeLine{130 \textcolor{keywordtype}{bool} \mbox{\hyperlink{tesseract__urdf__common__unit_8h_ad922a39e6c66bcc8db2c0da160185793}{runTest}}(ElementType\& type,}
+\DoxyCodeLine{131              std::function<ElementType(\textcolor{keyword}{const} tinyxml2::XMLElement*,}
+\DoxyCodeLine{132                                        \textcolor{keyword}{const} \mbox{\hyperlink{classtesseract__common_1_1ResourceLocator}{tesseract\_common::ResourceLocator}}\&,}
+\DoxyCodeLine{133                                        std::unordered\_map<std::string, tesseract\_scene\_graph::Material::Ptr>\&,}
+\DoxyCodeLine{134                                        \textcolor{keyword}{const} \textcolor{keywordtype}{int})> func,}
+\DoxyCodeLine{135              \textcolor{keyword}{const} std::string\& xml\_string,}
+\DoxyCodeLine{136              \textcolor{keyword}{const} std::string\& element\_name,}
+\DoxyCodeLine{137              \textcolor{keyword}{const} \mbox{\hyperlink{classtesseract__common_1_1ResourceLocator}{tesseract\_common::ResourceLocator}}\& locator,}
+\DoxyCodeLine{138              std::unordered\_map<std::string, tesseract\_scene\_graph::Material::Ptr>\& available\_materials,}
+\DoxyCodeLine{139              \textcolor{keywordtype}{int} version)}
+\DoxyCodeLine{140 \{}
+\DoxyCodeLine{141   tinyxml2::XMLDocument xml\_doc;}
+\DoxyCodeLine{142   EXPECT\_TRUE(xml\_doc.Parse(xml\_string.c\_str()) == tinyxml2::XML\_SUCCESS);}
+\DoxyCodeLine{143 }
+\DoxyCodeLine{144   tinyxml2::XMLElement* element = xml\_doc.FirstChildElement(element\_name.c\_str());}
+\DoxyCodeLine{145   EXPECT\_TRUE(element != \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{146 }
+\DoxyCodeLine{147   \textcolor{keywordflow}{try}}
+\DoxyCodeLine{148   \{}
+\DoxyCodeLine{149     type = func(element, locator, available\_materials, version);}
+\DoxyCodeLine{150   \}}
+\DoxyCodeLine{151   \textcolor{keywordflow}{catch} (\textcolor{keyword}{const} std::exception\& e)}
+\DoxyCodeLine{152   \{}
+\DoxyCodeLine{153     \mbox{\hyperlink{namespacetesseract__common_ac4e9558332430365cd69cb2eec1784c8}{tesseract\_common::printNestedException}}(e);}
+\DoxyCodeLine{154     \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{155   \}}
+\DoxyCodeLine{156 }
+\DoxyCodeLine{157   \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{158 \}}
+\DoxyCodeLine{159 }
+\DoxyCodeLine{160 \textcolor{keyword}{template} <\textcolor{keyword}{typename} ElementType>}
+\DoxyCodeLine{161 \textcolor{keywordtype}{bool} \mbox{\hyperlink{tesseract__urdf__common__unit_8h_ad922a39e6c66bcc8db2c0da160185793}{runTest}}(ElementType\& type,}
+\DoxyCodeLine{162              std::function<ElementType(\textcolor{keyword}{const} tinyxml2::XMLElement*,}
+\DoxyCodeLine{163                                        std::unordered\_map<std::string, tesseract\_scene\_graph::Material::Ptr>\&,}
+\DoxyCodeLine{164                                        \textcolor{keywordtype}{bool},}
+\DoxyCodeLine{165                                        \textcolor{keyword}{const} \textcolor{keywordtype}{int})> func,}
+\DoxyCodeLine{166              \textcolor{keyword}{const} std::string\& xml\_string,}
+\DoxyCodeLine{167              \textcolor{keyword}{const} std::string\& element\_name,}
+\DoxyCodeLine{168              std::unordered\_map<std::string, tesseract\_scene\_graph::Material::Ptr>\& available\_materials,}
+\DoxyCodeLine{169              \textcolor{keywordtype}{int} version,}
+\DoxyCodeLine{170              \textcolor{keyword}{const} \textcolor{keywordtype}{bool} visual)}
+\DoxyCodeLine{171 \{}
+\DoxyCodeLine{172   tinyxml2::XMLDocument xml\_doc;}
+\DoxyCodeLine{173   EXPECT\_TRUE(xml\_doc.Parse(xml\_string.c\_str()) == tinyxml2::XML\_SUCCESS);}
+\DoxyCodeLine{174 }
+\DoxyCodeLine{175   tinyxml2::XMLElement* element = xml\_doc.FirstChildElement(element\_name.c\_str());}
+\DoxyCodeLine{176   EXPECT\_TRUE(element != \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{177 }
+\DoxyCodeLine{178   \textcolor{keywordflow}{try}}
+\DoxyCodeLine{179   \{}
+\DoxyCodeLine{180     type = func(element, available\_materials, visual, version);}
+\DoxyCodeLine{181   \}}
+\DoxyCodeLine{182   \textcolor{keywordflow}{catch} (\textcolor{keyword}{const} std::exception\& e)}
+\DoxyCodeLine{183   \{}
+\DoxyCodeLine{184     \mbox{\hyperlink{namespacetesseract__common_ac4e9558332430365cd69cb2eec1784c8}{tesseract\_common::printNestedException}}(e);}
+\DoxyCodeLine{185     \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{186   \}}
+\DoxyCodeLine{187 }
+\DoxyCodeLine{188   \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{189 \}}
+\DoxyCodeLine{190 }
+\DoxyCodeLine{196 \textcolor{keyword}{inline} std::string \mbox{\hyperlink{tesseract__urdf__common__unit_8h_a2fbe2873091f69816ecc7a9fc64da3ba}{stripNewline}}(\textcolor{keyword}{const} std::string\& in)}
+\DoxyCodeLine{197 \{}
+\DoxyCodeLine{198   std::string out;}
+\DoxyCodeLine{199   \textcolor{keywordflow}{if} (!in.empty() \&\& in.back() == \textcolor{charliteral}{'\(\backslash\)n'})}
+\DoxyCodeLine{200     out = in.substr(0, in.size() -\/ 1);}
+\DoxyCodeLine{201   \textcolor{keywordflow}{else}}
+\DoxyCodeLine{202     out = in;}
+\DoxyCodeLine{203   \textcolor{keywordflow}{return} out;}
+\DoxyCodeLine{204 \}}
+\DoxyCodeLine{205 }
+\DoxyCodeLine{206 \textcolor{keyword}{inline} std::string \mbox{\hyperlink{tesseract__urdf__common__unit_8h_ae212cbd4767730163032e0f8f0f31321}{toString}}(\textcolor{keyword}{const} tinyxml2::XMLElement* element)}
+\DoxyCodeLine{207 \{}
+\DoxyCodeLine{208   std::string ret;}
+\DoxyCodeLine{209   \textcolor{keywordflow}{if} (element != \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{210   \{}
+\DoxyCodeLine{211     tinyxml2::XMLPrinter printer;}
+\DoxyCodeLine{212     element-\/>Accept(\&printer);}
+\DoxyCodeLine{213     std::stringstream ss;}
+\DoxyCodeLine{214     ss << printer.CStr();}
+\DoxyCodeLine{215     ret = \mbox{\hyperlink{tesseract__urdf__common__unit_8h_a2fbe2873091f69816ecc7a9fc64da3ba}{stripNewline}}(ss.str());}
+\DoxyCodeLine{216   \}}
+\DoxyCodeLine{217   \textcolor{keywordflow}{return} ret;}
+\DoxyCodeLine{218 \}}
+\DoxyCodeLine{219 }
+\DoxyCodeLine{227 \textcolor{keyword}{template} <\textcolor{keyword}{typename} TessType>}
+\DoxyCodeLine{228 \textcolor{keywordtype}{int} \mbox{\hyperlink{tesseract__urdf__common__unit_8h_abfb51274a4e5a9da79a34b1381823f6f}{writeTest}}(TessType\& type,}
+\DoxyCodeLine{229               std::function<tinyxml2::XMLElement*(\textcolor{keyword}{const} TessType\&, tinyxml2::XMLDocument\&)> func,}
+\DoxyCodeLine{230               std::string\& text)}
+\DoxyCodeLine{231 \{}
+\DoxyCodeLine{232   tinyxml2::XMLDocument doc;}
+\DoxyCodeLine{233   \textcolor{keywordtype}{int} status = 0;}
+\DoxyCodeLine{234   \textcolor{keywordflow}{try}}
+\DoxyCodeLine{235   \{}
+\DoxyCodeLine{236     tinyxml2::XMLElement* element = func(type, doc);}
+\DoxyCodeLine{237     text = \mbox{\hyperlink{tesseract__urdf__common__unit_8h_ae212cbd4767730163032e0f8f0f31321}{toString}}(element);}
+\DoxyCodeLine{238     \textcolor{keywordflow}{if} (element != \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{239       status = 0;}
+\DoxyCodeLine{240     \textcolor{keywordflow}{else}}
+\DoxyCodeLine{241       status = 2;}
+\DoxyCodeLine{242   \}}
+\DoxyCodeLine{243   \textcolor{keywordflow}{catch} (...)}
+\DoxyCodeLine{244   \{}
+\DoxyCodeLine{245     text = \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{246     status = 1;}
+\DoxyCodeLine{247   \}}
+\DoxyCodeLine{248   \textcolor{keywordflow}{return} status;}
+\DoxyCodeLine{249 \}}
+\DoxyCodeLine{250 }
+\DoxyCodeLine{259 \textcolor{keyword}{template} <\textcolor{keyword}{typename} TessType>}
+\DoxyCodeLine{260 \textcolor{keywordtype}{int} \mbox{\hyperlink{tesseract__urdf__common__unit_8h_abfb51274a4e5a9da79a34b1381823f6f}{writeTest}}(TessType\& type,}
+\DoxyCodeLine{261               std::function<tinyxml2::XMLElement*(\textcolor{keyword}{const} TessType\&, tinyxml2::XMLDocument\&, \textcolor{keyword}{const} std::string\&)> func,}
+\DoxyCodeLine{262               std::string\& text,}
+\DoxyCodeLine{263               \textcolor{keyword}{const} std::string\& directory)}
+\DoxyCodeLine{264 \{}
+\DoxyCodeLine{265   tinyxml2::XMLDocument doc;}
+\DoxyCodeLine{266   \textcolor{keywordtype}{int} status = 0;}
+\DoxyCodeLine{267   \textcolor{keywordflow}{try}}
+\DoxyCodeLine{268   \{}
+\DoxyCodeLine{269     tinyxml2::XMLElement* element = func(type, doc, directory);}
+\DoxyCodeLine{270     text = \mbox{\hyperlink{tesseract__urdf__common__unit_8h_ae212cbd4767730163032e0f8f0f31321}{toString}}(element);}
+\DoxyCodeLine{271     \textcolor{keywordflow}{if} (element != \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{272       status = 0;}
+\DoxyCodeLine{273     \textcolor{keywordflow}{else}}
+\DoxyCodeLine{274       status = 2;}
+\DoxyCodeLine{275   \}}
+\DoxyCodeLine{276   \textcolor{keywordflow}{catch} (...)}
+\DoxyCodeLine{277   \{}
+\DoxyCodeLine{278     text = \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{279     status = 1;}
+\DoxyCodeLine{280   \}}
+\DoxyCodeLine{281   \textcolor{keywordflow}{return} status;}
+\DoxyCodeLine{282 \}}
+\DoxyCodeLine{283 }
+\DoxyCodeLine{293 \textcolor{keyword}{template} <\textcolor{keyword}{typename} TessType>}
+\DoxyCodeLine{294 \textcolor{keywordtype}{int} \mbox{\hyperlink{tesseract__urdf__common__unit_8h_abfb51274a4e5a9da79a34b1381823f6f}{writeTest}}(}
+\DoxyCodeLine{295     TessType\& type,}
+\DoxyCodeLine{296     std::function<}
+\DoxyCodeLine{297         tinyxml2::XMLElement*(\textcolor{keyword}{const} TessType\&, tinyxml2::XMLDocument\&, \textcolor{keyword}{const} std::string\&, \textcolor{keyword}{const} std::string\&)> func,}
+\DoxyCodeLine{298     std::string\& text,}
+\DoxyCodeLine{299     \textcolor{keyword}{const} std::string\& directory,}
+\DoxyCodeLine{300     \textcolor{keyword}{const} std::string\& filename)}
+\DoxyCodeLine{301 \{}
+\DoxyCodeLine{302   tinyxml2::XMLDocument doc;}
+\DoxyCodeLine{303   \textcolor{keywordtype}{int} status = 0;}
+\DoxyCodeLine{304   \textcolor{keywordflow}{try}}
+\DoxyCodeLine{305   \{}
+\DoxyCodeLine{306     tinyxml2::XMLElement* element = func(type, doc, directory, filename);}
+\DoxyCodeLine{307     text = \mbox{\hyperlink{tesseract__urdf__common__unit_8h_ae212cbd4767730163032e0f8f0f31321}{toString}}(element);}
+\DoxyCodeLine{308     \textcolor{keywordflow}{if} (element != \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{309       status = 0;}
+\DoxyCodeLine{310     \textcolor{keywordflow}{else}}
+\DoxyCodeLine{311       status = 2;}
+\DoxyCodeLine{312   \}}
+\DoxyCodeLine{313   \textcolor{keywordflow}{catch} (...)}
+\DoxyCodeLine{314   \{}
+\DoxyCodeLine{315     text = \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{316     status = 1;}
+\DoxyCodeLine{317   \}}
+\DoxyCodeLine{318   \textcolor{keywordflow}{return} status;}
+\DoxyCodeLine{319 \}}
+\DoxyCodeLine{320 }
+\DoxyCodeLine{331 \textcolor{keyword}{template} <\textcolor{keyword}{typename} TessType>}
+\DoxyCodeLine{332 \textcolor{keywordtype}{int} \mbox{\hyperlink{tesseract__urdf__common__unit_8h_abfb51274a4e5a9da79a34b1381823f6f}{writeTest}}(TessType\& type,}
+\DoxyCodeLine{333               std::function<tinyxml2::XMLElement*(\textcolor{keyword}{const} TessType\&,}
+\DoxyCodeLine{334                                                   tinyxml2::XMLDocument\&,}
+\DoxyCodeLine{335                                                   \textcolor{keyword}{const} std::string\&,}
+\DoxyCodeLine{336                                                   \textcolor{keyword}{const} std::string\&,}
+\DoxyCodeLine{337                                                   \textcolor{keyword}{const} \textcolor{keywordtype}{int})> func,}
+\DoxyCodeLine{338               std::string\& text,}
+\DoxyCodeLine{339               \textcolor{keyword}{const} std::string\& directory,}
+\DoxyCodeLine{340               \textcolor{keyword}{const} std::string\& link\_name,}
+\DoxyCodeLine{341               \textcolor{keyword}{const} \textcolor{keywordtype}{int} \textcolor{keywordtype}{id})}
+\DoxyCodeLine{342 \{}
+\DoxyCodeLine{343   tinyxml2::XMLDocument doc;}
+\DoxyCodeLine{344   \textcolor{keywordtype}{int} status = 0;}
+\DoxyCodeLine{345   \textcolor{keywordflow}{try}}
+\DoxyCodeLine{346   \{}
+\DoxyCodeLine{347     tinyxml2::XMLElement* element = func(type, doc, directory, link\_name, \textcolor{keywordtype}{id});}
+\DoxyCodeLine{348     text = \mbox{\hyperlink{tesseract__urdf__common__unit_8h_ae212cbd4767730163032e0f8f0f31321}{toString}}(element);}
+\DoxyCodeLine{349     \textcolor{keywordflow}{if} (element != \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{350       status = 0;}
+\DoxyCodeLine{351     \textcolor{keywordflow}{else}}
+\DoxyCodeLine{352       status = 2;}
+\DoxyCodeLine{353   \}}
+\DoxyCodeLine{354   \textcolor{keywordflow}{catch} (...)}
+\DoxyCodeLine{355   \{}
+\DoxyCodeLine{356     text = \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{357     status = 1;}
+\DoxyCodeLine{358   \}}
+\DoxyCodeLine{359   \textcolor{keywordflow}{return} status;}
+\DoxyCodeLine{360 \}}
+\DoxyCodeLine{361 }
+\DoxyCodeLine{362 \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \mbox{\hyperlink{tesseract__urdf__common__unit_8h_aec7a5ebd969d6c108a89cf52ac369466}{writeTextToFile}}(\textcolor{keyword}{const} std::string\& path, \textcolor{keyword}{const} std::string\& text)}
+\DoxyCodeLine{363 \{}
+\DoxyCodeLine{364   std::ofstream file;}
+\DoxyCodeLine{365   file.open(path);}
+\DoxyCodeLine{366   file << text;}
+\DoxyCodeLine{367   file.close();}
+\DoxyCodeLine{368 \}}
+\DoxyCodeLine{369 }
+\DoxyCodeLine{370 \textcolor{preprocessor}{\#endif  }\textcolor{comment}{// TESSERACT\_URDF\_COMMON\_UNIT\_H}}
+
+\end{DoxyCode}

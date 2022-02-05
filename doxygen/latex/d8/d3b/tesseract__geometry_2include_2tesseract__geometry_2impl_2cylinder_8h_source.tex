@@ -1,0 +1,47 @@
+\hypertarget{tesseract__geometry_2include_2tesseract__geometry_2impl_2cylinder_8h_source}{}\doxysection{cylinder.\+h}
+\label{tesseract__geometry_2include_2tesseract__geometry_2impl_2cylinder_8h_source}\index{tesseract\_geometry/include/tesseract\_geometry/impl/cylinder.h@{tesseract\_geometry/include/tesseract\_geometry/impl/cylinder.h}}
+\mbox{\hyperlink{tesseract__geometry_2include_2tesseract__geometry_2impl_2cylinder_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#ifndef TESSERACT\_GEOMETRY\_CYLINDER\_H}}
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#define TESSERACT\_GEOMETRY\_CYLINDER\_H}}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{macros_8h}{tesseract\_common/macros.h}}>}}
+\DoxyCodeLine{30 \mbox{\hyperlink{macros_8h_a8cc0e3c6a3382c5c0b19eb9e676fc2db}{TESSERACT\_COMMON\_IGNORE\_WARNINGS\_PUSH}}}
+\DoxyCodeLine{31 \textcolor{preprocessor}{\#include <memory>}}
+\DoxyCodeLine{32 \mbox{\hyperlink{namespaceTESSERACT__COMMON__IGNORE__WARNINGS__POP}{TESSERACT\_COMMON\_IGNORE\_WARNINGS\_POP}}}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{tesseract__geometry_2include_2tesseract__geometry_2geometry_8h}{tesseract\_geometry/geometry.h}}>}}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36 \textcolor{preprocessor}{\#ifdef SWIG}}
+\DoxyCodeLine{37 \%shared\_ptr(\mbox{\hyperlink{classtesseract__geometry_1_1Cylinder}{tesseract\_geometry::Cylinder}})}
+\DoxyCodeLine{38 \textcolor{preprocessor}{\#endif  }\textcolor{comment}{// SWIG}}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{40 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespacetesseract__geometry}{tesseract\_geometry}}}
+\DoxyCodeLine{41 \{}
+\DoxyCodeLine{42 \textcolor{keyword}{class }\mbox{\hyperlink{classtesseract__geometry_1_1Cylinder}{Cylinder}} : \textcolor{keyword}{public} \mbox{\hyperlink{classtesseract__geometry_1_1Geometry}{Geometry}}}
+\DoxyCodeLine{43 \{}
+\DoxyCodeLine{44 \textcolor{keyword}{public}:}
+\DoxyCodeLine{45   \textcolor{keyword}{using} \mbox{\hyperlink{classtesseract__geometry_1_1Geometry_acd91c55fb9604ed374446c029b6f2d08}{Ptr}} = std::shared\_ptr<Cylinder>;}
+\DoxyCodeLine{46   \textcolor{keyword}{using} \mbox{\hyperlink{classtesseract__geometry_1_1Geometry_a755a973394d2ccb45ad53a5e11ff03c7}{ConstPtr}} = std::shared\_ptr<const Cylinder>;}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{48   \mbox{\hyperlink{classtesseract__geometry_1_1Cylinder_ad082b0214be27b5464071cd33ab88fb4}{Cylinder}}(\textcolor{keywordtype}{double} r, \textcolor{keywordtype}{double} l) : \mbox{\hyperlink{classtesseract__geometry_1_1Geometry}{Geometry}}(\mbox{\hyperlink{namespacetesseract__geometry_a7543d6c1dc8947a3274abdd21fb56feb}{GeometryType}}::\mbox{\hyperlink{namespacetesseract__geometry_a7543d6c1dc8947a3274abdd21fb56feba7981168389c1e2bece204752fb30023d}{CYLINDER}}), \mbox{\hyperlink{classtesseract__geometry_1_1Cylinder_ad61a0be6036053036e1c653fa43a7dc7}{r\_}}(r), \mbox{\hyperlink{classtesseract__geometry_1_1Cylinder_aecaac2ac0a85c5bc206679a897f53b88}{l\_}}(l) \{\}}
+\DoxyCodeLine{49   \mbox{\hyperlink{classtesseract__geometry_1_1Cylinder_a5fdc3c811d82ea1753f21de7b9a8d7db}{\string~Cylinder}}() \textcolor{keyword}{override} = \textcolor{keywordflow}{default};}
+\DoxyCodeLine{50   \mbox{\hyperlink{classtesseract__geometry_1_1Cylinder_a23519b11b21dd2ebdd2e1d63399bcdb5}{Cylinder}}(\textcolor{keyword}{const} \mbox{\hyperlink{classtesseract__geometry_1_1Cylinder}{Cylinder}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{51   \mbox{\hyperlink{classtesseract__geometry_1_1Cylinder}{Cylinder}}\& \mbox{\hyperlink{classtesseract__geometry_1_1Cylinder_a1a4c792522b5f32ce0997267007202f5}{operator=}}(\textcolor{keyword}{const} \mbox{\hyperlink{classtesseract__geometry_1_1Cylinder}{Cylinder}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{52   \mbox{\hyperlink{classtesseract__geometry_1_1Cylinder_a332111155d1cbdae3a6417dab523c234}{Cylinder}}(\mbox{\hyperlink{classtesseract__geometry_1_1Cylinder}{Cylinder}}\&\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{53   \mbox{\hyperlink{classtesseract__geometry_1_1Cylinder}{Cylinder}}\& \mbox{\hyperlink{classtesseract__geometry_1_1Cylinder_ae433958abe550e27b41814c61ecb3c48}{operator=}}(\mbox{\hyperlink{classtesseract__geometry_1_1Cylinder}{Cylinder}}\&\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{55   \textcolor{keywordtype}{double} \mbox{\hyperlink{classtesseract__geometry_1_1Cylinder_aabd43d566ce2bc668ca9e33c1cce4144}{getRadius}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classtesseract__geometry_1_1Cylinder_ad61a0be6036053036e1c653fa43a7dc7}{r\_}}; \}}
+\DoxyCodeLine{56   \textcolor{keywordtype}{double} \mbox{\hyperlink{classtesseract__geometry_1_1Cylinder_a5dc4390b5df6e2ffd9d331c6436ec7b7}{getLength}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classtesseract__geometry_1_1Cylinder_aecaac2ac0a85c5bc206679a897f53b88}{l\_}}; \}}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{58   \mbox{\hyperlink{classtesseract__geometry_1_1Geometry_acd91c55fb9604ed374446c029b6f2d08}{Geometry::Ptr}} \mbox{\hyperlink{classtesseract__geometry_1_1Cylinder_abe38dfe4bce8b8aba000139339dc38ba}{clone}}()\textcolor{keyword}{ const override }\{ \textcolor{keywordflow}{return} std::make\_shared<Cylinder>(\mbox{\hyperlink{classtesseract__geometry_1_1Cylinder_ad61a0be6036053036e1c653fa43a7dc7}{r\_}}, \mbox{\hyperlink{classtesseract__geometry_1_1Cylinder_aecaac2ac0a85c5bc206679a897f53b88}{l\_}}); \}}
+\DoxyCodeLine{59 }
+\DoxyCodeLine{60 \textcolor{keyword}{private}:}
+\DoxyCodeLine{61   \textcolor{keywordtype}{double} \mbox{\hyperlink{classtesseract__geometry_1_1Cylinder_ad61a0be6036053036e1c653fa43a7dc7}{r\_}};}
+\DoxyCodeLine{62   \textcolor{keywordtype}{double} \mbox{\hyperlink{classtesseract__geometry_1_1Cylinder_aecaac2ac0a85c5bc206679a897f53b88}{l\_}};}
+\DoxyCodeLine{63 \};}
+\DoxyCodeLine{64 \}  \textcolor{comment}{// namespace tesseract\_geometry}}
+\DoxyCodeLine{65 \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

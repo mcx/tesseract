@@ -1,0 +1,40 @@
+\hypertarget{class__loader_8h_source}{}\doxysection{class\+\_\+loader.\+h}
+\label{class__loader_8h_source}\index{tesseract\_common/include/tesseract\_common/class\_loader.h@{tesseract\_common/include/tesseract\_common/class\_loader.h}}
+\mbox{\hyperlink{class__loader_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#ifndef TESSERACT\_COMMON\_CLASS\_LOADER\_H}}
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#define TESSERACT\_COMMON\_CLASS\_LOADER\_H}}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{macros_8h}{tesseract\_common/macros.h}}>}}
+\DoxyCodeLine{30 \mbox{\hyperlink{macros_8h_a8cc0e3c6a3382c5c0b19eb9e676fc2db}{TESSERACT\_COMMON\_IGNORE\_WARNINGS\_PUSH}}}
+\DoxyCodeLine{31 \textcolor{preprocessor}{\#include <memory>}}
+\DoxyCodeLine{32 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{33 \mbox{\hyperlink{namespaceTESSERACT__COMMON__IGNORE__WARNINGS__POP}{TESSERACT\_COMMON\_IGNORE\_WARNINGS\_POP}}}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespacetesseract__common}{tesseract\_common}}}
+\DoxyCodeLine{36 \{}
+\DoxyCodeLine{48 \textcolor{keyword}{struct }\mbox{\hyperlink{structtesseract__common_1_1ClassLoader}{ClassLoader}}}
+\DoxyCodeLine{49 \{}
+\DoxyCodeLine{59   \textcolor{keyword}{template} <\textcolor{keyword}{class} ClassBase>}
+\DoxyCodeLine{60   \textcolor{keyword}{static} std::shared\_ptr<ClassBase> \mbox{\hyperlink{structtesseract__common_1_1ClassLoader_ad1933611b2e5247267c29b146fb3054e}{createSharedInstance}}(\textcolor{keyword}{const} std::string\& symbol\_name,}
+\DoxyCodeLine{61                                                          \textcolor{keyword}{const} std::string\& library\_name,}
+\DoxyCodeLine{62                                                          \textcolor{keyword}{const} std::string\& library\_directory = \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{63 }
+\DoxyCodeLine{72   \textcolor{keyword}{static} \textcolor{keyword}{inline} \textcolor{keywordtype}{bool} \mbox{\hyperlink{structtesseract__common_1_1ClassLoader_a0bc9e092d94b12566d67e5a5ee0de337}{isClassAvailable}}(\textcolor{keyword}{const} std::string\& symbol\_name,}
+\DoxyCodeLine{73                                       \textcolor{keyword}{const} std::string\& library\_name,}
+\DoxyCodeLine{74                                       \textcolor{keyword}{const} std::string\& library\_directory = \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{75 }
+\DoxyCodeLine{89   \textcolor{keyword}{static} \textcolor{keyword}{inline} std::string \mbox{\hyperlink{structtesseract__common_1_1ClassLoader_af2749622fe3be804a464ce5d5ea62ca9}{decorate}}(\textcolor{keyword}{const} std::string\& library\_name, \textcolor{keyword}{const} std::string\& library\_directory = \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{90 \};}
+\DoxyCodeLine{91 \}  \textcolor{comment}{// namespace tesseract\_common}}
+\DoxyCodeLine{92 }
+\DoxyCodeLine{93 \textcolor{preprocessor}{\#define TESSERACT\_ADD\_PLUGIN(DERIVED\_CLASS, ALIAS)                                                                     \(\backslash\)}}
+\DoxyCodeLine{94 \textcolor{preprocessor}{  extern "{}C"{}} BOOST\_SYMBOL\_EXPORT DERIVED\_CLASS ALIAS;                                                                  \(\backslash\)}
+\DoxyCodeLine{95   DERIVED\_CLASS ALIAS;}
+\DoxyCodeLine{96 }
+\DoxyCodeLine{97 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{class__loader_8hpp}{tesseract\_common/class\_loader.hpp}}>}}
+\DoxyCodeLine{98 }
+\DoxyCodeLine{99 \textcolor{preprocessor}{\#endif  }\textcolor{comment}{// TESSERACT\_COMMON\_CLASS\_LOADER\_H}}
+
+\end{DoxyCode}

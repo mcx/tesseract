@@ -1,0 +1,986 @@
+\hypertarget{kinematics__test__utils_8h_source}{}\doxysection{kinematics\+\_\+test\+\_\+utils.\+h}
+\label{kinematics__test__utils_8h_source}\index{tesseract\_kinematics/test/kinematics\_test\_utils.h@{tesseract\_kinematics/test/kinematics\_test\_utils.h}}
+\mbox{\hyperlink{kinematics__test__utils_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#ifndef TESSERACT\_KINEMATICS\_KIN\_TEST\_SUITE\_H}}
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#define TESSERACT\_KINEMATICS\_KIN\_TEST\_SUITE\_H}}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{macros_8h}{tesseract\_common/macros.h}}>}}
+\DoxyCodeLine{30 \mbox{\hyperlink{macros_8h_a8cc0e3c6a3382c5c0b19eb9e676fc2db}{TESSERACT\_COMMON\_IGNORE\_WARNINGS\_PUSH}}}
+\DoxyCodeLine{31 \textcolor{preprocessor}{\#include <gtest/gtest.h>}}
+\DoxyCodeLine{32 \textcolor{preprocessor}{\#include <fstream>}}
+\DoxyCodeLine{33 \textcolor{preprocessor}{\#include <yaml-\/cpp/yaml.h>}}
+\DoxyCodeLine{34 \mbox{\hyperlink{namespaceTESSERACT__COMMON__IGNORE__WARNINGS__POP}{TESSERACT\_COMMON\_IGNORE\_WARNINGS\_POP}}}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{forward__kinematics_8h}{tesseract\_kinematics/core/forward\_kinematics.h}}>}}
+\DoxyCodeLine{37 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{inverse__kinematics_8h}{tesseract\_kinematics/core/inverse\_kinematics.h}}>}}
+\DoxyCodeLine{38 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{tesseract__kinematics_2core_2include_2tesseract__kinematics_2core_2utils_8h}{tesseract\_kinematics/core/utils.h}}>}}
+\DoxyCodeLine{39 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{tesseract__kinematics_2core_2include_2tesseract__kinematics_2core_2types_8h}{tesseract\_kinematics/core/types.h}}>}}
+\DoxyCodeLine{40 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{kinematic__group_8h}{tesseract\_kinematics/core/kinematic\_group.h}}>}}
+\DoxyCodeLine{41 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{kinematics__plugin__factory_8h}{tesseract\_kinematics/core/kinematics\_plugin\_factory.h}}>}}
+\DoxyCodeLine{42 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{validate_8h}{tesseract\_kinematics/core/validate.h}}>}}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{graph_8h}{tesseract\_scene\_graph/graph.h}}>}}
+\DoxyCodeLine{45 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{kdl__state__solver_8h}{tesseract\_state\_solver/kdl/kdl\_state\_solver.h}}>}}
+\DoxyCodeLine{46 }
+\DoxyCodeLine{47 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{urdf__parser_8h}{tesseract\_urdf/urdf\_parser.h}}>}}
+\DoxyCodeLine{48 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{tesseract__common_2include_2tesseract__common_2utils_8h}{tesseract\_common/utils.h}}>}}
+\DoxyCodeLine{49 }
+\DoxyCodeLine{50 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespacetesseract__kinematics}{tesseract\_kinematics}}}
+\DoxyCodeLine{51 \{}
+\DoxyCodeLine{52 \textcolor{keyword}{namespace }test\_suite}
+\DoxyCodeLine{53 \{}
+\DoxyCodeLine{54 \textcolor{keyword}{inline} std::string \mbox{\hyperlink{namespacetesseract__kinematics_1_1test__suite_a786a84914edb5ae06a4e29b37ec541bb}{locateResource}}(\textcolor{keyword}{const} std::string\& url)}
+\DoxyCodeLine{55 \{}
+\DoxyCodeLine{56   std::string mod\_url = url;}
+\DoxyCodeLine{57   \textcolor{keywordflow}{if} (url.find(\textcolor{stringliteral}{"{}package://tesseract\_support"{}}) == 0)}
+\DoxyCodeLine{58   \{}
+\DoxyCodeLine{59     mod\_url.erase(0, strlen(\textcolor{stringliteral}{"{}package://tesseract\_support"{}}));}
+\DoxyCodeLine{60     \textcolor{keywordtype}{size\_t} pos = mod\_url.find(\textcolor{charliteral}{'/'});}
+\DoxyCodeLine{61     \textcolor{keywordflow}{if} (pos == std::string::npos)}
+\DoxyCodeLine{62     \{}
+\DoxyCodeLine{63       \textcolor{keywordflow}{return} std::string();}
+\DoxyCodeLine{64     \}}
+\DoxyCodeLine{65 }
+\DoxyCodeLine{66     std::string \textcolor{keyword}{package }= mod\_url.substr(0, pos);}
+\DoxyCodeLine{67     mod\_url.erase(0, pos);}
+\DoxyCodeLine{68     std::string package\_path = std::string(TESSERACT\_SUPPORT\_DIR);}
+\DoxyCodeLine{69 }
+\DoxyCodeLine{70     \textcolor{keywordflow}{if} (package\_path.empty())}
+\DoxyCodeLine{71     \{}
+\DoxyCodeLine{72       \textcolor{keywordflow}{return} std::string();}
+\DoxyCodeLine{73     \}}
+\DoxyCodeLine{74 }
+\DoxyCodeLine{75     mod\_url = package\_path + mod\_url;  \textcolor{comment}{// "{}file://"{} + package\_path + mod\_url;}}
+\DoxyCodeLine{76   \}}
+\DoxyCodeLine{77 }
+\DoxyCodeLine{78   \textcolor{keywordflow}{return} mod\_url;}
+\DoxyCodeLine{79 \}}
+\DoxyCodeLine{80 }
+\DoxyCodeLine{81 \textcolor{keyword}{inline} \mbox{\hyperlink{classtesseract__scene__graph_1_1SceneGraph_aacd7acf57071e94cd87fbae62dbaafba}{tesseract\_scene\_graph::SceneGraph::UPtr}} \mbox{\hyperlink{namespacetesseract__kinematics_1_1test__suite_af21376adb5aa48be102cd8036777cefa}{getSceneGraphIIWA}}()}
+\DoxyCodeLine{82 \{}
+\DoxyCodeLine{83   std::string path = std::string(TESSERACT\_SUPPORT\_DIR) + \textcolor{stringliteral}{"{}/urdf/lbr\_iiwa\_14\_r820.urdf"{}};}
+\DoxyCodeLine{84 }
+\DoxyCodeLine{85   \mbox{\hyperlink{classtesseract__common_1_1SimpleResourceLocator}{tesseract\_common::SimpleResourceLocator}} locator(\mbox{\hyperlink{namespacetesseract__kinematics_1_1test__suite_a786a84914edb5ae06a4e29b37ec541bb}{locateResource}});}
+\DoxyCodeLine{86   \textcolor{keywordflow}{return} \mbox{\hyperlink{namespacetesseract__urdf_af87dbf019b08c4a9966e8131d382d5ad}{tesseract\_urdf::parseURDFFile}}(path, locator);}
+\DoxyCodeLine{87 \}}
+\DoxyCodeLine{88 }
+\DoxyCodeLine{89 \textcolor{keyword}{inline} \mbox{\hyperlink{classtesseract__scene__graph_1_1SceneGraph_aacd7acf57071e94cd87fbae62dbaafba}{tesseract\_scene\_graph::SceneGraph::UPtr}} \mbox{\hyperlink{namespacetesseract__kinematics_1_1test__suite_a5bf9dac46e4656e96bc26c0b8b8095f5}{getSceneGraphABBExternalPositioner}}()}
+\DoxyCodeLine{90 \{}
+\DoxyCodeLine{91   std::string path = std::string(TESSERACT\_SUPPORT\_DIR) + \textcolor{stringliteral}{"{}/urdf/abb\_irb2400\_external\_positioner.urdf"{}};}
+\DoxyCodeLine{92 }
+\DoxyCodeLine{93   \mbox{\hyperlink{classtesseract__common_1_1SimpleResourceLocator}{tesseract\_common::SimpleResourceLocator}} locator(\mbox{\hyperlink{namespacetesseract__kinematics_1_1test__suite_a786a84914edb5ae06a4e29b37ec541bb}{locateResource}});}
+\DoxyCodeLine{94   \textcolor{keywordflow}{return} \mbox{\hyperlink{namespacetesseract__urdf_af87dbf019b08c4a9966e8131d382d5ad}{tesseract\_urdf::parseURDFFile}}(path, locator);}
+\DoxyCodeLine{95 \}}
+\DoxyCodeLine{96 }
+\DoxyCodeLine{97 \textcolor{keyword}{inline} \mbox{\hyperlink{classtesseract__scene__graph_1_1SceneGraph_aacd7acf57071e94cd87fbae62dbaafba}{tesseract\_scene\_graph::SceneGraph::UPtr}} \mbox{\hyperlink{namespacetesseract__kinematics_1_1test__suite_a423024ff947e983a858b211b6bbc3a05}{getSceneGraphABBOnPositioner}}()}
+\DoxyCodeLine{98 \{}
+\DoxyCodeLine{99   std::string path = std::string(TESSERACT\_SUPPORT\_DIR) + \textcolor{stringliteral}{"{}/urdf/abb\_irb2400\_on\_positioner.urdf"{}};}
+\DoxyCodeLine{100 }
+\DoxyCodeLine{101   \mbox{\hyperlink{classtesseract__common_1_1SimpleResourceLocator}{tesseract\_common::SimpleResourceLocator}} locator(\mbox{\hyperlink{namespacetesseract__kinematics_1_1test__suite_a786a84914edb5ae06a4e29b37ec541bb}{locateResource}});}
+\DoxyCodeLine{102   \textcolor{keywordflow}{return} \mbox{\hyperlink{namespacetesseract__urdf_af87dbf019b08c4a9966e8131d382d5ad}{tesseract\_urdf::parseURDFFile}}(path, locator);}
+\DoxyCodeLine{103 \}}
+\DoxyCodeLine{104 }
+\DoxyCodeLine{105 \textcolor{keyword}{inline} \mbox{\hyperlink{classtesseract__scene__graph_1_1SceneGraph_aacd7acf57071e94cd87fbae62dbaafba}{tesseract\_scene\_graph::SceneGraph::UPtr}} \mbox{\hyperlink{namespacetesseract__kinematics_1_1test__suite_ad0595afd44faa3169984a3e4423fa72b}{getSceneGraphABB}}()}
+\DoxyCodeLine{106 \{}
+\DoxyCodeLine{107   std::string path = std::string(TESSERACT\_SUPPORT\_DIR) + \textcolor{stringliteral}{"{}/urdf/abb\_irb2400.urdf"{}};}
+\DoxyCodeLine{108 }
+\DoxyCodeLine{109   \mbox{\hyperlink{classtesseract__common_1_1SimpleResourceLocator}{tesseract\_common::SimpleResourceLocator}} locator(\mbox{\hyperlink{namespacetesseract__kinematics_1_1test__suite_a786a84914edb5ae06a4e29b37ec541bb}{locateResource}});}
+\DoxyCodeLine{110   \textcolor{keywordflow}{return} \mbox{\hyperlink{namespacetesseract__urdf_af87dbf019b08c4a9966e8131d382d5ad}{tesseract\_urdf::parseURDFFile}}(path, locator);}
+\DoxyCodeLine{111 \}}
+\DoxyCodeLine{112 }
+\DoxyCodeLine{113 \textcolor{keyword}{inline} \mbox{\hyperlink{classtesseract__scene__graph_1_1SceneGraph_aacd7acf57071e94cd87fbae62dbaafba}{tesseract\_scene\_graph::SceneGraph::UPtr}} \mbox{\hyperlink{namespacetesseract__kinematics_1_1test__suite_aa0539dadd27399cac477205125b876b7}{getSceneGraphIIWA7}}()}
+\DoxyCodeLine{114 \{}
+\DoxyCodeLine{115   std::string path = std::string(TESSERACT\_SUPPORT\_DIR) + \textcolor{stringliteral}{"{}/urdf/iiwa7.urdf"{}};}
+\DoxyCodeLine{116 }
+\DoxyCodeLine{117   \mbox{\hyperlink{classtesseract__common_1_1SimpleResourceLocator}{tesseract\_common::SimpleResourceLocator}} locator(\mbox{\hyperlink{namespacetesseract__kinematics_1_1test__suite_a786a84914edb5ae06a4e29b37ec541bb}{locateResource}});}
+\DoxyCodeLine{118   \textcolor{keywordflow}{return} \mbox{\hyperlink{namespacetesseract__urdf_af87dbf019b08c4a9966e8131d382d5ad}{tesseract\_urdf::parseURDFFile}}(path, locator);}
+\DoxyCodeLine{119 \}}
+\DoxyCodeLine{120 }
+\DoxyCodeLine{121 \textcolor{keyword}{inline} \mbox{\hyperlink{classtesseract__scene__graph_1_1SceneGraph_aacd7acf57071e94cd87fbae62dbaafba}{tesseract\_scene\_graph::SceneGraph::UPtr}} \mbox{\hyperlink{namespacetesseract__kinematics_1_1test__suite_a999bbd27ece5bca20d8fd9b63221759c}{getSceneGraphUR}}(\textcolor{keyword}{const} \mbox{\hyperlink{structtesseract__kinematics_1_1URParameters}{tesseract\_kinematics::URParameters}}\& params,}
+\DoxyCodeLine{122                                                                \textcolor{keywordtype}{double} shoulder\_offset,}
+\DoxyCodeLine{123                                                                \textcolor{keywordtype}{double} elbow\_offset)}
+\DoxyCodeLine{124 \{}
+\DoxyCodeLine{125   \textcolor{keyword}{using namespace }\mbox{\hyperlink{namespacetesseract__scene__graph}{tesseract\_scene\_graph}};}
+\DoxyCodeLine{126 }
+\DoxyCodeLine{127   \textcolor{keyword}{auto} sg = std::make\_unique<SceneGraph>(\textcolor{stringliteral}{"{}universal\_robot"{}});}
+\DoxyCodeLine{128   sg-\/>addLink(\mbox{\hyperlink{classtesseract__scene__graph_1_1Link}{Link}}(\textcolor{stringliteral}{"{}base\_link"{}}));}
+\DoxyCodeLine{129   sg-\/>addLink(\mbox{\hyperlink{classtesseract__scene__graph_1_1Link}{Link}}(\textcolor{stringliteral}{"{}shoulder\_link"{}}));}
+\DoxyCodeLine{130   sg-\/>addLink(\mbox{\hyperlink{classtesseract__scene__graph_1_1Link}{Link}}(\textcolor{stringliteral}{"{}upper\_arm\_link"{}}));}
+\DoxyCodeLine{131   sg-\/>addLink(\mbox{\hyperlink{classtesseract__scene__graph_1_1Link}{Link}}(\textcolor{stringliteral}{"{}forearm\_link"{}}));}
+\DoxyCodeLine{132   sg-\/>addLink(\mbox{\hyperlink{classtesseract__scene__graph_1_1Link}{Link}}(\textcolor{stringliteral}{"{}wrist\_1\_link"{}}));}
+\DoxyCodeLine{133   sg-\/>addLink(\mbox{\hyperlink{classtesseract__scene__graph_1_1Link}{Link}}(\textcolor{stringliteral}{"{}wrist\_2\_link"{}}));}
+\DoxyCodeLine{134   sg-\/>addLink(\mbox{\hyperlink{classtesseract__scene__graph_1_1Link}{Link}}(\textcolor{stringliteral}{"{}wrist\_3\_link"{}}));}
+\DoxyCodeLine{135   sg-\/>addLink(\mbox{\hyperlink{classtesseract__scene__graph_1_1Link}{Link}}(\textcolor{stringliteral}{"{}ee\_link"{}}));}
+\DoxyCodeLine{136   sg-\/>addLink(\mbox{\hyperlink{classtesseract__scene__graph_1_1Link}{Link}}(\textcolor{stringliteral}{"{}tool0"{}}));}
+\DoxyCodeLine{137 }
+\DoxyCodeLine{138   \{}
+\DoxyCodeLine{139     \mbox{\hyperlink{classtesseract__scene__graph_1_1Joint}{Joint}} j(\textcolor{stringliteral}{"{}shoulder\_pan\_joint"{}});}
+\DoxyCodeLine{140     j.\mbox{\hyperlink{classtesseract__scene__graph_1_1Joint_a1318902e89f9397b84cfaecdc007348c}{type}} = JointType::REVOLUTE;}
+\DoxyCodeLine{141     j.\mbox{\hyperlink{classtesseract__scene__graph_1_1Joint_acddba7745bf86f4f93099afef9a3b1fe}{parent\_link\_name}} = \textcolor{stringliteral}{"{}base\_link"{}};}
+\DoxyCodeLine{142     j.\mbox{\hyperlink{classtesseract__scene__graph_1_1Joint_ad1771eb5526df8fee32ad65f0b5330f5}{child\_link\_name}} = \textcolor{stringliteral}{"{}shoulder\_link"{}};}
+\DoxyCodeLine{143     j.\mbox{\hyperlink{classtesseract__scene__graph_1_1Joint_a72603a0c12785105007cce1bbe322081}{axis}} = Eigen::Vector3d::UnitZ();}
+\DoxyCodeLine{144     j.\mbox{\hyperlink{classtesseract__scene__graph_1_1Joint_a94b4442bad0bb1e6f3f9e78bff4eecd3}{parent\_to\_joint\_origin\_transform}}.translation() = Eigen::Vector3d(0, 0, params.\mbox{\hyperlink{structtesseract__kinematics_1_1URParameters_a3aa4fd9c0663c80c8f509b9ce44800fb}{d1}});}
+\DoxyCodeLine{145     j.\mbox{\hyperlink{classtesseract__scene__graph_1_1Joint_aaaef69b0f42ea8b9e7e531083b1d2241}{limits}} = std::make\_shared<JointLimits>();}
+\DoxyCodeLine{146     j.\mbox{\hyperlink{classtesseract__scene__graph_1_1Joint_aaaef69b0f42ea8b9e7e531083b1d2241}{limits}}-\/>lower = -\/2.0 * M\_PI;}
+\DoxyCodeLine{147     j.\mbox{\hyperlink{classtesseract__scene__graph_1_1Joint_aaaef69b0f42ea8b9e7e531083b1d2241}{limits}}-\/>upper = 2.0 * M\_PI;}
+\DoxyCodeLine{148     j.\mbox{\hyperlink{classtesseract__scene__graph_1_1Joint_aaaef69b0f42ea8b9e7e531083b1d2241}{limits}}-\/>velocity = 2.16;}
+\DoxyCodeLine{149     j.\mbox{\hyperlink{classtesseract__scene__graph_1_1Joint_aaaef69b0f42ea8b9e7e531083b1d2241}{limits}}-\/>acceleration = 0.5 * j.\mbox{\hyperlink{classtesseract__scene__graph_1_1Joint_aaaef69b0f42ea8b9e7e531083b1d2241}{limits}}-\/>velocity;}
+\DoxyCodeLine{150     sg-\/>addJoint(j);}
+\DoxyCodeLine{151   \}}
+\DoxyCodeLine{152 }
+\DoxyCodeLine{153   \{}
+\DoxyCodeLine{154     \mbox{\hyperlink{classtesseract__scene__graph_1_1Joint}{Joint}} j(\textcolor{stringliteral}{"{}shoulder\_lift\_joint"{}});}
+\DoxyCodeLine{155     j.\mbox{\hyperlink{classtesseract__scene__graph_1_1Joint_a1318902e89f9397b84cfaecdc007348c}{type}} = JointType::REVOLUTE;}
+\DoxyCodeLine{156     j.\mbox{\hyperlink{classtesseract__scene__graph_1_1Joint_acddba7745bf86f4f93099afef9a3b1fe}{parent\_link\_name}} = \textcolor{stringliteral}{"{}shoulder\_link"{}};}
+\DoxyCodeLine{157     j.\mbox{\hyperlink{classtesseract__scene__graph_1_1Joint_ad1771eb5526df8fee32ad65f0b5330f5}{child\_link\_name}} = \textcolor{stringliteral}{"{}upper\_arm\_link"{}};}
+\DoxyCodeLine{158     j.\mbox{\hyperlink{classtesseract__scene__graph_1_1Joint_a72603a0c12785105007cce1bbe322081}{axis}} = Eigen::Vector3d::UnitY();}
+\DoxyCodeLine{159     j.\mbox{\hyperlink{classtesseract__scene__graph_1_1Joint_a94b4442bad0bb1e6f3f9e78bff4eecd3}{parent\_to\_joint\_origin\_transform}}.translation() = Eigen::Vector3d(0, shoulder\_offset, 0);}
+\DoxyCodeLine{160     j.\mbox{\hyperlink{classtesseract__scene__graph_1_1Joint_a94b4442bad0bb1e6f3f9e78bff4eecd3}{parent\_to\_joint\_origin\_transform}} =}
+\DoxyCodeLine{161         j.\mbox{\hyperlink{classtesseract__scene__graph_1_1Joint_a94b4442bad0bb1e6f3f9e78bff4eecd3}{parent\_to\_joint\_origin\_transform}} * Eigen::AngleAxisd(M\_PI\_2, Eigen::Vector3d::UnitY());}
+\DoxyCodeLine{162     j.\mbox{\hyperlink{classtesseract__scene__graph_1_1Joint_aaaef69b0f42ea8b9e7e531083b1d2241}{limits}} = std::make\_shared<JointLimits>();}
+\DoxyCodeLine{163     j.\mbox{\hyperlink{classtesseract__scene__graph_1_1Joint_aaaef69b0f42ea8b9e7e531083b1d2241}{limits}}-\/>lower = -\/2.0 * M\_PI;}
+\DoxyCodeLine{164     j.\mbox{\hyperlink{classtesseract__scene__graph_1_1Joint_aaaef69b0f42ea8b9e7e531083b1d2241}{limits}}-\/>upper = 2.0 * M\_PI;}
+\DoxyCodeLine{165     j.\mbox{\hyperlink{classtesseract__scene__graph_1_1Joint_aaaef69b0f42ea8b9e7e531083b1d2241}{limits}}-\/>velocity = 2.16;}
+\DoxyCodeLine{166     j.\mbox{\hyperlink{classtesseract__scene__graph_1_1Joint_aaaef69b0f42ea8b9e7e531083b1d2241}{limits}}-\/>acceleration = 0.5 * j.\mbox{\hyperlink{classtesseract__scene__graph_1_1Joint_aaaef69b0f42ea8b9e7e531083b1d2241}{limits}}-\/>velocity;}
+\DoxyCodeLine{167     sg-\/>addJoint(j);}
+\DoxyCodeLine{168   \}}
+\DoxyCodeLine{169 }
+\DoxyCodeLine{170   \{}
+\DoxyCodeLine{171     \mbox{\hyperlink{classtesseract__scene__graph_1_1Joint}{Joint}} j(\textcolor{stringliteral}{"{}elbow\_joint"{}});}
+\DoxyCodeLine{172     j.\mbox{\hyperlink{classtesseract__scene__graph_1_1Joint_a1318902e89f9397b84cfaecdc007348c}{type}} = JointType::REVOLUTE;}
+\DoxyCodeLine{173     j.\mbox{\hyperlink{classtesseract__scene__graph_1_1Joint_acddba7745bf86f4f93099afef9a3b1fe}{parent\_link\_name}} = \textcolor{stringliteral}{"{}upper\_arm\_link"{}};}
+\DoxyCodeLine{174     j.\mbox{\hyperlink{classtesseract__scene__graph_1_1Joint_ad1771eb5526df8fee32ad65f0b5330f5}{child\_link\_name}} = \textcolor{stringliteral}{"{}forearm\_link"{}};}
+\DoxyCodeLine{175     j.\mbox{\hyperlink{classtesseract__scene__graph_1_1Joint_a72603a0c12785105007cce1bbe322081}{axis}} = Eigen::Vector3d::UnitY();}
+\DoxyCodeLine{176     j.\mbox{\hyperlink{classtesseract__scene__graph_1_1Joint_a94b4442bad0bb1e6f3f9e78bff4eecd3}{parent\_to\_joint\_origin\_transform}}.translation() = Eigen::Vector3d(0, elbow\_offset, -\/params.\mbox{\hyperlink{structtesseract__kinematics_1_1URParameters_aa3ff18370178f9212bc415e3c4014824}{a2}});}
+\DoxyCodeLine{177     j.\mbox{\hyperlink{classtesseract__scene__graph_1_1Joint_aaaef69b0f42ea8b9e7e531083b1d2241}{limits}} = std::make\_shared<JointLimits>();}
+\DoxyCodeLine{178     j.\mbox{\hyperlink{classtesseract__scene__graph_1_1Joint_aaaef69b0f42ea8b9e7e531083b1d2241}{limits}}-\/>lower = -\/2.0 * M\_PI;}
+\DoxyCodeLine{179     j.\mbox{\hyperlink{classtesseract__scene__graph_1_1Joint_aaaef69b0f42ea8b9e7e531083b1d2241}{limits}}-\/>upper = 2.0 * M\_PI;}
+\DoxyCodeLine{180     j.\mbox{\hyperlink{classtesseract__scene__graph_1_1Joint_aaaef69b0f42ea8b9e7e531083b1d2241}{limits}}-\/>velocity = 2.16;}
+\DoxyCodeLine{181     j.\mbox{\hyperlink{classtesseract__scene__graph_1_1Joint_aaaef69b0f42ea8b9e7e531083b1d2241}{limits}}-\/>acceleration = 0.5 * j.\mbox{\hyperlink{classtesseract__scene__graph_1_1Joint_aaaef69b0f42ea8b9e7e531083b1d2241}{limits}}-\/>velocity;}
+\DoxyCodeLine{182     sg-\/>addJoint(j);}
+\DoxyCodeLine{183   \}}
+\DoxyCodeLine{184 }
+\DoxyCodeLine{185   \{}
+\DoxyCodeLine{186     \mbox{\hyperlink{classtesseract__scene__graph_1_1Joint}{Joint}} j(\textcolor{stringliteral}{"{}wrist\_1\_joint"{}});}
+\DoxyCodeLine{187     j.\mbox{\hyperlink{classtesseract__scene__graph_1_1Joint_a1318902e89f9397b84cfaecdc007348c}{type}} = JointType::REVOLUTE;}
+\DoxyCodeLine{188     j.\mbox{\hyperlink{classtesseract__scene__graph_1_1Joint_acddba7745bf86f4f93099afef9a3b1fe}{parent\_link\_name}} = \textcolor{stringliteral}{"{}forearm\_link"{}};}
+\DoxyCodeLine{189     j.\mbox{\hyperlink{classtesseract__scene__graph_1_1Joint_ad1771eb5526df8fee32ad65f0b5330f5}{child\_link\_name}} = \textcolor{stringliteral}{"{}wrist\_1\_link"{}};}
+\DoxyCodeLine{190     j.\mbox{\hyperlink{classtesseract__scene__graph_1_1Joint_a72603a0c12785105007cce1bbe322081}{axis}} = Eigen::Vector3d::UnitY();}
+\DoxyCodeLine{191     j.\mbox{\hyperlink{classtesseract__scene__graph_1_1Joint_a94b4442bad0bb1e6f3f9e78bff4eecd3}{parent\_to\_joint\_origin\_transform}}.translation() = Eigen::Vector3d(0, 0, -\/params.\mbox{\hyperlink{structtesseract__kinematics_1_1URParameters_ac1db1a3cd59fc229b8124f50aa7df293}{a3}});}
+\DoxyCodeLine{192     j.\mbox{\hyperlink{classtesseract__scene__graph_1_1Joint_a94b4442bad0bb1e6f3f9e78bff4eecd3}{parent\_to\_joint\_origin\_transform}} =}
+\DoxyCodeLine{193         j.\mbox{\hyperlink{classtesseract__scene__graph_1_1Joint_a94b4442bad0bb1e6f3f9e78bff4eecd3}{parent\_to\_joint\_origin\_transform}} * Eigen::AngleAxisd(M\_PI\_2, Eigen::Vector3d::UnitY());}
+\DoxyCodeLine{194     j.\mbox{\hyperlink{classtesseract__scene__graph_1_1Joint_aaaef69b0f42ea8b9e7e531083b1d2241}{limits}} = std::make\_shared<JointLimits>();}
+\DoxyCodeLine{195     j.\mbox{\hyperlink{classtesseract__scene__graph_1_1Joint_aaaef69b0f42ea8b9e7e531083b1d2241}{limits}}-\/>lower = -\/2.0 * M\_PI;}
+\DoxyCodeLine{196     j.\mbox{\hyperlink{classtesseract__scene__graph_1_1Joint_aaaef69b0f42ea8b9e7e531083b1d2241}{limits}}-\/>upper = 2.0 * M\_PI;}
+\DoxyCodeLine{197     j.\mbox{\hyperlink{classtesseract__scene__graph_1_1Joint_aaaef69b0f42ea8b9e7e531083b1d2241}{limits}}-\/>velocity = 2.16;}
+\DoxyCodeLine{198     j.\mbox{\hyperlink{classtesseract__scene__graph_1_1Joint_aaaef69b0f42ea8b9e7e531083b1d2241}{limits}}-\/>acceleration = 0.5 * j.\mbox{\hyperlink{classtesseract__scene__graph_1_1Joint_aaaef69b0f42ea8b9e7e531083b1d2241}{limits}}-\/>velocity;}
+\DoxyCodeLine{199     sg-\/>addJoint(j);}
+\DoxyCodeLine{200   \}}
+\DoxyCodeLine{201 }
+\DoxyCodeLine{202   \{}
+\DoxyCodeLine{203     \mbox{\hyperlink{classtesseract__scene__graph_1_1Joint}{Joint}} j(\textcolor{stringliteral}{"{}wrist\_2\_joint"{}});}
+\DoxyCodeLine{204     j.\mbox{\hyperlink{classtesseract__scene__graph_1_1Joint_a1318902e89f9397b84cfaecdc007348c}{type}} = JointType::REVOLUTE;}
+\DoxyCodeLine{205     j.\mbox{\hyperlink{classtesseract__scene__graph_1_1Joint_acddba7745bf86f4f93099afef9a3b1fe}{parent\_link\_name}} = \textcolor{stringliteral}{"{}wrist\_1\_link"{}};}
+\DoxyCodeLine{206     j.\mbox{\hyperlink{classtesseract__scene__graph_1_1Joint_ad1771eb5526df8fee32ad65f0b5330f5}{child\_link\_name}} = \textcolor{stringliteral}{"{}wrist\_2\_link"{}};}
+\DoxyCodeLine{207     j.\mbox{\hyperlink{classtesseract__scene__graph_1_1Joint_a72603a0c12785105007cce1bbe322081}{axis}} = Eigen::Vector3d::UnitZ();}
+\DoxyCodeLine{208     j.\mbox{\hyperlink{classtesseract__scene__graph_1_1Joint_a94b4442bad0bb1e6f3f9e78bff4eecd3}{parent\_to\_joint\_origin\_transform}}.translation() =}
+\DoxyCodeLine{209         Eigen::Vector3d(0, params.\mbox{\hyperlink{structtesseract__kinematics_1_1URParameters_ac7081e26c15fcb4de259fb25b217cb2e}{d4}} -\/ elbow\_offset -\/ shoulder\_offset, 0);}
+\DoxyCodeLine{210     j.\mbox{\hyperlink{classtesseract__scene__graph_1_1Joint_aaaef69b0f42ea8b9e7e531083b1d2241}{limits}} = std::make\_shared<JointLimits>();}
+\DoxyCodeLine{211     j.\mbox{\hyperlink{classtesseract__scene__graph_1_1Joint_aaaef69b0f42ea8b9e7e531083b1d2241}{limits}}-\/>lower = -\/2.0 * M\_PI;}
+\DoxyCodeLine{212     j.\mbox{\hyperlink{classtesseract__scene__graph_1_1Joint_aaaef69b0f42ea8b9e7e531083b1d2241}{limits}}-\/>upper = 2.0 * M\_PI;}
+\DoxyCodeLine{213     j.\mbox{\hyperlink{classtesseract__scene__graph_1_1Joint_aaaef69b0f42ea8b9e7e531083b1d2241}{limits}}-\/>velocity = 2.16;}
+\DoxyCodeLine{214     j.\mbox{\hyperlink{classtesseract__scene__graph_1_1Joint_aaaef69b0f42ea8b9e7e531083b1d2241}{limits}}-\/>acceleration = 0.5 * j.\mbox{\hyperlink{classtesseract__scene__graph_1_1Joint_aaaef69b0f42ea8b9e7e531083b1d2241}{limits}}-\/>velocity;}
+\DoxyCodeLine{215     sg-\/>addJoint(j);}
+\DoxyCodeLine{216   \}}
+\DoxyCodeLine{217 }
+\DoxyCodeLine{218   \{}
+\DoxyCodeLine{219     \mbox{\hyperlink{classtesseract__scene__graph_1_1Joint}{Joint}} j(\textcolor{stringliteral}{"{}wrist\_3\_joint"{}});}
+\DoxyCodeLine{220     j.\mbox{\hyperlink{classtesseract__scene__graph_1_1Joint_a1318902e89f9397b84cfaecdc007348c}{type}} = JointType::REVOLUTE;}
+\DoxyCodeLine{221     j.\mbox{\hyperlink{classtesseract__scene__graph_1_1Joint_acddba7745bf86f4f93099afef9a3b1fe}{parent\_link\_name}} = \textcolor{stringliteral}{"{}wrist\_2\_link"{}};}
+\DoxyCodeLine{222     j.\mbox{\hyperlink{classtesseract__scene__graph_1_1Joint_ad1771eb5526df8fee32ad65f0b5330f5}{child\_link\_name}} = \textcolor{stringliteral}{"{}wrist\_3\_link"{}};}
+\DoxyCodeLine{223     j.\mbox{\hyperlink{classtesseract__scene__graph_1_1Joint_a72603a0c12785105007cce1bbe322081}{axis}} = Eigen::Vector3d::UnitY();}
+\DoxyCodeLine{224     j.\mbox{\hyperlink{classtesseract__scene__graph_1_1Joint_a94b4442bad0bb1e6f3f9e78bff4eecd3}{parent\_to\_joint\_origin\_transform}}.translation() = Eigen::Vector3d(0, 0, params.\mbox{\hyperlink{structtesseract__kinematics_1_1URParameters_ab4e35e52bb15fe3903e99c65ff6818a3}{d5}});}
+\DoxyCodeLine{225     j.\mbox{\hyperlink{classtesseract__scene__graph_1_1Joint_aaaef69b0f42ea8b9e7e531083b1d2241}{limits}} = std::make\_shared<JointLimits>();}
+\DoxyCodeLine{226     j.\mbox{\hyperlink{classtesseract__scene__graph_1_1Joint_aaaef69b0f42ea8b9e7e531083b1d2241}{limits}}-\/>lower = -\/2.0 * M\_PI;}
+\DoxyCodeLine{227     j.\mbox{\hyperlink{classtesseract__scene__graph_1_1Joint_aaaef69b0f42ea8b9e7e531083b1d2241}{limits}}-\/>upper = 2.0 * M\_PI;}
+\DoxyCodeLine{228     j.\mbox{\hyperlink{classtesseract__scene__graph_1_1Joint_aaaef69b0f42ea8b9e7e531083b1d2241}{limits}}-\/>velocity = 2.16;}
+\DoxyCodeLine{229     j.\mbox{\hyperlink{classtesseract__scene__graph_1_1Joint_aaaef69b0f42ea8b9e7e531083b1d2241}{limits}}-\/>acceleration = 0.5 * j.\mbox{\hyperlink{classtesseract__scene__graph_1_1Joint_aaaef69b0f42ea8b9e7e531083b1d2241}{limits}}-\/>velocity;}
+\DoxyCodeLine{230     sg-\/>addJoint(j);}
+\DoxyCodeLine{231   \}}
+\DoxyCodeLine{232 }
+\DoxyCodeLine{233   \{}
+\DoxyCodeLine{234     \mbox{\hyperlink{classtesseract__scene__graph_1_1Joint}{Joint}} j(\textcolor{stringliteral}{"{}ee\_fixed\_joint"{}});}
+\DoxyCodeLine{235     j.\mbox{\hyperlink{classtesseract__scene__graph_1_1Joint_a1318902e89f9397b84cfaecdc007348c}{type}} = JointType::FIXED;}
+\DoxyCodeLine{236     j.\mbox{\hyperlink{classtesseract__scene__graph_1_1Joint_acddba7745bf86f4f93099afef9a3b1fe}{parent\_link\_name}} = \textcolor{stringliteral}{"{}wrist\_3\_link"{}};}
+\DoxyCodeLine{237     j.\mbox{\hyperlink{classtesseract__scene__graph_1_1Joint_ad1771eb5526df8fee32ad65f0b5330f5}{child\_link\_name}} = \textcolor{stringliteral}{"{}ee\_link"{}};}
+\DoxyCodeLine{238     j.\mbox{\hyperlink{classtesseract__scene__graph_1_1Joint_a94b4442bad0bb1e6f3f9e78bff4eecd3}{parent\_to\_joint\_origin\_transform}}.translation() = Eigen::Vector3d(0, params.\mbox{\hyperlink{structtesseract__kinematics_1_1URParameters_a9798e89afc2f48b89aecb5e3c2f496b8}{d6}}, 0);}
+\DoxyCodeLine{239     j.\mbox{\hyperlink{classtesseract__scene__graph_1_1Joint_a94b4442bad0bb1e6f3f9e78bff4eecd3}{parent\_to\_joint\_origin\_transform}} =}
+\DoxyCodeLine{240         j.\mbox{\hyperlink{classtesseract__scene__graph_1_1Joint_a94b4442bad0bb1e6f3f9e78bff4eecd3}{parent\_to\_joint\_origin\_transform}} * Eigen::AngleAxisd(M\_PI\_2, Eigen::Vector3d::UnitZ());}
+\DoxyCodeLine{241     sg-\/>addJoint(j);}
+\DoxyCodeLine{242   \}}
+\DoxyCodeLine{243 }
+\DoxyCodeLine{244   \{}
+\DoxyCodeLine{245     \mbox{\hyperlink{classtesseract__scene__graph_1_1Joint}{Joint}} j(\textcolor{stringliteral}{"{}wrist\_3\_link-\/tool0\_fixed\_joint"{}});}
+\DoxyCodeLine{246     j.\mbox{\hyperlink{classtesseract__scene__graph_1_1Joint_a1318902e89f9397b84cfaecdc007348c}{type}} = JointType::FIXED;}
+\DoxyCodeLine{247     j.\mbox{\hyperlink{classtesseract__scene__graph_1_1Joint_acddba7745bf86f4f93099afef9a3b1fe}{parent\_link\_name}} = \textcolor{stringliteral}{"{}wrist\_3\_link"{}};}
+\DoxyCodeLine{248     j.\mbox{\hyperlink{classtesseract__scene__graph_1_1Joint_ad1771eb5526df8fee32ad65f0b5330f5}{child\_link\_name}} = \textcolor{stringliteral}{"{}tool0"{}};}
+\DoxyCodeLine{249     j.\mbox{\hyperlink{classtesseract__scene__graph_1_1Joint_a94b4442bad0bb1e6f3f9e78bff4eecd3}{parent\_to\_joint\_origin\_transform}}.translation() = Eigen::Vector3d(0, params.\mbox{\hyperlink{structtesseract__kinematics_1_1URParameters_a9798e89afc2f48b89aecb5e3c2f496b8}{d6}}, 0);}
+\DoxyCodeLine{250     j.\mbox{\hyperlink{classtesseract__scene__graph_1_1Joint_a94b4442bad0bb1e6f3f9e78bff4eecd3}{parent\_to\_joint\_origin\_transform}} =}
+\DoxyCodeLine{251         j.\mbox{\hyperlink{classtesseract__scene__graph_1_1Joint_a94b4442bad0bb1e6f3f9e78bff4eecd3}{parent\_to\_joint\_origin\_transform}} * Eigen::AngleAxisd(-\/M\_PI\_2, Eigen::Vector3d::UnitX());}
+\DoxyCodeLine{252     sg-\/>addJoint(j);}
+\DoxyCodeLine{253   \}}
+\DoxyCodeLine{254 }
+\DoxyCodeLine{255   \textcolor{keywordflow}{return} sg;}
+\DoxyCodeLine{256 \}}
+\DoxyCodeLine{257 }
+\DoxyCodeLine{258 \textcolor{keyword}{inline} \mbox{\hyperlink{structtesseract__common_1_1KinematicLimits}{tesseract\_common::KinematicLimits}} \mbox{\hyperlink{namespacetesseract__kinematics_1_1test__suite_a9ad0cc4390e9818177c5fcd320740344}{getTargetLimits}}(\textcolor{keyword}{const} \mbox{\hyperlink{classtesseract__scene__graph_1_1SceneGraph}{tesseract\_scene\_graph::SceneGraph}}\& scene\_graph,}
+\DoxyCodeLine{259                                                          \textcolor{keyword}{const} std::vector<std::string>\& joint\_names)}
+\DoxyCodeLine{260 \{}
+\DoxyCodeLine{261   \textcolor{keyword}{auto} s = \textcolor{keyword}{static\_cast<}Eigen::Index\textcolor{keyword}{>}(joint\_names.size());}
+\DoxyCodeLine{262 }
+\DoxyCodeLine{263   \mbox{\hyperlink{structtesseract__common_1_1KinematicLimits}{tesseract\_common::KinematicLimits}} limits;}
+\DoxyCodeLine{264   limits.\mbox{\hyperlink{structtesseract__common_1_1KinematicLimits_abd68f4faaf100411e8a067f02e0a6e66}{resize}}(s);}
+\DoxyCodeLine{265 }
+\DoxyCodeLine{266   \textcolor{keywordflow}{for} (Eigen::Index i = 0; i < s; ++i)}
+\DoxyCodeLine{267   \{}
+\DoxyCodeLine{268     \textcolor{keyword}{auto} joint = scene\_graph.\mbox{\hyperlink{classtesseract__scene__graph_1_1SceneGraph_af3be6723e8f465c3f11b0ef86624d015}{getJoint}}(joint\_names[\textcolor{keyword}{static\_cast<}std::size\_t\textcolor{keyword}{>}(i)]);}
+\DoxyCodeLine{269     limits.\mbox{\hyperlink{structtesseract__common_1_1KinematicLimits_a04641308fcc1e182fca0d85d80d25c68}{joint\_limits}}(i, 0) = joint-\/>limits-\/>lower;}
+\DoxyCodeLine{270     limits.\mbox{\hyperlink{structtesseract__common_1_1KinematicLimits_a04641308fcc1e182fca0d85d80d25c68}{joint\_limits}}(i, 1) = joint-\/>limits-\/>upper;}
+\DoxyCodeLine{271     limits.\mbox{\hyperlink{structtesseract__common_1_1KinematicLimits_aef6ca9124185f5b366bccbbba3242d6e}{velocity\_limits}}(i) = joint-\/>limits-\/>velocity;}
+\DoxyCodeLine{272     limits.\mbox{\hyperlink{structtesseract__common_1_1KinematicLimits_a609b65f616f248719082654c9a8a51c6}{acceleration\_limits}}(i) = joint-\/>limits-\/>acceleration;}
+\DoxyCodeLine{273   \}}
+\DoxyCodeLine{274 }
+\DoxyCodeLine{275   \textcolor{keywordflow}{return} limits;}
+\DoxyCodeLine{276 \}}
+\DoxyCodeLine{277 }
+\DoxyCodeLine{288 \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \mbox{\hyperlink{namespacetesseract__kinematics_1_1test__suite_a74590ea1a69437948e3ac53c7979006f}{runJacobianTest}}(\mbox{\hyperlink{classtesseract__kinematics_1_1ForwardKinematics}{tesseract\_kinematics::ForwardKinematics}}\& kin,}
+\DoxyCodeLine{289                             \textcolor{keyword}{const} Eigen::VectorXd\& jvals,}
+\DoxyCodeLine{290                             \textcolor{keyword}{const} std::string\& link\_name,}
+\DoxyCodeLine{291                             \textcolor{keyword}{const} Eigen::Vector3d\& link\_point,}
+\DoxyCodeLine{292                             \textcolor{keyword}{const} Eigen::Isometry3d\& change\_base)}
+\DoxyCodeLine{293 \{}
+\DoxyCodeLine{294   Eigen::MatrixXd jacobian, numerical\_jacobian;}
+\DoxyCodeLine{295   \mbox{\hyperlink{namespacetesseract__common_a67bde3cb7bb235f0f61c370ef8bc74d8}{tesseract\_common::TransformMap}} poses;}
+\DoxyCodeLine{296 }
+\DoxyCodeLine{297   jacobian.resize(6, kin.\mbox{\hyperlink{classtesseract__kinematics_1_1ForwardKinematics_afcdf8be4f70df99050080c7c0a5ca379}{numJoints}}());}
+\DoxyCodeLine{298 }
+\DoxyCodeLine{299   poses = kin.\mbox{\hyperlink{classtesseract__kinematics_1_1ForwardKinematics_a81f281915dbb7a3528f1ac2328b15c3c}{calcFwdKin}}(jvals);}
+\DoxyCodeLine{300   jacobian = kin.\mbox{\hyperlink{classtesseract__kinematics_1_1ForwardKinematics_a4b70df584a97c3504ea7326eecc2804f}{calcJacobian}}(jvals, link\_name);}
+\DoxyCodeLine{301   \mbox{\hyperlink{namespacetesseract__common_a9b00920e39050a4b9df5e3100aac7e55}{tesseract\_common::jacobianChangeBase}}(jacobian, change\_base);}
+\DoxyCodeLine{302   \mbox{\hyperlink{namespacetesseract__common_a5043afd3f3dbdd6655d543e09a7c9ea4}{tesseract\_common::jacobianChangeRefPoint}}(jacobian, (change\_base * poses[link\_name]).linear() * link\_point);}
+\DoxyCodeLine{303 }
+\DoxyCodeLine{304   numerical\_jacobian.resize(6, kin.\mbox{\hyperlink{classtesseract__kinematics_1_1ForwardKinematics_afcdf8be4f70df99050080c7c0a5ca379}{numJoints}}());}
+\DoxyCodeLine{305   \mbox{\hyperlink{namespacetesseract__kinematics_a43f562948ca86e1cd531b12a92191334}{tesseract\_kinematics::numericalJacobian}}(numerical\_jacobian, change\_base, kin, jvals, link\_name, link\_point);}
+\DoxyCodeLine{306 }
+\DoxyCodeLine{307   \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < 6; ++i)}
+\DoxyCodeLine{308     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} j = 0; j < static\_cast<int>(kin.\mbox{\hyperlink{classtesseract__kinematics_1_1ForwardKinematics_afcdf8be4f70df99050080c7c0a5ca379}{numJoints}}()); ++j)}
+\DoxyCodeLine{309       EXPECT\_NEAR(numerical\_jacobian(i, j), jacobian(i, j), 1e-\/3);}
+\DoxyCodeLine{310 \}}
+\DoxyCodeLine{311 }
+\DoxyCodeLine{321 \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \mbox{\hyperlink{namespacetesseract__kinematics_1_1test__suite_a74590ea1a69437948e3ac53c7979006f}{runJacobianTest}}(\mbox{\hyperlink{classtesseract__kinematics_1_1KinematicGroup}{tesseract\_kinematics::KinematicGroup}}\& kin\_group,}
+\DoxyCodeLine{322                             \textcolor{keyword}{const} Eigen::VectorXd\& jvals,}
+\DoxyCodeLine{323                             \textcolor{keyword}{const} std::string\& link\_name,}
+\DoxyCodeLine{324                             \textcolor{keyword}{const} Eigen::Vector3d\& link\_point)}
+\DoxyCodeLine{325 \{}
+\DoxyCodeLine{326   Eigen::MatrixXd jacobian, numerical\_jacobian;}
+\DoxyCodeLine{327   jacobian.resize(6, kin\_group.\mbox{\hyperlink{classtesseract__kinematics_1_1JointGroup_a0940b0d49eb8e14b6c8290c832d01a4c}{numJoints}}());}
+\DoxyCodeLine{328 }
+\DoxyCodeLine{329   \mbox{\hyperlink{namespacetesseract__common_a67bde3cb7bb235f0f61c370ef8bc74d8}{tesseract\_common::TransformMap}} poses = kin\_group.\mbox{\hyperlink{classtesseract__kinematics_1_1JointGroup_a3579bdbb9feec4ab90101c6c5a729fa2}{calcFwdKin}}(jvals);}
+\DoxyCodeLine{330   \{  \textcolor{comment}{// Test with all information}}
+\DoxyCodeLine{331     jacobian = kin\_group.\mbox{\hyperlink{classtesseract__kinematics_1_1JointGroup_ab92e8a1a44d1e883202208d30ce7ebe5}{calcJacobian}}(jvals, link\_name, link\_point);}
+\DoxyCodeLine{332 }
+\DoxyCodeLine{333     numerical\_jacobian.resize(6, kin\_group.\mbox{\hyperlink{classtesseract__kinematics_1_1JointGroup_a0940b0d49eb8e14b6c8290c832d01a4c}{numJoints}}());}
+\DoxyCodeLine{334     \mbox{\hyperlink{namespacetesseract__kinematics_a43f562948ca86e1cd531b12a92191334}{tesseract\_kinematics::numericalJacobian}}(numerical\_jacobian, kin\_group, jvals, link\_name, link\_point);}
+\DoxyCodeLine{335 }
+\DoxyCodeLine{336     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < 6; ++i)}
+\DoxyCodeLine{337     \{}
+\DoxyCodeLine{338       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} j = 0; j < static\_cast<int>(kin\_group.\mbox{\hyperlink{classtesseract__kinematics_1_1JointGroup_a0940b0d49eb8e14b6c8290c832d01a4c}{numJoints}}()); ++j)}
+\DoxyCodeLine{339       \{}
+\DoxyCodeLine{340         EXPECT\_NEAR(numerical\_jacobian(i, j), jacobian(i, j), 1e-\/3);}
+\DoxyCodeLine{341       \}}
+\DoxyCodeLine{342     \}}
+\DoxyCodeLine{343   \}}
+\DoxyCodeLine{344 }
+\DoxyCodeLine{345   \{  \textcolor{comment}{// Test don't use link\_point}}
+\DoxyCodeLine{346     jacobian = kin\_group.\mbox{\hyperlink{classtesseract__kinematics_1_1JointGroup_ab92e8a1a44d1e883202208d30ce7ebe5}{calcJacobian}}(jvals, link\_name);}
+\DoxyCodeLine{347 }
+\DoxyCodeLine{348     numerical\_jacobian.resize(6, kin\_group.\mbox{\hyperlink{classtesseract__kinematics_1_1JointGroup_a0940b0d49eb8e14b6c8290c832d01a4c}{numJoints}}());}
+\DoxyCodeLine{349     \mbox{\hyperlink{namespacetesseract__kinematics_a43f562948ca86e1cd531b12a92191334}{tesseract\_kinematics::numericalJacobian}}(numerical\_jacobian, kin\_group, jvals, link\_name, Eigen::Vector3d::Zero());}
+\DoxyCodeLine{350 }
+\DoxyCodeLine{351     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < 6; ++i)}
+\DoxyCodeLine{352     \{}
+\DoxyCodeLine{353       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} j = 0; j < static\_cast<int>(kin\_group.\mbox{\hyperlink{classtesseract__kinematics_1_1JointGroup_a0940b0d49eb8e14b6c8290c832d01a4c}{numJoints}}()); ++j)}
+\DoxyCodeLine{354       \{}
+\DoxyCodeLine{355         EXPECT\_NEAR(numerical\_jacobian(i, j), jacobian(i, j), 1e-\/3);}
+\DoxyCodeLine{356       \}}
+\DoxyCodeLine{357     \}}
+\DoxyCodeLine{358   \}}
+\DoxyCodeLine{359 \}}
+\DoxyCodeLine{360 }
+\DoxyCodeLine{366 \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \mbox{\hyperlink{namespacetesseract__kinematics_1_1test__suite_a7fda0bc187fee5ea0e8e251e9a776922}{runKinJointLimitsTest}}(\textcolor{keyword}{const} \mbox{\hyperlink{structtesseract__common_1_1KinematicLimits}{tesseract\_common::KinematicLimits}}\& limits,}
+\DoxyCodeLine{367                                   \textcolor{keyword}{const} \mbox{\hyperlink{structtesseract__common_1_1KinematicLimits}{tesseract\_common::KinematicLimits}}\& target\_limits)}
+\DoxyCodeLine{368 \{}
+\DoxyCodeLine{370   \textcolor{comment}{// Test forward kinematics joint limits}}
+\DoxyCodeLine{372 \textcolor{comment}{}  EXPECT\_EQ(limits.\mbox{\hyperlink{structtesseract__common_1_1KinematicLimits_a04641308fcc1e182fca0d85d80d25c68}{joint\_limits}}.rows(), target\_limits.\mbox{\hyperlink{structtesseract__common_1_1KinematicLimits_a04641308fcc1e182fca0d85d80d25c68}{joint\_limits}}.rows());}
+\DoxyCodeLine{373   EXPECT\_EQ(limits.\mbox{\hyperlink{structtesseract__common_1_1KinematicLimits_aef6ca9124185f5b366bccbbba3242d6e}{velocity\_limits}}.rows(), target\_limits.\mbox{\hyperlink{structtesseract__common_1_1KinematicLimits_aef6ca9124185f5b366bccbbba3242d6e}{velocity\_limits}}.rows());}
+\DoxyCodeLine{374   EXPECT\_EQ(limits.\mbox{\hyperlink{structtesseract__common_1_1KinematicLimits_a609b65f616f248719082654c9a8a51c6}{acceleration\_limits}}.rows(), target\_limits.\mbox{\hyperlink{structtesseract__common_1_1KinematicLimits_a609b65f616f248719082654c9a8a51c6}{acceleration\_limits}}.rows());}
+\DoxyCodeLine{375 }
+\DoxyCodeLine{376   \textcolor{comment}{// Check limits}}
+\DoxyCodeLine{377   \textcolor{keywordflow}{for} (Eigen::Index i = 0; i < limits.\mbox{\hyperlink{structtesseract__common_1_1KinematicLimits_a04641308fcc1e182fca0d85d80d25c68}{joint\_limits}}.rows(); ++i)}
+\DoxyCodeLine{378   \{}
+\DoxyCodeLine{379     EXPECT\_NEAR(limits.\mbox{\hyperlink{structtesseract__common_1_1KinematicLimits_a04641308fcc1e182fca0d85d80d25c68}{joint\_limits}}(i, 0), target\_limits.\mbox{\hyperlink{structtesseract__common_1_1KinematicLimits_a04641308fcc1e182fca0d85d80d25c68}{joint\_limits}}(i, 0), 1e-\/6);}
+\DoxyCodeLine{380     EXPECT\_NEAR(limits.\mbox{\hyperlink{structtesseract__common_1_1KinematicLimits_a04641308fcc1e182fca0d85d80d25c68}{joint\_limits}}(i, 1), target\_limits.\mbox{\hyperlink{structtesseract__common_1_1KinematicLimits_a04641308fcc1e182fca0d85d80d25c68}{joint\_limits}}(i, 1), 1e-\/6);}
+\DoxyCodeLine{381     EXPECT\_NEAR(limits.\mbox{\hyperlink{structtesseract__common_1_1KinematicLimits_aef6ca9124185f5b366bccbbba3242d6e}{velocity\_limits}}(i), target\_limits.\mbox{\hyperlink{structtesseract__common_1_1KinematicLimits_aef6ca9124185f5b366bccbbba3242d6e}{velocity\_limits}}(i), 1e-\/6);}
+\DoxyCodeLine{382     EXPECT\_NEAR(limits.\mbox{\hyperlink{structtesseract__common_1_1KinematicLimits_a609b65f616f248719082654c9a8a51c6}{acceleration\_limits}}(i), target\_limits.\mbox{\hyperlink{structtesseract__common_1_1KinematicLimits_a609b65f616f248719082654c9a8a51c6}{acceleration\_limits}}(i), 1e-\/6);}
+\DoxyCodeLine{383   \}}
+\DoxyCodeLine{384 \}}
+\DoxyCodeLine{385 }
+\DoxyCodeLine{390 \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \mbox{\hyperlink{namespacetesseract__kinematics_1_1test__suite_a46a7b72b224c483bbb43eb34f47eaa09}{runKinSetJointLimitsTest}}(\mbox{\hyperlink{classtesseract__kinematics_1_1KinematicGroup}{tesseract\_kinematics::KinematicGroup}}\& kin\_group)}
+\DoxyCodeLine{391 \{}
+\DoxyCodeLine{393   \textcolor{comment}{// Test setting kinematic group joint limits}}
+\DoxyCodeLine{395 \textcolor{comment}{}  \mbox{\hyperlink{structtesseract__common_1_1KinematicLimits}{tesseract\_common::KinematicLimits}} limits = kin\_group.\mbox{\hyperlink{classtesseract__kinematics_1_1JointGroup_a0b1953e052c51df41bcf5beab0f59c17}{getLimits}}();}
+\DoxyCodeLine{396   EXPECT\_TRUE(limits.\mbox{\hyperlink{structtesseract__common_1_1KinematicLimits_a04641308fcc1e182fca0d85d80d25c68}{joint\_limits}}.rows() > 0);}
+\DoxyCodeLine{397   EXPECT\_TRUE(limits.\mbox{\hyperlink{structtesseract__common_1_1KinematicLimits_aef6ca9124185f5b366bccbbba3242d6e}{velocity\_limits}}.rows() > 0);}
+\DoxyCodeLine{398   EXPECT\_TRUE(limits.\mbox{\hyperlink{structtesseract__common_1_1KinematicLimits_a609b65f616f248719082654c9a8a51c6}{acceleration\_limits}}.rows() > 0);}
+\DoxyCodeLine{399 }
+\DoxyCodeLine{400   \textcolor{comment}{// Check limits}}
+\DoxyCodeLine{401   \textcolor{keywordflow}{for} (Eigen::Index i = 0; i < limits.\mbox{\hyperlink{structtesseract__common_1_1KinematicLimits_a04641308fcc1e182fca0d85d80d25c68}{joint\_limits}}.rows(); ++i)}
+\DoxyCodeLine{402   \{}
+\DoxyCodeLine{403     limits.\mbox{\hyperlink{structtesseract__common_1_1KinematicLimits_a04641308fcc1e182fca0d85d80d25c68}{joint\_limits}}(i, 0) = -\/5.0 -\/ double(i);}
+\DoxyCodeLine{404     limits.\mbox{\hyperlink{structtesseract__common_1_1KinematicLimits_a04641308fcc1e182fca0d85d80d25c68}{joint\_limits}}(i, 1) = 5.0 + double(i);}
+\DoxyCodeLine{405     limits.\mbox{\hyperlink{structtesseract__common_1_1KinematicLimits_aef6ca9124185f5b366bccbbba3242d6e}{velocity\_limits}}(i) = 10.0 + double(i);}
+\DoxyCodeLine{406     limits.\mbox{\hyperlink{structtesseract__common_1_1KinematicLimits_a609b65f616f248719082654c9a8a51c6}{acceleration\_limits}}(i) = 5.0 + double(i);}
+\DoxyCodeLine{407   \}}
+\DoxyCodeLine{408 }
+\DoxyCodeLine{409   kin\_group.\mbox{\hyperlink{classtesseract__kinematics_1_1JointGroup_a8f610b2f60436e5c6c58d22b7da4aa89}{setLimits}}(limits);}
+\DoxyCodeLine{410   \mbox{\hyperlink{namespacetesseract__kinematics_1_1test__suite_a7fda0bc187fee5ea0e8e251e9a776922}{runKinJointLimitsTest}}(kin\_group.\mbox{\hyperlink{classtesseract__kinematics_1_1JointGroup_a0b1953e052c51df41bcf5beab0f59c17}{getLimits}}(), limits);}
+\DoxyCodeLine{411 }
+\DoxyCodeLine{412   \textcolor{comment}{// Test failure}}
+\DoxyCodeLine{413   \mbox{\hyperlink{structtesseract__common_1_1KinematicLimits}{tesseract\_common::KinematicLimits}} limits\_empty;}
+\DoxyCodeLine{414   EXPECT\_ANY\_THROW(kin\_group.\mbox{\hyperlink{classtesseract__kinematics_1_1JointGroup_a8f610b2f60436e5c6c58d22b7da4aa89}{setLimits}}(limits\_empty));  \textcolor{comment}{// NOLINT}}
+\DoxyCodeLine{415 \}}
+\DoxyCodeLine{416 }
+\DoxyCodeLine{422 \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \mbox{\hyperlink{namespacetesseract__kinematics_1_1test__suite_a143c590cd9b8ba73b52c46f5f775a318}{runStringVectorEqualTest}}(\textcolor{keyword}{const} std::vector<std::string>\& names,}
+\DoxyCodeLine{423                                      \textcolor{keyword}{const} std::vector<std::string>\& target\_names)}
+\DoxyCodeLine{424 \{}
+\DoxyCodeLine{425   EXPECT\_EQ(names.size(), target\_names.size());}
+\DoxyCodeLine{426   EXPECT\_FALSE(names.empty());}
+\DoxyCodeLine{427   EXPECT\_FALSE(target\_names.empty());}
+\DoxyCodeLine{428 }
+\DoxyCodeLine{429   std::vector<std::string> v1 = names;}
+\DoxyCodeLine{430   std::vector<std::string> v2 = target\_names;}
+\DoxyCodeLine{431   std::sort(v1.begin(), v1.end());}
+\DoxyCodeLine{432   std::sort(v2.begin(), v2.end());}
+\DoxyCodeLine{433   EXPECT\_TRUE(std::equal(v1.begin(), v1.end(), v2.begin()));}
+\DoxyCodeLine{434   \textcolor{comment}{//  EXPECT\_TRUE(tesseract\_common::isIdentical(names, target\_names, false));}}
+\DoxyCodeLine{435 \}}
+\DoxyCodeLine{436 }
+\DoxyCodeLine{444 \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \mbox{\hyperlink{namespacetesseract__kinematics_1_1test__suite_a483b6dc73708396dd47902969d18459f}{runInvKinTest}}(\textcolor{keyword}{const} \mbox{\hyperlink{classtesseract__kinematics_1_1InverseKinematics}{tesseract\_kinematics::InverseKinematics}}\& inv\_kin,}
+\DoxyCodeLine{445                           \textcolor{keyword}{const} \mbox{\hyperlink{classtesseract__kinematics_1_1ForwardKinematics}{tesseract\_kinematics::ForwardKinematics}}\& fwd\_kin,}
+\DoxyCodeLine{446                           \textcolor{keyword}{const} Eigen::Isometry3d\& target\_pose,}
+\DoxyCodeLine{447                           \textcolor{keyword}{const} std::string\& tip\_link\_name,}
+\DoxyCodeLine{448                           \textcolor{keyword}{const} Eigen::VectorXd\& seed)}
+\DoxyCodeLine{449 \{}
+\DoxyCodeLine{451   \textcolor{comment}{// Test Inverse kinematics}}
+\DoxyCodeLine{453 \textcolor{comment}{}  EXPECT\_TRUE(inv\_kin.\mbox{\hyperlink{classtesseract__kinematics_1_1InverseKinematics_a7244c7ab6dabc5c1138ba644dec9451e}{getBaseLinkName}}() == fwd\_kin.\mbox{\hyperlink{classtesseract__kinematics_1_1ForwardKinematics_ab02a688b0b0034b62a68da5103d6cb3b}{getBaseLinkName}}());  \textcolor{comment}{// This only works if they are equal}}
+\DoxyCodeLine{454   \mbox{\hyperlink{namespacetesseract__common_a67bde3cb7bb235f0f61c370ef8bc74d8}{tesseract\_common::TransformMap}} input\{ std::make\_pair(tip\_link\_name, target\_pose) \};}
+\DoxyCodeLine{455   \mbox{\hyperlink{namespacetesseract__kinematics_af12a01d2264e3371dc9bc7db2a7b59ac}{IKSolutions}} solutions = inv\_kin.\mbox{\hyperlink{classtesseract__kinematics_1_1InverseKinematics_a5a87558ac28c659e6e4cdbfaa4385093}{calcInvKin}}(input, seed);}
+\DoxyCodeLine{456   EXPECT\_TRUE(!solutions.empty());}
+\DoxyCodeLine{457 }
+\DoxyCodeLine{458   \textcolor{keywordflow}{for} (\textcolor{keyword}{const} \textcolor{keyword}{auto}\& sol : solutions)}
+\DoxyCodeLine{459   \{}
+\DoxyCodeLine{460     \mbox{\hyperlink{namespacetesseract__common_a67bde3cb7bb235f0f61c370ef8bc74d8}{tesseract\_common::TransformMap}} result\_poses = fwd\_kin.\mbox{\hyperlink{classtesseract__kinematics_1_1ForwardKinematics_a81f281915dbb7a3528f1ac2328b15c3c}{calcFwdKin}}(sol);}
+\DoxyCodeLine{461     Eigen::Isometry3d result = result\_poses[tip\_link\_name];}
+\DoxyCodeLine{462     EXPECT\_TRUE(target\_pose.translation().isApprox(result.translation(), 1e-\/4));}
+\DoxyCodeLine{463 }
+\DoxyCodeLine{464     Eigen::Quaterniond rot\_pose(target\_pose.rotation());}
+\DoxyCodeLine{465     Eigen::Quaterniond rot\_result(result.rotation());}
+\DoxyCodeLine{466     EXPECT\_TRUE(rot\_pose.isApprox(rot\_result, 1e-\/3));}
+\DoxyCodeLine{467   \}}
+\DoxyCodeLine{468 \}}
+\DoxyCodeLine{469 }
+\DoxyCodeLine{476 \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \mbox{\hyperlink{namespacetesseract__kinematics_1_1test__suite_a483b6dc73708396dd47902969d18459f}{runInvKinTest}}(\textcolor{keyword}{const} \mbox{\hyperlink{classtesseract__kinematics_1_1KinematicGroup}{tesseract\_kinematics::KinematicGroup}}\& kin\_group,}
+\DoxyCodeLine{477                           \textcolor{keyword}{const} Eigen::Isometry3d\& target\_pose,}
+\DoxyCodeLine{478                           \textcolor{keyword}{const} std::string\& working\_frame,}
+\DoxyCodeLine{479                           \textcolor{keyword}{const} std::string\& tip\_link\_name,}
+\DoxyCodeLine{480                           \textcolor{keyword}{const} Eigen::VectorXd\& seed)}
+\DoxyCodeLine{481 \{}
+\DoxyCodeLine{483   \textcolor{comment}{// Test Inverse kinematics}}
+\DoxyCodeLine{485 \textcolor{comment}{}  \mbox{\hyperlink{namespacetesseract__kinematics_ae5941af5d420d5b756e9d3d1fcaa1c5d}{KinGroupIKInputs}} inputs\{ \mbox{\hyperlink{structtesseract__kinematics_1_1KinGroupIKInput}{KinGroupIKInput}}(target\_pose, working\_frame, tip\_link\_name) \};}
+\DoxyCodeLine{486   \mbox{\hyperlink{namespacetesseract__kinematics_af12a01d2264e3371dc9bc7db2a7b59ac}{IKSolutions}} solutions = kin\_group.\mbox{\hyperlink{classtesseract__kinematics_1_1KinematicGroup_a7c036ae50a4ade99162fccd6c5a23b4f}{calcInvKin}}(inputs, seed);}
+\DoxyCodeLine{487   EXPECT\_TRUE(!solutions.empty());}
+\DoxyCodeLine{488 }
+\DoxyCodeLine{489   \textcolor{keywordflow}{for} (\textcolor{keyword}{const} \textcolor{keyword}{auto}\& sol : solutions)}
+\DoxyCodeLine{490   \{}
+\DoxyCodeLine{491     \mbox{\hyperlink{namespacetesseract__common_a67bde3cb7bb235f0f61c370ef8bc74d8}{tesseract\_common::TransformMap}} result\_poses = kin\_group.\mbox{\hyperlink{classtesseract__kinematics_1_1JointGroup_a3579bdbb9feec4ab90101c6c5a729fa2}{calcFwdKin}}(sol);}
+\DoxyCodeLine{492     Eigen::Isometry3d result = result\_poses.at(working\_frame).inverse() * result\_poses[tip\_link\_name];}
+\DoxyCodeLine{493     EXPECT\_TRUE(target\_pose.translation().isApprox(result.translation(), 1e-\/4));}
+\DoxyCodeLine{494 }
+\DoxyCodeLine{495     Eigen::Quaterniond rot\_pose(target\_pose.rotation());}
+\DoxyCodeLine{496     Eigen::Quaterniond rot\_result(result.rotation());}
+\DoxyCodeLine{497     EXPECT\_TRUE(rot\_pose.isApprox(rot\_result, 1e-\/3));}
+\DoxyCodeLine{498   \}}
+\DoxyCodeLine{499 }
+\DoxyCodeLine{500   EXPECT\_TRUE(\mbox{\hyperlink{namespacetesseract__kinematics_ad7331d401c8c7f0780dcd728e77b64d9}{checkKinematics}}(kin\_group));}
+\DoxyCodeLine{501 \}}
+\DoxyCodeLine{502 }
+\DoxyCodeLine{503 \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \mbox{\hyperlink{namespacetesseract__kinematics_1_1test__suite_a90c75a53e78426f6e513470bfbd9afb1}{runFwdKinIIWATest}}(\mbox{\hyperlink{classtesseract__kinematics_1_1ForwardKinematics}{tesseract\_kinematics::ForwardKinematics}}\& kin)}
+\DoxyCodeLine{504 \{}
+\DoxyCodeLine{506   \textcolor{comment}{// Test forward kinematics when tip link is the base of the chain}}
+\DoxyCodeLine{508 \textcolor{comment}{}}
+\DoxyCodeLine{509   Eigen::VectorXd jvals;}
+\DoxyCodeLine{510   jvals.resize(7);}
+\DoxyCodeLine{511   jvals.setZero();}
+\DoxyCodeLine{512 }
+\DoxyCodeLine{513   \mbox{\hyperlink{namespacetesseract__common_a67bde3cb7bb235f0f61c370ef8bc74d8}{tesseract\_common::TransformMap}} poses = kin.\mbox{\hyperlink{classtesseract__kinematics_1_1ForwardKinematics_a81f281915dbb7a3528f1ac2328b15c3c}{calcFwdKin}}(jvals);}
+\DoxyCodeLine{514 }
+\DoxyCodeLine{515   EXPECT\_EQ(poses.size(), 1);}
+\DoxyCodeLine{516   Eigen::Isometry3d pose = poses.at(\textcolor{stringliteral}{"{}tool0"{}});}
+\DoxyCodeLine{517   Eigen::Isometry3d result;}
+\DoxyCodeLine{518   result.setIdentity();}
+\DoxyCodeLine{519   result.translation()[0] = 0;}
+\DoxyCodeLine{520   result.translation()[1] = 0;}
+\DoxyCodeLine{521   result.translation()[2] = 1.306;}
+\DoxyCodeLine{522   EXPECT\_TRUE(pose.isApprox(result));}
+\DoxyCodeLine{523 \}}
+\DoxyCodeLine{524 }
+\DoxyCodeLine{525 \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \mbox{\hyperlink{namespacetesseract__kinematics_1_1test__suite_a7e071ebe013f2904b08806ca8ed0b1a5}{runJacobianIIWATest}}(\mbox{\hyperlink{classtesseract__kinematics_1_1ForwardKinematics}{tesseract\_kinematics::ForwardKinematics}}\& kin, \textcolor{keywordtype}{bool} is\_kin\_tree = \textcolor{keyword}{false})}
+\DoxyCodeLine{526 \{}
+\DoxyCodeLine{527   \mbox{\hyperlink{VHACD_8cpp_a86d500a34c624c2cae56bc25a31b12f3}{UNUSED}}(is\_kin\_tree);}
+\DoxyCodeLine{528   std::string tip\_link = \textcolor{stringliteral}{"{}tool0"{}};}
+\DoxyCodeLine{529   std::string base\_link = \textcolor{stringliteral}{"{}base\_link"{}};}
+\DoxyCodeLine{530 }
+\DoxyCodeLine{532   \textcolor{comment}{// Test forward kinematics when tip link is the base of the chain}}
+\DoxyCodeLine{534 \textcolor{comment}{}  Eigen::VectorXd jvals;}
+\DoxyCodeLine{535   jvals.resize(7);}
+\DoxyCodeLine{536 }
+\DoxyCodeLine{537   jvals(0) = -\/0.785398;}
+\DoxyCodeLine{538   jvals(1) = 0.785398;}
+\DoxyCodeLine{539   jvals(2) = -\/0.785398;}
+\DoxyCodeLine{540   jvals(3) = 0.785398;}
+\DoxyCodeLine{541   jvals(4) = -\/0.785398;}
+\DoxyCodeLine{542   jvals(5) = 0.785398;}
+\DoxyCodeLine{543   jvals(6) = -\/0.785398;}
+\DoxyCodeLine{544 }
+\DoxyCodeLine{546   \textcolor{comment}{// Test Jacobian}}
+\DoxyCodeLine{548 \textcolor{comment}{}  Eigen::Vector3d link\_point(0, 0, 0);}
+\DoxyCodeLine{549   \mbox{\hyperlink{namespacetesseract__kinematics_1_1test__suite_a74590ea1a69437948e3ac53c7979006f}{runJacobianTest}}(kin, jvals, tip\_link, link\_point, Eigen::Isometry3d::Identity());}
+\DoxyCodeLine{550 }
+\DoxyCodeLine{551   EXPECT\_ANY\_THROW(\mbox{\hyperlink{namespacetesseract__kinematics_1_1test__suite_a74590ea1a69437948e3ac53c7979006f}{runJacobianTest}}(kin, jvals, \textcolor{stringliteral}{"{}"{}}, link\_point, Eigen::Isometry3d::Identity()));  \textcolor{comment}{// NOLINT}}
+\DoxyCodeLine{552 }
+\DoxyCodeLine{554   \textcolor{comment}{// Test Jacobian at Point}}
+\DoxyCodeLine{556 \textcolor{comment}{}  \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} k = 0; k < 3; ++k)}
+\DoxyCodeLine{557   \{}
+\DoxyCodeLine{558     Eigen::Vector3d link\_point(0, 0, 0);}
+\DoxyCodeLine{559     link\_point[k] = 1;}
+\DoxyCodeLine{560 }
+\DoxyCodeLine{561     \mbox{\hyperlink{namespacetesseract__kinematics_1_1test__suite_a74590ea1a69437948e3ac53c7979006f}{runJacobianTest}}(kin, jvals, tip\_link, link\_point, Eigen::Isometry3d::Identity());}
+\DoxyCodeLine{562 }
+\DoxyCodeLine{563     EXPECT\_ANY\_THROW(\mbox{\hyperlink{namespacetesseract__kinematics_1_1test__suite_a74590ea1a69437948e3ac53c7979006f}{runJacobianTest}}(kin, jvals, \textcolor{stringliteral}{"{}"{}}, link\_point, Eigen::Isometry3d::Identity()));  \textcolor{comment}{// NOLINT}}
+\DoxyCodeLine{564   \}}
+\DoxyCodeLine{565 }
+\DoxyCodeLine{567   \textcolor{comment}{// Test Jacobian with change base}}
+\DoxyCodeLine{569 \textcolor{comment}{}  \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} k = 0; k < 3; ++k)}
+\DoxyCodeLine{570   \{}
+\DoxyCodeLine{571     link\_point = Eigen::Vector3d(0, 0, 0);}
+\DoxyCodeLine{572     Eigen::Isometry3d change\_base;}
+\DoxyCodeLine{573     change\_base.setIdentity();}
+\DoxyCodeLine{574     change\_base(0, 0) = 0;}
+\DoxyCodeLine{575     change\_base(1, 0) = 1;}
+\DoxyCodeLine{576     change\_base(0, 1) = -\/1;}
+\DoxyCodeLine{577     change\_base(1, 1) = 0;}
+\DoxyCodeLine{578     change\_base.translation() = Eigen::Vector3d(0, 0, 0);}
+\DoxyCodeLine{579     change\_base.translation()[k] = 1;}
+\DoxyCodeLine{580 }
+\DoxyCodeLine{581     \mbox{\hyperlink{namespacetesseract__kinematics_1_1test__suite_a74590ea1a69437948e3ac53c7979006f}{runJacobianTest}}(kin, jvals, tip\_link, link\_point, change\_base);}
+\DoxyCodeLine{582 }
+\DoxyCodeLine{583     EXPECT\_ANY\_THROW(\mbox{\hyperlink{namespacetesseract__kinematics_1_1test__suite_a74590ea1a69437948e3ac53c7979006f}{runJacobianTest}}(kin, jvals, \textcolor{stringliteral}{"{}"{}}, link\_point, change\_base));  \textcolor{comment}{// NOLINT}}
+\DoxyCodeLine{584   \}}
+\DoxyCodeLine{585 }
+\DoxyCodeLine{587   \textcolor{comment}{// Test Jacobian at point with change base}}
+\DoxyCodeLine{589 \textcolor{comment}{}  \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} k = 0; k < 3; ++k)}
+\DoxyCodeLine{590   \{}
+\DoxyCodeLine{591     Eigen::Vector3d link\_point(0, 0, 0);}
+\DoxyCodeLine{592     link\_point[k] = 1;}
+\DoxyCodeLine{593 }
+\DoxyCodeLine{594     Eigen::Isometry3d change\_base;}
+\DoxyCodeLine{595     change\_base.setIdentity();}
+\DoxyCodeLine{596     change\_base(0, 0) = 0;}
+\DoxyCodeLine{597     change\_base(1, 0) = 1;}
+\DoxyCodeLine{598     change\_base(0, 1) = -\/1;}
+\DoxyCodeLine{599     change\_base(1, 1) = 0;}
+\DoxyCodeLine{600     change\_base.translation() = link\_point;}
+\DoxyCodeLine{601 }
+\DoxyCodeLine{602     \mbox{\hyperlink{namespacetesseract__kinematics_1_1test__suite_a74590ea1a69437948e3ac53c7979006f}{runJacobianTest}}(kin, jvals, tip\_link, link\_point, change\_base);}
+\DoxyCodeLine{603 }
+\DoxyCodeLine{604     EXPECT\_ANY\_THROW(\mbox{\hyperlink{namespacetesseract__kinematics_1_1test__suite_a74590ea1a69437948e3ac53c7979006f}{runJacobianTest}}(kin, jvals, \textcolor{stringliteral}{"{}"{}}, link\_point, change\_base));  \textcolor{comment}{// NOLINT}}
+\DoxyCodeLine{605   \}}
+\DoxyCodeLine{606 \}}
+\DoxyCodeLine{607 }
+\DoxyCodeLine{608 \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \mbox{\hyperlink{namespacetesseract__kinematics_1_1test__suite_ab44f1dc4d8ee55b058f0c667cf5f2c8c}{runKinGroupJacobianIIWATest}}(\mbox{\hyperlink{classtesseract__kinematics_1_1KinematicGroup}{tesseract\_kinematics::KinematicGroup}}\& kin\_group)}
+\DoxyCodeLine{609 \{}
+\DoxyCodeLine{610   std::string base\_link\_name = \textcolor{stringliteral}{"{}base\_link"{}};}
+\DoxyCodeLine{611   std::vector<std::string> link\_names = \{ \textcolor{stringliteral}{"{}base\_link"{}}, \textcolor{stringliteral}{"{}link\_1"{}}, \textcolor{stringliteral}{"{}link\_2"{}}, \textcolor{stringliteral}{"{}link\_3"{}}, \textcolor{stringliteral}{"{}link\_4"{}},}
+\DoxyCodeLine{612                                           \textcolor{stringliteral}{"{}link\_5"{}},    \textcolor{stringliteral}{"{}link\_6"{}}, \textcolor{stringliteral}{"{}link\_7"{}}, \textcolor{stringliteral}{"{}tool0"{}} \};}
+\DoxyCodeLine{613 }
+\DoxyCodeLine{615   \textcolor{comment}{// Test forward kinematics when tip link is the base of the chain}}
+\DoxyCodeLine{617 \textcolor{comment}{}  Eigen::VectorXd jvals;}
+\DoxyCodeLine{618   jvals.resize(7);}
+\DoxyCodeLine{619 }
+\DoxyCodeLine{620   jvals(0) = -\/0.785398;}
+\DoxyCodeLine{621   jvals(1) = 0.785398;}
+\DoxyCodeLine{622   jvals(2) = -\/0.785398;}
+\DoxyCodeLine{623   jvals(3) = 0.785398;}
+\DoxyCodeLine{624   jvals(4) = -\/0.785398;}
+\DoxyCodeLine{625   jvals(5) = 0.785398;}
+\DoxyCodeLine{626   jvals(6) = -\/0.785398;}
+\DoxyCodeLine{627 }
+\DoxyCodeLine{629   \textcolor{comment}{// Test Jacobian at Point}}
+\DoxyCodeLine{630   \textcolor{comment}{// This also runs a test without the link point}}
+\DoxyCodeLine{632 \textcolor{comment}{}  \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} k = 0; k < 3; ++k)}
+\DoxyCodeLine{633   \{}
+\DoxyCodeLine{634     Eigen::Vector3d link\_point(0, 0, 0);}
+\DoxyCodeLine{635     link\_point[k] = 1;}
+\DoxyCodeLine{636 }
+\DoxyCodeLine{637     \textcolor{keywordflow}{for} (\textcolor{keyword}{const} \textcolor{keyword}{auto}\& link\_name : link\_names)}
+\DoxyCodeLine{638       \mbox{\hyperlink{namespacetesseract__kinematics_1_1test__suite_a74590ea1a69437948e3ac53c7979006f}{runJacobianTest}}(kin\_group, jvals, link\_name, link\_point);}
+\DoxyCodeLine{639 }
+\DoxyCodeLine{640     \textcolor{comment}{// NOLINTNEXTLINE}}
+\DoxyCodeLine{641     EXPECT\_ANY\_THROW(\mbox{\hyperlink{namespacetesseract__kinematics_1_1test__suite_a74590ea1a69437948e3ac53c7979006f}{runJacobianTest}}(kin\_group, jvals, \textcolor{stringliteral}{"{}"{}}, link\_point));}
+\DoxyCodeLine{642   \}}
+\DoxyCodeLine{643 \}}
+\DoxyCodeLine{644 }
+\DoxyCodeLine{645 \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \mbox{\hyperlink{namespacetesseract__kinematics_1_1test__suite_a71a775c38a4da1be2e88d4b91a823c41}{runActiveLinkNamesIIWATest}}(\textcolor{keyword}{const} \mbox{\hyperlink{classtesseract__kinematics_1_1KinematicGroup}{tesseract\_kinematics::KinematicGroup}}\& kin\_group)}
+\DoxyCodeLine{646 \{}
+\DoxyCodeLine{647   EXPECT\_FALSE(kin\_group.\mbox{\hyperlink{classtesseract__kinematics_1_1JointGroup_afdafe9ea611404a32a005c2f0af8ea96}{checkJoints}}(Eigen::VectorXd::Zero(8)));}
+\DoxyCodeLine{648   EXPECT\_FALSE(kin\_group.\mbox{\hyperlink{classtesseract__kinematics_1_1JointGroup_afdafe9ea611404a32a005c2f0af8ea96}{checkJoints}}(Eigen::VectorXd::Constant(7, std::numeric\_limits<double>::max())));}
+\DoxyCodeLine{649   EXPECT\_FALSE(kin\_group.\mbox{\hyperlink{classtesseract__kinematics_1_1JointGroup_afdafe9ea611404a32a005c2f0af8ea96}{checkJoints}}(Eigen::VectorXd::Constant(7, -\/std::numeric\_limits<double>::max())));}
+\DoxyCodeLine{650   EXPECT\_TRUE(kin\_group.\mbox{\hyperlink{classtesseract__kinematics_1_1JointGroup_afdafe9ea611404a32a005c2f0af8ea96}{checkJoints}}(Eigen::VectorXd::Zero(7)));}
+\DoxyCodeLine{651 }
+\DoxyCodeLine{652   std::vector<std::string> target\_active\_link\_names = \{ \textcolor{stringliteral}{"{}link\_1"{}}, \textcolor{stringliteral}{"{}link\_2"{}}, \textcolor{stringliteral}{"{}link\_3"{}}, \textcolor{stringliteral}{"{}link\_4"{}},}
+\DoxyCodeLine{653                                                         \textcolor{stringliteral}{"{}link\_5"{}}, \textcolor{stringliteral}{"{}link\_6"{}}, \textcolor{stringliteral}{"{}link\_7"{}}, \textcolor{stringliteral}{"{}tool0"{}} \};}
+\DoxyCodeLine{654 }
+\DoxyCodeLine{655   std::vector<std::string> target\_static\_link\_names = \{ \textcolor{stringliteral}{"{}base\_link"{}}, \textcolor{stringliteral}{"{}base"{}} \};}
+\DoxyCodeLine{656 }
+\DoxyCodeLine{657   std::vector<std::string> target\_link\_names = target\_active\_link\_names;}
+\DoxyCodeLine{658   target\_link\_names.insert(target\_link\_names.end(), target\_static\_link\_names.begin(), target\_static\_link\_names.end());}
+\DoxyCodeLine{659 }
+\DoxyCodeLine{660   \textcolor{keywordflow}{for} (\textcolor{keyword}{const} \textcolor{keyword}{auto}\& l : target\_active\_link\_names)}
+\DoxyCodeLine{661   \{}
+\DoxyCodeLine{662     EXPECT\_TRUE(kin\_group.\mbox{\hyperlink{classtesseract__kinematics_1_1JointGroup_a8dcd3be1753eda8f761b8552d3ed945e}{isActiveLinkName}}(l));}
+\DoxyCodeLine{663   \}}
+\DoxyCodeLine{664 }
+\DoxyCodeLine{665   \textcolor{keywordflow}{for} (\textcolor{keyword}{const} \textcolor{keyword}{auto}\& l : target\_link\_names)}
+\DoxyCodeLine{666   \{}
+\DoxyCodeLine{667     EXPECT\_TRUE(kin\_group.\mbox{\hyperlink{classtesseract__kinematics_1_1JointGroup_a7ae1c549077f27abd264319704c7a2c2}{hasLinkName}}(l));}
+\DoxyCodeLine{668   \}}
+\DoxyCodeLine{669 }
+\DoxyCodeLine{670   \{}
+\DoxyCodeLine{671     std::vector<std::string> link\_names = kin\_group.\mbox{\hyperlink{classtesseract__kinematics_1_1JointGroup_a90898bb8ffb350f5b052f185c3b6a78a}{getActiveLinkNames}}();}
+\DoxyCodeLine{672     \mbox{\hyperlink{namespacetesseract__kinematics_1_1test__suite_a143c590cd9b8ba73b52c46f5f775a318}{runStringVectorEqualTest}}(link\_names, target\_active\_link\_names);}
+\DoxyCodeLine{673   \}}
+\DoxyCodeLine{674 }
+\DoxyCodeLine{675   \{}
+\DoxyCodeLine{676     std::vector<std::string> link\_names = kin\_group.\mbox{\hyperlink{classtesseract__kinematics_1_1JointGroup_a7a88bab9495fa93b5d23e24708167eb1}{getStaticLinkNames}}();}
+\DoxyCodeLine{677     \mbox{\hyperlink{namespacetesseract__kinematics_1_1test__suite_a143c590cd9b8ba73b52c46f5f775a318}{runStringVectorEqualTest}}(link\_names, target\_static\_link\_names);}
+\DoxyCodeLine{678   \}}
+\DoxyCodeLine{679 }
+\DoxyCodeLine{680   \{}
+\DoxyCodeLine{681     std::vector<std::string> link\_names = kin\_group.\mbox{\hyperlink{classtesseract__kinematics_1_1JointGroup_ae6ac0e45a82996aa1e1b22a07f89432f}{getLinkNames}}();}
+\DoxyCodeLine{682     \mbox{\hyperlink{namespacetesseract__kinematics_1_1test__suite_a143c590cd9b8ba73b52c46f5f775a318}{runStringVectorEqualTest}}(link\_names, target\_link\_names);}
+\DoxyCodeLine{683   \}}
+\DoxyCodeLine{684 \}}
+\DoxyCodeLine{685 }
+\DoxyCodeLine{686 \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \mbox{\hyperlink{namespacetesseract__kinematics_1_1test__suite_acf55b0edd18c5204226ca3ac95e1a3fd}{runActiveLinkNamesABBTest}}(\textcolor{keyword}{const} \mbox{\hyperlink{classtesseract__kinematics_1_1KinematicGroup}{tesseract\_kinematics::KinematicGroup}}\& kin\_group)}
+\DoxyCodeLine{687 \{}
+\DoxyCodeLine{688   EXPECT\_FALSE(kin\_group.\mbox{\hyperlink{classtesseract__kinematics_1_1JointGroup_afdafe9ea611404a32a005c2f0af8ea96}{checkJoints}}(Eigen::VectorXd::Zero(7)));}
+\DoxyCodeLine{689   EXPECT\_FALSE(kin\_group.\mbox{\hyperlink{classtesseract__kinematics_1_1JointGroup_afdafe9ea611404a32a005c2f0af8ea96}{checkJoints}}(Eigen::VectorXd::Constant(6, std::numeric\_limits<double>::max())));}
+\DoxyCodeLine{690   EXPECT\_FALSE(kin\_group.\mbox{\hyperlink{classtesseract__kinematics_1_1JointGroup_afdafe9ea611404a32a005c2f0af8ea96}{checkJoints}}(Eigen::VectorXd::Constant(6, -\/std::numeric\_limits<double>::max())));}
+\DoxyCodeLine{691   EXPECT\_TRUE(kin\_group.\mbox{\hyperlink{classtesseract__kinematics_1_1JointGroup_afdafe9ea611404a32a005c2f0af8ea96}{checkJoints}}(Eigen::VectorXd::Zero(6)));}
+\DoxyCodeLine{692 }
+\DoxyCodeLine{693   std::vector<std::string> target\_active\_link\_names = \{ \textcolor{stringliteral}{"{}link\_1"{}}, \textcolor{stringliteral}{"{}link\_2"{}}, \textcolor{stringliteral}{"{}link\_3"{}}, \textcolor{stringliteral}{"{}link\_4"{}},}
+\DoxyCodeLine{694                                                         \textcolor{stringliteral}{"{}link\_5"{}}, \textcolor{stringliteral}{"{}link\_6"{}}, \textcolor{stringliteral}{"{}tool0"{}} \};}
+\DoxyCodeLine{695 }
+\DoxyCodeLine{696   std::vector<std::string> target\_static\_link\_names = \{ \textcolor{stringliteral}{"{}base\_link"{}} \};}
+\DoxyCodeLine{697 }
+\DoxyCodeLine{698   std::vector<std::string> target\_link\_names = target\_active\_link\_names;}
+\DoxyCodeLine{699   target\_link\_names.insert(target\_link\_names.end(), target\_static\_link\_names.begin(), target\_static\_link\_names.end());}
+\DoxyCodeLine{700 }
+\DoxyCodeLine{701   \textcolor{keywordflow}{for} (\textcolor{keyword}{const} \textcolor{keyword}{auto}\& l : target\_active\_link\_names)}
+\DoxyCodeLine{702   \{}
+\DoxyCodeLine{703     EXPECT\_TRUE(kin\_group.\mbox{\hyperlink{classtesseract__kinematics_1_1JointGroup_a8dcd3be1753eda8f761b8552d3ed945e}{isActiveLinkName}}(l));}
+\DoxyCodeLine{704   \}}
+\DoxyCodeLine{705 }
+\DoxyCodeLine{706   \textcolor{keywordflow}{for} (\textcolor{keyword}{const} \textcolor{keyword}{auto}\& l : target\_link\_names)}
+\DoxyCodeLine{707   \{}
+\DoxyCodeLine{708     EXPECT\_TRUE(kin\_group.\mbox{\hyperlink{classtesseract__kinematics_1_1JointGroup_a7ae1c549077f27abd264319704c7a2c2}{hasLinkName}}(l));}
+\DoxyCodeLine{709   \}}
+\DoxyCodeLine{710 }
+\DoxyCodeLine{711   \{}
+\DoxyCodeLine{712     std::vector<std::string> link\_names = kin\_group.\mbox{\hyperlink{classtesseract__kinematics_1_1JointGroup_a90898bb8ffb350f5b052f185c3b6a78a}{getActiveLinkNames}}();}
+\DoxyCodeLine{713     \mbox{\hyperlink{namespacetesseract__kinematics_1_1test__suite_a143c590cd9b8ba73b52c46f5f775a318}{runStringVectorEqualTest}}(link\_names, target\_active\_link\_names);}
+\DoxyCodeLine{714   \}}
+\DoxyCodeLine{715 }
+\DoxyCodeLine{716   \{}
+\DoxyCodeLine{717     std::vector<std::string> link\_names = kin\_group.\mbox{\hyperlink{classtesseract__kinematics_1_1JointGroup_a7a88bab9495fa93b5d23e24708167eb1}{getStaticLinkNames}}();}
+\DoxyCodeLine{718     \mbox{\hyperlink{namespacetesseract__kinematics_1_1test__suite_a143c590cd9b8ba73b52c46f5f775a318}{runStringVectorEqualTest}}(link\_names, target\_static\_link\_names);}
+\DoxyCodeLine{719   \}}
+\DoxyCodeLine{720 }
+\DoxyCodeLine{721   \{}
+\DoxyCodeLine{722     std::vector<std::string> link\_names = kin\_group.\mbox{\hyperlink{classtesseract__kinematics_1_1JointGroup_ae6ac0e45a82996aa1e1b22a07f89432f}{getLinkNames}}();}
+\DoxyCodeLine{723     \mbox{\hyperlink{namespacetesseract__kinematics_1_1test__suite_a143c590cd9b8ba73b52c46f5f775a318}{runStringVectorEqualTest}}(link\_names, target\_link\_names);}
+\DoxyCodeLine{724   \}}
+\DoxyCodeLine{725 \}}
+\DoxyCodeLine{726 }
+\DoxyCodeLine{727 \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \mbox{\hyperlink{namespacetesseract__kinematics_1_1test__suite_a4c8ecaff5f9c670cfda20a25fda10f0b}{runActiveLinkNamesURTest}}(\textcolor{keyword}{const} \mbox{\hyperlink{classtesseract__kinematics_1_1KinematicGroup}{tesseract\_kinematics::KinematicGroup}}\& kin\_group)}
+\DoxyCodeLine{728 \{}
+\DoxyCodeLine{729   EXPECT\_FALSE(kin\_group.\mbox{\hyperlink{classtesseract__kinematics_1_1JointGroup_afdafe9ea611404a32a005c2f0af8ea96}{checkJoints}}(Eigen::VectorXd::Zero(7)));}
+\DoxyCodeLine{730   EXPECT\_FALSE(kin\_group.\mbox{\hyperlink{classtesseract__kinematics_1_1JointGroup_afdafe9ea611404a32a005c2f0af8ea96}{checkJoints}}(Eigen::VectorXd::Constant(6, std::numeric\_limits<double>::max())));}
+\DoxyCodeLine{731   EXPECT\_FALSE(kin\_group.\mbox{\hyperlink{classtesseract__kinematics_1_1JointGroup_afdafe9ea611404a32a005c2f0af8ea96}{checkJoints}}(Eigen::VectorXd::Constant(6, -\/std::numeric\_limits<double>::max())));}
+\DoxyCodeLine{732   EXPECT\_TRUE(kin\_group.\mbox{\hyperlink{classtesseract__kinematics_1_1JointGroup_afdafe9ea611404a32a005c2f0af8ea96}{checkJoints}}(Eigen::VectorXd::Zero(6)));}
+\DoxyCodeLine{733 }
+\DoxyCodeLine{734   std::vector<std::string> target\_active\_link\_names = \{ \textcolor{stringliteral}{"{}shoulder\_link"{}}, \textcolor{stringliteral}{"{}upper\_arm\_link"{}}, \textcolor{stringliteral}{"{}forearm\_link"{}},}
+\DoxyCodeLine{735                                                         \textcolor{stringliteral}{"{}wrist\_1\_link"{}},  \textcolor{stringliteral}{"{}wrist\_2\_link"{}},   \textcolor{stringliteral}{"{}wrist\_3\_link"{}},}
+\DoxyCodeLine{736                                                         \textcolor{stringliteral}{"{}tool0"{}} \};}
+\DoxyCodeLine{737 }
+\DoxyCodeLine{738   std::vector<std::string> target\_static\_link\_names = \{ \textcolor{stringliteral}{"{}base\_link"{}} \};}
+\DoxyCodeLine{739 }
+\DoxyCodeLine{740   std::vector<std::string> target\_link\_names = target\_active\_link\_names;}
+\DoxyCodeLine{741   target\_link\_names.insert(target\_link\_names.end(), target\_static\_link\_names.begin(), target\_static\_link\_names.end());}
+\DoxyCodeLine{742 }
+\DoxyCodeLine{743   \textcolor{keywordflow}{for} (\textcolor{keyword}{const} \textcolor{keyword}{auto}\& l : target\_active\_link\_names)}
+\DoxyCodeLine{744   \{}
+\DoxyCodeLine{745     EXPECT\_TRUE(kin\_group.\mbox{\hyperlink{classtesseract__kinematics_1_1JointGroup_a8dcd3be1753eda8f761b8552d3ed945e}{isActiveLinkName}}(l));}
+\DoxyCodeLine{746   \}}
+\DoxyCodeLine{747 }
+\DoxyCodeLine{748   \textcolor{keywordflow}{for} (\textcolor{keyword}{const} \textcolor{keyword}{auto}\& l : target\_link\_names)}
+\DoxyCodeLine{749   \{}
+\DoxyCodeLine{750     EXPECT\_TRUE(kin\_group.\mbox{\hyperlink{classtesseract__kinematics_1_1JointGroup_a7ae1c549077f27abd264319704c7a2c2}{hasLinkName}}(l));}
+\DoxyCodeLine{751   \}}
+\DoxyCodeLine{752 }
+\DoxyCodeLine{753   \{}
+\DoxyCodeLine{754     std::vector<std::string> link\_names = kin\_group.\mbox{\hyperlink{classtesseract__kinematics_1_1JointGroup_a90898bb8ffb350f5b052f185c3b6a78a}{getActiveLinkNames}}();}
+\DoxyCodeLine{755     \mbox{\hyperlink{namespacetesseract__kinematics_1_1test__suite_a143c590cd9b8ba73b52c46f5f775a318}{runStringVectorEqualTest}}(link\_names, target\_active\_link\_names);}
+\DoxyCodeLine{756   \}}
+\DoxyCodeLine{757 }
+\DoxyCodeLine{758   \{}
+\DoxyCodeLine{759     std::vector<std::string> link\_names = kin\_group.\mbox{\hyperlink{classtesseract__kinematics_1_1JointGroup_a7a88bab9495fa93b5d23e24708167eb1}{getStaticLinkNames}}();}
+\DoxyCodeLine{760     \mbox{\hyperlink{namespacetesseract__kinematics_1_1test__suite_a143c590cd9b8ba73b52c46f5f775a318}{runStringVectorEqualTest}}(link\_names, target\_static\_link\_names);}
+\DoxyCodeLine{761   \}}
+\DoxyCodeLine{762 }
+\DoxyCodeLine{763   \{}
+\DoxyCodeLine{764     std::vector<std::string> link\_names = kin\_group.\mbox{\hyperlink{classtesseract__kinematics_1_1JointGroup_ae6ac0e45a82996aa1e1b22a07f89432f}{getLinkNames}}();}
+\DoxyCodeLine{765     \mbox{\hyperlink{namespacetesseract__kinematics_1_1test__suite_a143c590cd9b8ba73b52c46f5f775a318}{runStringVectorEqualTest}}(link\_names, target\_link\_names);}
+\DoxyCodeLine{766   \}}
+\DoxyCodeLine{767 \}}
+\DoxyCodeLine{768 }
+\DoxyCodeLine{769 \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \mbox{\hyperlink{namespacetesseract__kinematics_1_1test__suite_a2b6df2c132a13729b8828ede88a832c6}{runKinGroupJacobianABBOnPositionerTest}}(\mbox{\hyperlink{classtesseract__kinematics_1_1KinematicGroup}{tesseract\_kinematics::KinematicGroup}}\& kin\_group)}
+\DoxyCodeLine{770 \{}
+\DoxyCodeLine{771   std::string base\_link\_name = \textcolor{stringliteral}{"{}positioner\_base\_link"{}};}
+\DoxyCodeLine{772   std::vector<std::string> link\_names\{ \textcolor{stringliteral}{"{}positioner\_base\_link"{}},}
+\DoxyCodeLine{773                                        \textcolor{stringliteral}{"{}positioner\_tool0"{}},}
+\DoxyCodeLine{774                                        \textcolor{stringliteral}{"{}base"{}},}
+\DoxyCodeLine{775                                        \textcolor{stringliteral}{"{}base\_link"{}},}
+\DoxyCodeLine{776                                        \textcolor{stringliteral}{"{}link\_1"{}},}
+\DoxyCodeLine{777                                        \textcolor{stringliteral}{"{}link\_2"{}},}
+\DoxyCodeLine{778                                        \textcolor{stringliteral}{"{}link\_3"{}},}
+\DoxyCodeLine{779                                        \textcolor{stringliteral}{"{}link\_4"{}},}
+\DoxyCodeLine{780                                        \textcolor{stringliteral}{"{}link\_5"{}},}
+\DoxyCodeLine{781                                        \textcolor{stringliteral}{"{}link\_6"{}},}
+\DoxyCodeLine{782                                        \textcolor{stringliteral}{"{}tool0"{}} \};}
+\DoxyCodeLine{783 }
+\DoxyCodeLine{785   \textcolor{comment}{// Test forward kinematics when tip link is the base of the chain}}
+\DoxyCodeLine{787 \textcolor{comment}{}  Eigen::MatrixXd jacobian, numerical\_jacobian;}
+\DoxyCodeLine{788   Eigen::VectorXd jvals;}
+\DoxyCodeLine{789   jvals.resize(7);}
+\DoxyCodeLine{790 }
+\DoxyCodeLine{791   jvals(0) = -\/0.785398;}
+\DoxyCodeLine{792   jvals(1) = 0.785398;}
+\DoxyCodeLine{793   jvals(2) = -\/0.785398;}
+\DoxyCodeLine{794   jvals(3) = 0.785398;}
+\DoxyCodeLine{795   jvals(4) = -\/0.785398;}
+\DoxyCodeLine{796   jvals(5) = 0.785398;}
+\DoxyCodeLine{797   jvals(6) = -\/0.785398;}
+\DoxyCodeLine{798 }
+\DoxyCodeLine{800   \textcolor{comment}{// Test Jacobian at Point}}
+\DoxyCodeLine{801   \textcolor{comment}{// Note: Also tests without the link point}}
+\DoxyCodeLine{803 \textcolor{comment}{}  \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} k = 0; k < 3; ++k)}
+\DoxyCodeLine{804   \{}
+\DoxyCodeLine{805     Eigen::Vector3d link\_point(0, 0, 0);}
+\DoxyCodeLine{806     link\_point[k] = 1;}
+\DoxyCodeLine{807 }
+\DoxyCodeLine{808     \textcolor{keywordflow}{for} (\textcolor{keyword}{const} \textcolor{keyword}{auto}\& link\_name : link\_names)}
+\DoxyCodeLine{809       \mbox{\hyperlink{namespacetesseract__kinematics_1_1test__suite_a74590ea1a69437948e3ac53c7979006f}{runJacobianTest}}(kin\_group, jvals, link\_name, link\_point);}
+\DoxyCodeLine{810 }
+\DoxyCodeLine{811     \textcolor{comment}{// NOLINTNEXTLINE}}
+\DoxyCodeLine{812     EXPECT\_ANY\_THROW(\mbox{\hyperlink{namespacetesseract__kinematics_1_1test__suite_a74590ea1a69437948e3ac53c7979006f}{runJacobianTest}}(kin\_group, jvals, \textcolor{stringliteral}{"{}"{}}, link\_point));}
+\DoxyCodeLine{813   \}}
+\DoxyCodeLine{814 \}}
+\DoxyCodeLine{815 }
+\DoxyCodeLine{816 \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \mbox{\hyperlink{namespacetesseract__kinematics_1_1test__suite_a524661cf9aed35b927456c99c048eebf}{runActiveLinkNamesABBOnPositionerTest}}(\textcolor{keyword}{const} \mbox{\hyperlink{classtesseract__kinematics_1_1KinematicGroup}{tesseract\_kinematics::KinematicGroup}}\& kin\_group)}
+\DoxyCodeLine{817 \{}
+\DoxyCodeLine{818   EXPECT\_FALSE(kin\_group.\mbox{\hyperlink{classtesseract__kinematics_1_1JointGroup_afdafe9ea611404a32a005c2f0af8ea96}{checkJoints}}(Eigen::VectorXd::Zero(8)));}
+\DoxyCodeLine{819   EXPECT\_FALSE(kin\_group.\mbox{\hyperlink{classtesseract__kinematics_1_1JointGroup_afdafe9ea611404a32a005c2f0af8ea96}{checkJoints}}(Eigen::VectorXd::Constant(7, std::numeric\_limits<double>::max())));}
+\DoxyCodeLine{820   EXPECT\_FALSE(kin\_group.\mbox{\hyperlink{classtesseract__kinematics_1_1JointGroup_afdafe9ea611404a32a005c2f0af8ea96}{checkJoints}}(Eigen::VectorXd::Constant(7, -\/std::numeric\_limits<double>::max())));}
+\DoxyCodeLine{821   EXPECT\_TRUE(kin\_group.\mbox{\hyperlink{classtesseract__kinematics_1_1JointGroup_afdafe9ea611404a32a005c2f0af8ea96}{checkJoints}}(Eigen::VectorXd::Zero(7)));}
+\DoxyCodeLine{822 }
+\DoxyCodeLine{823   std::vector<std::string> target\_active\_link\_names = \{ \textcolor{stringliteral}{"{}positioner\_tool0"{}}, \textcolor{stringliteral}{"{}base\_link"{}}, \textcolor{stringliteral}{"{}base"{}},   \textcolor{stringliteral}{"{}link\_1"{}}, \textcolor{stringliteral}{"{}link\_2"{}},}
+\DoxyCodeLine{824                                                         \textcolor{stringliteral}{"{}link\_3"{}},           \textcolor{stringliteral}{"{}link\_4"{}},    \textcolor{stringliteral}{"{}link\_5"{}}, \textcolor{stringliteral}{"{}link\_6"{}}, \textcolor{stringliteral}{"{}tool0"{}} \};}
+\DoxyCodeLine{825 }
+\DoxyCodeLine{826   std::vector<std::string> target\_static\_link\_names = \{ \textcolor{stringliteral}{"{}positioner\_base\_link"{}} \};}
+\DoxyCodeLine{827 }
+\DoxyCodeLine{828   std::vector<std::string> target\_link\_names = target\_active\_link\_names;}
+\DoxyCodeLine{829   target\_link\_names.insert(target\_link\_names.end(), target\_static\_link\_names.begin(), target\_static\_link\_names.end());}
+\DoxyCodeLine{830 }
+\DoxyCodeLine{831   \textcolor{keywordflow}{for} (\textcolor{keyword}{const} \textcolor{keyword}{auto}\& l : target\_active\_link\_names)}
+\DoxyCodeLine{832   \{}
+\DoxyCodeLine{833     EXPECT\_TRUE(kin\_group.\mbox{\hyperlink{classtesseract__kinematics_1_1JointGroup_a8dcd3be1753eda8f761b8552d3ed945e}{isActiveLinkName}}(l));}
+\DoxyCodeLine{834   \}}
+\DoxyCodeLine{835 }
+\DoxyCodeLine{836   \textcolor{keywordflow}{for} (\textcolor{keyword}{const} \textcolor{keyword}{auto}\& l : target\_link\_names)}
+\DoxyCodeLine{837   \{}
+\DoxyCodeLine{838     EXPECT\_TRUE(kin\_group.\mbox{\hyperlink{classtesseract__kinematics_1_1JointGroup_a7ae1c549077f27abd264319704c7a2c2}{hasLinkName}}(l));}
+\DoxyCodeLine{839   \}}
+\DoxyCodeLine{840 }
+\DoxyCodeLine{841   \{}
+\DoxyCodeLine{842     std::vector<std::string> link\_names = kin\_group.\mbox{\hyperlink{classtesseract__kinematics_1_1JointGroup_a90898bb8ffb350f5b052f185c3b6a78a}{getActiveLinkNames}}();}
+\DoxyCodeLine{843     \mbox{\hyperlink{namespacetesseract__kinematics_1_1test__suite_a143c590cd9b8ba73b52c46f5f775a318}{runStringVectorEqualTest}}(link\_names, target\_active\_link\_names);}
+\DoxyCodeLine{844   \}}
+\DoxyCodeLine{845 }
+\DoxyCodeLine{846   \{}
+\DoxyCodeLine{847     std::vector<std::string> link\_names = kin\_group.\mbox{\hyperlink{classtesseract__kinematics_1_1JointGroup_a7a88bab9495fa93b5d23e24708167eb1}{getStaticLinkNames}}();}
+\DoxyCodeLine{848     \mbox{\hyperlink{namespacetesseract__kinematics_1_1test__suite_a143c590cd9b8ba73b52c46f5f775a318}{runStringVectorEqualTest}}(link\_names, target\_static\_link\_names);}
+\DoxyCodeLine{849   \}}
+\DoxyCodeLine{850 }
+\DoxyCodeLine{851   \{}
+\DoxyCodeLine{852     std::vector<std::string> link\_names = kin\_group.\mbox{\hyperlink{classtesseract__kinematics_1_1JointGroup_ae6ac0e45a82996aa1e1b22a07f89432f}{getLinkNames}}();}
+\DoxyCodeLine{853     \mbox{\hyperlink{namespacetesseract__kinematics_1_1test__suite_a143c590cd9b8ba73b52c46f5f775a318}{runStringVectorEqualTest}}(link\_names, target\_link\_names);}
+\DoxyCodeLine{854   \}}
+\DoxyCodeLine{855 \}}
+\DoxyCodeLine{856 }
+\DoxyCodeLine{857 \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \mbox{\hyperlink{namespacetesseract__kinematics_1_1test__suite_a1e8ba35fa749001d5842e879824fbf12}{runKinGroupJacobianABBExternalPositionerTest}}(\mbox{\hyperlink{classtesseract__kinematics_1_1KinematicGroup}{tesseract\_kinematics::KinematicGroup}}\& kin\_group)}
+\DoxyCodeLine{858 \{}
+\DoxyCodeLine{859   std::string base\_link\_name = \textcolor{stringliteral}{"{}positioner\_base\_link"{}};}
+\DoxyCodeLine{860   std::vector<std::string> link\_names\{ \textcolor{stringliteral}{"{}positioner\_base\_link"{}},}
+\DoxyCodeLine{861                                        \textcolor{stringliteral}{"{}positioner\_tool0"{}},}
+\DoxyCodeLine{862                                        \textcolor{stringliteral}{"{}positioner\_link\_1"{}},}
+\DoxyCodeLine{863                                        \textcolor{stringliteral}{"{}base\_link"{}},}
+\DoxyCodeLine{864                                        \textcolor{stringliteral}{"{}link\_1"{}},}
+\DoxyCodeLine{865                                        \textcolor{stringliteral}{"{}link\_2"{}},}
+\DoxyCodeLine{866                                        \textcolor{stringliteral}{"{}link\_3"{}},}
+\DoxyCodeLine{867                                        \textcolor{stringliteral}{"{}link\_4"{}},}
+\DoxyCodeLine{868                                        \textcolor{stringliteral}{"{}link\_5"{}},}
+\DoxyCodeLine{869                                        \textcolor{stringliteral}{"{}link\_6"{}},}
+\DoxyCodeLine{870                                        \textcolor{stringliteral}{"{}tool0"{}} \};}
+\DoxyCodeLine{871 }
+\DoxyCodeLine{873   \textcolor{comment}{// Test forward kinematics when tip link is the base of the chain}}
+\DoxyCodeLine{875 \textcolor{comment}{}  Eigen::MatrixXd jacobian, numerical\_jacobian;}
+\DoxyCodeLine{876   Eigen::VectorXd jvals;}
+\DoxyCodeLine{877   jvals.resize(8);}
+\DoxyCodeLine{878 }
+\DoxyCodeLine{879   jvals(0) = -\/0.785398;}
+\DoxyCodeLine{880   jvals(1) = 0.785398;}
+\DoxyCodeLine{881   jvals(2) = -\/0.785398;}
+\DoxyCodeLine{882   jvals(3) = 0.785398;}
+\DoxyCodeLine{883   jvals(4) = -\/0.785398;}
+\DoxyCodeLine{884   jvals(5) = 0.785398;}
+\DoxyCodeLine{885   jvals(6) = -\/0.785398;}
+\DoxyCodeLine{886   jvals(7) = 0.785398;}
+\DoxyCodeLine{887 }
+\DoxyCodeLine{889   \textcolor{comment}{// Test Jacobian at Point}}
+\DoxyCodeLine{890   \textcolor{comment}{// Note: Also tests without the link point}}
+\DoxyCodeLine{892 \textcolor{comment}{}  \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} k = 0; k < 3; ++k)}
+\DoxyCodeLine{893   \{}
+\DoxyCodeLine{894     Eigen::Vector3d link\_point(0, 0, 0);}
+\DoxyCodeLine{895     link\_point[k] = 1;}
+\DoxyCodeLine{896 }
+\DoxyCodeLine{897     \textcolor{keywordflow}{for} (\textcolor{keyword}{const} \textcolor{keyword}{auto}\& link\_name : link\_names)}
+\DoxyCodeLine{898       \mbox{\hyperlink{namespacetesseract__kinematics_1_1test__suite_a74590ea1a69437948e3ac53c7979006f}{runJacobianTest}}(kin\_group, jvals, link\_name, link\_point);}
+\DoxyCodeLine{899 }
+\DoxyCodeLine{900     \textcolor{comment}{// NOLINTNEXTLINE}}
+\DoxyCodeLine{901     EXPECT\_ANY\_THROW(\mbox{\hyperlink{namespacetesseract__kinematics_1_1test__suite_a74590ea1a69437948e3ac53c7979006f}{runJacobianTest}}(kin\_group, jvals, \textcolor{stringliteral}{"{}"{}}, link\_point));}
+\DoxyCodeLine{902   \}}
+\DoxyCodeLine{903 \}}
+\DoxyCodeLine{904 }
+\DoxyCodeLine{905 \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \mbox{\hyperlink{namespacetesseract__kinematics_1_1test__suite_a25b4b7fa141e56ae34978c430e812d0f}{runActiveLinkNamesABBExternalPositionerTest}}(\textcolor{keyword}{const} \mbox{\hyperlink{classtesseract__kinematics_1_1KinematicGroup}{tesseract\_kinematics::KinematicGroup}}\& kin\_group)}
+\DoxyCodeLine{906 \{}
+\DoxyCodeLine{907   EXPECT\_FALSE(kin\_group.\mbox{\hyperlink{classtesseract__kinematics_1_1JointGroup_afdafe9ea611404a32a005c2f0af8ea96}{checkJoints}}(Eigen::VectorXd::Zero(9)));}
+\DoxyCodeLine{908   EXPECT\_FALSE(kin\_group.\mbox{\hyperlink{classtesseract__kinematics_1_1JointGroup_afdafe9ea611404a32a005c2f0af8ea96}{checkJoints}}(Eigen::VectorXd::Constant(8, std::numeric\_limits<double>::max())));}
+\DoxyCodeLine{909   EXPECT\_FALSE(kin\_group.\mbox{\hyperlink{classtesseract__kinematics_1_1JointGroup_afdafe9ea611404a32a005c2f0af8ea96}{checkJoints}}(Eigen::VectorXd::Constant(8, -\/std::numeric\_limits<double>::max())));}
+\DoxyCodeLine{910   EXPECT\_TRUE(kin\_group.\mbox{\hyperlink{classtesseract__kinematics_1_1JointGroup_afdafe9ea611404a32a005c2f0af8ea96}{checkJoints}}(Eigen::VectorXd::Zero(8)));}
+\DoxyCodeLine{911 }
+\DoxyCodeLine{912   std::vector<std::string> target\_active\_link\_names = \{}
+\DoxyCodeLine{913     \textcolor{stringliteral}{"{}positioner\_tool0"{}}, \textcolor{stringliteral}{"{}positioner\_link\_1"{}}, \textcolor{stringliteral}{"{}link\_1"{}}, \textcolor{stringliteral}{"{}link\_2"{}}, \textcolor{stringliteral}{"{}link\_3"{}}, \textcolor{stringliteral}{"{}link\_4"{}}, \textcolor{stringliteral}{"{}link\_5"{}}, \textcolor{stringliteral}{"{}link\_6"{}}, \textcolor{stringliteral}{"{}tool0"{}}}
+\DoxyCodeLine{914   \};}
+\DoxyCodeLine{915 }
+\DoxyCodeLine{916   std::vector<std::string> target\_static\_link\_names = \{ \textcolor{stringliteral}{"{}world"{}}, \textcolor{stringliteral}{"{}base\_link"{}}, \textcolor{stringliteral}{"{}base"{}}, \textcolor{stringliteral}{"{}positioner\_base\_link"{}} \};}
+\DoxyCodeLine{917 }
+\DoxyCodeLine{918   std::vector<std::string> target\_link\_names = target\_active\_link\_names;}
+\DoxyCodeLine{919   target\_link\_names.insert(target\_link\_names.end(), target\_static\_link\_names.begin(), target\_static\_link\_names.end());}
+\DoxyCodeLine{920 }
+\DoxyCodeLine{921   \textcolor{keywordflow}{for} (\textcolor{keyword}{const} \textcolor{keyword}{auto}\& l : target\_active\_link\_names)}
+\DoxyCodeLine{922   \{}
+\DoxyCodeLine{923     EXPECT\_TRUE(kin\_group.\mbox{\hyperlink{classtesseract__kinematics_1_1JointGroup_a8dcd3be1753eda8f761b8552d3ed945e}{isActiveLinkName}}(l));}
+\DoxyCodeLine{924   \}}
+\DoxyCodeLine{925 }
+\DoxyCodeLine{926   \textcolor{keywordflow}{for} (\textcolor{keyword}{const} \textcolor{keyword}{auto}\& l : target\_link\_names)}
+\DoxyCodeLine{927   \{}
+\DoxyCodeLine{928     EXPECT\_TRUE(kin\_group.\mbox{\hyperlink{classtesseract__kinematics_1_1JointGroup_a7ae1c549077f27abd264319704c7a2c2}{hasLinkName}}(l));}
+\DoxyCodeLine{929   \}}
+\DoxyCodeLine{930 }
+\DoxyCodeLine{931   \{}
+\DoxyCodeLine{932     std::vector<std::string> link\_names = kin\_group.\mbox{\hyperlink{classtesseract__kinematics_1_1JointGroup_a90898bb8ffb350f5b052f185c3b6a78a}{getActiveLinkNames}}();}
+\DoxyCodeLine{933     \mbox{\hyperlink{namespacetesseract__kinematics_1_1test__suite_a143c590cd9b8ba73b52c46f5f775a318}{runStringVectorEqualTest}}(link\_names, target\_active\_link\_names);}
+\DoxyCodeLine{934   \}}
+\DoxyCodeLine{935 }
+\DoxyCodeLine{936   \{}
+\DoxyCodeLine{937     std::vector<std::string> link\_names = kin\_group.\mbox{\hyperlink{classtesseract__kinematics_1_1JointGroup_a7a88bab9495fa93b5d23e24708167eb1}{getStaticLinkNames}}();}
+\DoxyCodeLine{938     \mbox{\hyperlink{namespacetesseract__kinematics_1_1test__suite_a143c590cd9b8ba73b52c46f5f775a318}{runStringVectorEqualTest}}(link\_names, target\_static\_link\_names);}
+\DoxyCodeLine{939   \}}
+\DoxyCodeLine{940 }
+\DoxyCodeLine{941   \{}
+\DoxyCodeLine{942     std::vector<std::string> link\_names = kin\_group.\mbox{\hyperlink{classtesseract__kinematics_1_1JointGroup_ae6ac0e45a82996aa1e1b22a07f89432f}{getLinkNames}}();}
+\DoxyCodeLine{943     \mbox{\hyperlink{namespacetesseract__kinematics_1_1test__suite_a143c590cd9b8ba73b52c46f5f775a318}{runStringVectorEqualTest}}(link\_names, target\_link\_names);}
+\DoxyCodeLine{944   \}}
+\DoxyCodeLine{945 \}}
+\DoxyCodeLine{946 }
+\DoxyCodeLine{947 \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \mbox{\hyperlink{namespacetesseract__kinematics_1_1test__suite_ae1cf8afcfafb9178dcd536bb963c86ea}{runInvKinIIWATest}}(\textcolor{keyword}{const} \mbox{\hyperlink{classtesseract__kinematics_1_1KinematicsPluginFactory}{tesseract\_kinematics::KinematicsPluginFactory}}\& factory,}
+\DoxyCodeLine{948                               \textcolor{keyword}{const} std::string\& inv\_factory\_name,}
+\DoxyCodeLine{949                               \textcolor{keyword}{const} std::string\& fwd\_factory\_name)}
+\DoxyCodeLine{950 \{}
+\DoxyCodeLine{951   \mbox{\hyperlink{classtesseract__scene__graph_1_1SceneGraph_a4421b8568bd664cf203613a054e1847b}{tesseract\_scene\_graph::SceneGraph::Ptr}} scene\_graph = \mbox{\hyperlink{namespacetesseract__kinematics_1_1test__suite_af21376adb5aa48be102cd8036777cefa}{getSceneGraphIIWA}}();}
+\DoxyCodeLine{952   std::string manip\_name = \textcolor{stringliteral}{"{}manip"{}};}
+\DoxyCodeLine{953   std::string base\_link\_name = \textcolor{stringliteral}{"{}base\_link"{}};}
+\DoxyCodeLine{954   std::string tip\_link\_name = \textcolor{stringliteral}{"{}tool0"{}};}
+\DoxyCodeLine{955   std::vector<std::string> joint\_names\{ \textcolor{stringliteral}{"{}joint\_a1"{}}, \textcolor{stringliteral}{"{}joint\_a2"{}}, \textcolor{stringliteral}{"{}joint\_a3"{}}, \textcolor{stringliteral}{"{}joint\_a4"{}},}
+\DoxyCodeLine{956                                         \textcolor{stringliteral}{"{}joint\_a5"{}}, \textcolor{stringliteral}{"{}joint\_a6"{}}, \textcolor{stringliteral}{"{}joint\_a7"{}} \};}
+\DoxyCodeLine{957   std::vector<std::string> joint\_link\_names\{ \textcolor{stringliteral}{"{}link\_1"{}}, \textcolor{stringliteral}{"{}link\_2"{}}, \textcolor{stringliteral}{"{}link\_3"{}}, \textcolor{stringliteral}{"{}link\_4"{}}, \textcolor{stringliteral}{"{}link\_5"{}}, \textcolor{stringliteral}{"{}link\_6"{}}, \textcolor{stringliteral}{"{}link\_7"{}} \};}
+\DoxyCodeLine{958   \mbox{\hyperlink{structtesseract__common_1_1KinematicLimits}{tesseract\_common::KinematicLimits}} target\_limits = \mbox{\hyperlink{namespacetesseract__kinematics_1_1test__suite_a9ad0cc4390e9818177c5fcd320740344}{getTargetLimits}}(*scene\_graph, joint\_names);}
+\DoxyCodeLine{959 }
+\DoxyCodeLine{960   \mbox{\hyperlink{classtesseract__scene__graph_1_1KDLStateSolver}{tesseract\_scene\_graph::KDLStateSolver}} state\_solver(*scene\_graph);}
+\DoxyCodeLine{961   \mbox{\hyperlink{structtesseract__scene__graph_1_1SceneState}{tesseract\_scene\_graph::SceneState}} scene\_state = state\_solver.\mbox{\hyperlink{classtesseract__scene__graph_1_1KDLStateSolver_afddbdb08c03bd03f2885386ac63011b1}{getState}}();}
+\DoxyCodeLine{962 }
+\DoxyCodeLine{963   \mbox{\hyperlink{structtesseract__common_1_1PluginInfo}{tesseract\_common::PluginInfo}} fwd\_plugin\_info;}
+\DoxyCodeLine{964   fwd\_plugin\_info.\mbox{\hyperlink{structtesseract__common_1_1PluginInfo_a799c037060abd59bb3475f16ef19ef6b}{class\_name}} = fwd\_factory\_name;}
+\DoxyCodeLine{965   fwd\_plugin\_info.\mbox{\hyperlink{structtesseract__common_1_1PluginInfo_a94f240db508f5cc8080598142254ba37}{config}}[\textcolor{stringliteral}{"{}base\_link"{}}] = base\_link\_name;}
+\DoxyCodeLine{966   fwd\_plugin\_info.\mbox{\hyperlink{structtesseract__common_1_1PluginInfo_a94f240db508f5cc8080598142254ba37}{config}}[\textcolor{stringliteral}{"{}tip\_link"{}}] = tip\_link\_name;}
+\DoxyCodeLine{967 }
+\DoxyCodeLine{968   \mbox{\hyperlink{structtesseract__common_1_1PluginInfo}{tesseract\_common::PluginInfo}} inv\_plugin\_info;}
+\DoxyCodeLine{969   inv\_plugin\_info.\mbox{\hyperlink{structtesseract__common_1_1PluginInfo_a799c037060abd59bb3475f16ef19ef6b}{class\_name}} = inv\_factory\_name;}
+\DoxyCodeLine{970   inv\_plugin\_info.\mbox{\hyperlink{structtesseract__common_1_1PluginInfo_a94f240db508f5cc8080598142254ba37}{config}} = fwd\_plugin\_info.\mbox{\hyperlink{structtesseract__common_1_1PluginInfo_a94f240db508f5cc8080598142254ba37}{config}};}
+\DoxyCodeLine{971 }
+\DoxyCodeLine{972   \textcolor{comment}{// Inverse target pose and seed}}
+\DoxyCodeLine{973   Eigen::Isometry3d pose;}
+\DoxyCodeLine{974   pose.setIdentity();}
+\DoxyCodeLine{975   pose.translation()[0] = 0;}
+\DoxyCodeLine{976   pose.translation()[1] = 0;}
+\DoxyCodeLine{977   pose.translation()[2] = 1.306;}
+\DoxyCodeLine{978 }
+\DoxyCodeLine{979   Eigen::VectorXd seed;}
+\DoxyCodeLine{980   seed.resize(7);}
+\DoxyCodeLine{981   seed(0) = -\/0.785398;}
+\DoxyCodeLine{982   seed(1) = 0.785398;}
+\DoxyCodeLine{983   seed(2) = -\/0.785398;}
+\DoxyCodeLine{984   seed(3) = 0.785398;}
+\DoxyCodeLine{985   seed(4) = -\/0.785398;}
+\DoxyCodeLine{986   seed(5) = 0.785398;}
+\DoxyCodeLine{987   seed(6) = -\/0.785398;}
+\DoxyCodeLine{988 }
+\DoxyCodeLine{989   \textcolor{comment}{// Check create method with empty scene graph}}
+\DoxyCodeLine{990   \mbox{\hyperlink{classtesseract__scene__graph_1_1SceneGraph}{tesseract\_scene\_graph::SceneGraph}} scene\_graph\_empty;}
+\DoxyCodeLine{991   \textcolor{keyword}{auto} kin\_empty = factory.\mbox{\hyperlink{classtesseract__kinematics_1_1KinematicsPluginFactory_a6a396e48c2c7350f114f7d6856b6cd5a}{createInvKin}}(inv\_factory\_name, inv\_plugin\_info, scene\_graph\_empty, scene\_state);}
+\DoxyCodeLine{992   EXPECT\_TRUE(kin\_empty == \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{993 }
+\DoxyCodeLine{994   \{  \textcolor{comment}{// Check create method using base\_link and tool0}}
+\DoxyCodeLine{995     \textcolor{keyword}{auto} fwd\_kin = factory.\mbox{\hyperlink{classtesseract__kinematics_1_1KinematicsPluginFactory_ad40092590da9f40ce3da0aa570044444}{createFwdKin}}(fwd\_factory\_name, fwd\_plugin\_info, *scene\_graph, scene\_state);}
+\DoxyCodeLine{996     EXPECT\_TRUE(fwd\_kin != \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{997     \textcolor{comment}{//    EXPECT\_EQ(fwd\_kin-\/>getSolverName(), fwd\_solver\_name);}}
+\DoxyCodeLine{998     EXPECT\_EQ(fwd\_kin-\/>numJoints(), 7);}
+\DoxyCodeLine{999     EXPECT\_EQ(fwd\_kin-\/>getBaseLinkName(), base\_link\_name);}
+\DoxyCodeLine{1000     EXPECT\_EQ(fwd\_kin-\/>getTipLinkNames().size(), 1);}
+\DoxyCodeLine{1001     EXPECT\_EQ(fwd\_kin-\/>getTipLinkNames()[0], tip\_link\_name);}
+\DoxyCodeLine{1002     EXPECT\_EQ(fwd\_kin-\/>getJointNames(), joint\_names);}
+\DoxyCodeLine{1003 }
+\DoxyCodeLine{1004     \mbox{\hyperlink{namespacetesseract__kinematics_1_1test__suite_a7e071ebe013f2904b08806ca8ed0b1a5}{runJacobianIIWATest}}(*fwd\_kin);}
+\DoxyCodeLine{1005     \mbox{\hyperlink{namespacetesseract__kinematics_1_1test__suite_a90c75a53e78426f6e513470bfbd9afb1}{runFwdKinIIWATest}}(*fwd\_kin);}
+\DoxyCodeLine{1006 }
+\DoxyCodeLine{1007     \textcolor{keyword}{auto} inv\_kin = factory.\mbox{\hyperlink{classtesseract__kinematics_1_1KinematicsPluginFactory_a6a396e48c2c7350f114f7d6856b6cd5a}{createInvKin}}(inv\_factory\_name, inv\_plugin\_info, *scene\_graph, scene\_state);}
+\DoxyCodeLine{1008     EXPECT\_TRUE(inv\_kin != \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{1009     \textcolor{comment}{//    EXPECT\_EQ(inv\_kin-\/>getSolverName(), inv\_solver\_name);}}
+\DoxyCodeLine{1010     EXPECT\_EQ(inv\_kin-\/>numJoints(), 7);}
+\DoxyCodeLine{1011     EXPECT\_EQ(inv\_kin-\/>getBaseLinkName(), base\_link\_name);}
+\DoxyCodeLine{1012     EXPECT\_EQ(inv\_kin-\/>getWorkingFrame(), base\_link\_name);}
+\DoxyCodeLine{1013     EXPECT\_EQ(inv\_kin-\/>getTipLinkNames().size(), 1);}
+\DoxyCodeLine{1014     EXPECT\_EQ(inv\_kin-\/>getTipLinkNames()[0], tip\_link\_name);}
+\DoxyCodeLine{1015     EXPECT\_EQ(inv\_kin-\/>getJointNames(), joint\_names);}
+\DoxyCodeLine{1016 }
+\DoxyCodeLine{1017     \mbox{\hyperlink{namespacetesseract__kinematics_1_1test__suite_a483b6dc73708396dd47902969d18459f}{runInvKinTest}}(*inv\_kin, *fwd\_kin, pose, tip\_link\_name, seed);}
+\DoxyCodeLine{1018 }
+\DoxyCodeLine{1019     \mbox{\hyperlink{classtesseract__kinematics_1_1KinematicGroup}{KinematicGroup}} kin\_group(manip\_name, joint\_names, std::move(inv\_kin), *scene\_graph, scene\_state);}
+\DoxyCodeLine{1020     EXPECT\_EQ(kin\_group.\mbox{\hyperlink{classtesseract__kinematics_1_1JointGroup_a2c5120ff520cb3ccb80adb2bbdcaba7c}{getBaseLinkName}}(), scene\_graph-\/>getRoot());}
+\DoxyCodeLine{1021     \mbox{\hyperlink{namespacetesseract__kinematics_1_1test__suite_a483b6dc73708396dd47902969d18459f}{runInvKinTest}}(kin\_group, pose, base\_link\_name, tip\_link\_name, seed);}
+\DoxyCodeLine{1022     \mbox{\hyperlink{namespacetesseract__kinematics_1_1test__suite_ab44f1dc4d8ee55b058f0c667cf5f2c8c}{runKinGroupJacobianIIWATest}}(kin\_group);}
+\DoxyCodeLine{1023     \mbox{\hyperlink{namespacetesseract__kinematics_1_1test__suite_a71a775c38a4da1be2e88d4b91a823c41}{runActiveLinkNamesIIWATest}}(kin\_group);}
+\DoxyCodeLine{1024     \mbox{\hyperlink{namespacetesseract__kinematics_1_1test__suite_a7fda0bc187fee5ea0e8e251e9a776922}{runKinJointLimitsTest}}(kin\_group.\mbox{\hyperlink{classtesseract__kinematics_1_1JointGroup_a0b1953e052c51df41bcf5beab0f59c17}{getLimits}}(), target\_limits);}
+\DoxyCodeLine{1025     \mbox{\hyperlink{namespacetesseract__kinematics_1_1test__suite_a46a7b72b224c483bbb43eb34f47eaa09}{runKinSetJointLimitsTest}}(kin\_group);}
+\DoxyCodeLine{1026   \}}
+\DoxyCodeLine{1027 }
+\DoxyCodeLine{1028   \{  \textcolor{comment}{// Check cloned}}
+\DoxyCodeLine{1029     \textcolor{keyword}{auto} fwd\_kin = factory.\mbox{\hyperlink{classtesseract__kinematics_1_1KinematicsPluginFactory_ad40092590da9f40ce3da0aa570044444}{createFwdKin}}(fwd\_factory\_name, fwd\_plugin\_info, *scene\_graph, scene\_state);}
+\DoxyCodeLine{1030     EXPECT\_TRUE(fwd\_kin != \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{1031     \textcolor{keyword}{auto} fwd\_kin3 = fwd\_kin-\/>clone();}
+\DoxyCodeLine{1032     \textcolor{comment}{//    EXPECT\_EQ(fwd\_kin3-\/>getSolverName(), fwd\_solver\_name);}}
+\DoxyCodeLine{1033     EXPECT\_EQ(fwd\_kin3-\/>numJoints(), 7);}
+\DoxyCodeLine{1034     EXPECT\_EQ(fwd\_kin3-\/>getBaseLinkName(), base\_link\_name);}
+\DoxyCodeLine{1035     EXPECT\_EQ(fwd\_kin3-\/>getTipLinkNames().size(), 1);}
+\DoxyCodeLine{1036     EXPECT\_EQ(fwd\_kin3-\/>getTipLinkNames()[0], tip\_link\_name);}
+\DoxyCodeLine{1037     EXPECT\_EQ(fwd\_kin3-\/>getJointNames(), joint\_names);}
+\DoxyCodeLine{1038 }
+\DoxyCodeLine{1039     \mbox{\hyperlink{namespacetesseract__kinematics_1_1test__suite_a7e071ebe013f2904b08806ca8ed0b1a5}{runJacobianIIWATest}}(*fwd\_kin3);}
+\DoxyCodeLine{1040     \mbox{\hyperlink{namespacetesseract__kinematics_1_1test__suite_a90c75a53e78426f6e513470bfbd9afb1}{runFwdKinIIWATest}}(*fwd\_kin3);}
+\DoxyCodeLine{1041 }
+\DoxyCodeLine{1042     \textcolor{keyword}{auto} inv\_kin = factory.\mbox{\hyperlink{classtesseract__kinematics_1_1KinematicsPluginFactory_a6a396e48c2c7350f114f7d6856b6cd5a}{createInvKin}}(inv\_factory\_name, inv\_plugin\_info, *scene\_graph, scene\_state);}
+\DoxyCodeLine{1043     \textcolor{keyword}{auto} inv\_kin3 = inv\_kin-\/>clone();}
+\DoxyCodeLine{1044     EXPECT\_TRUE(inv\_kin3 != \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{1045     \textcolor{comment}{//    EXPECT\_EQ(inv\_kin3-\/>getSolverName(), inv\_solver\_name);}}
+\DoxyCodeLine{1046     EXPECT\_EQ(inv\_kin3-\/>numJoints(), 7);}
+\DoxyCodeLine{1047     EXPECT\_EQ(inv\_kin3-\/>getBaseLinkName(), base\_link\_name);}
+\DoxyCodeLine{1048     EXPECT\_EQ(inv\_kin3-\/>getWorkingFrame(), base\_link\_name);}
+\DoxyCodeLine{1049     EXPECT\_EQ(inv\_kin3-\/>getTipLinkNames().size(), 1);}
+\DoxyCodeLine{1050     EXPECT\_EQ(inv\_kin3-\/>getTipLinkNames()[0], tip\_link\_name);}
+\DoxyCodeLine{1051     EXPECT\_EQ(inv\_kin3-\/>getJointNames(), joint\_names);}
+\DoxyCodeLine{1052 }
+\DoxyCodeLine{1053     \mbox{\hyperlink{namespacetesseract__kinematics_1_1test__suite_a483b6dc73708396dd47902969d18459f}{runInvKinTest}}(*inv\_kin3, *fwd\_kin3, pose, tip\_link\_name, seed);}
+\DoxyCodeLine{1054 }
+\DoxyCodeLine{1055     \mbox{\hyperlink{classtesseract__kinematics_1_1KinematicGroup}{KinematicGroup}} kin\_group(manip\_name, joint\_names, std::move(inv\_kin3), *scene\_graph, scene\_state);}
+\DoxyCodeLine{1056     EXPECT\_EQ(kin\_group.\mbox{\hyperlink{classtesseract__kinematics_1_1JointGroup_a2c5120ff520cb3ccb80adb2bbdcaba7c}{getBaseLinkName}}(), scene\_graph-\/>getRoot());}
+\DoxyCodeLine{1057     \mbox{\hyperlink{namespacetesseract__kinematics_1_1test__suite_a483b6dc73708396dd47902969d18459f}{runInvKinTest}}(kin\_group, pose, base\_link\_name, tip\_link\_name, seed);}
+\DoxyCodeLine{1058     \mbox{\hyperlink{namespacetesseract__kinematics_1_1test__suite_ab44f1dc4d8ee55b058f0c667cf5f2c8c}{runKinGroupJacobianIIWATest}}(kin\_group);}
+\DoxyCodeLine{1059     \mbox{\hyperlink{namespacetesseract__kinematics_1_1test__suite_a71a775c38a4da1be2e88d4b91a823c41}{runActiveLinkNamesIIWATest}}(kin\_group);}
+\DoxyCodeLine{1060     \mbox{\hyperlink{namespacetesseract__kinematics_1_1test__suite_a7fda0bc187fee5ea0e8e251e9a776922}{runKinJointLimitsTest}}(kin\_group.\mbox{\hyperlink{classtesseract__kinematics_1_1JointGroup_a0b1953e052c51df41bcf5beab0f59c17}{getLimits}}(), target\_limits);}
+\DoxyCodeLine{1061     \mbox{\hyperlink{namespacetesseract__kinematics_1_1test__suite_a46a7b72b224c483bbb43eb34f47eaa09}{runKinSetJointLimitsTest}}(kin\_group);}
+\DoxyCodeLine{1062   \}}
+\DoxyCodeLine{1063 }
+\DoxyCodeLine{1064   fwd\_plugin\_info.\mbox{\hyperlink{structtesseract__common_1_1PluginInfo_a94f240db508f5cc8080598142254ba37}{config}}[\textcolor{stringliteral}{"{}base\_link"{}}] = \textcolor{stringliteral}{"{}missing\_link"{}};}
+\DoxyCodeLine{1065   fwd\_plugin\_info.\mbox{\hyperlink{structtesseract__common_1_1PluginInfo_a94f240db508f5cc8080598142254ba37}{config}}[\textcolor{stringliteral}{"{}tip\_link"{}}] = tip\_link\_name;}
+\DoxyCodeLine{1066   inv\_plugin\_info.\mbox{\hyperlink{structtesseract__common_1_1PluginInfo_a94f240db508f5cc8080598142254ba37}{config}} = fwd\_plugin\_info.\mbox{\hyperlink{structtesseract__common_1_1PluginInfo_a94f240db508f5cc8080598142254ba37}{config}};}
+\DoxyCodeLine{1067 }
+\DoxyCodeLine{1068   \{  \textcolor{comment}{// Test forward kinematics failure}}
+\DoxyCodeLine{1069 }
+\DoxyCodeLine{1070     \textcolor{keyword}{auto} fwd\_kin = factory.\mbox{\hyperlink{classtesseract__kinematics_1_1KinematicsPluginFactory_ad40092590da9f40ce3da0aa570044444}{createFwdKin}}(fwd\_factory\_name, fwd\_plugin\_info, *scene\_graph, scene\_state);}
+\DoxyCodeLine{1071     EXPECT\_TRUE(fwd\_kin == \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{1072   \}}
+\DoxyCodeLine{1073 }
+\DoxyCodeLine{1074   \{  \textcolor{comment}{// Inverse Kinematics Test failure}}
+\DoxyCodeLine{1075     \textcolor{keyword}{auto} inv\_kin = factory.\mbox{\hyperlink{classtesseract__kinematics_1_1KinematicsPluginFactory_a6a396e48c2c7350f114f7d6856b6cd5a}{createInvKin}}(inv\_factory\_name, inv\_plugin\_info, *scene\_graph, scene\_state);}
+\DoxyCodeLine{1076     EXPECT\_TRUE(inv\_kin == \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{1077   \}}
+\DoxyCodeLine{1078 \}}
+\DoxyCodeLine{1079 }
+\DoxyCodeLine{1080 \}  \textcolor{comment}{// namespace test\_suite}}
+\DoxyCodeLine{1081 \}  \textcolor{comment}{// namespace tesseract\_kinematics}}
+\DoxyCodeLine{1082 \textcolor{preprocessor}{\#endif  }\textcolor{comment}{// TESSERACT\_KINEMATICS\_KIN\_TEST\_SUITE\_H}}
+
+\end{DoxyCode}

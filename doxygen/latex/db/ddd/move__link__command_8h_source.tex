@@ -1,0 +1,40 @@
+\hypertarget{move__link__command_8h_source}{}\doxysection{move\+\_\+link\+\_\+command.\+h}
+\label{move__link__command_8h_source}\index{tesseract\_environment/include/tesseract\_environment/commands/move\_link\_command.h@{tesseract\_environment/include/tesseract\_environment/commands/move\_link\_command.h}}
+\mbox{\hyperlink{move__link__command_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#ifndef TESSERACT\_ENVIRONMENT\_MOVE\_LINK\_COMMAND\_H}}
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#define TESSERACT\_ENVIRONMENT\_MOVE\_LINK\_COMMAND\_H}}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{macros_8h}{tesseract\_common/macros.h}}>}}
+\DoxyCodeLine{30 \mbox{\hyperlink{macros_8h_a8cc0e3c6a3382c5c0b19eb9e676fc2db}{TESSERACT\_COMMON\_IGNORE\_WARNINGS\_PUSH}}}
+\DoxyCodeLine{31 \textcolor{preprocessor}{\#include <memory>}}
+\DoxyCodeLine{32 \mbox{\hyperlink{namespaceTESSERACT__COMMON__IGNORE__WARNINGS__POP}{TESSERACT\_COMMON\_IGNORE\_WARNINGS\_POP}}}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{command_8h}{tesseract\_environment/command.h}}>}}
+\DoxyCodeLine{35 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{tesseract__scene__graph_2include_2tesseract__scene__graph_2joint_8h}{tesseract\_scene\_graph/joint.h}}>}}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespacetesseract__environment}{tesseract\_environment}}}
+\DoxyCodeLine{38 \{}
+\DoxyCodeLine{39 \textcolor{keyword}{class }\mbox{\hyperlink{classtesseract__environment_1_1MoveLinkCommand}{MoveLinkCommand}} : \textcolor{keyword}{public} \mbox{\hyperlink{classtesseract__environment_1_1Command}{Command}}}
+\DoxyCodeLine{40 \{}
+\DoxyCodeLine{41 \textcolor{keyword}{public}:}
+\DoxyCodeLine{42   \textcolor{keyword}{using} \mbox{\hyperlink{classtesseract__environment_1_1Command_a26e9088280770d9887b52cef37e731db}{Ptr}} = std::shared\_ptr<MoveLinkCommand>;}
+\DoxyCodeLine{43   \textcolor{keyword}{using} \mbox{\hyperlink{classtesseract__environment_1_1Command_a71f41840ff091003233e7ddaff1c4081}{ConstPtr}} = std::shared\_ptr<const MoveLinkCommand>;}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{52   \mbox{\hyperlink{classtesseract__environment_1_1MoveLinkCommand_ae2a7e5f609aa143f7da41f7d2d37a422}{MoveLinkCommand}}(\textcolor{keyword}{const} \mbox{\hyperlink{classtesseract__scene__graph_1_1Joint}{tesseract\_scene\_graph::Joint}}\& joint)}
+\DoxyCodeLine{53     : \mbox{\hyperlink{classtesseract__environment_1_1MoveLinkCommand_af5fb8eb64e29cffa1329059d8da7fdbc}{joint\_}}(std::make\_shared<\mbox{\hyperlink{namespacetesseract__scene__graph}{tesseract\_scene\_graph}}::Joint>(joint.clone()))}
+\DoxyCodeLine{54   \{}
+\DoxyCodeLine{55   \}}
+\DoxyCodeLine{56 }
+\DoxyCodeLine{57   \mbox{\hyperlink{namespacetesseract__environment_afc00c1aecb519acba3afc24dbd367029}{CommandType}} \mbox{\hyperlink{classtesseract__environment_1_1MoveLinkCommand_aa964cfe8f88df0b2268b31ef7823662a}{getType}}() const final \{ \textcolor{keywordflow}{return} \mbox{\hyperlink{namespacetesseract__environment_afc00c1aecb519acba3afc24dbd367029a0c4617d6ea17eb456b514b9bc9ddaaec}{CommandType::MOVE\_LINK}}; \}}
+\DoxyCodeLine{58   \textcolor{keyword}{const} \mbox{\hyperlink{classtesseract__scene__graph_1_1Joint_a705d1f0a066833444550aa0c7f6d16b9}{tesseract\_scene\_graph::Joint::ConstPtr}}\& \mbox{\hyperlink{classtesseract__environment_1_1MoveLinkCommand_a20e031e0828824152d5da904b3811c5d}{getJoint}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classtesseract__environment_1_1MoveLinkCommand_af5fb8eb64e29cffa1329059d8da7fdbc}{joint\_}}; \}}
+\DoxyCodeLine{59 }
+\DoxyCodeLine{60 \textcolor{keyword}{private}:}
+\DoxyCodeLine{61   \mbox{\hyperlink{classtesseract__scene__graph_1_1Joint_a705d1f0a066833444550aa0c7f6d16b9}{tesseract\_scene\_graph::Joint::ConstPtr}} \mbox{\hyperlink{classtesseract__environment_1_1MoveLinkCommand_af5fb8eb64e29cffa1329059d8da7fdbc}{joint\_}};}
+\DoxyCodeLine{62 \};}
+\DoxyCodeLine{63 \}  \textcolor{comment}{// namespace tesseract\_environment}}
+\DoxyCodeLine{64 }
+\DoxyCodeLine{65 \textcolor{preprocessor}{\#endif  }\textcolor{comment}{// TESSERACT\_ENVIRONMENT\_MOVE\_LINK\_COMMAND\_H}}
+
+\end{DoxyCode}

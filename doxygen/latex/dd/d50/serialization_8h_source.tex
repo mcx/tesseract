@@ -1,0 +1,80 @@
+\hypertarget{serialization_8h_source}{}\doxysection{serialization.\+h}
+\label{serialization_8h_source}\index{tesseract\_common/include/tesseract\_common/serialization.h@{tesseract\_common/include/tesseract\_common/serialization.h}}
+\mbox{\hyperlink{serialization_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{30 \textcolor{preprocessor}{\#ifndef TESSERACT\_COMMON\_SERIALIZATION\_H}}
+\DoxyCodeLine{31 \textcolor{preprocessor}{\#define TESSERACT\_COMMON\_SERIALIZATION\_H}}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{macros_8h}{tesseract\_common/macros.h}}>}}
+\DoxyCodeLine{34 \mbox{\hyperlink{macros_8h_a8cc0e3c6a3382c5c0b19eb9e676fc2db}{TESSERACT\_COMMON\_IGNORE\_WARNINGS\_PUSH}}}
+\DoxyCodeLine{35 \textcolor{preprocessor}{\#include <variant>}}
+\DoxyCodeLine{36 \textcolor{preprocessor}{\#include <Eigen/Dense>}}
+\DoxyCodeLine{37 \textcolor{preprocessor}{\#include <boost/serialization/tracking.hpp>}}
+\DoxyCodeLine{38 \textcolor{preprocessor}{\#include <boost/serialization/tracking\_enum.hpp>}}
+\DoxyCodeLine{39 \mbox{\hyperlink{namespaceTESSERACT__COMMON__IGNORE__WARNINGS__POP}{TESSERACT\_COMMON\_IGNORE\_WARNINGS\_POP}}}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespaceboost}{boost}}}
+\DoxyCodeLine{42 \{}
+\DoxyCodeLine{43 \textcolor{keyword}{namespace }serialization}
+\DoxyCodeLine{44 \{}
+\DoxyCodeLine{45 \textcolor{comment}{/*****************************/}}
+\DoxyCodeLine{46 \textcolor{comment}{/****** Eigen::VectorXd ******/}}
+\DoxyCodeLine{47 \textcolor{comment}{/*****************************/}}
+\DoxyCodeLine{48 \textcolor{keyword}{template} <\textcolor{keyword}{class} Archive>}
+\DoxyCodeLine{49 \textcolor{keywordtype}{void} \mbox{\hyperlink{namespaceboost_1_1serialization_a530b9d6ab7e0038d80a74e7030f750e5}{save}}(Archive\& ar, \textcolor{keyword}{const} Eigen::VectorXd\& g, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} version);  \textcolor{comment}{// NOLINT}}
+\DoxyCodeLine{50 }
+\DoxyCodeLine{51 \textcolor{keyword}{template} <\textcolor{keyword}{class} Archive>}
+\DoxyCodeLine{52 \textcolor{keywordtype}{void} \mbox{\hyperlink{namespaceboost_1_1serialization_a792bfcb1890d3e795dffa17790816d2e}{load}}(Archive\& ar, Eigen::VectorXd\& g, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} version);  \textcolor{comment}{// NOLINT}}
+\DoxyCodeLine{53 }
+\DoxyCodeLine{54 \textcolor{keyword}{template} <\textcolor{keyword}{class} Archive>}
+\DoxyCodeLine{55 \textcolor{keywordtype}{void} \mbox{\hyperlink{namespaceboost_1_1serialization_a2da13e661fc59d6f4e6af326fa4a119d}{serialize}}(Archive\& ar, Eigen::VectorXd\& g, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} version);  \textcolor{comment}{// NOLINT}}
+\DoxyCodeLine{56 }
+\DoxyCodeLine{57 \textcolor{comment}{/*****************************/}}
+\DoxyCodeLine{58 \textcolor{comment}{/****** Eigen::VectorXd ******/}}
+\DoxyCodeLine{59 \textcolor{comment}{/*****************************/}}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{61 \textcolor{keyword}{template} <\textcolor{keyword}{class} Archive>}
+\DoxyCodeLine{62 \textcolor{keywordtype}{void} \mbox{\hyperlink{namespaceboost_1_1serialization_a530b9d6ab7e0038d80a74e7030f750e5}{save}}(Archive\& ar, \textcolor{keyword}{const} Eigen::Isometry3d\& g, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} version);  \textcolor{comment}{// NOLINT}}
+\DoxyCodeLine{63 }
+\DoxyCodeLine{64 \textcolor{keyword}{template} <\textcolor{keyword}{class} Archive>}
+\DoxyCodeLine{65 \textcolor{keywordtype}{void} \mbox{\hyperlink{namespaceboost_1_1serialization_a792bfcb1890d3e795dffa17790816d2e}{load}}(Archive\& ar, Eigen::Isometry3d\& g, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} version);  \textcolor{comment}{// NOLINT}}
+\DoxyCodeLine{66 }
+\DoxyCodeLine{67 \textcolor{keyword}{template} <\textcolor{keyword}{class} Archive>}
+\DoxyCodeLine{68 \textcolor{keywordtype}{void} \mbox{\hyperlink{namespaceboost_1_1serialization_a2da13e661fc59d6f4e6af326fa4a119d}{serialize}}(Archive\& ar, Eigen::Isometry3d\& g, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} version);  \textcolor{comment}{// NOLINT}}
+\DoxyCodeLine{69 }
+\DoxyCodeLine{70 \textcolor{comment}{/*****************************/}}
+\DoxyCodeLine{71 \textcolor{comment}{/****** Eigen::MatrixX2d *****/}}
+\DoxyCodeLine{72 \textcolor{comment}{/*****************************/}}
+\DoxyCodeLine{73 \textcolor{keyword}{template} <\textcolor{keyword}{class} Archive>}
+\DoxyCodeLine{74 \textcolor{keywordtype}{void} \mbox{\hyperlink{namespaceboost_1_1serialization_a530b9d6ab7e0038d80a74e7030f750e5}{save}}(Archive\& ar, \textcolor{keyword}{const} Eigen::MatrixX2d\& g, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} version);  \textcolor{comment}{// NOLINT}}
+\DoxyCodeLine{75 }
+\DoxyCodeLine{76 \textcolor{keyword}{template} <\textcolor{keyword}{class} Archive>}
+\DoxyCodeLine{77 \textcolor{keywordtype}{void} \mbox{\hyperlink{namespaceboost_1_1serialization_a792bfcb1890d3e795dffa17790816d2e}{load}}(Archive\& ar, Eigen::MatrixX2d\& g, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} version);  \textcolor{comment}{// NOLINT}}
+\DoxyCodeLine{78 }
+\DoxyCodeLine{79 \textcolor{keyword}{template} <\textcolor{keyword}{class} Archive>}
+\DoxyCodeLine{80 \textcolor{keywordtype}{void} \mbox{\hyperlink{namespaceboost_1_1serialization_a2da13e661fc59d6f4e6af326fa4a119d}{serialize}}(Archive\& ar, Eigen::MatrixX2d\& g, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} version);  \textcolor{comment}{// NOLINT}}
+\DoxyCodeLine{81 }
+\DoxyCodeLine{82 \textcolor{comment}{/*********************************************************/}}
+\DoxyCodeLine{83 \textcolor{comment}{/****** std::variant<std::string, Eigen::Isometry3d> *****/}}
+\DoxyCodeLine{84 \textcolor{comment}{/*********************************************************/}}
+\DoxyCodeLine{85 \textcolor{keyword}{template} <\textcolor{keyword}{class} Archive>}
+\DoxyCodeLine{86 \textcolor{keywordtype}{void} \mbox{\hyperlink{namespaceboost_1_1serialization_a530b9d6ab7e0038d80a74e7030f750e5}{save}}(Archive\& ar, \textcolor{keyword}{const} std::variant<std::string, Eigen::Isometry3d>\& g, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} version);  \textcolor{comment}{// NOLINT}}
+\DoxyCodeLine{87 }
+\DoxyCodeLine{88 \textcolor{keyword}{template} <\textcolor{keyword}{class} Archive>}
+\DoxyCodeLine{89 \textcolor{keywordtype}{void} \mbox{\hyperlink{namespaceboost_1_1serialization_a792bfcb1890d3e795dffa17790816d2e}{load}}(Archive\& ar, std::variant<std::string, Eigen::Isometry3d>\& g, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} version);  \textcolor{comment}{// NOLINT}}
+\DoxyCodeLine{90 }
+\DoxyCodeLine{91 \textcolor{keyword}{template} <\textcolor{keyword}{class} Archive>}
+\DoxyCodeLine{92 \textcolor{keywordtype}{void} \mbox{\hyperlink{namespaceboost_1_1serialization_a2da13e661fc59d6f4e6af326fa4a119d}{serialize}}(Archive\& ar, std::variant<std::string, Eigen::Isometry3d>\& g, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} version);  \textcolor{comment}{// NOLINT}}
+\DoxyCodeLine{93 }
+\DoxyCodeLine{94 \}  \textcolor{comment}{// namespace serialization}}
+\DoxyCodeLine{95 \}  \textcolor{comment}{// namespace boost}}
+\DoxyCodeLine{96 }
+\DoxyCodeLine{97 \textcolor{comment}{// Set the tracking to track\_never for all Eigen types.}}
+\DoxyCodeLine{98 \mbox{\hyperlink{serialization_8h_a6ce327d54a408162d753adb9cc40e1cd}{BOOST\_CLASS\_TRACKING}}(Eigen::VectorXd, boost::serialization::track\_never);}
+\DoxyCodeLine{99 \mbox{\hyperlink{serialization_8h_a6ce327d54a408162d753adb9cc40e1cd}{BOOST\_CLASS\_TRACKING}}(Eigen::Isometry3d, boost::serialization::track\_never);}
+\DoxyCodeLine{100 \mbox{\hyperlink{serialization_8h_a6ce327d54a408162d753adb9cc40e1cd}{BOOST\_CLASS\_TRACKING}}(Eigen::MatrixX2d, boost::serialization::track\_never);}
+\DoxyCodeLine{101 }
+\DoxyCodeLine{102 \textcolor{preprocessor}{\#endif  }\textcolor{comment}{// TESSERACT\_COMMON\_SERIALIZATION\_H}}
+
+\end{DoxyCode}

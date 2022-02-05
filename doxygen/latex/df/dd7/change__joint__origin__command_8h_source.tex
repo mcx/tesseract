@@ -1,0 +1,46 @@
+\hypertarget{change__joint__origin__command_8h_source}{}\doxysection{change\+\_\+joint\+\_\+origin\+\_\+command.\+h}
+\label{change__joint__origin__command_8h_source}\index{tesseract\_environment/include/tesseract\_environment/commands/change\_joint\_origin\_command.h@{tesseract\_environment/include/tesseract\_environment/commands/change\_joint\_origin\_command.h}}
+\mbox{\hyperlink{change__joint__origin__command_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#ifndef TESSERACT\_ENVIRONMENT\_CHANGE\_JOINT\_ORIGIN\_COMMAND\_H}}
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#define TESSERACT\_ENVIRONMENT\_CHANGE\_JOINT\_ORIGIN\_COMMAND\_H}}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{macros_8h}{tesseract\_common/macros.h}}>}}
+\DoxyCodeLine{30 \mbox{\hyperlink{macros_8h_a8cc0e3c6a3382c5c0b19eb9e676fc2db}{TESSERACT\_COMMON\_IGNORE\_WARNINGS\_PUSH}}}
+\DoxyCodeLine{31 \textcolor{preprocessor}{\#include <memory>}}
+\DoxyCodeLine{32 \textcolor{preprocessor}{\#include <Eigen/Geometry>}}
+\DoxyCodeLine{33 \mbox{\hyperlink{namespaceTESSERACT__COMMON__IGNORE__WARNINGS__POP}{TESSERACT\_COMMON\_IGNORE\_WARNINGS\_POP}}}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{command_8h}{tesseract\_environment/command.h}}>}}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespacetesseract__environment}{tesseract\_environment}}}
+\DoxyCodeLine{38 \{}
+\DoxyCodeLine{39 \textcolor{keyword}{class }\mbox{\hyperlink{classtesseract__environment_1_1ChangeJointOriginCommand}{ChangeJointOriginCommand}} : \textcolor{keyword}{public} \mbox{\hyperlink{classtesseract__environment_1_1Command}{Command}}}
+\DoxyCodeLine{40 \{}
+\DoxyCodeLine{41 \textcolor{keyword}{public}:}
+\DoxyCodeLine{42   \textcolor{comment}{// LCOV\_EXCL\_START}}
+\DoxyCodeLine{43   EIGEN\_MAKE\_ALIGNED\_OPERATOR\_NEW}
+\DoxyCodeLine{44   \textcolor{comment}{// LCOV\_EXCL\_STOP}}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46   \textcolor{keyword}{using} \mbox{\hyperlink{classtesseract__environment_1_1Command_a26e9088280770d9887b52cef37e731db}{Ptr}} = std::shared\_ptr<ChangeJointOriginCommand>;}
+\DoxyCodeLine{47   \textcolor{keyword}{using} \mbox{\hyperlink{classtesseract__environment_1_1Command_a71f41840ff091003233e7ddaff1c4081}{ConstPtr}} = std::shared\_ptr<const ChangeJointOriginCommand>;}
+\DoxyCodeLine{48 }
+\DoxyCodeLine{57   \mbox{\hyperlink{classtesseract__environment_1_1ChangeJointOriginCommand_ad0ca2cd4ac3d48cbc19e13c4ea4e35f0}{ChangeJointOriginCommand}}(std::string joint\_name, \textcolor{keyword}{const} Eigen::Isometry3d\& origin)}
+\DoxyCodeLine{58     : \mbox{\hyperlink{classtesseract__environment_1_1ChangeJointOriginCommand_a03dcc27473d250ee490b202bf5d28b80}{joint\_name\_}}(std::move(joint\_name)), \mbox{\hyperlink{classtesseract__environment_1_1ChangeJointOriginCommand_abe1553d0d07c0452a2b01d8da30b6f90}{origin\_}}(origin)}
+\DoxyCodeLine{59   \{}
+\DoxyCodeLine{60   \}}
+\DoxyCodeLine{61 }
+\DoxyCodeLine{62   \mbox{\hyperlink{namespacetesseract__environment_afc00c1aecb519acba3afc24dbd367029}{CommandType}} \mbox{\hyperlink{classtesseract__environment_1_1ChangeJointOriginCommand_a3ad0eca3080ed400654659dfc131839d}{getType}}() const final \{ \textcolor{keywordflow}{return} \mbox{\hyperlink{namespacetesseract__environment_afc00c1aecb519acba3afc24dbd367029a9e520d728925baf2b87146d99a20d8ba}{CommandType::CHANGE\_JOINT\_ORIGIN}}; \}}
+\DoxyCodeLine{63   \textcolor{keyword}{const} std::string\& \mbox{\hyperlink{classtesseract__environment_1_1ChangeJointOriginCommand_af4ddcbc68f275ed35892da6479456a07}{getJointName}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classtesseract__environment_1_1ChangeJointOriginCommand_a03dcc27473d250ee490b202bf5d28b80}{joint\_name\_}}; \}}
+\DoxyCodeLine{64   \textcolor{keyword}{const} Eigen::Isometry3d\& \mbox{\hyperlink{classtesseract__environment_1_1ChangeJointOriginCommand_ab4d5b21dec1083e466a4fa6b44b8398f}{getOrigin}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classtesseract__environment_1_1ChangeJointOriginCommand_abe1553d0d07c0452a2b01d8da30b6f90}{origin\_}}; \}}
+\DoxyCodeLine{65 }
+\DoxyCodeLine{66 \textcolor{keyword}{private}:}
+\DoxyCodeLine{67   std::string \mbox{\hyperlink{classtesseract__environment_1_1ChangeJointOriginCommand_a03dcc27473d250ee490b202bf5d28b80}{joint\_name\_}};}
+\DoxyCodeLine{68   Eigen::Isometry3d \mbox{\hyperlink{classtesseract__environment_1_1ChangeJointOriginCommand_abe1553d0d07c0452a2b01d8da30b6f90}{origin\_}};}
+\DoxyCodeLine{69 \};}
+\DoxyCodeLine{70 \}  \textcolor{comment}{// namespace tesseract\_environment}}
+\DoxyCodeLine{71 }
+\DoxyCodeLine{72 \textcolor{preprocessor}{\#endif  }\textcolor{comment}{// TESSERACT\_ENVIRONMENT\_CHANGE\_JOINT\_ORIGIN\_COMMAND\_H}}
+
+\end{DoxyCode}

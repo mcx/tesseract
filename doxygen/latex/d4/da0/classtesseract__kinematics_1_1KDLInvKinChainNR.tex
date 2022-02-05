@@ -51,7 +51,7 @@ using \mbox{\hyperlink{classtesseract__kinematics_1_1KDLInvKinChainNR_a4e60f0249
 \item 
 \mbox{\hyperlink{classtesseract__kinematics_1_1KDLInvKinChainNR_abfb5633e1fbbd9cae18b8cecba13f9df}{KDLInv\+Kin\+Chain\+NR}} (\mbox{\hyperlink{classtesseract__kinematics_1_1KDLInvKinChainNR}{KDLInv\+Kin\+Chain\+NR}} \&\&)=delete
 \item 
-\mbox{\hyperlink{classtesseract__kinematics_1_1KDLInvKinChainNR}{KDLInv\+Kin\+Chain\+NR}} \& \mbox{\hyperlink{classtesseract__kinematics_1_1KDLInvKinChainNR_af6e3924e87352609b5391492ed880923}{operator=}} (\mbox{\hyperlink{classtesseract__kinematics_1_1KDLInvKinChainNR}{KDLInv\+Kin\+Chain\+NR}} \&\&)=delete
+\mbox{\hyperlink{classtesseract__kinematics_1_1KDLInvKinChainNR}{KDLInv\+Kin\+Chain\+NR}} \& \mbox{\hyperlink{classtesseract__kinematics_1_1KDLInvKinChainNR_a3827ef6ff9fa9572596123ce11e39af1}{operator=}} (\mbox{\hyperlink{classtesseract__kinematics_1_1KDLInvKinChainNR}{KDLInv\+Kin\+Chain\+NR}} \&\&)=delete
 \item 
 \mbox{\hyperlink{classtesseract__kinematics_1_1KDLInvKinChainNR_a95b024f86b8e9424f047949e088b96b1}{KDLInv\+Kin\+Chain\+NR}} (const \mbox{\hyperlink{classtesseract__scene__graph_1_1SceneGraph}{tesseract\+\_\+scene\+\_\+graph\+::\+Scene\+Graph}} \&scene\+\_\+graph, const std\+::string \&base\+\_\+link, const std\+::string \&tip\+\_\+link, std\+::string solver\+\_\+name=\mbox{\hyperlink{namespacetesseract__kinematics_a243f308445daa312eacb5587eca48a19}{KDL\+\_\+\+INV\+\_\+\+KIN\+\_\+\+CHAIN\+\_\+\+NR\+\_\+\+SOLVER\+\_\+\+NAME}})
 \begin{DoxyCompactList}\small\item\em Construct KDL Forward Kinematics Creates KDL\+::\+Chain from tesseract scene graph. \end{DoxyCompactList}\item 
@@ -179,7 +179,7 @@ Construct Inverse Kinematics as chain Creates a inverse kinematic chain object f
 \begin{DoxyParams}{Parameters}
 {\em scene\+\_\+graph} & The Tesseract Scene Graph \\
 \hline
-{\em chains} & A vector of kinematics chains $<$base\+\_\+link, tip\+\_\+link$>$ that get concatenated \\
+{\em chains} & A vector of kinematics chains \texorpdfstring{$<$}{<}base\+\_\+link, tip\+\_\+link\texorpdfstring{$>$}{>} that get concatenated \\
 \hline
 {\em solver\+\_\+name} & The solver name of the kinematic chain \\
 \hline
@@ -267,7 +267,7 @@ A vector of joint names, joint\+\_\+list\+\_\+
 \end{DoxyReturn}
 
 
-Implements \mbox{\hyperlink{classtesseract__kinematics_1_1InverseKinematics_a360a825f248afe235bd1acac58551fe4}{tesseract\+\_\+kinematics\+::\+Inverse\+Kinematics}}.
+Implements \mbox{\hyperlink{classtesseract__kinematics_1_1InverseKinematics_acfc6eac527bb06e067f81463eb1f4af1}{tesseract\+\_\+kinematics\+::\+Inverse\+Kinematics}}.
 
 \mbox{\Hypertarget{classtesseract__kinematics_1_1KDLInvKinChainNR_a43b05698db60434c9d55a2848fe8d83f}\label{classtesseract__kinematics_1_1KDLInvKinChainNR_a43b05698db60434c9d55a2848fe8d83f}} 
 \index{tesseract\_kinematics::KDLInvKinChainNR@{tesseract\_kinematics::KDLInvKinChainNR}!getSolverName@{getSolverName}}
@@ -295,7 +295,7 @@ Get the names of the tip links of the kinematics group.
 
 In the case of a kinematic chain, this returns one tip link; in the case of a kinematic tree this returns the tip link for each branch of the tree. 
 
-Implements \mbox{\hyperlink{classtesseract__kinematics_1_1InverseKinematics_a034a497745b4f8a48a0f1b1e0afe668b}{tesseract\+\_\+kinematics\+::\+Inverse\+Kinematics}}.
+Implements \mbox{\hyperlink{classtesseract__kinematics_1_1InverseKinematics_a9dcf494323b56bb001061cd70ddf2b9c}{tesseract\+\_\+kinematics\+::\+Inverse\+Kinematics}}.
 
 \mbox{\Hypertarget{classtesseract__kinematics_1_1KDLInvKinChainNR_aaaffddb0f3ae56a6c589f008b02185a0}\label{classtesseract__kinematics_1_1KDLInvKinChainNR_aaaffddb0f3ae56a6c589f008b02185a0}} 
 \index{tesseract\_kinematics::KDLInvKinChainNR@{tesseract\_kinematics::KDLInvKinChainNR}!getWorkingFrame@{getWorkingFrame}}
@@ -334,11 +334,11 @@ Implements \mbox{\hyperlink{classtesseract__kinematics_1_1InverseKinematics_aa34
 \doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily \mbox{\hyperlink{classtesseract__kinematics_1_1KDLInvKinChainNR}{KDLInv\+Kin\+Chain\+NR}} \& tesseract\+\_\+kinematics\+::\+KDLInv\+Kin\+Chain\+NR\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classtesseract__kinematics_1_1KDLInvKinChainNR}{KDLInv\+Kin\+Chain\+NR}} \&}]{other }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{classtesseract__kinematics_1_1KDLInvKinChainNR_af6e3924e87352609b5391492ed880923}\label{classtesseract__kinematics_1_1KDLInvKinChainNR_af6e3924e87352609b5391492ed880923}} 
+\mbox{\Hypertarget{classtesseract__kinematics_1_1KDLInvKinChainNR_a3827ef6ff9fa9572596123ce11e39af1}\label{classtesseract__kinematics_1_1KDLInvKinChainNR_a3827ef6ff9fa9572596123ce11e39af1}} 
 \index{tesseract\_kinematics::KDLInvKinChainNR@{tesseract\_kinematics::KDLInvKinChainNR}!operator=@{operator=}}
 \index{operator=@{operator=}!tesseract\_kinematics::KDLInvKinChainNR@{tesseract\_kinematics::KDLInvKinChainNR}}
 \doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily \mbox{\hyperlink{classtesseract__kinematics_1_1KDLInvKinChainNR}{KDLInv\+Kin\+Chain\+NR}}\& tesseract\+\_\+kinematics\+::\+KDLInv\+Kin\+Chain\+NR\+::operator= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classtesseract__kinematics_1_1KDLInvKinChainNR}{KDLInv\+Kin\+Chain\+NR}} \&\&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classtesseract__kinematics_1_1KDLInvKinChainNR}{KDLInv\+Kin\+Chain\+NR}} \& tesseract\+\_\+kinematics\+::\+KDLInv\+Kin\+Chain\+NR\+::operator= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classtesseract__kinematics_1_1KDLInvKinChainNR}{KDLInv\+Kin\+Chain\+NR}} \&\&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
 
 
 

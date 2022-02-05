@@ -3,52 +3,52 @@
 \doxysubsection*{Namespaces}
 \begin{DoxyCompactItemize}
 \item 
- \mbox{\hyperlink{namespacetesseract__collision_1_1FLOAT__MATH}{FLOAT\+\_\+\+MATH}}
+namespace \mbox{\hyperlink{namespacetesseract__collision_1_1FLOAT__MATH}{FLOAT\+\_\+\+MATH}}
 \item 
- \mbox{\hyperlink{namespacetesseract__collision_1_1RAYCAST__MESH}{RAYCAST\+\_\+\+MESH}}
+namespace \mbox{\hyperlink{namespacetesseract__collision_1_1RAYCAST__MESH}{RAYCAST\+\_\+\+MESH}}
 \item 
- \mbox{\hyperlink{namespacetesseract__collision_1_1tesseract__collision__bullet}{tesseract\+\_\+collision\+\_\+bullet}}
+namespace \mbox{\hyperlink{namespacetesseract__collision_1_1tesseract__collision__bullet}{tesseract\+\_\+collision\+\_\+bullet}}
 \item 
- \mbox{\hyperlink{namespacetesseract__collision_1_1tesseract__collision__fcl}{tesseract\+\_\+collision\+\_\+fcl}}
+namespace \mbox{\hyperlink{namespacetesseract__collision_1_1tesseract__collision__fcl}{tesseract\+\_\+collision\+\_\+fcl}}
 \item 
- \mbox{\hyperlink{namespacetesseract__collision_1_1test__suite}{test\+\_\+suite}}
+namespace \mbox{\hyperlink{namespacetesseract__collision_1_1test__suite}{test\+\_\+suite}}
 \item 
- \mbox{\hyperlink{namespacetesseract__collision_1_1VHACD}{VHACD}}
+namespace \mbox{\hyperlink{namespacetesseract__collision_1_1VHACD}{VHACD}}
 \end{DoxyCompactItemize}
 \doxysubsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
-struct \mbox{\hyperlink{structtesseract__collision_1_1HACDParameters}{HACDParameters}}
-\item 
-class \mbox{\hyperlink{classtesseract__collision_1_1ConvexDecompositionHACD}{Convex\+Decomposition\+HACD}}
-\item 
-class \mbox{\hyperlink{classtesseract__collision_1_1DiscreteContactManagerFactory}{Discrete\+Contact\+Manager\+Factory}}
-\begin{DoxyCompactList}\small\item\em Define a discrete contact manager plugin which the factory can create an instance. \end{DoxyCompactList}\item 
-class \mbox{\hyperlink{classtesseract__collision_1_1ContinuousContactManagerFactory}{Continuous\+Contact\+Manager\+Factory}}
-\begin{DoxyCompactList}\small\item\em Define a continuous contact manager plugin which the factory can create an instance. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structtesseract__collision_1_1CollisionCheckConfig}{Collision\+Check\+Config}}
+\begin{DoxyCompactList}\small\item\em This is a high level structure containing common information that collision checking utilities need. The goal of this config is to allow all collision checking utilities and planners to use the same datastructure. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structtesseract__collision_1_1ContactManagerConfig}{Contact\+Manager\+Config}}
+\begin{DoxyCompactList}\small\item\em Contains parameters used to configure a contact manager before a series of contact checks. \end{DoxyCompactList}\item 
 class \mbox{\hyperlink{classtesseract__collision_1_1ContactManagersPluginFactory}{Contact\+Managers\+Plugin\+Factory}}
-\item 
-class \mbox{\hyperlink{classtesseract__collision_1_1ContinuousContactManager}{Continuous\+Contact\+Manager}}
-\item 
-class \mbox{\hyperlink{classtesseract__collision_1_1ConvexDecomposition}{Convex\+Decomposition}}
-\item 
-class \mbox{\hyperlink{classtesseract__collision_1_1DiscreteContactManager}{Discrete\+Contact\+Manager}}
-\item 
-struct \mbox{\hyperlink{structtesseract__collision_1_1ContactResult}{Contact\+Result}}
 \item 
 struct \mbox{\hyperlink{structtesseract__collision_1_1ContactRequest}{Contact\+Request}}
 \begin{DoxyCompactList}\small\item\em The \mbox{\hyperlink{structtesseract__collision_1_1ContactRequest}{Contact\+Request}} struct. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structtesseract__collision_1_1ContactResult}{Contact\+Result}}
+\item 
 struct \mbox{\hyperlink{structtesseract__collision_1_1ContactTestData}{Contact\+Test\+Data}}
 \begin{DoxyCompactList}\small\item\em This data is intended only to be used internal to the collision checkers as a container and should not be externally used by other libraries or packages. \end{DoxyCompactList}\item 
-struct \mbox{\hyperlink{structtesseract__collision_1_1ContactManagerConfig}{Contact\+Manager\+Config}}
-\begin{DoxyCompactList}\small\item\em Contains parameters used to configure a contact manager before a series of contact checks. \end{DoxyCompactList}\item 
-struct \mbox{\hyperlink{structtesseract__collision_1_1CollisionCheckConfig}{Collision\+Check\+Config}}
-\begin{DoxyCompactList}\small\item\em This is a high level structure containing common information that collision checking utilities need. The goal of this config is to allow all collision checking utilities and planners to use the same datastructure. \end{DoxyCompactList}\item 
-struct \mbox{\hyperlink{structtesseract__collision_1_1VHACDParameters}{VHACDParameters}}
+class \mbox{\hyperlink{classtesseract__collision_1_1ContinuousContactManager}{Continuous\+Contact\+Manager}}
+\item 
+class \mbox{\hyperlink{classtesseract__collision_1_1ContinuousContactManagerFactory}{Continuous\+Contact\+Manager\+Factory}}
+\begin{DoxyCompactList}\small\item\em Define a continuous contact manager plugin which the factory can create an instance. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classtesseract__collision_1_1ConvexDecomposition}{Convex\+Decomposition}}
+\item 
+class \mbox{\hyperlink{classtesseract__collision_1_1ConvexDecompositionHACD}{Convex\+Decomposition\+HACD}}
 \item 
 class \mbox{\hyperlink{classtesseract__collision_1_1ConvexDecompositionVHACD}{Convex\+Decomposition\+VHACD}}
 \item 
+class \mbox{\hyperlink{classtesseract__collision_1_1DiscreteContactManager}{Discrete\+Contact\+Manager}}
+\item 
+class \mbox{\hyperlink{classtesseract__collision_1_1DiscreteContactManagerFactory}{Discrete\+Contact\+Manager\+Factory}}
+\begin{DoxyCompactList}\small\item\em Define a discrete contact manager plugin which the factory can create an instance. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structtesseract__collision_1_1HACDParameters}{HACDParameters}}
+\item 
 class \mbox{\hyperlink{classtesseract__collision_1_1ProgressCallback}{Progress\+Callback}}
+\item 
+struct \mbox{\hyperlink{structtesseract__collision_1_1VHACDParameters}{VHACDParameters}}
 \end{DoxyCompactItemize}
 \doxysubsection*{Typedefs}
 \begin{DoxyCompactItemize}
@@ -233,7 +233,7 @@ This is used so users may provide a callback to reject/approve collision results
 \index{tesseract\_collision@{tesseract\_collision}!ACMOverrideType@{ACMOverrideType}}
 \index{ACMOverrideType@{ACMOverrideType}!tesseract\_collision@{tesseract\_collision}}
 \doxysubsubsection{\texorpdfstring{ACMOverrideType}{ACMOverrideType}}
-{\footnotesize\ttfamily enum \mbox{\hyperlink{namespacetesseract__collision_ab4aafe369f7930ea6a356f0b578c16af}{tesseract\+\_\+collision\+::\+ACMOverride\+Type}}\hspace{0.3cm}{\ttfamily [strong]}}
+{\footnotesize\ttfamily enum class \mbox{\hyperlink{namespacetesseract__collision_ab4aafe369f7930ea6a356f0b578c16af}{tesseract\+\_\+collision\+::\+ACMOverride\+Type}}\hspace{0.3cm}{\ttfamily [strong]}}
 
 
 
@@ -261,7 +261,7 @@ OR&New Is\+Contact\+Allowed\+Fn combines the contact manager fn and the ACM gene
 \index{tesseract\_collision@{tesseract\_collision}!CollisionEvaluatorType@{CollisionEvaluatorType}}
 \index{CollisionEvaluatorType@{CollisionEvaluatorType}!tesseract\_collision@{tesseract\_collision}}
 \doxysubsubsection{\texorpdfstring{CollisionEvaluatorType}{CollisionEvaluatorType}}
-{\footnotesize\ttfamily enum \mbox{\hyperlink{namespacetesseract__collision_af17e8ee8632a40cf4b6ed1ba1aec41ac}{tesseract\+\_\+collision\+::\+Collision\+Evaluator\+Type}}\hspace{0.3cm}{\ttfamily [strong]}}
+{\footnotesize\ttfamily enum class \mbox{\hyperlink{namespacetesseract__collision_af17e8ee8632a40cf4b6ed1ba1aec41ac}{tesseract\+\_\+collision\+::\+Collision\+Evaluator\+Type}}\hspace{0.3cm}{\ttfamily [strong]}}
 
 
 
@@ -293,7 +293,7 @@ LVS\+\_\+\+CONTINUOUS&Continuous contact manager interpolating using longest val
 \index{tesseract\_collision@{tesseract\_collision}!ContactTestType@{ContactTestType}}
 \index{ContactTestType@{ContactTestType}!tesseract\_collision@{tesseract\_collision}}
 \doxysubsubsection{\texorpdfstring{ContactTestType}{ContactTestType}}
-{\footnotesize\ttfamily enum \mbox{\hyperlink{namespacetesseract__collision_ac3da4f46ae16e86ba4f1dfd2935eb80c}{tesseract\+\_\+collision\+::\+Contact\+Test\+Type}}\hspace{0.3cm}{\ttfamily [strong]}}
+{\footnotesize\ttfamily enum class \mbox{\hyperlink{namespacetesseract__collision_ac3da4f46ae16e86ba4f1dfd2935eb80c}{tesseract\+\_\+collision\+::\+Contact\+Test\+Type}}\hspace{0.3cm}{\ttfamily [strong]}}
 
 \begin{DoxyEnumFields}{Enumerator}
 \raisebox{\heightof{T}}[0pt][0pt]{\index{FIRST@{FIRST}!tesseract\_collision@{tesseract\_collision}}\index{tesseract\_collision@{tesseract\_collision}!FIRST@{FIRST}}}\mbox{\Hypertarget{namespacetesseract__collision_ac3da4f46ae16e86ba4f1dfd2935eb80ca2c2624a5059934a947d6e25fe8332ade}\label{namespacetesseract__collision_ac3da4f46ae16e86ba4f1dfd2935eb80ca2c2624a5059934a947d6e25fe8332ade}} 
@@ -317,7 +317,7 @@ LIMITED&Return limited set of contacts for a pair of objects \\
 \index{tesseract\_collision@{tesseract\_collision}!ContinuousCollisionType@{ContinuousCollisionType}}
 \index{ContinuousCollisionType@{ContinuousCollisionType}!tesseract\_collision@{tesseract\_collision}}
 \doxysubsubsection{\texorpdfstring{ContinuousCollisionType}{ContinuousCollisionType}}
-{\footnotesize\ttfamily enum \mbox{\hyperlink{namespacetesseract__collision_a267c740fd3b446222ba19cbaa56dab5e}{tesseract\+\_\+collision\+::\+Continuous\+Collision\+Type}}\hspace{0.3cm}{\ttfamily [strong]}}
+{\footnotesize\ttfamily enum class \mbox{\hyperlink{namespacetesseract__collision_a267c740fd3b446222ba19cbaa56dab5e}{tesseract\+\_\+collision\+::\+Continuous\+Collision\+Type}}\hspace{0.3cm}{\ttfamily [strong]}}
 
 \begin{DoxyEnumFields}{Enumerator}
 \raisebox{\heightof{T}}[0pt][0pt]{\index{CCType\_None@{CCType\_None}!tesseract\_collision@{tesseract\_collision}}\index{tesseract\_collision@{tesseract\_collision}!CCType\_None@{CCType\_None}}}\mbox{\Hypertarget{namespacetesseract__collision_a267c740fd3b446222ba19cbaa56dab5ea79e497b3f5d3d8b23ea29c9370354bb6}\label{namespacetesseract__collision_a267c740fd3b446222ba19cbaa56dab5ea79e497b3f5d3d8b23ea29c9370354bb6}} 

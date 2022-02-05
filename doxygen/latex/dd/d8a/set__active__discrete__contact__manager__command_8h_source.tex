@@ -1,0 +1,40 @@
+\hypertarget{set__active__discrete__contact__manager__command_8h_source}{}\doxysection{set\+\_\+active\+\_\+discrete\+\_\+contact\+\_\+manager\+\_\+command.\+h}
+\label{set__active__discrete__contact__manager__command_8h_source}\index{tesseract\_environment/include/tesseract\_environment/commands/set\_active\_discrete\_contact\_manager\_command.h@{tesseract\_environment/include/tesseract\_environment/commands/set\_active\_discrete\_contact\_manager\_command.h}}
+\mbox{\hyperlink{set__active__discrete__contact__manager__command_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#ifndef TESSERACT\_ENVIRONMENT\_SET\_ACTIVE\_DISCRETE\_CONTACT\_MANAGER\_COMMAND\_H}}
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#define TESSERACT\_ENVIRONMENT\_SET\_ACTIVE\_DISCRETE\_CONTACT\_MANAGER\_COMMAND\_H}}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{macros_8h}{tesseract\_common/macros.h}}>}}
+\DoxyCodeLine{30 \mbox{\hyperlink{macros_8h_a8cc0e3c6a3382c5c0b19eb9e676fc2db}{TESSERACT\_COMMON\_IGNORE\_WARNINGS\_PUSH}}}
+\DoxyCodeLine{31 \textcolor{preprocessor}{\#include <memory>}}
+\DoxyCodeLine{32 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{33 \mbox{\hyperlink{namespaceTESSERACT__COMMON__IGNORE__WARNINGS__POP}{TESSERACT\_COMMON\_IGNORE\_WARNINGS\_POP}}}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{command_8h}{tesseract\_environment/command.h}}>}}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespacetesseract__environment}{tesseract\_environment}}}
+\DoxyCodeLine{38 \{}
+\DoxyCodeLine{39 \textcolor{keyword}{class }\mbox{\hyperlink{classtesseract__environment_1_1SetActiveDiscreteContactManagerCommand}{SetActiveDiscreteContactManagerCommand}} : \textcolor{keyword}{public} \mbox{\hyperlink{classtesseract__environment_1_1Command}{Command}}}
+\DoxyCodeLine{40 \{}
+\DoxyCodeLine{41 \textcolor{keyword}{public}:}
+\DoxyCodeLine{42   \textcolor{keyword}{using} \mbox{\hyperlink{classtesseract__environment_1_1Command_a26e9088280770d9887b52cef37e731db}{Ptr}} = std::shared\_ptr<SetActiveDiscreteContactManagerCommand>;}
+\DoxyCodeLine{43   \textcolor{keyword}{using} \mbox{\hyperlink{classtesseract__environment_1_1Command_a71f41840ff091003233e7ddaff1c4081}{ConstPtr}} = std::shared\_ptr<const SetActiveDiscreteContactManagerCommand>;}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{49   \mbox{\hyperlink{classtesseract__environment_1_1SetActiveDiscreteContactManagerCommand_ad25fd1c135a6ad90bdfcdf8a2be00e95}{SetActiveDiscreteContactManagerCommand}}(std::string active\_contact\_manager)}
+\DoxyCodeLine{50     : \mbox{\hyperlink{classtesseract__environment_1_1SetActiveDiscreteContactManagerCommand_aa07e621e573eaac26ae598396440fd02}{active\_contact\_manager\_}}(std::move(active\_contact\_manager))}
+\DoxyCodeLine{51   \{}
+\DoxyCodeLine{52   \}}
+\DoxyCodeLine{53 }
+\DoxyCodeLine{54   \mbox{\hyperlink{namespacetesseract__environment_afc00c1aecb519acba3afc24dbd367029}{CommandType}} \mbox{\hyperlink{classtesseract__environment_1_1SetActiveDiscreteContactManagerCommand_a9923b28fcd31a975bc161d2a64429431}{getType}}() const final \{ \textcolor{keywordflow}{return} \mbox{\hyperlink{namespacetesseract__environment_afc00c1aecb519acba3afc24dbd367029a2fdc8f6309f2bdd8cd403be451510841}{CommandType::SET\_ACTIVE\_DISCRETE\_CONTACT\_MANAGER}}; \}}
+\DoxyCodeLine{55   \textcolor{keyword}{const} std::string\& \mbox{\hyperlink{classtesseract__environment_1_1SetActiveDiscreteContactManagerCommand_a92b3258fd60aa6f2b863d5e8b7e03f15}{getName}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classtesseract__environment_1_1SetActiveDiscreteContactManagerCommand_aa07e621e573eaac26ae598396440fd02}{active\_contact\_manager\_}}; \}}
+\DoxyCodeLine{56 }
+\DoxyCodeLine{57 \textcolor{keyword}{private}:}
+\DoxyCodeLine{58   std::string \mbox{\hyperlink{classtesseract__environment_1_1SetActiveDiscreteContactManagerCommand_aa07e621e573eaac26ae598396440fd02}{active\_contact\_manager\_}};}
+\DoxyCodeLine{59 \};}
+\DoxyCodeLine{60 \}  \textcolor{comment}{// namespace tesseract\_environment}}
+\DoxyCodeLine{61 }
+\DoxyCodeLine{62 \textcolor{preprocessor}{\#endif  }\textcolor{comment}{// TESSERACT\_ENVIRONMENT\_SET\_ACTIVE\_DISCRETE\_CONTACT\_MANAGER\_COMMAND\_H}}
+
+\end{DoxyCode}

@@ -35,13 +35,13 @@ virtual \mbox{\hyperlink{classtesseract__common_1_1ResourceLocator_a660e997527b7
 \item 
 \mbox{\hyperlink{classtesseract__common_1_1ResourceLocator_aface44cb02f589651312fa0d4f481cbb}{Resource\+Locator}} (const \mbox{\hyperlink{classtesseract__common_1_1ResourceLocator}{Resource\+Locator}} \&)=default
 \item 
-\mbox{\hyperlink{classtesseract__common_1_1ResourceLocator}{Resource\+Locator}} \& \mbox{\hyperlink{classtesseract__common_1_1ResourceLocator_a780d0cb6288fc8722b76fbd1a877bafe}{operator=}} (const \mbox{\hyperlink{classtesseract__common_1_1ResourceLocator}{Resource\+Locator}} \&)=default
+\mbox{\hyperlink{classtesseract__common_1_1ResourceLocator}{Resource\+Locator}} \& \mbox{\hyperlink{classtesseract__common_1_1ResourceLocator_a853da657c4a01c225e4e90a62659167e}{operator=}} (const \mbox{\hyperlink{classtesseract__common_1_1ResourceLocator}{Resource\+Locator}} \&)=default
 \item 
 \mbox{\hyperlink{classtesseract__common_1_1ResourceLocator_afb1bade6ac9b10a06ac872b15d6bd35c}{Resource\+Locator}} (\mbox{\hyperlink{classtesseract__common_1_1ResourceLocator}{Resource\+Locator}} \&\&)=default
 \item 
-\mbox{\hyperlink{classtesseract__common_1_1ResourceLocator}{Resource\+Locator}} \& \mbox{\hyperlink{classtesseract__common_1_1ResourceLocator_aad1b42a5e8c8981ae26e9280554530ae}{operator=}} (\mbox{\hyperlink{classtesseract__common_1_1ResourceLocator}{Resource\+Locator}} \&\&)=default
+\mbox{\hyperlink{classtesseract__common_1_1ResourceLocator}{Resource\+Locator}} \& \mbox{\hyperlink{classtesseract__common_1_1ResourceLocator_aa8f2296300f0d6658e3b62d77b07de2e}{operator=}} (\mbox{\hyperlink{classtesseract__common_1_1ResourceLocator}{Resource\+Locator}} \&\&)=default
 \item 
-virtual std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classtesseract__common_1_1Resource}{Resource}} $>$ \mbox{\hyperlink{classtesseract__common_1_1ResourceLocator_a12583dabe7b43d27ca9913afc4213196}{locate\+Resource}} (const std\+::string \&url) const =0
+virtual std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classtesseract__common_1_1Resource}{Resource}} $>$ \mbox{\hyperlink{classtesseract__common_1_1ResourceLocator_a9982dcd0225b9addefa4fe5a6e5643b4}{locate\+Resource}} (const std\+::string \&url) const =0
 \begin{DoxyCompactList}\small\item\em Locate a resource based on a URL. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
@@ -91,11 +91,11 @@ Abstract class for resource loaders.
 
 
 \doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{classtesseract__common_1_1ResourceLocator_a12583dabe7b43d27ca9913afc4213196}\label{classtesseract__common_1_1ResourceLocator_a12583dabe7b43d27ca9913afc4213196}} 
+\mbox{\Hypertarget{classtesseract__common_1_1ResourceLocator_a9982dcd0225b9addefa4fe5a6e5643b4}\label{classtesseract__common_1_1ResourceLocator_a9982dcd0225b9addefa4fe5a6e5643b4}} 
 \index{tesseract\_common::ResourceLocator@{tesseract\_common::ResourceLocator}!locateResource@{locateResource}}
 \index{locateResource@{locateResource}!tesseract\_common::ResourceLocator@{tesseract\_common::ResourceLocator}}
 \doxysubsubsection{\texorpdfstring{locateResource()}{locateResource()}}
-{\footnotesize\ttfamily virtual std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classtesseract__common_1_1Resource}{Resource}}$>$ tesseract\+\_\+common\+::\+Resource\+Locator\+::locate\+Resource (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{url }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+{\footnotesize\ttfamily virtual std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classtesseract__common_1_1Resource}{Resource}} $>$ tesseract\+\_\+common\+::\+Resource\+Locator\+::locate\+Resource (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{url }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
 
 
 
@@ -111,19 +111,19 @@ A shared pointer to a \mbox{\hyperlink{classtesseract__common_1_1Resource}{Resou
 \end{DoxyReturn}
 
 
-Implemented in \mbox{\hyperlink{classtesseract__common_1_1BytesResource_a88e61e49f6981d8888834210667eb8fb}{tesseract\+\_\+common\+::\+Bytes\+Resource}}, \mbox{\hyperlink{classtesseract__common_1_1SimpleLocatedResource_a75ad1aeda7bfade59624796667f5d616}{tesseract\+\_\+common\+::\+Simple\+Located\+Resource}}, and \mbox{\hyperlink{classtesseract__common_1_1SimpleResourceLocator_ad1d12d75adbe9cbfe2250730cdc91b17}{tesseract\+\_\+common\+::\+Simple\+Resource\+Locator}}.
+Implemented in \mbox{\hyperlink{classtesseract__common_1_1SimpleResourceLocator_ad1d12d75adbe9cbfe2250730cdc91b17}{tesseract\+\_\+common\+::\+Simple\+Resource\+Locator}}, \mbox{\hyperlink{classtesseract__common_1_1SimpleLocatedResource_a75ad1aeda7bfade59624796667f5d616}{tesseract\+\_\+common\+::\+Simple\+Located\+Resource}}, and \mbox{\hyperlink{classtesseract__common_1_1BytesResource_a88e61e49f6981d8888834210667eb8fb}{tesseract\+\_\+common\+::\+Bytes\+Resource}}.
 
-\mbox{\Hypertarget{classtesseract__common_1_1ResourceLocator_a780d0cb6288fc8722b76fbd1a877bafe}\label{classtesseract__common_1_1ResourceLocator_a780d0cb6288fc8722b76fbd1a877bafe}} 
+\mbox{\Hypertarget{classtesseract__common_1_1ResourceLocator_a853da657c4a01c225e4e90a62659167e}\label{classtesseract__common_1_1ResourceLocator_a853da657c4a01c225e4e90a62659167e}} 
 \index{tesseract\_common::ResourceLocator@{tesseract\_common::ResourceLocator}!operator=@{operator=}}
 \index{operator=@{operator=}!tesseract\_common::ResourceLocator@{tesseract\_common::ResourceLocator}}
 \doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
-{\footnotesize\ttfamily \mbox{\hyperlink{classtesseract__common_1_1ResourceLocator}{Resource\+Locator}}\& tesseract\+\_\+common\+::\+Resource\+Locator\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classtesseract__common_1_1ResourceLocator}{Resource\+Locator}} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classtesseract__common_1_1ResourceLocator}{Resource\+Locator}} \& tesseract\+\_\+common\+::\+Resource\+Locator\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classtesseract__common_1_1ResourceLocator}{Resource\+Locator}} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
 
-\mbox{\Hypertarget{classtesseract__common_1_1ResourceLocator_aad1b42a5e8c8981ae26e9280554530ae}\label{classtesseract__common_1_1ResourceLocator_aad1b42a5e8c8981ae26e9280554530ae}} 
+\mbox{\Hypertarget{classtesseract__common_1_1ResourceLocator_aa8f2296300f0d6658e3b62d77b07de2e}\label{classtesseract__common_1_1ResourceLocator_aa8f2296300f0d6658e3b62d77b07de2e}} 
 \index{tesseract\_common::ResourceLocator@{tesseract\_common::ResourceLocator}!operator=@{operator=}}
 \index{operator=@{operator=}!tesseract\_common::ResourceLocator@{tesseract\_common::ResourceLocator}}
 \doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily \mbox{\hyperlink{classtesseract__common_1_1ResourceLocator}{Resource\+Locator}}\& tesseract\+\_\+common\+::\+Resource\+Locator\+::operator= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classtesseract__common_1_1ResourceLocator}{Resource\+Locator}} \&\&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classtesseract__common_1_1ResourceLocator}{Resource\+Locator}} \& tesseract\+\_\+common\+::\+Resource\+Locator\+::operator= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classtesseract__common_1_1ResourceLocator}{Resource\+Locator}} \&\&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
 
 
 

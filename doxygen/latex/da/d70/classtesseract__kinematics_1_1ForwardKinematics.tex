@@ -39,11 +39,11 @@ virtual \mbox{\hyperlink{classtesseract__kinematics_1_1ForwardKinematics_a352af7
 \item 
 \mbox{\hyperlink{classtesseract__kinematics_1_1ForwardKinematics_a79fdfecfae28b99ee73853ef9e25d177}{Forward\+Kinematics}} (const \mbox{\hyperlink{classtesseract__kinematics_1_1ForwardKinematics}{Forward\+Kinematics}} \&)=default
 \item 
-\mbox{\hyperlink{classtesseract__kinematics_1_1ForwardKinematics}{Forward\+Kinematics}} \& \mbox{\hyperlink{classtesseract__kinematics_1_1ForwardKinematics_a08bb8539d6fd9ec4db183a7c18bf27db}{operator=}} (const \mbox{\hyperlink{classtesseract__kinematics_1_1ForwardKinematics}{Forward\+Kinematics}} \&)=default
+\mbox{\hyperlink{classtesseract__kinematics_1_1ForwardKinematics}{Forward\+Kinematics}} \& \mbox{\hyperlink{classtesseract__kinematics_1_1ForwardKinematics_aa63b1e918514fcd7201ce0872e00f0ee}{operator=}} (const \mbox{\hyperlink{classtesseract__kinematics_1_1ForwardKinematics}{Forward\+Kinematics}} \&)=default
 \item 
 \mbox{\hyperlink{classtesseract__kinematics_1_1ForwardKinematics_aa97e885003440aae7c5d53523a34ed3c}{Forward\+Kinematics}} (\mbox{\hyperlink{classtesseract__kinematics_1_1ForwardKinematics}{Forward\+Kinematics}} \&\&)=default
 \item 
-\mbox{\hyperlink{classtesseract__kinematics_1_1ForwardKinematics}{Forward\+Kinematics}} \& \mbox{\hyperlink{classtesseract__kinematics_1_1ForwardKinematics_a28de8a2b7a7cfc52509da9e12dfb5c85}{operator=}} (\mbox{\hyperlink{classtesseract__kinematics_1_1ForwardKinematics}{Forward\+Kinematics}} \&\&)=default
+\mbox{\hyperlink{classtesseract__kinematics_1_1ForwardKinematics}{Forward\+Kinematics}} \& \mbox{\hyperlink{classtesseract__kinematics_1_1ForwardKinematics_a78778d293b1c3c6c785eb1303749a6d4}{operator=}} (\mbox{\hyperlink{classtesseract__kinematics_1_1ForwardKinematics}{Forward\+Kinematics}} \&\&)=default
 \item 
 virtual \mbox{\hyperlink{namespacetesseract__common_a67bde3cb7bb235f0f61c370ef8bc74d8}{tesseract\+\_\+common\+::\+Transform\+Map}} \mbox{\hyperlink{classtesseract__kinematics_1_1ForwardKinematics_a81f281915dbb7a3528f1ac2328b15c3c}{calc\+Fwd\+Kin}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&joint\+\_\+angles) const =0
 \begin{DoxyCompactList}\small\item\em Calculates the transform for each tip link in the kinematic group. \end{DoxyCompactList}\item 
@@ -51,9 +51,9 @@ virtual Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{classtesseract__kinematics_1_1For
 \begin{DoxyCompactList}\small\item\em Calculates the Jacobian matrix for a given joint state in the reference frame of the specified link. \end{DoxyCompactList}\item 
 virtual std\+::string \mbox{\hyperlink{classtesseract__kinematics_1_1ForwardKinematics_ab02a688b0b0034b62a68da5103d6cb3b}{get\+Base\+Link\+Name}} () const =0
 \begin{DoxyCompactList}\small\item\em Get the robot base link name. \end{DoxyCompactList}\item 
-virtual \mbox{\hyperlink{vhacdRaycastMesh_8cpp_adcf134d50025cc52907d0c8ac798d89d}{std\+::vector}}$<$ std\+::string $>$ \mbox{\hyperlink{classtesseract__kinematics_1_1ForwardKinematics_ac778c021775b42c51a1309eab210b10f}{get\+Joint\+Names}} () const =0
+virtual \mbox{\hyperlink{vhacdRaycastMesh_8cpp_adcf134d50025cc52907d0c8ac798d89d}{std\+::vector}}$<$ std\+::string $>$ \mbox{\hyperlink{classtesseract__kinematics_1_1ForwardKinematics_afcb0f6ae74bc94d575884d117a909c1d}{get\+Joint\+Names}} () const =0
 \begin{DoxyCompactList}\small\item\em Get list of joint names for kinematic object. \end{DoxyCompactList}\item 
-virtual \mbox{\hyperlink{vhacdRaycastMesh_8cpp_adcf134d50025cc52907d0c8ac798d89d}{std\+::vector}}$<$ std\+::string $>$ \mbox{\hyperlink{classtesseract__kinematics_1_1ForwardKinematics_a7f172454f09ec01674f4c8727e60f6be}{get\+Tip\+Link\+Names}} () const =0
+virtual \mbox{\hyperlink{vhacdRaycastMesh_8cpp_adcf134d50025cc52907d0c8ac798d89d}{std\+::vector}}$<$ std\+::string $>$ \mbox{\hyperlink{classtesseract__kinematics_1_1ForwardKinematics_a398d049d49fb2fa224735965c810de2c}{get\+Tip\+Link\+Names}} () const =0
 \begin{DoxyCompactList}\small\item\em Get list of tip link names for kinematic object. \end{DoxyCompactList}\item 
 virtual Eigen\+::\+Index \mbox{\hyperlink{classtesseract__kinematics_1_1ForwardKinematics_afcdf8be4f70df99050080c7c0a5ca379}{num\+Joints}} () const =0
 \begin{DoxyCompactList}\small\item\em Number of joints in robot. \end{DoxyCompactList}\item 
@@ -131,7 +131,7 @@ Forward kinematics functions.
 
 Calculates the transform for each tip link in the kinematic group. 
 
-This should return a transform for every link listed in \mbox{\hyperlink{classtesseract__kinematics_1_1ForwardKinematics_a7f172454f09ec01674f4c8727e60f6be}{get\+Tip\+Link\+Names()}} Throws an exception on failures (including uninitialized) 
+This should return a transform for every link listed in \mbox{\hyperlink{classtesseract__kinematics_1_1ForwardKinematics_a398d049d49fb2fa224735965c810de2c}{get\+Tip\+Link\+Names()}} Throws an exception on failures (including uninitialized) 
 \begin{DoxyParams}{Parameters}
 {\em joint\+\_\+angles} & Vector of joint angles (size must match number of joints in robot chain) \\
 \hline
@@ -153,7 +153,7 @@ Implemented in \mbox{\hyperlink{classtesseract__kinematics_1_1KDLFwdKinChain_afb
 
 Calculates the Jacobian matrix for a given joint state in the reference frame of the specified link. 
 
-This should be able to return a jacobian given any link listed in \mbox{\hyperlink{classtesseract__kinematics_1_1ForwardKinematics_a7f172454f09ec01674f4c8727e60f6be}{get\+Tip\+Link\+Names()}} Throws an exception on failures (including uninitialized) 
+This should be able to return a jacobian given any link listed in \mbox{\hyperlink{classtesseract__kinematics_1_1ForwardKinematics_a398d049d49fb2fa224735965c810de2c}{get\+Tip\+Link\+Names()}} Throws an exception on failures (including uninitialized) 
 \begin{DoxyParams}{Parameters}
 {\em joint\+\_\+angles} & Input vector of joint angles \\
 \hline
@@ -195,11 +195,11 @@ Get the robot base link name.
 
 Implemented in \mbox{\hyperlink{classtesseract__kinematics_1_1KDLFwdKinChain_af516d87cd805acb7cb9ca76ca70eafe9}{tesseract\+\_\+kinematics\+::\+KDLFwd\+Kin\+Chain}}.
 
-\mbox{\Hypertarget{classtesseract__kinematics_1_1ForwardKinematics_ac778c021775b42c51a1309eab210b10f}\label{classtesseract__kinematics_1_1ForwardKinematics_ac778c021775b42c51a1309eab210b10f}} 
+\mbox{\Hypertarget{classtesseract__kinematics_1_1ForwardKinematics_afcb0f6ae74bc94d575884d117a909c1d}\label{classtesseract__kinematics_1_1ForwardKinematics_afcb0f6ae74bc94d575884d117a909c1d}} 
 \index{tesseract\_kinematics::ForwardKinematics@{tesseract\_kinematics::ForwardKinematics}!getJointNames@{getJointNames}}
 \index{getJointNames@{getJointNames}!tesseract\_kinematics::ForwardKinematics@{tesseract\_kinematics::ForwardKinematics}}
 \doxysubsubsection{\texorpdfstring{getJointNames()}{getJointNames()}}
-{\footnotesize\ttfamily virtual \mbox{\hyperlink{vhacdRaycastMesh_8cpp_adcf134d50025cc52907d0c8ac798d89d}{std\+::vector}}$<$std\+::string$>$ tesseract\+\_\+kinematics\+::\+Forward\+Kinematics\+::get\+Joint\+Names (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{vhacdRaycastMesh_8cpp_adcf134d50025cc52907d0c8ac798d89d}{std\+::vector}}$<$ std\+::string $>$ tesseract\+\_\+kinematics\+::\+Forward\+Kinematics\+::get\+Joint\+Names (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
 
 
 
@@ -226,11 +226,11 @@ Get the name of the solver. Recommend using the name of the class.
 
 Implemented in \mbox{\hyperlink{classtesseract__kinematics_1_1KDLFwdKinChain_a6e35dc7589fe183d30e71d9a934d280f}{tesseract\+\_\+kinematics\+::\+KDLFwd\+Kin\+Chain}}.
 
-\mbox{\Hypertarget{classtesseract__kinematics_1_1ForwardKinematics_a7f172454f09ec01674f4c8727e60f6be}\label{classtesseract__kinematics_1_1ForwardKinematics_a7f172454f09ec01674f4c8727e60f6be}} 
+\mbox{\Hypertarget{classtesseract__kinematics_1_1ForwardKinematics_a398d049d49fb2fa224735965c810de2c}\label{classtesseract__kinematics_1_1ForwardKinematics_a398d049d49fb2fa224735965c810de2c}} 
 \index{tesseract\_kinematics::ForwardKinematics@{tesseract\_kinematics::ForwardKinematics}!getTipLinkNames@{getTipLinkNames}}
 \index{getTipLinkNames@{getTipLinkNames}!tesseract\_kinematics::ForwardKinematics@{tesseract\_kinematics::ForwardKinematics}}
 \doxysubsubsection{\texorpdfstring{getTipLinkNames()}{getTipLinkNames()}}
-{\footnotesize\ttfamily virtual \mbox{\hyperlink{vhacdRaycastMesh_8cpp_adcf134d50025cc52907d0c8ac798d89d}{std\+::vector}}$<$std\+::string$>$ tesseract\+\_\+kinematics\+::\+Forward\+Kinematics\+::get\+Tip\+Link\+Names (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{vhacdRaycastMesh_8cpp_adcf134d50025cc52907d0c8ac798d89d}{std\+::vector}}$<$ std\+::string $>$ tesseract\+\_\+kinematics\+::\+Forward\+Kinematics\+::get\+Tip\+Link\+Names (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
 
 
 
@@ -260,17 +260,17 @@ Number of joints in robot
 
 Implemented in \mbox{\hyperlink{classtesseract__kinematics_1_1KDLFwdKinChain_aaf1edad98bb0287e8489776c6570ba3b}{tesseract\+\_\+kinematics\+::\+KDLFwd\+Kin\+Chain}}.
 
-\mbox{\Hypertarget{classtesseract__kinematics_1_1ForwardKinematics_a08bb8539d6fd9ec4db183a7c18bf27db}\label{classtesseract__kinematics_1_1ForwardKinematics_a08bb8539d6fd9ec4db183a7c18bf27db}} 
+\mbox{\Hypertarget{classtesseract__kinematics_1_1ForwardKinematics_aa63b1e918514fcd7201ce0872e00f0ee}\label{classtesseract__kinematics_1_1ForwardKinematics_aa63b1e918514fcd7201ce0872e00f0ee}} 
 \index{tesseract\_kinematics::ForwardKinematics@{tesseract\_kinematics::ForwardKinematics}!operator=@{operator=}}
 \index{operator=@{operator=}!tesseract\_kinematics::ForwardKinematics@{tesseract\_kinematics::ForwardKinematics}}
 \doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
-{\footnotesize\ttfamily \mbox{\hyperlink{classtesseract__kinematics_1_1ForwardKinematics}{Forward\+Kinematics}}\& tesseract\+\_\+kinematics\+::\+Forward\+Kinematics\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classtesseract__kinematics_1_1ForwardKinematics}{Forward\+Kinematics}} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classtesseract__kinematics_1_1ForwardKinematics}{Forward\+Kinematics}} \& tesseract\+\_\+kinematics\+::\+Forward\+Kinematics\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classtesseract__kinematics_1_1ForwardKinematics}{Forward\+Kinematics}} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
 
-\mbox{\Hypertarget{classtesseract__kinematics_1_1ForwardKinematics_a28de8a2b7a7cfc52509da9e12dfb5c85}\label{classtesseract__kinematics_1_1ForwardKinematics_a28de8a2b7a7cfc52509da9e12dfb5c85}} 
+\mbox{\Hypertarget{classtesseract__kinematics_1_1ForwardKinematics_a78778d293b1c3c6c785eb1303749a6d4}\label{classtesseract__kinematics_1_1ForwardKinematics_a78778d293b1c3c6c785eb1303749a6d4}} 
 \index{tesseract\_kinematics::ForwardKinematics@{tesseract\_kinematics::ForwardKinematics}!operator=@{operator=}}
 \index{operator=@{operator=}!tesseract\_kinematics::ForwardKinematics@{tesseract\_kinematics::ForwardKinematics}}
 \doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily \mbox{\hyperlink{classtesseract__kinematics_1_1ForwardKinematics}{Forward\+Kinematics}}\& tesseract\+\_\+kinematics\+::\+Forward\+Kinematics\+::operator= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classtesseract__kinematics_1_1ForwardKinematics}{Forward\+Kinematics}} \&\&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classtesseract__kinematics_1_1ForwardKinematics}{Forward\+Kinematics}} \& tesseract\+\_\+kinematics\+::\+Forward\+Kinematics\+::operator= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classtesseract__kinematics_1_1ForwardKinematics}{Forward\+Kinematics}} \&\&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
 
 
 

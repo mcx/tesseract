@@ -1,0 +1,198 @@
+\hypertarget{tesseract__geometry_2include_2tesseract__geometry_2impl_2octree_8h_source}{}\doxysection{octree.\+h}
+\label{tesseract__geometry_2include_2tesseract__geometry_2impl_2octree_8h_source}\index{tesseract\_geometry/include/tesseract\_geometry/impl/octree.h@{tesseract\_geometry/include/tesseract\_geometry/impl/octree.h}}
+\mbox{\hyperlink{tesseract__geometry_2include_2tesseract__geometry_2impl_2octree_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#ifndef TESSERACT\_GEOMETRY\_OCTREE\_H}}
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#define TESSERACT\_GEOMETRY\_OCTREE\_H}}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{macros_8h}{tesseract\_common/macros.h}}>}}
+\DoxyCodeLine{30 \mbox{\hyperlink{macros_8h_a8cc0e3c6a3382c5c0b19eb9e676fc2db}{TESSERACT\_COMMON\_IGNORE\_WARNINGS\_PUSH}}}
+\DoxyCodeLine{31 \textcolor{preprocessor}{\#include <Eigen/Geometry>}}
+\DoxyCodeLine{32 \textcolor{preprocessor}{\#include <memory>}}
+\DoxyCodeLine{33 \textcolor{preprocessor}{\#include <octomap/octomap.h>}}
+\DoxyCodeLine{34 \mbox{\hyperlink{namespaceTESSERACT__COMMON__IGNORE__WARNINGS__POP}{TESSERACT\_COMMON\_IGNORE\_WARNINGS\_POP}}}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{tesseract__geometry_2include_2tesseract__geometry_2geometry_8h}{tesseract\_geometry/geometry.h}}>}}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{38 \textcolor{preprocessor}{\#ifdef SWIG}}
+\DoxyCodeLine{39 \%shared\_ptr(\mbox{\hyperlink{classtesseract__geometry_1_1Octree}{tesseract\_geometry::Octree}})}
+\DoxyCodeLine{40 \textcolor{preprocessor}{\#endif  }\textcolor{comment}{// SWIG}}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{42 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespacetesseract__geometry}{tesseract\_geometry}}}
+\DoxyCodeLine{43 \{}
+\DoxyCodeLine{44 \textcolor{preprocessor}{\#ifdef SWIG}}
+\DoxyCodeLine{45 \%nodefaultctor Octree;}
+\DoxyCodeLine{46 \textcolor{preprocessor}{\#endif  }\textcolor{comment}{// SWIG}}
+\DoxyCodeLine{47 \textcolor{keyword}{class }\mbox{\hyperlink{classtesseract__geometry_1_1Octree}{Octree}} : \textcolor{keyword}{public} \mbox{\hyperlink{classtesseract__geometry_1_1Geometry}{Geometry}}}
+\DoxyCodeLine{48 \{}
+\DoxyCodeLine{49 \textcolor{keyword}{public}:}
+\DoxyCodeLine{50   \textcolor{keyword}{using} \mbox{\hyperlink{classtesseract__geometry_1_1Geometry_acd91c55fb9604ed374446c029b6f2d08}{Ptr}} = std::shared\_ptr<Octree>;}
+\DoxyCodeLine{51   \textcolor{keyword}{using} \mbox{\hyperlink{classtesseract__geometry_1_1Geometry_a755a973394d2ccb45ad53a5e11ff03c7}{ConstPtr}} = std::shared\_ptr<const Octree>;}
+\DoxyCodeLine{52 }
+\DoxyCodeLine{53   \textcolor{keyword}{enum} \mbox{\hyperlink{classtesseract__geometry_1_1Octree_a50b534fbd4a871cd257ac52d6009af00}{SubType}}}
+\DoxyCodeLine{54   \{}
+\DoxyCodeLine{55     \mbox{\hyperlink{classtesseract__geometry_1_1Octree_a50b534fbd4a871cd257ac52d6009af00a35ed5bb4d02016adb5d4d839524348eb}{BOX}},}
+\DoxyCodeLine{56     \mbox{\hyperlink{classtesseract__geometry_1_1Octree_a50b534fbd4a871cd257ac52d6009af00a779662c05992d34ec76271438b7def72}{SPHERE\_INSIDE}},}
+\DoxyCodeLine{57     \mbox{\hyperlink{classtesseract__geometry_1_1Octree_a50b534fbd4a871cd257ac52d6009af00a474a03c0f9a733d18169249b3103e629}{SPHERE\_OUTSIDE}}}
+\DoxyCodeLine{58   \};}
+\DoxyCodeLine{59 }
+\DoxyCodeLine{60 \textcolor{preprocessor}{\#ifndef SWIG}}
+\DoxyCodeLine{61   \mbox{\hyperlink{classtesseract__geometry_1_1Octree_ab3c357fdff2f3e06413fe9b8f7ae3f43}{Octree}}(std::shared\_ptr<const octomap::OcTree> octree, \textcolor{keyword}{const} \mbox{\hyperlink{classtesseract__geometry_1_1Octree_a50b534fbd4a871cd257ac52d6009af00}{SubType}} sub\_type)}
+\DoxyCodeLine{62     : \mbox{\hyperlink{classtesseract__geometry_1_1Geometry}{Geometry}}(\mbox{\hyperlink{namespacetesseract__geometry_a7543d6c1dc8947a3274abdd21fb56feb}{GeometryType}}::\mbox{\hyperlink{namespacetesseract__geometry_a7543d6c1dc8947a3274abdd21fb56febaa7b8033ed9f31f599bdc33da2b5b8d83}{OCTREE}}), \mbox{\hyperlink{classtesseract__geometry_1_1Octree_aca7587afddb38c0b5052e1ed8eaf88f4}{octree\_}}(std::move(octree)), \mbox{\hyperlink{classtesseract__geometry_1_1Octree_a90a701b0f4f93fe9f80b01001f9a5166}{sub\_type\_}}(sub\_type)}
+\DoxyCodeLine{63   \{}
+\DoxyCodeLine{64   \}}
+\DoxyCodeLine{65 }
+\DoxyCodeLine{66   \textcolor{keyword}{template} <\textcolor{keyword}{typename} Po\textcolor{keywordtype}{int}T>}
+\DoxyCodeLine{67   \mbox{\hyperlink{classtesseract__geometry_1_1Octree_a88e61844187d8947b0978dfd7b4a6579}{Octree}}(\textcolor{keyword}{const} PointT\& point\_cloud, \textcolor{keyword}{const} \textcolor{keywordtype}{double} resolution, \textcolor{keyword}{const} \mbox{\hyperlink{classtesseract__geometry_1_1Octree_a50b534fbd4a871cd257ac52d6009af00}{SubType}} sub\_type, \textcolor{keyword}{const} \textcolor{keywordtype}{bool} \mbox{\hyperlink{classtesseract__geometry_1_1Octree_a6869e2482754d630b7c15b9b6c428fa9}{prune}})}
+\DoxyCodeLine{68     : \mbox{\hyperlink{classtesseract__geometry_1_1Geometry}{Geometry}}(\mbox{\hyperlink{namespacetesseract__geometry_a7543d6c1dc8947a3274abdd21fb56feb}{GeometryType}}::\mbox{\hyperlink{namespacetesseract__geometry_a7543d6c1dc8947a3274abdd21fb56febaa7b8033ed9f31f599bdc33da2b5b8d83}{OCTREE}}), \mbox{\hyperlink{classtesseract__geometry_1_1Octree_a90a701b0f4f93fe9f80b01001f9a5166}{sub\_type\_}}(sub\_type)}
+\DoxyCodeLine{69   \{}
+\DoxyCodeLine{70     \textcolor{keyword}{auto} ot = std::make\_shared<octomap::OcTree>(resolution);}
+\DoxyCodeLine{71 }
+\DoxyCodeLine{72     \textcolor{keywordflow}{for} (\textcolor{keyword}{auto}\& point : point\_cloud.points)}
+\DoxyCodeLine{73       ot-\/>updateNode(point.x, point.y, point.z, \textcolor{keyword}{true}, \textcolor{keyword}{true});}
+\DoxyCodeLine{74 }
+\DoxyCodeLine{75     \textcolor{comment}{// Per the documentation for overload updateNode above with lazy\_eval enabled this must be called after all points}}
+\DoxyCodeLine{76     \textcolor{comment}{// are added}}
+\DoxyCodeLine{77     ot-\/>updateInnerOccupancy();}
+\DoxyCodeLine{78 }
+\DoxyCodeLine{79     \textcolor{keywordflow}{if} (\mbox{\hyperlink{classtesseract__geometry_1_1Octree_a6869e2482754d630b7c15b9b6c428fa9}{prune}})}
+\DoxyCodeLine{80     \{}
+\DoxyCodeLine{81       \mbox{\hyperlink{classtesseract__geometry_1_1Octree_a6869e2482754d630b7c15b9b6c428fa9}{tesseract\_geometry::Octree::prune}}(*ot);}
+\DoxyCodeLine{82       \mbox{\hyperlink{classtesseract__geometry_1_1Octree_ae0f8d27720da5ad6c93dfb5dbe29affa}{pruned\_}} = \mbox{\hyperlink{classtesseract__geometry_1_1Octree_a6869e2482754d630b7c15b9b6c428fa9}{prune}};}
+\DoxyCodeLine{83     \}}
+\DoxyCodeLine{84 }
+\DoxyCodeLine{85     \mbox{\hyperlink{classtesseract__geometry_1_1Octree_aca7587afddb38c0b5052e1ed8eaf88f4}{octree\_}} = ot;}
+\DoxyCodeLine{86   \}}
+\DoxyCodeLine{87 \textcolor{preprocessor}{\#endif  }\textcolor{comment}{// SWIG}}
+\DoxyCodeLine{88 }
+\DoxyCodeLine{89   \mbox{\hyperlink{classtesseract__geometry_1_1Octree_ab5354ffdc5537961859e9b660b828d4e}{\string~Octree}}() \textcolor{keyword}{override} = \textcolor{keywordflow}{default};}
+\DoxyCodeLine{90   \mbox{\hyperlink{classtesseract__geometry_1_1Octree_ab2ecb263a0b700e836a89757d82ba97b}{Octree}}(\textcolor{keyword}{const} \mbox{\hyperlink{classtesseract__geometry_1_1Octree}{Octree}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{91   \mbox{\hyperlink{classtesseract__geometry_1_1Octree}{Octree}}\& \mbox{\hyperlink{classtesseract__geometry_1_1Octree_aaca14d14e8fc9a6527bb31091bbd9239}{operator=}}(\textcolor{keyword}{const} \mbox{\hyperlink{classtesseract__geometry_1_1Octree}{Octree}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{92   \mbox{\hyperlink{classtesseract__geometry_1_1Octree_a3bde0782fbfee80bc21723f064c7592f}{Octree}}(\mbox{\hyperlink{classtesseract__geometry_1_1Octree}{Octree}}\&\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{93   \mbox{\hyperlink{classtesseract__geometry_1_1Octree}{Octree}}\& \mbox{\hyperlink{classtesseract__geometry_1_1Octree_a655b18fbd6088fb8065edce93574f64b}{operator=}}(\mbox{\hyperlink{classtesseract__geometry_1_1Octree}{Octree}}\&\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{94 }
+\DoxyCodeLine{95 \textcolor{preprocessor}{\#ifndef SWIG}}
+\DoxyCodeLine{96   \textcolor{keyword}{const} std::shared\_ptr<const octomap::OcTree>\& \mbox{\hyperlink{classtesseract__geometry_1_1Octree_ad732d54d1ab8846d3c7e71cc27cd3bd6}{getOctree}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classtesseract__geometry_1_1Octree_aca7587afddb38c0b5052e1ed8eaf88f4}{octree\_}}; \}}
+\DoxyCodeLine{97 \textcolor{preprocessor}{\#endif  }\textcolor{comment}{// SWIG}}
+\DoxyCodeLine{98   \mbox{\hyperlink{classtesseract__geometry_1_1Octree_a50b534fbd4a871cd257ac52d6009af00}{SubType}} \mbox{\hyperlink{classtesseract__geometry_1_1Octree_af32ea5602ecda329bfe44b24ba34c466}{getSubType}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classtesseract__geometry_1_1Octree_a90a701b0f4f93fe9f80b01001f9a5166}{sub\_type\_}}; \}}
+\DoxyCodeLine{99 }
+\DoxyCodeLine{100   \textcolor{keywordtype}{bool} \mbox{\hyperlink{classtesseract__geometry_1_1Octree_a087069afe99c36b6923d7ef0e8e1e29f}{getPruned}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classtesseract__geometry_1_1Octree_ae0f8d27720da5ad6c93dfb5dbe29affa}{pruned\_}}; \}}
+\DoxyCodeLine{101 }
+\DoxyCodeLine{102   \mbox{\hyperlink{classtesseract__geometry_1_1Geometry_acd91c55fb9604ed374446c029b6f2d08}{Geometry::Ptr}} \mbox{\hyperlink{classtesseract__geometry_1_1Octree_a806c462d66b9ddedef51ec7069b3d17b}{clone}}()\textcolor{keyword}{ const override }\{ \textcolor{keywordflow}{return} std::make\_shared<Octree>(\mbox{\hyperlink{classtesseract__geometry_1_1Octree_aca7587afddb38c0b5052e1ed8eaf88f4}{octree\_}}, \mbox{\hyperlink{classtesseract__geometry_1_1Octree_a90a701b0f4f93fe9f80b01001f9a5166}{sub\_type\_}}); \}}
+\DoxyCodeLine{103 }
+\DoxyCodeLine{108   \textcolor{keywordtype}{void} \mbox{\hyperlink{classtesseract__geometry_1_1Octree_a2ba384fe7fe9d489e61a84fda5872149}{update}}() \{ assert(\textcolor{keyword}{false}); \}  \textcolor{comment}{// NOLINT}}
+\DoxyCodeLine{109 }
+\DoxyCodeLine{117   \textcolor{keywordtype}{long} \mbox{\hyperlink{classtesseract__geometry_1_1Octree_ae854ec8aa19fa88ca10cd1376895151e}{calcNumSubShapes}}()\textcolor{keyword}{ const}}
+\DoxyCodeLine{118 \textcolor{keyword}{  }\{}
+\DoxyCodeLine{119     \textcolor{keywordtype}{long} cnt = 0;}
+\DoxyCodeLine{120     \textcolor{keywordtype}{double} occupancy\_threshold = \mbox{\hyperlink{classtesseract__geometry_1_1Octree_aca7587afddb38c0b5052e1ed8eaf88f4}{octree\_}}-\/>getOccupancyThres();}
+\DoxyCodeLine{121     \textcolor{keywordflow}{for} (\textcolor{keyword}{auto} it = \mbox{\hyperlink{classtesseract__geometry_1_1Octree_aca7587afddb38c0b5052e1ed8eaf88f4}{octree\_}}-\/>begin(\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}\textcolor{keyword}{>}(\mbox{\hyperlink{classtesseract__geometry_1_1Octree_aca7587afddb38c0b5052e1ed8eaf88f4}{octree\_}}-\/>getTreeDepth())), end = \mbox{\hyperlink{classtesseract__geometry_1_1Octree_aca7587afddb38c0b5052e1ed8eaf88f4}{octree\_}}-\/>end(); it != end;}
+\DoxyCodeLine{122          ++it)}
+\DoxyCodeLine{123       \textcolor{keywordflow}{if} (it-\/>getOccupancy() >= occupancy\_threshold)}
+\DoxyCodeLine{124         ++cnt;}
+\DoxyCodeLine{125 }
+\DoxyCodeLine{126     \textcolor{keywordflow}{return} cnt;}
+\DoxyCodeLine{127   \}}
+\DoxyCodeLine{128 }
+\DoxyCodeLine{129 \textcolor{keyword}{private}:}
+\DoxyCodeLine{130   std::shared\_ptr<const octomap::OcTree> \mbox{\hyperlink{classtesseract__geometry_1_1Octree_aca7587afddb38c0b5052e1ed8eaf88f4}{octree\_}};}
+\DoxyCodeLine{131   \mbox{\hyperlink{classtesseract__geometry_1_1Octree_a50b534fbd4a871cd257ac52d6009af00}{SubType}} \mbox{\hyperlink{classtesseract__geometry_1_1Octree_a90a701b0f4f93fe9f80b01001f9a5166}{sub\_type\_}};}
+\DoxyCodeLine{132   \textcolor{keywordtype}{bool} \mbox{\hyperlink{classtesseract__geometry_1_1Octree_ae0f8d27720da5ad6c93dfb5dbe29affa}{pruned\_}}\{ \textcolor{keyword}{false} \};}
+\DoxyCodeLine{133 }
+\DoxyCodeLine{134   \textcolor{keyword}{static} \textcolor{keywordtype}{bool} \mbox{\hyperlink{classtesseract__geometry_1_1Octree_a39aca28bf2e00aa658ee2eb020ed8b66}{isNodeCollapsible}}(octomap::OcTree\& octree, octomap::OcTreeNode* node)}
+\DoxyCodeLine{135   \{}
+\DoxyCodeLine{136     \textcolor{keywordflow}{if} (!octree.nodeChildExists(node, 0))}
+\DoxyCodeLine{137       \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{138 }
+\DoxyCodeLine{139     \textcolor{keywordtype}{double} occupancy\_threshold = octree.getOccupancyThres();}
+\DoxyCodeLine{140 }
+\DoxyCodeLine{141     \textcolor{keyword}{const} octomap::OcTreeNode* firstChild = octree.getNodeChild(node, 0);}
+\DoxyCodeLine{142     \textcolor{keywordflow}{if} (octree.nodeHasChildren(firstChild) || firstChild-\/>getOccupancy() < occupancy\_threshold)}
+\DoxyCodeLine{143       \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{144 }
+\DoxyCodeLine{145     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} i = 1; i < 8; i++)}
+\DoxyCodeLine{146     \{}
+\DoxyCodeLine{147       \textcolor{comment}{// comparison via getChild so that casts of derived classes ensure}}
+\DoxyCodeLine{148       \textcolor{comment}{// that the right == operator gets called}}
+\DoxyCodeLine{149       \textcolor{keywordflow}{if} (!octree.nodeChildExists(node, i))}
+\DoxyCodeLine{150         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{151 }
+\DoxyCodeLine{152       \textcolor{keywordflow}{if} (octree.nodeHasChildren(octree.getNodeChild(node, i)))}
+\DoxyCodeLine{153         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{154 }
+\DoxyCodeLine{155       \textcolor{keywordflow}{if} (octree.getNodeChild(node, i)-\/>getOccupancy() < occupancy\_threshold)}
+\DoxyCodeLine{156         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{157     \}}
+\DoxyCodeLine{158 }
+\DoxyCodeLine{159     \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{160   \}}
+\DoxyCodeLine{161 }
+\DoxyCodeLine{162   \textcolor{keyword}{static} \textcolor{keywordtype}{bool} \mbox{\hyperlink{classtesseract__geometry_1_1Octree_ae9d3f0673522f423474ca3cfa9f1aabe}{pruneNode}}(octomap::OcTree\& octree, octomap::OcTreeNode* node)}
+\DoxyCodeLine{163   \{}
+\DoxyCodeLine{164     \textcolor{keywordflow}{if} (!\mbox{\hyperlink{classtesseract__geometry_1_1Octree_a39aca28bf2e00aa658ee2eb020ed8b66}{isNodeCollapsible}}(octree, node))}
+\DoxyCodeLine{165       \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{166 }
+\DoxyCodeLine{167     \textcolor{comment}{// set value to children's values (all assumed equal)}}
+\DoxyCodeLine{168     node-\/>copyData(*(octree.getNodeChild(node, 0)));}
+\DoxyCodeLine{169 }
+\DoxyCodeLine{170     \textcolor{comment}{// delete children (known to be leafs at this point!)}}
+\DoxyCodeLine{171     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} i = 0; i < 8; i++)}
+\DoxyCodeLine{172     \{}
+\DoxyCodeLine{173       octree.deleteNodeChild(node, i);}
+\DoxyCodeLine{174     \}}
+\DoxyCodeLine{175 }
+\DoxyCodeLine{176     \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{177   \}}
+\DoxyCodeLine{178 }
+\DoxyCodeLine{179   \textcolor{comment}{// NOLINTNEXTLINE(misc-\/no-\/recursion)}}
+\DoxyCodeLine{180   \textcolor{keyword}{static} \textcolor{keywordtype}{void} \mbox{\hyperlink{classtesseract__geometry_1_1Octree_a87de9242d4b911819da17bc2d6f1034a}{pruneRecurs}}(octomap::OcTree\& octree,}
+\DoxyCodeLine{181                           octomap::OcTreeNode* node,}
+\DoxyCodeLine{182                           \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} depth,}
+\DoxyCodeLine{183                           \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} max\_depth,}
+\DoxyCodeLine{184                           \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int}\& num\_pruned)}
+\DoxyCodeLine{185   \{}
+\DoxyCodeLine{186     assert(node);}
+\DoxyCodeLine{187 }
+\DoxyCodeLine{188     \textcolor{keywordflow}{if} (depth < max\_depth)}
+\DoxyCodeLine{189     \{}
+\DoxyCodeLine{190       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} i = 0; i < 8; i++)}
+\DoxyCodeLine{191       \{}
+\DoxyCodeLine{192         \textcolor{keywordflow}{if} (octree.nodeChildExists(node, i))}
+\DoxyCodeLine{193         \{}
+\DoxyCodeLine{194           \mbox{\hyperlink{classtesseract__geometry_1_1Octree_a87de9242d4b911819da17bc2d6f1034a}{pruneRecurs}}(octree, octree.getNodeChild(node, i), depth + 1, max\_depth, num\_pruned);}
+\DoxyCodeLine{195         \}}
+\DoxyCodeLine{196       \}}
+\DoxyCodeLine{197     \}  \textcolor{comment}{// end if depth}}
+\DoxyCodeLine{198 }
+\DoxyCodeLine{199     \textcolor{keywordflow}{else}}
+\DoxyCodeLine{200     \{}
+\DoxyCodeLine{201       \textcolor{comment}{// max level reached}}
+\DoxyCodeLine{202       \textcolor{keywordflow}{if} (\mbox{\hyperlink{classtesseract__geometry_1_1Octree_ae9d3f0673522f423474ca3cfa9f1aabe}{pruneNode}}(octree, node))}
+\DoxyCodeLine{203       \{}
+\DoxyCodeLine{204         num\_pruned++;}
+\DoxyCodeLine{205       \}}
+\DoxyCodeLine{206     \}}
+\DoxyCodeLine{207   \}}
+\DoxyCodeLine{208 }
+\DoxyCodeLine{209 \textcolor{keyword}{public}:}
+\DoxyCodeLine{210 \textcolor{preprocessor}{\#ifndef SWIG}}
+\DoxyCodeLine{219   \textcolor{keyword}{static} \textcolor{keywordtype}{void} \mbox{\hyperlink{classtesseract__geometry_1_1Octree_a6869e2482754d630b7c15b9b6c428fa9}{prune}}(octomap::OcTree\& octree)}
+\DoxyCodeLine{220   \{}
+\DoxyCodeLine{221     \textcolor{keywordflow}{if} (octree.getRoot() == \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{222       \textcolor{keywordflow}{return};}
+\DoxyCodeLine{223 }
+\DoxyCodeLine{224     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} depth = octree.getTreeDepth() -\/ 1; depth > 0; -\/-\/depth)}
+\DoxyCodeLine{225     \{}
+\DoxyCodeLine{226       \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} num\_pruned = 0;}
+\DoxyCodeLine{227       \mbox{\hyperlink{classtesseract__geometry_1_1Octree_a87de9242d4b911819da17bc2d6f1034a}{pruneRecurs}}(octree, octree.getRoot(), 0, depth, num\_pruned);}
+\DoxyCodeLine{228       \textcolor{keywordflow}{if} (num\_pruned == 0)}
+\DoxyCodeLine{229         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{230     \}}
+\DoxyCodeLine{231   \}}
+\DoxyCodeLine{232 \textcolor{preprocessor}{\#endif  }\textcolor{comment}{// SWIG}}
+\DoxyCodeLine{233 \};}
+\DoxyCodeLine{234 \}  \textcolor{comment}{// namespace tesseract\_geometry}}
+\DoxyCodeLine{235 \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}
