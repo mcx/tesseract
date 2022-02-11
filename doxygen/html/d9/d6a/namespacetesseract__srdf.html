@@ -149,6 +149,12 @@ Functions</h2></td></tr>
 <tr class="memitem:adcdb768e9ca515371c6a23778844f738"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d6a/namespacetesseract__srdf.html#adcdb768e9ca515371c6a23778844f738">processSRDFAllowedCollisions</a> (<a class="el" href="../../d7/d5d/classtesseract__scene__graph_1_1SceneGraph.html">tesseract_scene_graph::SceneGraph</a> &amp;scene_graph, const <a class="el" href="../../dc/d03/classtesseract__srdf_1_1SRDFModel.html">SRDFModel</a> &amp;srdf_model)</td></tr>
 <tr class="memdesc:adcdb768e9ca515371c6a23778844f738"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add allowed collisions to the scene graph.  <a href="../../d9/d6a/namespacetesseract__srdf.html#adcdb768e9ca515371c6a23778844f738">More...</a><br /></td></tr>
 <tr class="separator:adcdb768e9ca515371c6a23778844f738"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7206fe359860cf77c1d91ffde92e2386"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d6a/namespacetesseract__srdf.html#a7206fe359860cf77c1d91ffde92e2386">compareLinkPairAlphabetically</a> (std::reference_wrapper&lt; const <a class="el" href="../../df/da9/namespacetesseract__common.html#a5b28b7ae665b374a7ca166d496f648ce">tesseract_common::LinkNamesPair</a> &gt; pair1, std::reference_wrapper&lt; const <a class="el" href="../../df/da9/namespacetesseract__common.html#a5b28b7ae665b374a7ca166d496f648ce">tesseract_common::LinkNamesPair</a> &gt; pair2)</td></tr>
+<tr class="memdesc:a7206fe359860cf77c1d91ffde92e2386"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to sort a pair of strings alphabetically - first by the pair.first and then by pair.second.  <a href="../../d9/d6a/namespacetesseract__srdf.html#a7206fe359860cf77c1d91ffde92e2386">More...</a><br /></td></tr>
+<tr class="separator:a7206fe359860cf77c1d91ffde92e2386"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5cdac52037b19baf856441bbce8071c4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/dad/vhacdRaycastMesh_8cpp.html#adcf134d50025cc52907d0c8ac798d89d">std::vector</a>&lt; std::reference_wrapper&lt; const <a class="el" href="../../df/da9/namespacetesseract__common.html#a5b28b7ae665b374a7ca166d496f648ce">tesseract_common::LinkNamesPair</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d6a/namespacetesseract__srdf.html#a5cdac52037b19baf856441bbce8071c4">getAlphabeticalACMKeys</a> (const <a class="el" href="../../df/da9/namespacetesseract__common.html#a79d2a34647d0da5e574629878c142086">tesseract_common::AllowedCollisionEntries</a> &amp;allowed_collision_entries)</td></tr>
+<tr class="memdesc:a5cdac52037b19baf856441bbce8071c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns an alphabetically sorted vector of ACM keys (the link pairs)  <a href="../../d9/d6a/namespacetesseract__srdf.html#a5cdac52037b19baf856441bbce8071c4">More...</a><br /></td></tr>
+<tr class="separator:a5cdac52037b19baf856441bbce8071c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >Main namespace. </p>
@@ -350,6 +356,71 @@ Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="a7206fe359860cf77c1d91ffde92e2386" name="a7206fe359860cf77c1d91ffde92e2386"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7206fe359860cf77c1d91ffde92e2386">&#9670;&nbsp;</a></span>compareLinkPairAlphabetically()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool tesseract_srdf::compareLinkPairAlphabetically </td>
+          <td>(</td>
+          <td class="paramtype">std::reference_wrapper&lt; const <a class="el" href="../../df/da9/namespacetesseract__common.html#a5b28b7ae665b374a7ca166d496f648ce">tesseract_common::LinkNamesPair</a> &gt;&#160;</td>
+          <td class="paramname"><em>pair1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::reference_wrapper&lt; const <a class="el" href="../../df/da9/namespacetesseract__common.html#a5b28b7ae665b374a7ca166d496f648ce">tesseract_common::LinkNamesPair</a> &gt;&#160;</td>
+          <td class="paramname"><em>pair2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Used to sort a pair of strings alphabetically - first by the pair.first and then by pair.second. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pair1</td><td>First pair of strings </td></tr>
+    <tr><td class="paramname">pair2</td><td>Second pair of strings </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if pair1 should go before pair2 (is closer to A) </dd></dl>
+
+</div>
+</div>
+<a id="a5cdac52037b19baf856441bbce8071c4" name="a5cdac52037b19baf856441bbce8071c4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5cdac52037b19baf856441bbce8071c4">&#9670;&nbsp;</a></span>getAlphabeticalACMKeys()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../db/dad/vhacdRaycastMesh_8cpp.html#adcf134d50025cc52907d0c8ac798d89d">std::vector</a>&lt; std::reference_wrapper&lt; const <a class="el" href="../../df/da9/namespacetesseract__common.html#a5b28b7ae665b374a7ca166d496f648ce">tesseract_common::LinkNamesPair</a> &gt; &gt; tesseract_srdf::getAlphabeticalACMKeys </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../df/da9/namespacetesseract__common.html#a79d2a34647d0da5e574629878c142086">tesseract_common::AllowedCollisionEntries</a> &amp;&#160;</td>
+          <td class="paramname"><em>allowed_collision_entries</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns an alphabetically sorted vector of ACM keys (the link pairs) </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">allowed_collision_entries</td><td>Entries to be sorted </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>An alphabetically sorted vector of ACM keys (the link pairs) </dd></dl>
+
+</div>
+</div>
 <a id="a9c5feb0240a817b9102e17090df6b7d1" name="a9c5feb0240a817b9102e17090df6b7d1"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9c5feb0240a817b9102e17090df6b7d1">&#9670;&nbsp;</a></span>parseCalibrationConfig()</h2>
 
@@ -808,7 +879,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Feb 5 2022 20:59:32 for Tesseract by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.3
+Generated on Fri Feb 11 2022 20:47:43 for Tesseract by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.3
 </small></address>
 </body>
 </html>

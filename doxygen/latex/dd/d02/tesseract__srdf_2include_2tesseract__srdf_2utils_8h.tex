@@ -5,6 +5,9 @@
 Tesseract SRDF utility functions.  
 
 
+{\ttfamily \#include $<$functional$>$}\newline
+{\ttfamily \#include $<$tesseract\+\_\+common/allowed\+\_\+collision\+\_\+matrix.\+h$>$}\newline
+{\ttfamily \#include $<$tesseract\+\_\+common/types.\+h$>$}\newline
 {\ttfamily \#include $<$tesseract\+\_\+scene\+\_\+graph/graph.\+h$>$}\newline
 {\ttfamily \#include $<$tesseract\+\_\+srdf/srdf\+\_\+model.\+h$>$}\newline
 Include dependency graph for utils.\+h\+:
@@ -32,7 +35,11 @@ namespace \mbox{\hyperlink{namespacetesseract__srdf}{tesseract\+\_\+srdf}}
 \begin{DoxyCompactItemize}
 \item 
 void \mbox{\hyperlink{namespacetesseract__srdf_adcdb768e9ca515371c6a23778844f738}{tesseract\+\_\+srdf\+::process\+SRDFAllowed\+Collisions}} (\mbox{\hyperlink{classtesseract__scene__graph_1_1SceneGraph}{tesseract\+\_\+scene\+\_\+graph\+::\+Scene\+Graph}} \&scene\+\_\+graph, const SRDFModel \&srdf\+\_\+model)
-\begin{DoxyCompactList}\small\item\em Add allowed collisions to the scene graph. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Add allowed collisions to the scene graph. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{namespacetesseract__srdf_a7206fe359860cf77c1d91ffde92e2386}{tesseract\+\_\+srdf\+::compare\+Link\+Pair\+Alphabetically}} (std\+::reference\+\_\+wrapper$<$ const \mbox{\hyperlink{namespacetesseract__common_a5b28b7ae665b374a7ca166d496f648ce}{tesseract\+\_\+common\+::\+Link\+Names\+Pair}} $>$ pair1, std\+::reference\+\_\+wrapper$<$ const \mbox{\hyperlink{namespacetesseract__common_a5b28b7ae665b374a7ca166d496f648ce}{tesseract\+\_\+common\+::\+Link\+Names\+Pair}} $>$ pair2)
+\begin{DoxyCompactList}\small\item\em Used to sort a pair of strings alphabetically -\/ first by the pair.\+first and then by pair.\+second. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{vhacdRaycastMesh_8cpp_adcf134d50025cc52907d0c8ac798d89d}{std\+::vector}}$<$ std\+::reference\+\_\+wrapper$<$ const \mbox{\hyperlink{namespacetesseract__common_a5b28b7ae665b374a7ca166d496f648ce}{tesseract\+\_\+common\+::\+Link\+Names\+Pair}} $>$ $>$ \mbox{\hyperlink{namespacetesseract__srdf_a5cdac52037b19baf856441bbce8071c4}{tesseract\+\_\+srdf\+::get\+Alphabetical\+ACMKeys}} (const \mbox{\hyperlink{namespacetesseract__common_a79d2a34647d0da5e574629878c142086}{tesseract\+\_\+common\+::\+Allowed\+Collision\+Entries}} \&allowed\+\_\+collision\+\_\+entries)
+\begin{DoxyCompactList}\small\item\em Returns an alphabetically sorted vector of ACM keys (the link pairs) \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
