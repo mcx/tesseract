@@ -87,47 +87,49 @@
 \DoxyCodeLine{136   \mbox{\hyperlink{classtesseract__geometry_1_1Mesh_afcfd6ea990139828a49fd463ca6f6e98}{Mesh}}(\mbox{\hyperlink{classtesseract__geometry_1_1Mesh}{Mesh}}\&\&) = \textcolor{keyword}{delete};}
 \DoxyCodeLine{137   \mbox{\hyperlink{classtesseract__geometry_1_1Mesh}{Mesh}}\& \mbox{\hyperlink{classtesseract__geometry_1_1Mesh_a5361576e09d9fe1c98cae246d9408e40}{operator=}}(\mbox{\hyperlink{classtesseract__geometry_1_1Mesh}{Mesh}}\&\&) = \textcolor{keyword}{delete};}
 \DoxyCodeLine{138 }
-\DoxyCodeLine{143   [[deprecated(\textcolor{stringliteral}{"{}Please use getFaces() instead"{}})]] \textcolor{keyword}{const} std::shared\_ptr<const Eigen::VectorXi>\& \mbox{\hyperlink{classtesseract__geometry_1_1Mesh_ac3d9e62a79f4e187ae207f355d94a08f}{getTriangles}}()\textcolor{keyword}{ const}}
-\DoxyCodeLine{144 \textcolor{keyword}{  }\{}
-\DoxyCodeLine{145     \textcolor{keywordflow}{return} getFaces();}
-\DoxyCodeLine{146   \}}
-\DoxyCodeLine{147 }
-\DoxyCodeLine{152   [[deprecated(\textcolor{stringliteral}{"{}Please use getFaceCount() instead"{}})]] \textcolor{keywordtype}{int} \mbox{\hyperlink{classtesseract__geometry_1_1Mesh_af1ca305cf46ce61f63ff821e1339e060}{getTriangleCount}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} getFaceCount(); \}}
-\DoxyCodeLine{153 }
-\DoxyCodeLine{154   \mbox{\hyperlink{classtesseract__geometry_1_1Geometry_acd91c55fb9604ed374446c029b6f2d08}{Geometry::Ptr}} \mbox{\hyperlink{classtesseract__geometry_1_1Mesh_a2c2705c190dc5c64ab5b474752766203}{clone}}()\textcolor{keyword}{ const override}}
-\DoxyCodeLine{155 \textcolor{keyword}{  }\{}
-\DoxyCodeLine{156     \textcolor{comment}{// getMaterial returns a pointer-\/to-\/const, so deference and make\_shared, but also guard against nullptr}}
-\DoxyCodeLine{157     std::shared\_ptr<Mesh> ptr;}
-\DoxyCodeLine{158     \textcolor{keywordflow}{if} (getMaterial() != \textcolor{keyword}{nullptr})}
-\DoxyCodeLine{159     \{}
-\DoxyCodeLine{160       ptr = std::make\_shared<Mesh>(getVertices(),}
-\DoxyCodeLine{161                                    getFaces(),}
-\DoxyCodeLine{162                                    getFaceCount(),}
-\DoxyCodeLine{163                                    getResource(),}
-\DoxyCodeLine{164                                    getScale(),}
-\DoxyCodeLine{165                                    getNormals(),}
-\DoxyCodeLine{166                                    getVertexColors(),}
-\DoxyCodeLine{167                                    std::make\_shared<MeshMaterial>(*getMaterial()),}
-\DoxyCodeLine{168                                    getTextures());}
-\DoxyCodeLine{169     \}}
-\DoxyCodeLine{170     \textcolor{keywordflow}{else}}
-\DoxyCodeLine{171     \{}
-\DoxyCodeLine{172       ptr = std::make\_shared<Mesh>(getVertices(),}
-\DoxyCodeLine{173                                    getFaces(),}
-\DoxyCodeLine{174                                    getFaceCount(),}
-\DoxyCodeLine{175                                    getResource(),}
-\DoxyCodeLine{176                                    getScale(),}
-\DoxyCodeLine{177                                    getNormals(),}
-\DoxyCodeLine{178                                    getVertexColors(),}
-\DoxyCodeLine{179                                    \textcolor{keyword}{nullptr},}
-\DoxyCodeLine{180                                    getTextures());}
-\DoxyCodeLine{181     \}}
-\DoxyCodeLine{182     \textcolor{keywordflow}{return} ptr;}
-\DoxyCodeLine{183   \}}
-\DoxyCodeLine{184 }
-\DoxyCodeLine{185 \textcolor{keyword}{private}:}
-\DoxyCodeLine{186 \};}
-\DoxyCodeLine{187 \}  \textcolor{comment}{// namespace tesseract\_geometry}}
-\DoxyCodeLine{188 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{139 \textcolor{preprocessor}{\#ifndef SWIG}}
+\DoxyCodeLine{144   [[deprecated(\textcolor{stringliteral}{"{}Please use getFaces() instead"{}})]] \textcolor{keyword}{const} std::shared\_ptr<const Eigen::VectorXi>\& \mbox{\hyperlink{classtesseract__geometry_1_1Mesh_ac3d9e62a79f4e187ae207f355d94a08f}{getTriangles}}()\textcolor{keyword}{ const}}
+\DoxyCodeLine{145 \textcolor{keyword}{  }\{}
+\DoxyCodeLine{146     \textcolor{keywordflow}{return} getFaces();}
+\DoxyCodeLine{147   \}}
+\DoxyCodeLine{148 }
+\DoxyCodeLine{153   [[deprecated(\textcolor{stringliteral}{"{}Please use getFaceCount() instead"{}})]] \textcolor{keywordtype}{int} \mbox{\hyperlink{classtesseract__geometry_1_1Mesh_af1ca305cf46ce61f63ff821e1339e060}{getTriangleCount}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} getFaceCount(); \}}
+\DoxyCodeLine{154 \textcolor{preprocessor}{\#endif  }\textcolor{comment}{// SWIG}}
+\DoxyCodeLine{155 }
+\DoxyCodeLine{156   \mbox{\hyperlink{classtesseract__geometry_1_1Geometry_acd91c55fb9604ed374446c029b6f2d08}{Geometry::Ptr}} \mbox{\hyperlink{classtesseract__geometry_1_1Mesh_a2c2705c190dc5c64ab5b474752766203}{clone}}()\textcolor{keyword}{ const override}}
+\DoxyCodeLine{157 \textcolor{keyword}{  }\{}
+\DoxyCodeLine{158     \textcolor{comment}{// getMaterial returns a pointer-\/to-\/const, so deference and make\_shared, but also guard against nullptr}}
+\DoxyCodeLine{159     std::shared\_ptr<Mesh> ptr;}
+\DoxyCodeLine{160     \textcolor{keywordflow}{if} (getMaterial() != \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{161     \{}
+\DoxyCodeLine{162       ptr = std::make\_shared<Mesh>(getVertices(),}
+\DoxyCodeLine{163                                    getFaces(),}
+\DoxyCodeLine{164                                    getFaceCount(),}
+\DoxyCodeLine{165                                    getResource(),}
+\DoxyCodeLine{166                                    getScale(),}
+\DoxyCodeLine{167                                    getNormals(),}
+\DoxyCodeLine{168                                    getVertexColors(),}
+\DoxyCodeLine{169                                    std::make\_shared<MeshMaterial>(*getMaterial()),}
+\DoxyCodeLine{170                                    getTextures());}
+\DoxyCodeLine{171     \}}
+\DoxyCodeLine{172     \textcolor{keywordflow}{else}}
+\DoxyCodeLine{173     \{}
+\DoxyCodeLine{174       ptr = std::make\_shared<Mesh>(getVertices(),}
+\DoxyCodeLine{175                                    getFaces(),}
+\DoxyCodeLine{176                                    getFaceCount(),}
+\DoxyCodeLine{177                                    getResource(),}
+\DoxyCodeLine{178                                    getScale(),}
+\DoxyCodeLine{179                                    getNormals(),}
+\DoxyCodeLine{180                                    getVertexColors(),}
+\DoxyCodeLine{181                                    \textcolor{keyword}{nullptr},}
+\DoxyCodeLine{182                                    getTextures());}
+\DoxyCodeLine{183     \}}
+\DoxyCodeLine{184     \textcolor{keywordflow}{return} ptr;}
+\DoxyCodeLine{185   \}}
+\DoxyCodeLine{186 }
+\DoxyCodeLine{187 \textcolor{keyword}{private}:}
+\DoxyCodeLine{188 \};}
+\DoxyCodeLine{189 \}  \textcolor{comment}{// namespace tesseract\_geometry}}
+\DoxyCodeLine{190 \textcolor{preprocessor}{\#endif}}
 
 \end{DoxyCode}

@@ -62,13 +62,13 @@ int \mbox{\hyperlink{classtesseract__geometry_1_1PolygonMesh_a091ff79f99455a5bd1
 \begin{DoxyCompactList}\small\item\em Get the path to file used to generate the mesh. \end{DoxyCompactList}\item 
 const Eigen\+::\+Vector3d \& \mbox{\hyperlink{classtesseract__geometry_1_1PolygonMesh_a38d3d05d57a5a38fe12a191080eac1a2}{get\+Scale}} () const
 \begin{DoxyCompactList}\small\item\em Get the scale applied to file used to generate the mesh. \end{DoxyCompactList}\item 
-std\+::shared\+\_\+ptr$<$ const \mbox{\hyperlink{namespacetesseract__common_af89ed6517f4c84bdb2b037bb40f7d9d9}{tesseract\+\_\+common\+::\+Vector\+Vector3d}} $>$ \mbox{\hyperlink{classtesseract__geometry_1_1PolygonMesh_a30b04454f65bf8efc1b6fd4d487124d7}{get\+Normals}} () const
+const std\+::shared\+\_\+ptr$<$ const \mbox{\hyperlink{namespacetesseract__common_af89ed6517f4c84bdb2b037bb40f7d9d9}{tesseract\+\_\+common\+::\+Vector\+Vector3d}} $>$ \& \mbox{\hyperlink{classtesseract__geometry_1_1PolygonMesh_af3fb123c87479e7f95effaf7d2379f56}{get\+Normals}} () const
 \begin{DoxyCompactList}\small\item\em Get the vertex normal vectors. \end{DoxyCompactList}\item 
-std\+::shared\+\_\+ptr$<$ const \mbox{\hyperlink{namespacetesseract__common_a7f208ea8b9c62f41c593647319d56f37}{tesseract\+\_\+common\+::\+Vector\+Vector4d}} $>$ \mbox{\hyperlink{classtesseract__geometry_1_1PolygonMesh_a69dd631f1d5fb4c0ddf7bf286725593a}{get\+Vertex\+Colors}} () const
+const std\+::shared\+\_\+ptr$<$ const \mbox{\hyperlink{namespacetesseract__common_a7f208ea8b9c62f41c593647319d56f37}{tesseract\+\_\+common\+::\+Vector\+Vector4d}} $>$ \& \mbox{\hyperlink{classtesseract__geometry_1_1PolygonMesh_a82048a274147910af4d7dba120ae3064}{get\+Vertex\+Colors}} () const
 \begin{DoxyCompactList}\small\item\em Get the vertex colors. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classtesseract__geometry_1_1MeshMaterial_a40e28bff7129cc427bee736136b13e72}{Mesh\+Material\+::\+Const\+Ptr}} \mbox{\hyperlink{classtesseract__geometry_1_1PolygonMesh_ad5233cd2be0d4454d60921acb8276344}{get\+Material}} () const
 \begin{DoxyCompactList}\small\item\em Get material data extracted from the mesh file. \end{DoxyCompactList}\item 
-std\+::shared\+\_\+ptr$<$ const \mbox{\hyperlink{vhacdRaycastMesh_8cpp_adcf134d50025cc52907d0c8ac798d89d}{std\+::vector}}$<$ \mbox{\hyperlink{classtesseract__geometry_1_1MeshTexture_a75fe5ca7baf1177876dc64818340beff}{Mesh\+Texture\+::\+Ptr}} $>$ $>$ \mbox{\hyperlink{classtesseract__geometry_1_1PolygonMesh_a6fb29d28a91d5e94703577905ae2d383}{get\+Textures}} () const
+const std\+::shared\+\_\+ptr$<$ const \mbox{\hyperlink{vhacdRaycastMesh_8cpp_adcf134d50025cc52907d0c8ac798d89d}{std\+::vector}}$<$ \mbox{\hyperlink{classtesseract__geometry_1_1MeshTexture_a75fe5ca7baf1177876dc64818340beff}{Mesh\+Texture\+::\+Ptr}} $>$ $>$ \& \mbox{\hyperlink{classtesseract__geometry_1_1PolygonMesh_a50220ee764b41b20a7892890d01302de}{get\+Textures}} () const
 \begin{DoxyCompactList}\small\item\em Get textures extracted from the mesh file. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classtesseract__geometry_1_1Geometry_acd91c55fb9604ed374446c029b6f2d08}{Geometry\+::\+Ptr}} \mbox{\hyperlink{classtesseract__geometry_1_1PolygonMesh_ab2ac74ece83cedb9fba05a131254e402}{clone}} () const override
 \begin{DoxyCompactList}\small\item\em Create a copy of this shape. \end{DoxyCompactList}\end{DoxyCompactItemize}
@@ -253,11 +253,11 @@ Get material data extracted from the mesh file.
 \begin{DoxyReturn}{Returns}
 The \mbox{\hyperlink{classtesseract__geometry_1_1MeshMaterial}{Mesh\+Material}} data extracted from mesh file 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classtesseract__geometry_1_1PolygonMesh_a30b04454f65bf8efc1b6fd4d487124d7}\label{classtesseract__geometry_1_1PolygonMesh_a30b04454f65bf8efc1b6fd4d487124d7}} 
+\mbox{\Hypertarget{classtesseract__geometry_1_1PolygonMesh_af3fb123c87479e7f95effaf7d2379f56}\label{classtesseract__geometry_1_1PolygonMesh_af3fb123c87479e7f95effaf7d2379f56}} 
 \index{tesseract\_geometry::PolygonMesh@{tesseract\_geometry::PolygonMesh}!getNormals@{getNormals}}
 \index{getNormals@{getNormals}!tesseract\_geometry::PolygonMesh@{tesseract\_geometry::PolygonMesh}}
 \doxysubsubsection{\texorpdfstring{getNormals()}{getNormals()}}
-{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$ const \mbox{\hyperlink{namespacetesseract__common_af89ed6517f4c84bdb2b037bb40f7d9d9}{tesseract\+\_\+common\+::\+Vector\+Vector3d}} $>$ tesseract\+\_\+geometry\+::\+Polygon\+Mesh\+::get\+Normals (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily const std\+::shared\+\_\+ptr$<$ const \mbox{\hyperlink{namespacetesseract__common_af89ed6517f4c84bdb2b037bb40f7d9d9}{tesseract\+\_\+common\+::\+Vector\+Vector3d}} $>$ \& tesseract\+\_\+geometry\+::\+Polygon\+Mesh\+::get\+Normals (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -296,11 +296,11 @@ Get the scale applied to file used to generate the mesh.
 \begin{DoxyReturn}{Returns}
 The scale x, y, z 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classtesseract__geometry_1_1PolygonMesh_a6fb29d28a91d5e94703577905ae2d383}\label{classtesseract__geometry_1_1PolygonMesh_a6fb29d28a91d5e94703577905ae2d383}} 
+\mbox{\Hypertarget{classtesseract__geometry_1_1PolygonMesh_a50220ee764b41b20a7892890d01302de}\label{classtesseract__geometry_1_1PolygonMesh_a50220ee764b41b20a7892890d01302de}} 
 \index{tesseract\_geometry::PolygonMesh@{tesseract\_geometry::PolygonMesh}!getTextures@{getTextures}}
 \index{getTextures@{getTextures}!tesseract\_geometry::PolygonMesh@{tesseract\_geometry::PolygonMesh}}
 \doxysubsubsection{\texorpdfstring{getTextures()}{getTextures()}}
-{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$ const \mbox{\hyperlink{vhacdRaycastMesh_8cpp_adcf134d50025cc52907d0c8ac798d89d}{std\+::vector}}$<$ \mbox{\hyperlink{classtesseract__geometry_1_1MeshTexture_a75fe5ca7baf1177876dc64818340beff}{Mesh\+Texture\+::\+Ptr}} $>$ $>$ tesseract\+\_\+geometry\+::\+Polygon\+Mesh\+::get\+Textures (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily const std\+::shared\+\_\+ptr$<$ const \mbox{\hyperlink{vhacdRaycastMesh_8cpp_adcf134d50025cc52907d0c8ac798d89d}{std\+::vector}}$<$ \mbox{\hyperlink{classtesseract__geometry_1_1MeshTexture_a75fe5ca7baf1177876dc64818340beff}{Mesh\+Texture\+::\+Ptr}} $>$ $>$ \& tesseract\+\_\+geometry\+::\+Polygon\+Mesh\+::get\+Textures (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -311,11 +311,11 @@ Get textures extracted from the mesh file.
 \begin{DoxyReturn}{Returns}
 Vector of mesh textures 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classtesseract__geometry_1_1PolygonMesh_a69dd631f1d5fb4c0ddf7bf286725593a}\label{classtesseract__geometry_1_1PolygonMesh_a69dd631f1d5fb4c0ddf7bf286725593a}} 
+\mbox{\Hypertarget{classtesseract__geometry_1_1PolygonMesh_a82048a274147910af4d7dba120ae3064}\label{classtesseract__geometry_1_1PolygonMesh_a82048a274147910af4d7dba120ae3064}} 
 \index{tesseract\_geometry::PolygonMesh@{tesseract\_geometry::PolygonMesh}!getVertexColors@{getVertexColors}}
 \index{getVertexColors@{getVertexColors}!tesseract\_geometry::PolygonMesh@{tesseract\_geometry::PolygonMesh}}
 \doxysubsubsection{\texorpdfstring{getVertexColors()}{getVertexColors()}}
-{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$ const \mbox{\hyperlink{namespacetesseract__common_a7f208ea8b9c62f41c593647319d56f37}{tesseract\+\_\+common\+::\+Vector\+Vector4d}} $>$ tesseract\+\_\+geometry\+::\+Polygon\+Mesh\+::get\+Vertex\+Colors (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily const std\+::shared\+\_\+ptr$<$ const \mbox{\hyperlink{namespacetesseract__common_a7f208ea8b9c62f41c593647319d56f37}{tesseract\+\_\+common\+::\+Vector\+Vector4d}} $>$ \& tesseract\+\_\+geometry\+::\+Polygon\+Mesh\+::get\+Vertex\+Colors (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 

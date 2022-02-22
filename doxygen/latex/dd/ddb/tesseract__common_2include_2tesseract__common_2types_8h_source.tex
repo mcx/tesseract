@@ -131,6 +131,10 @@
 \DoxyCodeLine{189 \};}
 \DoxyCodeLine{190 \}  \textcolor{comment}{// namespace tesseract\_common}}
 \DoxyCodeLine{191 }
-\DoxyCodeLine{192 \textcolor{preprocessor}{\#endif  }\textcolor{comment}{// TESSERACT\_COMMON\_TYPES\_H}}
+\DoxyCodeLine{192 \textcolor{preprocessor}{\#ifdef SWIG}}
+\DoxyCodeLine{193 \%\textcolor{keyword}{template}(\mbox{\hyperlink{namespacetesseract__common_a43d1f6e0418164a6db0e1c447150340e}{PluginInfoMap}}) std::map<std::string, tesseract\_common::PluginInfo>;}
+\DoxyCodeLine{194 \textcolor{preprocessor}{\#endif  }\textcolor{comment}{// SWIG}}
+\DoxyCodeLine{195 }
+\DoxyCodeLine{196 \textcolor{preprocessor}{\#endif  }\textcolor{comment}{// TESSERACT\_COMMON\_TYPES\_H}}
 
 \end{DoxyCode}

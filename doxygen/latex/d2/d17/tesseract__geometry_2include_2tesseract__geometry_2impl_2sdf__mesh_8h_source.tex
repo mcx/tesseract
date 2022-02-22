@@ -85,21 +85,23 @@
 \DoxyCodeLine{134   \mbox{\hyperlink{classtesseract__geometry_1_1SDFMesh_a905eb1c42ffc1f53464260171bde4465}{SDFMesh}}(\mbox{\hyperlink{classtesseract__geometry_1_1SDFMesh}{SDFMesh}}\&\&) = \textcolor{keyword}{delete};}
 \DoxyCodeLine{135   \mbox{\hyperlink{classtesseract__geometry_1_1SDFMesh}{SDFMesh}}\& \mbox{\hyperlink{classtesseract__geometry_1_1SDFMesh_a9667d35c26137754f0815b3988a1f3bf}{operator=}}(\mbox{\hyperlink{classtesseract__geometry_1_1SDFMesh}{SDFMesh}}\&\&) = \textcolor{keyword}{delete};}
 \DoxyCodeLine{136 }
-\DoxyCodeLine{141   [[deprecated(\textcolor{stringliteral}{"{}Please use getFaces() instead"{}})]] \textcolor{keyword}{const} std::shared\_ptr<const Eigen::VectorXi>\& \mbox{\hyperlink{classtesseract__geometry_1_1SDFMesh_a6b679b033bd8082340eab0e6d8b4bcfe}{getTriangles}}()\textcolor{keyword}{ const}}
-\DoxyCodeLine{142 \textcolor{keyword}{  }\{}
-\DoxyCodeLine{143     \textcolor{keywordflow}{return} getFaces();}
-\DoxyCodeLine{144   \}}
-\DoxyCodeLine{145 }
-\DoxyCodeLine{150   [[deprecated(\textcolor{stringliteral}{"{}Please use getFaceCount() instead"{}})]] \textcolor{keywordtype}{int} \mbox{\hyperlink{classtesseract__geometry_1_1SDFMesh_af0dc6cd959c4460be1c4ade90f1e32c5}{getTriangleCount}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} getFaceCount(); \}}
-\DoxyCodeLine{151 }
-\DoxyCodeLine{152   \mbox{\hyperlink{classtesseract__geometry_1_1Geometry_acd91c55fb9604ed374446c029b6f2d08}{Geometry::Ptr}} \mbox{\hyperlink{classtesseract__geometry_1_1SDFMesh_a68982d937586099e298b71ca0e77c8ef}{clone}}()\textcolor{keyword}{ const override}}
-\DoxyCodeLine{153 \textcolor{keyword}{  }\{}
-\DoxyCodeLine{154     \textcolor{keywordflow}{return} std::make\_shared<SDFMesh>(getVertices(), getFaces(), getFaceCount(), getResource(), getScale());}
-\DoxyCodeLine{155   \}}
-\DoxyCodeLine{156 }
-\DoxyCodeLine{157 \textcolor{keyword}{private}:}
-\DoxyCodeLine{158 \};}
-\DoxyCodeLine{159 \}  \textcolor{comment}{// namespace tesseract\_geometry}}
-\DoxyCodeLine{160 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{137 \textcolor{preprocessor}{\#ifndef SWIG}}
+\DoxyCodeLine{142   [[deprecated(\textcolor{stringliteral}{"{}Please use getFaces() instead"{}})]] \textcolor{keyword}{const} std::shared\_ptr<const Eigen::VectorXi>\& \mbox{\hyperlink{classtesseract__geometry_1_1SDFMesh_a6b679b033bd8082340eab0e6d8b4bcfe}{getTriangles}}()\textcolor{keyword}{ const}}
+\DoxyCodeLine{143 \textcolor{keyword}{  }\{}
+\DoxyCodeLine{144     \textcolor{keywordflow}{return} getFaces();}
+\DoxyCodeLine{145   \}}
+\DoxyCodeLine{146 }
+\DoxyCodeLine{151   [[deprecated(\textcolor{stringliteral}{"{}Please use getFaceCount() instead"{}})]] \textcolor{keywordtype}{int} \mbox{\hyperlink{classtesseract__geometry_1_1SDFMesh_af0dc6cd959c4460be1c4ade90f1e32c5}{getTriangleCount}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} getFaceCount(); \}}
+\DoxyCodeLine{152 \textcolor{preprocessor}{\#endif  }\textcolor{comment}{// SWIG}}
+\DoxyCodeLine{153 }
+\DoxyCodeLine{154   \mbox{\hyperlink{classtesseract__geometry_1_1Geometry_acd91c55fb9604ed374446c029b6f2d08}{Geometry::Ptr}} \mbox{\hyperlink{classtesseract__geometry_1_1SDFMesh_a68982d937586099e298b71ca0e77c8ef}{clone}}()\textcolor{keyword}{ const override}}
+\DoxyCodeLine{155 \textcolor{keyword}{  }\{}
+\DoxyCodeLine{156     \textcolor{keywordflow}{return} std::make\_shared<SDFMesh>(getVertices(), getFaces(), getFaceCount(), getResource(), getScale());}
+\DoxyCodeLine{157   \}}
+\DoxyCodeLine{158 }
+\DoxyCodeLine{159 \textcolor{keyword}{private}:}
+\DoxyCodeLine{160 \};}
+\DoxyCodeLine{161 \}  \textcolor{comment}{// namespace tesseract\_geometry}}
+\DoxyCodeLine{162 \textcolor{preprocessor}{\#endif}}
 
 \end{DoxyCode}

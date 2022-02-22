@@ -202,7 +202,11 @@ $(function() {
 <div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>};</div>
 <div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>}  <span class="comment">// namespace tesseract_common</span></div>
 <div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span> </div>
-<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span><span class="preprocessor">#endif  </span><span class="comment">// TESSERACT_COMMON_TYPES_H</span></div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span><span class="preprocessor">#ifdef SWIG</span></div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>%<span class="keyword">template</span>(<a class="code hl_typedef" href="../../df/da9/namespacetesseract__common.html#a43d1f6e0418164a6db0e1c447150340e">PluginInfoMap</a>) std::map&lt;std::string, tesseract_common::PluginInfo&gt;;</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span><span class="preprocessor">#endif  </span><span class="comment">// SWIG</span></div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span> </div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span><span class="preprocessor">#endif  </span><span class="comment">// TESSERACT_COMMON_TYPES_H</span></div>
 <div class="ttc" id="akinematic__limits_8h_html"><div class="ttname"><a href="../../d9/dc2/kinematic__limits_8h.html">kinematic_limits.h</a></div><div class="ttdoc">Common Tesseract Kinematic Limits and Related Utility Functions.</div></div>
 <div class="ttc" id="amacros_8h_html"><div class="ttname"><a href="../../de/d3c/macros_8h.html">macros.h</a></div><div class="ttdoc">Common Tesseract Macros.</div></div>
 <div class="ttc" id="amacros_8h_html_a8cc0e3c6a3382c5c0b19eb9e676fc2db"><div class="ttname"><a href="../../de/d3c/macros_8h.html#a8cc0e3c6a3382c5c0b19eb9e676fc2db">TESSERACT_COMMON_IGNORE_WARNINGS_PUSH</a></div><div class="ttdeci">#define TESSERACT_COMMON_IGNORE_WARNINGS_PUSH</div><div class="ttdef"><b>Definition:</b> macros.h:71</div></div>
@@ -258,7 +262,7 @@ $(function() {
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Feb 21 2022 19:27:03 for Tesseract by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.3
+Generated on Tue Feb 22 2022 00:02:33 for Tesseract by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.3
 </small></address>
 </body>
 </html>
