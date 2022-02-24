@@ -52,6 +52,8 @@ using \mbox{\hyperlink{classtesseract__kinematics_1_1KinematicGroup_ad2a767f92fd
 \begin{DoxyCompactList}\small\item\em Create a kinematics group with inverse kinematics. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{namespacetesseract__kinematics_af12a01d2264e3371dc9bc7db2a7b59ac}{IKSolutions}} \mbox{\hyperlink{classtesseract__kinematics_1_1KinematicGroup_a7c036ae50a4ade99162fccd6c5a23b4f}{calc\+Inv\+Kin}} (const \mbox{\hyperlink{namespacetesseract__kinematics_ae5941af5d420d5b756e9d3d1fcaa1c5d}{Kin\+Group\+IKInputs}} \&tip\+\_\+link\+\_\+poses, const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&seed) const
 \begin{DoxyCompactList}\small\item\em Calculates joint solutions given a pose. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacetesseract__kinematics_af12a01d2264e3371dc9bc7db2a7b59ac}{IKSolutions}} \mbox{\hyperlink{classtesseract__kinematics_1_1KinematicGroup_a073b4b5f11b6ecd4a0138e972d762af8}{calc\+Inv\+Kin}} (const \mbox{\hyperlink{structtesseract__kinematics_1_1KinGroupIKInput}{Kin\+Group\+IKInput}} \&tip\+\_\+link\+\_\+pose, const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&seed) const
+\begin{DoxyCompactList}\small\item\em Calculates joint solutions given a pose. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{vhacdRaycastMesh_8cpp_adcf134d50025cc52907d0c8ac798d89d}{std\+::vector}}$<$ std\+::string $>$ \mbox{\hyperlink{classtesseract__kinematics_1_1KinematicGroup_aabfb7d966a2d4522897fa47f6347dfbf}{get\+All\+Valid\+Working\+Frames}} () const
 \begin{DoxyCompactList}\small\item\em Returns all possible working frames in which goal poses can be defined. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{vhacdRaycastMesh_8cpp_adcf134d50025cc52907d0c8ac798d89d}{std\+::vector}}$<$ std\+::string $>$ \mbox{\hyperlink{classtesseract__kinematics_1_1KinematicGroup_a15dfeff9c322ae017dea1981c7354bd4}{get\+All\+Possible\+Tip\+Link\+Names}} () const
@@ -146,10 +148,30 @@ Create a kinematics group with inverse kinematics.
 
 
 \doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classtesseract__kinematics_1_1KinematicGroup_a073b4b5f11b6ecd4a0138e972d762af8}\label{classtesseract__kinematics_1_1KinematicGroup_a073b4b5f11b6ecd4a0138e972d762af8}} 
+\index{tesseract\_kinematics::KinematicGroup@{tesseract\_kinematics::KinematicGroup}!calcInvKin@{calcInvKin}}
+\index{calcInvKin@{calcInvKin}!tesseract\_kinematics::KinematicGroup@{tesseract\_kinematics::KinematicGroup}}
+\doxysubsubsection{\texorpdfstring{calcInvKin()}{calcInvKin()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacetesseract__kinematics_af12a01d2264e3371dc9bc7db2a7b59ac}{IKSolutions}} tesseract\+\_\+kinematics\+::\+Kinematic\+Group\+::calc\+Inv\+Kin (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structtesseract__kinematics_1_1KinGroupIKInput}{Kin\+Group\+IKInput}} \&}]{tip\+\_\+link\+\_\+pose,  }\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&}]{seed }\end{DoxyParamCaption}) const}
+
+
+
+Calculates joint solutions given a pose. 
+
+If redundant solutions are needed see utility function get\+Redundant\+Solutions. 
+\begin{DoxyParams}{Parameters}
+{\em tip\+\_\+link\+\_\+pose} & The input information to solve inverse kinematics for. This is a convenience function for when only one tip link exists \\
+\hline
+{\em seed} & Vector of seed joint angles (size must match number of joints in robot chain) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A vector of solutions, If empty it failed to find a solution (including uninitialized) 
+\end{DoxyReturn}
 \mbox{\Hypertarget{classtesseract__kinematics_1_1KinematicGroup_a7c036ae50a4ade99162fccd6c5a23b4f}\label{classtesseract__kinematics_1_1KinematicGroup_a7c036ae50a4ade99162fccd6c5a23b4f}} 
 \index{tesseract\_kinematics::KinematicGroup@{tesseract\_kinematics::KinematicGroup}!calcInvKin@{calcInvKin}}
 \index{calcInvKin@{calcInvKin}!tesseract\_kinematics::KinematicGroup@{tesseract\_kinematics::KinematicGroup}}
-\doxysubsubsection{\texorpdfstring{calcInvKin()}{calcInvKin()}}
+\doxysubsubsection{\texorpdfstring{calcInvKin()}{calcInvKin()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
 {\footnotesize\ttfamily \mbox{\hyperlink{namespacetesseract__kinematics_af12a01d2264e3371dc9bc7db2a7b59ac}{IKSolutions}} tesseract\+\_\+kinematics\+::\+Kinematic\+Group\+::calc\+Inv\+Kin (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespacetesseract__kinematics_ae5941af5d420d5b756e9d3d1fcaa1c5d}{Kin\+Group\+IKInputs}} \&}]{tip\+\_\+link\+\_\+poses,  }\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&}]{seed }\end{DoxyParamCaption}) const}
 
 
@@ -158,8 +180,6 @@ Calculates joint solutions given a pose.
 
 If redundant solutions are needed see utility function get\+Redundant\+Solutions. 
 \begin{DoxyParams}{Parameters}
-{\em solutions} & A vector of solutions, so check the size of the vector to determine the number of solutions \\
-\hline
 {\em tip\+\_\+link\+\_\+poses} & The input information to solve inverse kinematics for. There must be an input for each link provided in get\+Tip\+Link\+Names \\
 \hline
 {\em seed} & Vector of seed joint angles (size must match number of joints in robot chain) \\

@@ -149,6 +149,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a7c036ae50a4ade99162fccd6c5a23b4f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d8/d4e/namespacetesseract__kinematics.html#af12a01d2264e3371dc9bc7db2a7b59ac">IKSolutions</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d67/classtesseract__kinematics_1_1KinematicGroup.html#a7c036ae50a4ade99162fccd6c5a23b4f">calcInvKin</a> (const <a class="el" href="../../d8/d4e/namespacetesseract__kinematics.html#ae5941af5d420d5b756e9d3d1fcaa1c5d">KinGroupIKInputs</a> &amp;tip_link_poses, const Eigen::Ref&lt; const Eigen::VectorXd &gt; &amp;seed) const</td></tr>
 <tr class="memdesc:a7c036ae50a4ade99162fccd6c5a23b4f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates joint solutions given a pose.  <a href="../../d9/d67/classtesseract__kinematics_1_1KinematicGroup.html#a7c036ae50a4ade99162fccd6c5a23b4f">More...</a><br /></td></tr>
 <tr class="separator:a7c036ae50a4ade99162fccd6c5a23b4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a073b4b5f11b6ecd4a0138e972d762af8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d8/d4e/namespacetesseract__kinematics.html#af12a01d2264e3371dc9bc7db2a7b59ac">IKSolutions</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d67/classtesseract__kinematics_1_1KinematicGroup.html#a073b4b5f11b6ecd4a0138e972d762af8">calcInvKin</a> (const <a class="el" href="../../d1/d36/structtesseract__kinematics_1_1KinGroupIKInput.html">KinGroupIKInput</a> &amp;tip_link_pose, const Eigen::Ref&lt; const Eigen::VectorXd &gt; &amp;seed) const</td></tr>
+<tr class="memdesc:a073b4b5f11b6ecd4a0138e972d762af8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates joint solutions given a pose.  <a href="../../d9/d67/classtesseract__kinematics_1_1KinematicGroup.html#a073b4b5f11b6ecd4a0138e972d762af8">More...</a><br /></td></tr>
+<tr class="separator:a073b4b5f11b6ecd4a0138e972d762af8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aabfb7d966a2d4522897fa47f6347dfbf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/dad/vhacdRaycastMesh_8cpp.html#adcf134d50025cc52907d0c8ac798d89d">std::vector</a>&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d67/classtesseract__kinematics_1_1KinematicGroup.html#aabfb7d966a2d4522897fa47f6347dfbf">getAllValidWorkingFrames</a> () const</td></tr>
 <tr class="memdesc:aabfb7d966a2d4522897fa47f6347dfbf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns all possible working frames in which goal poses can be defined.  <a href="../../d9/d67/classtesseract__kinematics_1_1KinematicGroup.html#aabfb7d966a2d4522897fa47f6347dfbf">More...</a><br /></td></tr>
 <tr class="separator:aabfb7d966a2d4522897fa47f6347dfbf"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -450,8 +453,46 @@ Additional Inherited Members</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a073b4b5f11b6ecd4a0138e972d762af8" name="a073b4b5f11b6ecd4a0138e972d762af8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a073b4b5f11b6ecd4a0138e972d762af8">&#9670;&nbsp;</a></span>calcInvKin() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d8/d4e/namespacetesseract__kinematics.html#af12a01d2264e3371dc9bc7db2a7b59ac">IKSolutions</a> tesseract_kinematics::KinematicGroup::calcInvKin </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d1/d36/structtesseract__kinematics_1_1KinGroupIKInput.html">KinGroupIKInput</a> &amp;&#160;</td>
+          <td class="paramname"><em>tip_link_pose</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const Eigen::Ref&lt; const Eigen::VectorXd &gt; &amp;&#160;</td>
+          <td class="paramname"><em>seed</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Calculates joint solutions given a pose. </p>
+<p >If redundant solutions are needed see utility function getRedundantSolutions. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tip_link_pose</td><td>The input information to solve inverse kinematics for. This is a convenience function for when only one tip link exists </td></tr>
+    <tr><td class="paramname">seed</td><td>Vector of seed joint angles (size must match number of joints in robot chain) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A vector of solutions, If empty it failed to find a solution (including uninitialized) </dd></dl>
+
+</div>
+</div>
 <a id="a7c036ae50a4ade99162fccd6c5a23b4f" name="a7c036ae50a4ade99162fccd6c5a23b4f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7c036ae50a4ade99162fccd6c5a23b4f">&#9670;&nbsp;</a></span>calcInvKin()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a7c036ae50a4ade99162fccd6c5a23b4f">&#9670;&nbsp;</a></span>calcInvKin() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -479,7 +520,6 @@ Additional Inherited Members</h2></td></tr>
 <p>Calculates joint solutions given a pose. </p>
 <p >If redundant solutions are needed see utility function getRedundantSolutions. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">solutions</td><td>A vector of solutions, so check the size of the vector to determine the number of solutions </td></tr>
     <tr><td class="paramname">tip_link_poses</td><td>The input information to solve inverse kinematics for. There must be an input for each link provided in getTipLinkNames </td></tr>
     <tr><td class="paramname">seed</td><td>Vector of seed joint angles (size must match number of joints in robot chain) </td></tr>
   </table>
@@ -735,7 +775,7 @@ Additional Inherited Members</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Feb 22 2022 17:03:18 for Tesseract by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.3
+Generated on Thu Feb 24 2022 18:08:12 for Tesseract by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.3
 </small></address>
 </body>
 </html>

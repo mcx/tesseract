@@ -73,28 +73,30 @@
 \DoxyCodeLine{116                  \textcolor{keyword}{const} \mbox{\hyperlink{classtesseract__scene__graph_1_1SceneGraph}{tesseract\_scene\_graph::SceneGraph}}\& scene\_graph,}
 \DoxyCodeLine{117                  \textcolor{keyword}{const} \mbox{\hyperlink{structtesseract__scene__graph_1_1SceneState}{tesseract\_scene\_graph::SceneState}}\& scene\_state);}
 \DoxyCodeLine{118 }
-\DoxyCodeLine{128   \mbox{\hyperlink{namespacetesseract__kinematics_af12a01d2264e3371dc9bc7db2a7b59ac}{IKSolutions}} \mbox{\hyperlink{classtesseract__kinematics_1_1KinematicGroup_a7c036ae50a4ade99162fccd6c5a23b4f}{calcInvKin}}(\textcolor{keyword}{const} \mbox{\hyperlink{namespacetesseract__kinematics_ae5941af5d420d5b756e9d3d1fcaa1c5d}{KinGroupIKInputs}}\& tip\_link\_poses, \textcolor{keyword}{const} Eigen::Ref<const Eigen::VectorXd>\& seed) \textcolor{keyword}{const};}
-\DoxyCodeLine{129 }
-\DoxyCodeLine{138   std::vector<std::string> \mbox{\hyperlink{classtesseract__kinematics_1_1KinematicGroup_aabfb7d966a2d4522897fa47f6347dfbf}{getAllValidWorkingFrames}}() \textcolor{keyword}{const};}
-\DoxyCodeLine{139 }
-\DoxyCodeLine{148   std::vector<std::string> \mbox{\hyperlink{classtesseract__kinematics_1_1KinematicGroup_a15dfeff9c322ae017dea1981c7354bd4}{getAllPossibleTipLinkNames}}() \textcolor{keyword}{const};}
-\DoxyCodeLine{149 }
-\DoxyCodeLine{150 \textcolor{keyword}{private}:}
-\DoxyCodeLine{151   std::vector<std::string> \mbox{\hyperlink{classtesseract__kinematics_1_1KinematicGroup_a856beb499006e284d3810cde728bb149}{joint\_names\_}};}
-\DoxyCodeLine{152   \textcolor{keywordtype}{bool} \mbox{\hyperlink{classtesseract__kinematics_1_1KinematicGroup_a55e57bae41660848b376be8e6e55f747}{reorder\_required\_}}\{ \textcolor{keyword}{false} \};}
-\DoxyCodeLine{153   std::vector<Eigen::Index> \mbox{\hyperlink{classtesseract__kinematics_1_1KinematicGroup_a81a213dacc5c61b7783008b58fff2296}{inv\_kin\_joint\_map\_}};}
-\DoxyCodeLine{154   \mbox{\hyperlink{classtesseract__kinematics_1_1InverseKinematics_a68e526591337b0781c9ec91618d1d5f0}{InverseKinematics::UPtr}} \mbox{\hyperlink{classtesseract__kinematics_1_1KinematicGroup_a136a6e0ddb2dafd4fd881664cb4afac2}{inv\_kin\_}};}
-\DoxyCodeLine{155   Eigen::Isometry3d \mbox{\hyperlink{classtesseract__kinematics_1_1KinematicGroup_a05c2633edafe43cb9a487fe410287ae1}{inv\_to\_fwd\_base\_}}\{ Eigen::Isometry3d::Identity() \};}
-\DoxyCodeLine{156   std::vector<std::string> \mbox{\hyperlink{classtesseract__kinematics_1_1KinematicGroup_ab7358dc221a7b02415384cdcdfcdd0a2}{working\_frames\_}};}
-\DoxyCodeLine{157   std::unordered\_map<std::string, std::string> \mbox{\hyperlink{classtesseract__kinematics_1_1KinematicGroup_a7044329e2f1dc1ac0301e1f2ed64ac03}{inv\_tip\_links\_map\_}};}
-\DoxyCodeLine{158 \};}
-\DoxyCodeLine{159 }
-\DoxyCodeLine{160 \}  \textcolor{comment}{// namespace tesseract\_kinematics}}
-\DoxyCodeLine{161 }
-\DoxyCodeLine{162 \textcolor{preprocessor}{\#endif  }\textcolor{comment}{// TESSERACT\_KINEMATICS\_KINEMATIC\_GROUP\_H}}
-\DoxyCodeLine{163 }
-\DoxyCodeLine{164 \textcolor{preprocessor}{\#ifdef SWIG}}
-\DoxyCodeLine{165 \%tesseract\_aligned\_vector(\mbox{\hyperlink{namespacetesseract__kinematics_ae5941af5d420d5b756e9d3d1fcaa1c5d}{KinGroupIKInputs}},\mbox{\hyperlink{structtesseract__kinematics_1_1KinGroupIKInput}{tesseract\_kinematics::KinGroupIKInput}})}
-\DoxyCodeLine{166 \textcolor{preprocessor}{\#endif  }\textcolor{comment}{// SWIG}}
+\DoxyCodeLine{127   \mbox{\hyperlink{namespacetesseract__kinematics_af12a01d2264e3371dc9bc7db2a7b59ac}{IKSolutions}} \mbox{\hyperlink{classtesseract__kinematics_1_1KinematicGroup_a7c036ae50a4ade99162fccd6c5a23b4f}{calcInvKin}}(\textcolor{keyword}{const} \mbox{\hyperlink{namespacetesseract__kinematics_ae5941af5d420d5b756e9d3d1fcaa1c5d}{KinGroupIKInputs}}\& tip\_link\_poses, \textcolor{keyword}{const} Eigen::Ref<const Eigen::VectorXd>\& seed) \textcolor{keyword}{const};}
+\DoxyCodeLine{128 }
+\DoxyCodeLine{137   \mbox{\hyperlink{namespacetesseract__kinematics_af12a01d2264e3371dc9bc7db2a7b59ac}{IKSolutions}} \mbox{\hyperlink{classtesseract__kinematics_1_1KinematicGroup_a7c036ae50a4ade99162fccd6c5a23b4f}{calcInvKin}}(\textcolor{keyword}{const} \mbox{\hyperlink{structtesseract__kinematics_1_1KinGroupIKInput}{KinGroupIKInput}}\& tip\_link\_pose, \textcolor{keyword}{const} Eigen::Ref<const Eigen::VectorXd>\& seed) \textcolor{keyword}{const};}
+\DoxyCodeLine{138 }
+\DoxyCodeLine{147   std::vector<std::string> \mbox{\hyperlink{classtesseract__kinematics_1_1KinematicGroup_aabfb7d966a2d4522897fa47f6347dfbf}{getAllValidWorkingFrames}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{148 }
+\DoxyCodeLine{157   std::vector<std::string> \mbox{\hyperlink{classtesseract__kinematics_1_1KinematicGroup_a15dfeff9c322ae017dea1981c7354bd4}{getAllPossibleTipLinkNames}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{158 }
+\DoxyCodeLine{159 \textcolor{keyword}{private}:}
+\DoxyCodeLine{160   std::vector<std::string> \mbox{\hyperlink{classtesseract__kinematics_1_1KinematicGroup_a856beb499006e284d3810cde728bb149}{joint\_names\_}};}
+\DoxyCodeLine{161   \textcolor{keywordtype}{bool} \mbox{\hyperlink{classtesseract__kinematics_1_1KinematicGroup_a55e57bae41660848b376be8e6e55f747}{reorder\_required\_}}\{ \textcolor{keyword}{false} \};}
+\DoxyCodeLine{162   std::vector<Eigen::Index> \mbox{\hyperlink{classtesseract__kinematics_1_1KinematicGroup_a81a213dacc5c61b7783008b58fff2296}{inv\_kin\_joint\_map\_}};}
+\DoxyCodeLine{163   \mbox{\hyperlink{classtesseract__kinematics_1_1InverseKinematics_a68e526591337b0781c9ec91618d1d5f0}{InverseKinematics::UPtr}} \mbox{\hyperlink{classtesseract__kinematics_1_1KinematicGroup_a136a6e0ddb2dafd4fd881664cb4afac2}{inv\_kin\_}};}
+\DoxyCodeLine{164   Eigen::Isometry3d \mbox{\hyperlink{classtesseract__kinematics_1_1KinematicGroup_a05c2633edafe43cb9a487fe410287ae1}{inv\_to\_fwd\_base\_}}\{ Eigen::Isometry3d::Identity() \};}
+\DoxyCodeLine{165   std::vector<std::string> \mbox{\hyperlink{classtesseract__kinematics_1_1KinematicGroup_ab7358dc221a7b02415384cdcdfcdd0a2}{working\_frames\_}};}
+\DoxyCodeLine{166   std::unordered\_map<std::string, std::string> \mbox{\hyperlink{classtesseract__kinematics_1_1KinematicGroup_a7044329e2f1dc1ac0301e1f2ed64ac03}{inv\_tip\_links\_map\_}};}
+\DoxyCodeLine{167 \};}
+\DoxyCodeLine{168 }
+\DoxyCodeLine{169 \}  \textcolor{comment}{// namespace tesseract\_kinematics}}
+\DoxyCodeLine{170 }
+\DoxyCodeLine{171 \textcolor{preprocessor}{\#endif  }\textcolor{comment}{// TESSERACT\_KINEMATICS\_KINEMATIC\_GROUP\_H}}
+\DoxyCodeLine{172 }
+\DoxyCodeLine{173 \textcolor{preprocessor}{\#ifdef SWIG}}
+\DoxyCodeLine{174 \%tesseract\_aligned\_vector(\mbox{\hyperlink{namespacetesseract__kinematics_ae5941af5d420d5b756e9d3d1fcaa1c5d}{KinGroupIKInputs}},\mbox{\hyperlink{structtesseract__kinematics_1_1KinGroupIKInput}{tesseract\_kinematics::KinGroupIKInput}})}
+\DoxyCodeLine{175 \textcolor{preprocessor}{\#endif  }\textcolor{comment}{// SWIG}}
 
 \end{DoxyCode}
