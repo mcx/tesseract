@@ -307,6 +307,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ac1ea45e7b76cfa06d09b9a2d2e25b137"><td class="memItemLeft" align="right" valign="top">Eigen::Isometry3d&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d6a/classtesseract__environment_1_1Environment.html#ac1ea45e7b76cfa06d09b9a2d2e25b137">getLinkTransform</a> (const std::string &amp;link_name) const</td></tr>
 <tr class="memdesc:ac1ea45e7b76cfa06d09b9a2d2e25b137"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the transform corresponding to the link.  <a href="../../d0/d6a/classtesseract__environment_1_1Environment.html#ac1ea45e7b76cfa06d09b9a2d2e25b137">More...</a><br /></td></tr>
 <tr class="separator:ac1ea45e7b76cfa06d09b9a2d2e25b137"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9cb82c5efb244f08bb3a6e5288de1e16"><td class="memItemLeft" align="right" valign="top">Eigen::Isometry3d&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d6a/classtesseract__environment_1_1Environment.html#a9cb82c5efb244f08bb3a6e5288de1e16">getRelativeLinkTransform</a> (const std::string &amp;from_link_name, const std::string &amp;to_link_name) const</td></tr>
+<tr class="memdesc:a9cb82c5efb244f08bb3a6e5288de1e16"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get transform between two links using the current state.  <a href="../../d0/d6a/classtesseract__environment_1_1Environment.html#a9cb82c5efb244f08bb3a6e5288de1e16">More...</a><br /></td></tr>
+<tr class="separator:a9cb82c5efb244f08bb3a6e5288de1e16"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7216e028199e439ac4b6ce13fea98cf3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d8/d95/classtesseract__scene__graph_1_1StateSolver.html#a0834c4abefbc5b7da4e66cd26619a9ba">tesseract_scene_graph::StateSolver::UPtr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d6a/classtesseract__environment_1_1Environment.html#a7216e028199e439ac4b6ce13fea98cf3">getStateSolver</a> () const</td></tr>
 <tr class="memdesc:a7216e028199e439ac4b6ce13fea98cf3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a clone of the environments state solver.  <a href="../../d0/d6a/classtesseract__environment_1_1Environment.html#a7216e028199e439ac4b6ce13fea98cf3">More...</a><br /></td></tr>
 <tr class="separator:a7216e028199e439ac4b6ce13fea98cf3"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -2294,6 +2297,44 @@ Static Private Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a9cb82c5efb244f08bb3a6e5288de1e16" name="a9cb82c5efb244f08bb3a6e5288de1e16"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9cb82c5efb244f08bb3a6e5288de1e16">&#9670;&nbsp;</a></span>getRelativeLinkTransform()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Eigen::Isometry3d tesseract_environment::Environment::getRelativeLinkTransform </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>from_link_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>to_link_name</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get transform between two links using the current state. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">from_link_name</td><td>The link name the transform should be relative to </td></tr>
+    <tr><td class="paramname">to_link_name</td><td>The link name to get transform </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The relative transform = inv(Transform(from_link_name)) * Transform(to_link_name) </dd></dl>
+
+</div>
+</div>
 <a id="a89c1999bd8798c6c8d7b5634efe972d8" name="a89c1999bd8798c6c8d7b5634efe972d8"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a89c1999bd8798c6c8d7b5634efe972d8">&#9670;&nbsp;</a></span>getResourceLocator()</h2>
 
@@ -3681,7 +3722,7 @@ Static Private Member Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Mar 1 2022 05:09:25 for Tesseract by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.3
+Generated on Thu Mar 3 2022 23:54:51 for Tesseract by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.3
 </small></address>
 </body>
 </html>

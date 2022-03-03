@@ -140,6 +140,8 @@ std\+::string \mbox{\hyperlink{classtesseract__environment_1_1Environment_a664ec
 \begin{DoxyCompactList}\small\item\em Get all of the links transforms. \end{DoxyCompactList}\item 
 Eigen\+::\+Isometry3d \mbox{\hyperlink{classtesseract__environment_1_1Environment_ac1ea45e7b76cfa06d09b9a2d2e25b137}{get\+Link\+Transform}} (const std\+::string \&link\+\_\+name) const
 \begin{DoxyCompactList}\small\item\em Get the transform corresponding to the link. \end{DoxyCompactList}\item 
+Eigen\+::\+Isometry3d \mbox{\hyperlink{classtesseract__environment_1_1Environment_a9cb82c5efb244f08bb3a6e5288de1e16}{get\+Relative\+Link\+Transform}} (const std\+::string \&from\+\_\+link\+\_\+name, const std\+::string \&to\+\_\+link\+\_\+name) const
+\begin{DoxyCompactList}\small\item\em Get transform between two links using the current state. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classtesseract__scene__graph_1_1StateSolver_a0834c4abefbc5b7da4e66cd26619a9ba}{tesseract\+\_\+scene\+\_\+graph\+::\+State\+Solver\+::\+UPtr}} \mbox{\hyperlink{classtesseract__environment_1_1Environment_a7216e028199e439ac4b6ce13fea98cf3}{get\+State\+Solver}} () const
 \begin{DoxyCompactList}\small\item\em Returns a clone of the environments state solver. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{structtesseract__srdf_1_1KinematicsInformation}{tesseract\+\_\+srdf\+::\+Kinematics\+Information}} \mbox{\hyperlink{classtesseract__environment_1_1Environment_a7c5b53b47ff3382955fee8fd3a44498f}{get\+Kinematics\+Information}} () const
@@ -1064,7 +1066,27 @@ True if should be visible, otherwise false
 
 Get the name of the environment. 
 
-This may be empty, if so check urdf name \mbox{\Hypertarget{classtesseract__environment_1_1Environment_a89c1999bd8798c6c8d7b5634efe972d8}\label{classtesseract__environment_1_1Environment_a89c1999bd8798c6c8d7b5634efe972d8}} 
+This may be empty, if so check urdf name \mbox{\Hypertarget{classtesseract__environment_1_1Environment_a9cb82c5efb244f08bb3a6e5288de1e16}\label{classtesseract__environment_1_1Environment_a9cb82c5efb244f08bb3a6e5288de1e16}} 
+\index{tesseract\_environment::Environment@{tesseract\_environment::Environment}!getRelativeLinkTransform@{getRelativeLinkTransform}}
+\index{getRelativeLinkTransform@{getRelativeLinkTransform}!tesseract\_environment::Environment@{tesseract\_environment::Environment}}
+\doxysubsubsection{\texorpdfstring{getRelativeLinkTransform()}{getRelativeLinkTransform()}}
+{\footnotesize\ttfamily Eigen\+::\+Isometry3d tesseract\+\_\+environment\+::\+Environment\+::get\+Relative\+Link\+Transform (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{from\+\_\+link\+\_\+name,  }\item[{const std\+::string \&}]{to\+\_\+link\+\_\+name }\end{DoxyParamCaption}) const}
+
+
+
+Get transform between two links using the current state. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em from\+\_\+link\+\_\+name} & The link name the transform should be relative to \\
+\hline
+{\em to\+\_\+link\+\_\+name} & The link name to get transform \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The relative transform = inv(\+Transform(from\+\_\+link\+\_\+name)) $\ast$ Transform(to\+\_\+link\+\_\+name) 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classtesseract__environment_1_1Environment_a89c1999bd8798c6c8d7b5634efe972d8}\label{classtesseract__environment_1_1Environment_a89c1999bd8798c6c8d7b5634efe972d8}} 
 \index{tesseract\_environment::Environment@{tesseract\_environment::Environment}!getResourceLocator@{getResourceLocator}}
 \index{getResourceLocator@{getResourceLocator}!tesseract\_environment::Environment@{tesseract\_environment::Environment}}
 \doxysubsubsection{\texorpdfstring{getResourceLocator()}{getResourceLocator()}}
