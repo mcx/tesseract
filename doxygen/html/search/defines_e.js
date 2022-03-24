@@ -8,5 +8,8 @@ var searchData=
   ['tesseract_5fany_5fexport_5fkey_5',['TESSERACT_ANY_EXPORT_KEY',['../df/d8d/any_8h.html#a2e797dbbe4d98ed91b40db9829dd9ca0',1,'any.h']]],
   ['tesseract_5fcommon_5fignore_5fwarnings_5fpop_6',['TESSERACT_COMMON_IGNORE_WARNINGS_POP',['../de/d3c/macros_8h.html#a7af8561cf52519e9896b0697095c1b8b',1,'macros.h']]],
   ['tesseract_5fcommon_5fignore_5fwarnings_5fpush_7',['TESSERACT_COMMON_IGNORE_WARNINGS_PUSH',['../de/d3c/macros_8h.html#a8cc0e3c6a3382c5c0b19eb9e676fc2db',1,'macros.h']]],
-  ['triangulate_5fh_8',['TRIANGULATE_H',['../d0/d1b/FloatMath_8inl.html#a8bfb079737a59147339132bb90a1d40f',1,'FloatMath.inl']]]
+  ['tesseract_5fserialize_5farchives_5finstantiate_8',['TESSERACT_SERIALIZE_ARCHIVES_INSTANTIATE',['../dd/d50/serialization_8h.html#a82e190f8926bbd5cc3f311dbd5006e6d',1,'serialization.h']]],
+  ['tesseract_5fserialize_5fsave_5fload_5farchives_5finstantiate_9',['TESSERACT_SERIALIZE_SAVE_LOAD_ARCHIVES_INSTANTIATE',['../dd/d50/serialization_8h.html#a1138b8614dca46f7b349cfeae70f096a',1,'serialization.h']]],
+  ['tesseract_5fserialize_5fsave_5fload_5ffree_5farchives_5finstantiate_10',['TESSERACT_SERIALIZE_SAVE_LOAD_FREE_ARCHIVES_INSTANTIATE',['../dd/d50/serialization_8h.html#af2d3433371cad961e0f59b642f78e877',1,'serialization.h']]],
+  ['triangulate_5fh_11',['TRIANGULATE_H',['../d0/d1b/FloatMath_8inl.html#a8bfb079737a59147339132bb90a1d40f',1,'FloatMath.inl']]]
 ];
