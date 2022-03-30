@@ -110,6 +110,11 @@ Classes</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d6a/classtesseract__environment_1_1Environment.html">Environment</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/dfb/classtesseract__environment_1_1EnvironmentMonitor.html">EnvironmentMonitor</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tesseract <a class="el" href="../../d0/d6a/classtesseract__environment_1_1Environment.html">Environment</a> Monitor Interface Class.  <a href="../../de/dfb/classtesseract__environment_1_1EnvironmentMonitor.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d0f/classtesseract__environment_1_1EnvironmentMonitorInterface.html">EnvironmentMonitorInterface</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d80/structtesseract__environment_1_1Event.html">Event</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The event base class.  <a href="../../d9/d80/structtesseract__environment_1_1Event.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -185,6 +190,10 @@ Enumerations</h2></td></tr>
 <br />
  }</td></tr>
 <tr class="separator:afc00c1aecb519acba3afc24dbd367029"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad69281c5429c1e008229dbe5c5c4769d"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d5f/namespacetesseract__environment.html#ad69281c5429c1e008229dbe5c5c4769d">MonitoredEnvironmentMode</a> : int { <a class="el" href="../../d2/d5f/namespacetesseract__environment.html#ad69281c5429c1e008229dbe5c5c4769da5b39c8b553c821e7cddc6da64b5bd2ee">DEFAULT</a> = 0
+, <a class="el" href="../../d2/d5f/namespacetesseract__environment.html#ad69281c5429c1e008229dbe5c5c4769da35c25b3993876576ae1222f9ebb04f63">SYNCHRONIZED</a> = 1
+ }</td></tr>
+<tr class="separator:ad69281c5429c1e008229dbe5c5c4769d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aed7a9146b435502090a922144486578d"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d5f/namespacetesseract__environment.html#aed7a9146b435502090a922144486578d">Events</a> { <a class="el" href="../../d2/d5f/namespacetesseract__environment.html#aed7a9146b435502090a922144486578da4708fbfa940a1361e29903d30d9c2c7a">COMMAND_APPLIED</a> = 0
 , <a class="el" href="../../d2/d5f/namespacetesseract__environment.html#aed7a9146b435502090a922144486578da5fba6bb654fe79357954dbcbb88a3f6c">SCENE_STATE_CHANGED</a> = 1
  }</td></tr>
@@ -390,6 +399,37 @@ Functions</h2></td></tr>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="aed7a9146b435502090a922144486578da4708fbfa940a1361e29903d30d9c2c7a" name="aed7a9146b435502090a922144486578da4708fbfa940a1361e29903d30d9c2c7a"></a>COMMAND_APPLIED&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="aed7a9146b435502090a922144486578da5fba6bb654fe79357954dbcbb88a3f6c" name="aed7a9146b435502090a922144486578da5fba6bb654fe79357954dbcbb88a3f6c"></a>SCENE_STATE_CHANGED&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
+<a id="ad69281c5429c1e008229dbe5c5c4769d" name="ad69281c5429c1e008229dbe5c5c4769d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad69281c5429c1e008229dbe5c5c4769d">&#9670;&nbsp;</a></span>MonitoredEnvironmentMode</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum class <a class="el" href="../../d2/d5f/namespacetesseract__environment.html#ad69281c5429c1e008229dbe5c5c4769d">tesseract_environment::MonitoredEnvironmentMode</a> : int</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ad69281c5429c1e008229dbe5c5c4769da5b39c8b553c821e7cddc6da64b5bd2ee" name="ad69281c5429c1e008229dbe5c5c4769da5b39c8b553c821e7cddc6da64b5bd2ee"></a>DEFAULT&#160;</td><td class="fielddoc"><p >The default behavior when monitoring another environment is the following. </p>
+<p >Case1: If the revision is greater than, it will call a service of the monitored environment to get the changes and apply them. Case2: If the revision is less than, it will reinitialize the environment and request the remaining changes and apply them. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ad69281c5429c1e008229dbe5c5c4769da35c25b3993876576ae1222f9ebb04f63" name="ad69281c5429c1e008229dbe5c5c4769da35c25b3993876576ae1222f9ebb04f63"></a>SYNCHRONIZED&#160;</td><td class="fielddoc"><p >The synchronized behavior when monitoring another environment is the following. </p>
+<dl class="section warning"><dt>Warning</dt><dd>Currently this works best if there is only one monitor which is synchronized because currently if two environment monitors are synchronized, it currently does not have a way to reason about which ones should get applied. Need to research approach for this type of system.</dd></dl>
+<p>Case1: If the revision is greater than, it will call a service of the monitored environment to get the changes and apply them. Case2: If the revision is less than, it will call a service of the monitored environment to apply the new changes. </p>
+</td></tr>
 </table>
 
 </div>
@@ -1075,7 +1115,7 @@ template&lt;class Archive &gt; </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Mar 30 2022 16:31:44 for Tesseract by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.3
+Generated on Wed Mar 30 2022 21:18:19 for Tesseract by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.3
 </small></address>
 </body>
 </html>

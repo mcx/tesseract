@@ -35,6 +35,10 @@ struct \mbox{\hyperlink{structtesseract__environment_1_1CommandAppliedEvent}{Com
 \begin{DoxyCompactList}\small\item\em The command applied event. \end{DoxyCompactList}\item 
 class \mbox{\hyperlink{classtesseract__environment_1_1Environment}{Environment}}
 \item 
+class \mbox{\hyperlink{classtesseract__environment_1_1EnvironmentMonitor}{Environment\+Monitor}}
+\begin{DoxyCompactList}\small\item\em Tesseract \mbox{\hyperlink{classtesseract__environment_1_1Environment}{Environment}} Monitor Interface Class. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classtesseract__environment_1_1EnvironmentMonitorInterface}{Environment\+Monitor\+Interface}}
+\item 
 struct \mbox{\hyperlink{structtesseract__environment_1_1Event}{Event}}
 \begin{DoxyCompactList}\small\item\em The event base class. \end{DoxyCompactList}\item 
 class \mbox{\hyperlink{classtesseract__environment_1_1MoveJointCommand}{Move\+Joint\+Command}}
@@ -104,6 +108,10 @@ enum class \mbox{\hyperlink{namespacetesseract__environment_afc00c1aecb519acba3a
 \mbox{\hyperlink{namespacetesseract__environment_afc00c1aecb519acba3afc24dbd367029a888e6375965550fe9f245043026d8490}{ADD\+\_\+\+CONTACT\+\_\+\+MANAGERS\+\_\+\+PLUGIN\+\_\+\+INFO}} = 19
 , \mbox{\hyperlink{namespacetesseract__environment_afc00c1aecb519acba3afc24dbd367029a2fdc8f6309f2bdd8cd403be451510841}{SET\+\_\+\+ACTIVE\+\_\+\+DISCRETE\+\_\+\+CONTACT\+\_\+\+MANAGER}} = 20
 , \mbox{\hyperlink{namespacetesseract__environment_afc00c1aecb519acba3afc24dbd367029af02976086409570e5906a7339e95a026}{SET\+\_\+\+ACTIVE\+\_\+\+CONTINUOUS\+\_\+\+CONTACT\+\_\+\+MANAGER}} = 21
+ \}
+\item 
+enum class \mbox{\hyperlink{namespacetesseract__environment_ad69281c5429c1e008229dbe5c5c4769d}{Monitored\+Environment\+Mode}} \+: int \{ \mbox{\hyperlink{namespacetesseract__environment_ad69281c5429c1e008229dbe5c5c4769da5b39c8b553c821e7cddc6da64b5bd2ee}{DEFAULT}} = 0
+, \mbox{\hyperlink{namespacetesseract__environment_ad69281c5429c1e008229dbe5c5c4769da35c25b3993876576ae1222f9ebb04f63}{SYNCHRONIZED}} = 1
  \}
 \item 
 enum class \mbox{\hyperlink{namespacetesseract__environment_aed7a9146b435502090a922144486578d}{Events}} \{ \mbox{\hyperlink{namespacetesseract__environment_aed7a9146b435502090a922144486578da4708fbfa940a1361e29903d30d9c2c7a}{COMMAND\+\_\+\+APPLIED}} = 0
@@ -298,6 +306,25 @@ COMMAND\+\_\+\+APPLIED&\\
 
 \raisebox{\heightof{T}}[0pt][0pt]{\index{SCENE\_STATE\_CHANGED@{SCENE\_STATE\_CHANGED}!tesseract\_environment@{tesseract\_environment}}\index{tesseract\_environment@{tesseract\_environment}!SCENE\_STATE\_CHANGED@{SCENE\_STATE\_CHANGED}}}\mbox{\Hypertarget{namespacetesseract__environment_aed7a9146b435502090a922144486578da5fba6bb654fe79357954dbcbb88a3f6c}\label{namespacetesseract__environment_aed7a9146b435502090a922144486578da5fba6bb654fe79357954dbcbb88a3f6c}} 
 SCENE\+\_\+\+STATE\+\_\+\+CHANGED&\\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{namespacetesseract__environment_ad69281c5429c1e008229dbe5c5c4769d}\label{namespacetesseract__environment_ad69281c5429c1e008229dbe5c5c4769d}} 
+\index{tesseract\_environment@{tesseract\_environment}!MonitoredEnvironmentMode@{MonitoredEnvironmentMode}}
+\index{MonitoredEnvironmentMode@{MonitoredEnvironmentMode}!tesseract\_environment@{tesseract\_environment}}
+\doxysubsubsection{\texorpdfstring{MonitoredEnvironmentMode}{MonitoredEnvironmentMode}}
+{\footnotesize\ttfamily enum class \mbox{\hyperlink{namespacetesseract__environment_ad69281c5429c1e008229dbe5c5c4769d}{tesseract\+\_\+environment\+::\+Monitored\+Environment\+Mode}} \+: int\hspace{0.3cm}{\ttfamily [strong]}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DEFAULT@{DEFAULT}!tesseract\_environment@{tesseract\_environment}}\index{tesseract\_environment@{tesseract\_environment}!DEFAULT@{DEFAULT}}}\mbox{\Hypertarget{namespacetesseract__environment_ad69281c5429c1e008229dbe5c5c4769da5b39c8b553c821e7cddc6da64b5bd2ee}\label{namespacetesseract__environment_ad69281c5429c1e008229dbe5c5c4769da5b39c8b553c821e7cddc6da64b5bd2ee}} 
+DEFAULT&The default behavior when monitoring another environment is the following. Case1\+: If the revision is greater than, it will call a service of the monitored environment to get the changes and apply them. Case2\+: If the revision is less than, it will reinitialize the environment and request the remaining changes and apply them. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SYNCHRONIZED@{SYNCHRONIZED}!tesseract\_environment@{tesseract\_environment}}\index{tesseract\_environment@{tesseract\_environment}!SYNCHRONIZED@{SYNCHRONIZED}}}\mbox{\Hypertarget{namespacetesseract__environment_ad69281c5429c1e008229dbe5c5c4769da35c25b3993876576ae1222f9ebb04f63}\label{namespacetesseract__environment_ad69281c5429c1e008229dbe5c5c4769da35c25b3993876576ae1222f9ebb04f63}} 
+SYNCHRONIZED&The synchronized behavior when monitoring another environment is the following. \begin{DoxyWarning}{Warning}
+Currently this works best if there is only one monitor which is synchronized because currently if two environment monitors are synchronized, it currently does not have a way to reason about which ones should get applied. Need to research approach for this type of system.
+\end{DoxyWarning}
+Case1\+: If the revision is greater than, it will call a service of the monitored environment to get the changes and apply them. Case2\+: If the revision is less than, it will call a service of the monitored environment to apply the new changes. \\
 \hline
 
 \end{DoxyEnumFields}
