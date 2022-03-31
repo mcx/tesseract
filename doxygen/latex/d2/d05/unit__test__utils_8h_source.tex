@@ -25,7 +25,7 @@
 \DoxyCodeLine{51     EXPECT\_TRUE(tesseract\_common::Serialization::toArchiveFileXML<SerializableType>(\textcolor{keywordtype}{object}, file\_path));}
 \DoxyCodeLine{52 }
 \DoxyCodeLine{53     \textcolor{keyword}{auto} nobject = tesseract\_common::Serialization::fromArchiveFileXML<SerializableType>(file\_path);}
-\DoxyCodeLine{54     EXPECT\_TRUE(\textcolor{keywordtype}{object} == nobject);}
+\DoxyCodeLine{54     EXPECT\_FALSE(\textcolor{keywordtype}{object} != nobject);  \textcolor{comment}{// Using != because it call == for code coverage}}
 \DoxyCodeLine{55   \}}
 \DoxyCodeLine{56 }
 \DoxyCodeLine{57   \{  \textcolor{comment}{// Archive program to binary file}}
@@ -33,7 +33,7 @@
 \DoxyCodeLine{59     EXPECT\_TRUE(tesseract\_common::Serialization::toArchiveFileBinary<SerializableType>(\textcolor{keywordtype}{object}, file\_path));}
 \DoxyCodeLine{60 }
 \DoxyCodeLine{61     \textcolor{keyword}{auto} nobject = tesseract\_common::Serialization::fromArchiveFileBinary<SerializableType>(file\_path);}
-\DoxyCodeLine{62     EXPECT\_TRUE(\textcolor{keywordtype}{object} == nobject);}
+\DoxyCodeLine{62     EXPECT\_FALSE(\textcolor{keywordtype}{object} != nobject);  \textcolor{comment}{// Using != because it call == for code coverage}}
 \DoxyCodeLine{63   \}}
 \DoxyCodeLine{64 }
 \DoxyCodeLine{65   \{  \textcolor{comment}{// Archive program to string}}
@@ -42,7 +42,7 @@
 \DoxyCodeLine{68     EXPECT\_FALSE(object\_string.empty());}
 \DoxyCodeLine{69 }
 \DoxyCodeLine{70     \textcolor{keyword}{auto} nobject = tesseract\_common::Serialization::fromArchiveStringXML<SerializableType>(object\_string);}
-\DoxyCodeLine{71     EXPECT\_TRUE(\textcolor{keywordtype}{object} == nobject);}
+\DoxyCodeLine{71     EXPECT\_FALSE(\textcolor{keywordtype}{object} != nobject);  \textcolor{comment}{// Using != because it call == for code coverage}}
 \DoxyCodeLine{72   \}}
 \DoxyCodeLine{73 \}}
 \DoxyCodeLine{74 }
@@ -60,7 +60,7 @@
 \DoxyCodeLine{93     \textcolor{keyword}{auto} nobject\_derived = std::dynamic\_pointer\_cast<SerializableTypeDerived>(nobject);}
 \DoxyCodeLine{94 }
 \DoxyCodeLine{95     \textcolor{keyword}{auto} object\_derived = std::dynamic\_pointer\_cast<SerializableTypeDerived>(\textcolor{keywordtype}{object});}
-\DoxyCodeLine{96     EXPECT\_TRUE(*object\_derived == *nobject\_derived);}
+\DoxyCodeLine{96     EXPECT\_FALSE(*object\_derived != *nobject\_derived);  \textcolor{comment}{// Using != because it call == for code coverage}}
 \DoxyCodeLine{97   \}}
 \DoxyCodeLine{98 }
 \DoxyCodeLine{99   \{  \textcolor{comment}{// Archive program to binary file}}
@@ -73,7 +73,7 @@
 \DoxyCodeLine{106     \textcolor{keyword}{auto} nobject\_derived = std::dynamic\_pointer\_cast<SerializableTypeDerived>(nobject);}
 \DoxyCodeLine{107 }
 \DoxyCodeLine{108     \textcolor{keyword}{auto} object\_derived = std::dynamic\_pointer\_cast<SerializableTypeDerived>(\textcolor{keywordtype}{object});}
-\DoxyCodeLine{109     EXPECT\_TRUE(*object\_derived == *nobject\_derived);}
+\DoxyCodeLine{109     EXPECT\_FALSE(*object\_derived != *nobject\_derived);  \textcolor{comment}{// Using != because it call == for code coverage}}
 \DoxyCodeLine{110   \}}
 \DoxyCodeLine{111 }
 \DoxyCodeLine{112   \{  \textcolor{comment}{// Archive program to string}}
@@ -87,7 +87,7 @@
 \DoxyCodeLine{120     \textcolor{keyword}{auto} nobject\_derived = std::dynamic\_pointer\_cast<SerializableTypeDerived>(nobject);}
 \DoxyCodeLine{121 }
 \DoxyCodeLine{122     \textcolor{keyword}{auto} object\_derived = std::dynamic\_pointer\_cast<SerializableTypeDerived>(\textcolor{keywordtype}{object});}
-\DoxyCodeLine{123     EXPECT\_TRUE(*object\_derived == *nobject\_derived);}
+\DoxyCodeLine{123     EXPECT\_FALSE(*object\_derived != *nobject\_derived);  \textcolor{comment}{// Using != because it call == for code coverage}}
 \DoxyCodeLine{124   \}}
 \DoxyCodeLine{125 \}}
 \DoxyCodeLine{126 \}  \textcolor{comment}{// namespace tesseract\_common}}

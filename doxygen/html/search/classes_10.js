@@ -18,11 +18,10 @@ var searchData=
   ['shortestpath_15',['ShortestPath',['../df/d25/structtesseract__scene__graph_1_1ShortestPath.html',1,'tesseract_scene_graph']]],
   ['sig_5fcheck_16',['sig_check',['../d3/dfa/structtesseract__common_1_1sig__check.html',1,'tesseract_common']]],
   ['simplelocatedresource_17',['SimpleLocatedResource',['../d6/d85/classtesseract__common_1_1SimpleLocatedResource.html',1,'tesseract_common']]],
-  ['simpleresourcelocator_18',['SimpleResourceLocator',['../db/dee/classtesseract__common_1_1SimpleResourceLocator.html',1,'tesseract_common']]],
-  ['sphere_19',['Sphere',['../de/dcb/classtesseract__geometry_1_1Sphere.html',1,'tesseract_geometry']]],
-  ['srdfmodel_20',['SRDFModel',['../dc/d03/classtesseract__srdf_1_1SRDFModel.html',1,'tesseract_srdf']]],
-  ['statesolver_21',['StateSolver',['../d8/d95/classtesseract__scene__graph_1_1StateSolver.html',1,'tesseract_scene_graph']]],
-  ['statuscategory_22',['StatusCategory',['../d3/d71/classtesseract__common_1_1StatusCategory.html',1,'tesseract_common']]],
-  ['statuscode_23',['StatusCode',['../d0/d3f/classtesseract__common_1_1StatusCode.html',1,'tesseract_common']]],
-  ['swappedcreatefunc_24',['SwappedCreateFunc',['../d9/d2f/structtesseract__collision_1_1tesseract__collision__bullet_1_1TesseractCompoundCollisionAlgorithm_1_1SwappedCreateFunc.html',1,'tesseract_collision::tesseract_collision_bullet::TesseractCompoundCollisionAlgorithm::SwappedCreateFunc'],['../d2/d28/structtesseract__collision_1_1tesseract__collision__bullet_1_1TesseractCompoundCompoundCollisionAlgorithm_1_1SwappedCreateFunc.html',1,'tesseract_collision::tesseract_collision_bullet::TesseractCompoundCompoundCollisionAlgorithm::SwappedCreateFunc']]]
+  ['sphere_18',['Sphere',['../de/dcb/classtesseract__geometry_1_1Sphere.html',1,'tesseract_geometry']]],
+  ['srdfmodel_19',['SRDFModel',['../dc/d03/classtesseract__srdf_1_1SRDFModel.html',1,'tesseract_srdf']]],
+  ['statesolver_20',['StateSolver',['../d8/d95/classtesseract__scene__graph_1_1StateSolver.html',1,'tesseract_scene_graph']]],
+  ['statuscategory_21',['StatusCategory',['../d3/d71/classtesseract__common_1_1StatusCategory.html',1,'tesseract_common']]],
+  ['statuscode_22',['StatusCode',['../d0/d3f/classtesseract__common_1_1StatusCode.html',1,'tesseract_common']]],
+  ['swappedcreatefunc_23',['SwappedCreateFunc',['../d9/d2f/structtesseract__collision_1_1tesseract__collision__bullet_1_1TesseractCompoundCollisionAlgorithm_1_1SwappedCreateFunc.html',1,'tesseract_collision::tesseract_collision_bullet::TesseractCompoundCollisionAlgorithm::SwappedCreateFunc'],['../d2/d28/structtesseract__collision_1_1tesseract__collision__bullet_1_1TesseractCompoundCompoundCollisionAlgorithm_1_1SwappedCreateFunc.html',1,'tesseract_collision::tesseract_collision_bullet::TesseractCompoundCompoundCollisionAlgorithm::SwappedCreateFunc']]]
 ];
