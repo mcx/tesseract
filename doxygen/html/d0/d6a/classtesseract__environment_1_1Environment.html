@@ -258,9 +258,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a1061bfeac8177a020ce095806d5cce3f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d5/d12/structtesseract__scene__graph_1_1SceneState.html">tesseract_scene_graph::SceneState</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d6a/classtesseract__environment_1_1Environment.html#a1061bfeac8177a020ce095806d5cce3f">getState</a> () const</td></tr>
 <tr class="memdesc:a1061bfeac8177a020ce095806d5cce3f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the current state of the environment.  <a href="../../d0/d6a/classtesseract__environment_1_1Environment.html#a1061bfeac8177a020ce095806d5cce3f">More...</a><br /></td></tr>
 <tr class="separator:a1061bfeac8177a020ce095806d5cce3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afb66ba4e4bdc13dd4438b090b52f1c84"><td class="memItemLeft" align="right" valign="top">std::chrono::high_resolution_clock::duration&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d6a/classtesseract__environment_1_1Environment.html#afb66ba4e4bdc13dd4438b090b52f1c84">getCurrentStateTimestamp</a> () const</td></tr>
-<tr class="memdesc:afb66ba4e4bdc13dd4438b090b52f1c84"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the current state timestamp.  <a href="../../d0/d6a/classtesseract__environment_1_1Environment.html#afb66ba4e4bdc13dd4438b090b52f1c84">More...</a><br /></td></tr>
-<tr class="separator:afb66ba4e4bdc13dd4438b090b52f1c84"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a58a80617a1b446b8084842309ed32c6b"><td class="memItemLeft" align="right" valign="top">std::chrono::system_clock::time_point&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d6a/classtesseract__environment_1_1Environment.html#a58a80617a1b446b8084842309ed32c6b">getTimestamp</a> () const</td></tr>
+<tr class="memdesc:a58a80617a1b446b8084842309ed32c6b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Last update time. Updated when any change to the environment occurs.  <a href="../../d0/d6a/classtesseract__environment_1_1Environment.html#a58a80617a1b446b8084842309ed32c6b">More...</a><br /></td></tr>
+<tr class="separator:a58a80617a1b446b8084842309ed32c6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ace663ca8b20444b8726ee798ede1dd38"><td class="memItemLeft" align="right" valign="top">std::chrono::system_clock::time_point&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d6a/classtesseract__environment_1_1Environment.html#ace663ca8b20444b8726ee798ede1dd38">getCurrentStateTimestamp</a> () const</td></tr>
+<tr class="memdesc:ace663ca8b20444b8726ee798ede1dd38"><td class="mdescLeft">&#160;</td><td class="mdescRight">Last update time to current state. Updated only when current state is updated.  <a href="../../d0/d6a/classtesseract__environment_1_1Environment.html#ace663ca8b20444b8726ee798ede1dd38">More...</a><br /></td></tr>
+<tr class="separator:ace663ca8b20444b8726ee798ede1dd38"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4c82e08472b33079d232bbe4e9bc8c7f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../dc/d40/classtesseract__scene__graph_1_1Link.html#afad1873344245e2223664b6b7f846f1c">tesseract_scene_graph::Link::ConstPtr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d6a/classtesseract__environment_1_1Environment.html#a4c82e08472b33079d232bbe4e9bc8c7f">getLink</a> (const std::string &amp;name) const</td></tr>
 <tr class="memdesc:a4c82e08472b33079d232bbe4e9bc8c7f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a link in the environment.  <a href="../../d0/d6a/classtesseract__environment_1_1Environment.html#a4c82e08472b33079d232bbe4e9bc8c7f">More...</a><br /></td></tr>
 <tr class="separator:a4c82e08472b33079d232bbe4e9bc8c7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -391,9 +394,12 @@ Protected Attributes</h2></td></tr>
 <tr class="memitem:a255666138364e3fdb64d25ee424754e7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d5/d12/structtesseract__scene__graph_1_1SceneState.html">tesseract_scene_graph::SceneState</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d6a/classtesseract__environment_1_1Environment.html#a255666138364e3fdb64d25ee424754e7">current_state_</a></td></tr>
 <tr class="memdesc:a255666138364e3fdb64d25ee424754e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current state of the environment.  <a href="../../d0/d6a/classtesseract__environment_1_1Environment.html#a255666138364e3fdb64d25ee424754e7">More...</a><br /></td></tr>
 <tr class="separator:a255666138364e3fdb64d25ee424754e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7c4176faf5fd8a4ed1dcacdf1b322a99"><td class="memItemLeft" align="right" valign="top">std::chrono::high_resolution_clock::duration&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d6a/classtesseract__environment_1_1Environment.html#a7c4176faf5fd8a4ed1dcacdf1b322a99">current_state_timestamp_</a> { 0 }</td></tr>
-<tr class="memdesc:a7c4176faf5fd8a4ed1dcacdf1b322a99"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current state timestamp.  <a href="../../d0/d6a/classtesseract__environment_1_1Environment.html#a7c4176faf5fd8a4ed1dcacdf1b322a99">More...</a><br /></td></tr>
-<tr class="separator:a7c4176faf5fd8a4ed1dcacdf1b322a99"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa294a3e822562cb0d5a9734e1561caa8"><td class="memItemLeft" align="right" valign="top">std::chrono::system_clock::time_point&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d6a/classtesseract__environment_1_1Environment.html#aa294a3e822562cb0d5a9734e1561caa8">timestamp_</a> { std::chrono::system_clock::now() }</td></tr>
+<tr class="memdesc:aa294a3e822562cb0d5a9734e1561caa8"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="../../d0/d6a/classtesseract__environment_1_1Environment.html">Environment</a> timestamp.  <a href="../../d0/d6a/classtesseract__environment_1_1Environment.html#aa294a3e822562cb0d5a9734e1561caa8">More...</a><br /></td></tr>
+<tr class="separator:aa294a3e822562cb0d5a9734e1561caa8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad73e4685735c23b90cdd7d76256645c2"><td class="memItemLeft" align="right" valign="top">std::chrono::system_clock::time_point&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d6a/classtesseract__environment_1_1Environment.html#ad73e4685735c23b90cdd7d76256645c2">current_state_timestamp_</a> { std::chrono::system_clock::now() }</td></tr>
+<tr class="memdesc:ad73e4685735c23b90cdd7d76256645c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current state timestamp.  <a href="../../d0/d6a/classtesseract__environment_1_1Environment.html#ad73e4685735c23b90cdd7d76256645c2">More...</a><br /></td></tr>
+<tr class="separator:ad73e4685735c23b90cdd7d76256645c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acf779958589fad0a093858527229c9c8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../da/db9/classtesseract__scene__graph_1_1MutableStateSolver.html#a1d061821b17d0e3a5bb9b0c3dc21a062">tesseract_scene_graph::MutableStateSolver::UPtr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d6a/classtesseract__environment_1_1Environment.html#acf779958589fad0a093858527229c9c8">state_solver_</a></td></tr>
 <tr class="memdesc:acf779958589fad0a093858527229c9c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tesseract State Solver.  <a href="../../d0/d6a/classtesseract__environment_1_1Environment.html#acf779958589fad0a093858527229c9c8">More...</a><br /></td></tr>
 <tr class="separator:acf779958589fad0a093858527229c9c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1803,14 +1809,14 @@ Static Private Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="afb66ba4e4bdc13dd4438b090b52f1c84" name="afb66ba4e4bdc13dd4438b090b52f1c84"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afb66ba4e4bdc13dd4438b090b52f1c84">&#9670;&nbsp;</a></span>getCurrentStateTimestamp()</h2>
+<a id="ace663ca8b20444b8726ee798ede1dd38" name="ace663ca8b20444b8726ee798ede1dd38"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ace663ca8b20444b8726ee798ede1dd38">&#9670;&nbsp;</a></span>getCurrentStateTimestamp()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::chrono::high_resolution_clock::duration tesseract_environment::Environment::getCurrentStateTimestamp </td>
+          <td class="memname">std::chrono::system_clock::time_point tesseract_environment::Environment::getCurrentStateTimestamp </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -1818,7 +1824,7 @@ Static Private Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Get the current state timestamp. </p>
+<p>Last update time to current state. Updated only when current state is updated. </p>
 
 </div>
 </div>
@@ -2619,6 +2625,25 @@ Static Private Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a58a80617a1b446b8084842309ed32c6b" name="a58a80617a1b446b8084842309ed32c6b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a58a80617a1b446b8084842309ed32c6b">&#9670;&nbsp;</a></span>getTimestamp()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::chrono::system_clock::time_point tesseract_environment::Environment::getTimestamp </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Last update time. Updated when any change to the environment occurs. </p>
+
+</div>
+</div>
 <a id="a64a181eec8532a17b8fc174f1a3b9a97" name="a64a181eec8532a17b8fc174f1a3b9a97"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a64a181eec8532a17b8fc174f1a3b9a97">&#9670;&nbsp;</a></span>init() <span class="overload">[1/6]</span></h2>
 
@@ -3319,8 +3344,8 @@ Static Private Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a7c4176faf5fd8a4ed1dcacdf1b322a99" name="a7c4176faf5fd8a4ed1dcacdf1b322a99"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7c4176faf5fd8a4ed1dcacdf1b322a99">&#9670;&nbsp;</a></span>current_state_timestamp_</h2>
+<a id="ad73e4685735c23b90cdd7d76256645c2" name="ad73e4685735c23b90cdd7d76256645c2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad73e4685735c23b90cdd7d76256645c2">&#9670;&nbsp;</a></span>current_state_timestamp_</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -3329,7 +3354,7 @@ Static Private Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::chrono::high_resolution_clock::duration tesseract_environment::Environment::current_state_timestamp_ { 0 }</td>
+          <td class="memname">std::chrono::system_clock::time_point tesseract_environment::Environment::current_state_timestamp_ { std::chrono::system_clock::now() }</td>
         </tr>
       </table>
   </td>
@@ -3821,6 +3846,30 @@ Static Private Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="aa294a3e822562cb0d5a9734e1561caa8" name="aa294a3e822562cb0d5a9734e1561caa8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa294a3e822562cb0d5a9734e1561caa8">&#9670;&nbsp;</a></span>timestamp_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::chrono::system_clock::time_point tesseract_environment::Environment::timestamp_ { std::chrono::system_clock::now() }</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="../../d0/d6a/classtesseract__environment_1_1Environment.html">Environment</a> timestamp. </p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>tesseract_environment/include/tesseract_environment/<a class="el" href="../../de/d26/environment_8h_source.html">environment.h</a></li>
 <li>tesseract_environment/src/<a class="el" href="../../dc/d82/environment_8cpp.html">environment.cpp</a></li>
@@ -3828,7 +3877,7 @@ Static Private Member Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Apr 1 2022 15:54:32 for Tesseract by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.3
+Generated on Sun Apr 3 2022 21:34:07 for Tesseract by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.3
 </small></address>
 </body>
 </html>
