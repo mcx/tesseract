@@ -178,7 +178,11 @@ std\+::shared\+\_\+lock$<$ std\+::shared\+\_\+mutex $>$ \mbox{\hyperlink{classte
 void \mbox{\hyperlink{classtesseract__environment_1_1Environment_a238869f6fec0c78de57a4284cc513bc6}{current\+State\+Changed}} ()
 \item 
 void \mbox{\hyperlink{classtesseract__environment_1_1Environment_af504d9862f3cc6d15e359280c9688b47}{environment\+Changed}} ()
-\end{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classtesseract__environment_1_1Environment_ad0518e85bd6cd15af32d4e1c1d5cbc5e}{trigger\+Current\+State\+Changed\+Callbacks}} ()
+\begin{DoxyCompactList}\small\item\em Passes a current state changed event to the callbacks. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classtesseract__environment_1_1Environment_a886950f18393cc71abca098780bf8918}{trigger\+Environment\+Changed\+Callbacks}} ()
+\begin{DoxyCompactList}\small\item\em Passes a environment changed event to the callbacks. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -1483,6 +1487,32 @@ After updating the current state these function must call \mbox{\hyperlink{class
 \doxysubsubsection{\texorpdfstring{setState()}{setState()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
 {\footnotesize\ttfamily void tesseract\+\_\+environment\+::\+Environment\+::set\+State (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{vhacdRaycastMesh_8cpp_adcf134d50025cc52907d0c8ac798d89d}{std\+::vector}}$<$ std\+::string $>$ \&}]{joint\+\_\+names,  }\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&}]{joint\+\_\+values }\end{DoxyParamCaption})}
 
+\mbox{\Hypertarget{classtesseract__environment_1_1Environment_ad0518e85bd6cd15af32d4e1c1d5cbc5e}\label{classtesseract__environment_1_1Environment_ad0518e85bd6cd15af32d4e1c1d5cbc5e}} 
+\index{tesseract\_environment::Environment@{tesseract\_environment::Environment}!triggerCurrentStateChangedCallbacks@{triggerCurrentStateChangedCallbacks}}
+\index{triggerCurrentStateChangedCallbacks@{triggerCurrentStateChangedCallbacks}!tesseract\_environment::Environment@{tesseract\_environment::Environment}}
+\doxysubsubsection{\texorpdfstring{triggerCurrentStateChangedCallbacks()}{triggerCurrentStateChangedCallbacks()}}
+{\footnotesize\ttfamily void tesseract\+\_\+environment\+::\+Environment\+::trigger\+Current\+State\+Changed\+Callbacks (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Passes a current state changed event to the callbacks. 
+
+\begin{DoxyNote}{Note}
+This does not take a lock 
+\end{DoxyNote}
+\mbox{\Hypertarget{classtesseract__environment_1_1Environment_a886950f18393cc71abca098780bf8918}\label{classtesseract__environment_1_1Environment_a886950f18393cc71abca098780bf8918}} 
+\index{tesseract\_environment::Environment@{tesseract\_environment::Environment}!triggerEnvironmentChangedCallbacks@{triggerEnvironmentChangedCallbacks}}
+\index{triggerEnvironmentChangedCallbacks@{triggerEnvironmentChangedCallbacks}!tesseract\_environment::Environment@{tesseract\_environment::Environment}}
+\doxysubsubsection{\texorpdfstring{triggerEnvironmentChangedCallbacks()}{triggerEnvironmentChangedCallbacks()}}
+{\footnotesize\ttfamily void tesseract\+\_\+environment\+::\+Environment\+::trigger\+Environment\+Changed\+Callbacks (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Passes a environment changed event to the callbacks. 
+
+\begin{DoxyNote}{Note}
+This does not take a lock 
+\end{DoxyNote}
 
 
 \doxysubsection{Member Data Documentation}

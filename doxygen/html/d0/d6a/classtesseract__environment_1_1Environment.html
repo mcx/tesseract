@@ -364,6 +364,12 @@ Protected Member Functions</h2></td></tr>
 <tr class="separator:a238869f6fec0c78de57a4284cc513bc6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af504d9862f3cc6d15e359280c9688b47"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d6a/classtesseract__environment_1_1Environment.html#af504d9862f3cc6d15e359280c9688b47">environmentChanged</a> ()</td></tr>
 <tr class="separator:af504d9862f3cc6d15e359280c9688b47"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad0518e85bd6cd15af32d4e1c1d5cbc5e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d6a/classtesseract__environment_1_1Environment.html#ad0518e85bd6cd15af32d4e1c1d5cbc5e">triggerCurrentStateChangedCallbacks</a> ()</td></tr>
+<tr class="memdesc:ad0518e85bd6cd15af32d4e1c1d5cbc5e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Passes a current state changed event to the callbacks.  <a href="../../d0/d6a/classtesseract__environment_1_1Environment.html#ad0518e85bd6cd15af32d4e1c1d5cbc5e">More...</a><br /></td></tr>
+<tr class="separator:ad0518e85bd6cd15af32d4e1c1d5cbc5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a886950f18393cc71abca098780bf8918"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d6a/classtesseract__environment_1_1Environment.html#a886950f18393cc71abca098780bf8918">triggerEnvironmentChangedCallbacks</a> ()</td></tr>
+<tr class="memdesc:a886950f18393cc71abca098780bf8918"><td class="mdescLeft">&#160;</td><td class="mdescRight">Passes a environment changed event to the callbacks.  <a href="../../d0/d6a/classtesseract__environment_1_1Environment.html#a886950f18393cc71abca098780bf8918">More...</a><br /></td></tr>
+<tr class="separator:a886950f18393cc71abca098780bf8918"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
@@ -3199,6 +3205,62 @@ Static Private Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="ad0518e85bd6cd15af32d4e1c1d5cbc5e" name="ad0518e85bd6cd15af32d4e1c1d5cbc5e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad0518e85bd6cd15af32d4e1c1d5cbc5e">&#9670;&nbsp;</a></span>triggerCurrentStateChangedCallbacks()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void tesseract_environment::Environment::triggerCurrentStateChangedCallbacks </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Passes a current state changed event to the callbacks. </p>
+<dl class="section note"><dt>Note</dt><dd>This does not take a lock </dd></dl>
+
+</div>
+</div>
+<a id="a886950f18393cc71abca098780bf8918" name="a886950f18393cc71abca098780bf8918"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a886950f18393cc71abca098780bf8918">&#9670;&nbsp;</a></span>triggerEnvironmentChangedCallbacks()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void tesseract_environment::Environment::triggerEnvironmentChangedCallbacks </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Passes a environment changed event to the callbacks. </p>
+<dl class="section note"><dt>Note</dt><dd>This does not take a lock </dd></dl>
+
+</div>
+</div>
 <h2 class="groupheader">Member Data Documentation</h2>
 <a id="a62a6ba1faafd93812a6bfe995d5ea8bb" name="a62a6ba1faafd93812a6bfe995d5ea8bb"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a62a6ba1faafd93812a6bfe995d5ea8bb">&#9670;&nbsp;</a></span>collision_margin_data_</h2>
@@ -3877,7 +3939,7 @@ Static Private Member Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Apr 3 2022 21:35:45 for Tesseract by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.3
+Generated on Wed Apr 13 2022 14:23:36 for Tesseract by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.3
 </small></address>
 </body>
 </html>
