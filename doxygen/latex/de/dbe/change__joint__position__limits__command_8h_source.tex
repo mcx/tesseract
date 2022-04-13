@@ -11,50 +11,52 @@
 \DoxyCodeLine{31 \textcolor{preprocessor}{\#include <boost/serialization/access.hpp>}}
 \DoxyCodeLine{32 \textcolor{preprocessor}{\#include <memory>}}
 \DoxyCodeLine{33 \textcolor{preprocessor}{\#include <unordered\_map>}}
-\DoxyCodeLine{34 \mbox{\hyperlink{namespaceTESSERACT__COMMON__IGNORE__WARNINGS__POP}{TESSERACT\_COMMON\_IGNORE\_WARNINGS\_POP}}}
-\DoxyCodeLine{35 }
-\DoxyCodeLine{36 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{command_8h}{tesseract\_environment/command.h}}>}}
+\DoxyCodeLine{34 \textcolor{preprocessor}{\#include <cassert>}}
+\DoxyCodeLine{35 \textcolor{preprocessor}{\#include <algorithm>}}
+\DoxyCodeLine{36 \mbox{\hyperlink{namespaceTESSERACT__COMMON__IGNORE__WARNINGS__POP}{TESSERACT\_COMMON\_IGNORE\_WARNINGS\_POP}}}
 \DoxyCodeLine{37 }
-\DoxyCodeLine{38 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespacetesseract__environment}{tesseract\_environment}}}
-\DoxyCodeLine{39 \{}
-\DoxyCodeLine{40 \textcolor{keyword}{class }\mbox{\hyperlink{classtesseract__environment_1_1ChangeJointPositionLimitsCommand}{ChangeJointPositionLimitsCommand}} : \textcolor{keyword}{public} \mbox{\hyperlink{classtesseract__environment_1_1Command}{Command}}}
+\DoxyCodeLine{38 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{command_8h}{tesseract\_environment/command.h}}>}}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{40 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespacetesseract__environment}{tesseract\_environment}}}
 \DoxyCodeLine{41 \{}
-\DoxyCodeLine{42 \textcolor{keyword}{public}:}
-\DoxyCodeLine{43   \textcolor{keyword}{using} \mbox{\hyperlink{classtesseract__environment_1_1Command_a26e9088280770d9887b52cef37e731db}{Ptr}} = std::shared\_ptr<ChangeJointPositionLimitsCommand>;}
-\DoxyCodeLine{44   \textcolor{keyword}{using} \mbox{\hyperlink{classtesseract__environment_1_1Command_a71f41840ff091003233e7ddaff1c4081}{ConstPtr}} = std::shared\_ptr<const ChangeJointPositionLimitsCommand>;}
-\DoxyCodeLine{45 }
-\DoxyCodeLine{46   \mbox{\hyperlink{classtesseract__environment_1_1ChangeJointPositionLimitsCommand_abea13eec2aa7c07d8dc54c0d80d3a0d4}{ChangeJointPositionLimitsCommand}}() : \mbox{\hyperlink{classtesseract__environment_1_1Command}{Command}}(\mbox{\hyperlink{namespacetesseract__environment_afc00c1aecb519acba3afc24dbd367029}{CommandType}}::\mbox{\hyperlink{namespacetesseract__environment_afc00c1aecb519acba3afc24dbd367029a45b7ca4cbdf3997ccbb8e81e45c25c0f}{CHANGE\_JOINT\_POSITION\_LIMITS}})\{\};}
+\DoxyCodeLine{42 \textcolor{keyword}{class }\mbox{\hyperlink{classtesseract__environment_1_1ChangeJointPositionLimitsCommand}{ChangeJointPositionLimitsCommand}} : \textcolor{keyword}{public} \mbox{\hyperlink{classtesseract__environment_1_1Command}{Command}}}
+\DoxyCodeLine{43 \{}
+\DoxyCodeLine{44 \textcolor{keyword}{public}:}
+\DoxyCodeLine{45   \textcolor{keyword}{using} \mbox{\hyperlink{classtesseract__environment_1_1Command_a26e9088280770d9887b52cef37e731db}{Ptr}} = std::shared\_ptr<ChangeJointPositionLimitsCommand>;}
+\DoxyCodeLine{46   \textcolor{keyword}{using} \mbox{\hyperlink{classtesseract__environment_1_1Command_a71f41840ff091003233e7ddaff1c4081}{ConstPtr}} = std::shared\_ptr<const ChangeJointPositionLimitsCommand>;}
 \DoxyCodeLine{47 }
-\DoxyCodeLine{53   \mbox{\hyperlink{classtesseract__environment_1_1ChangeJointPositionLimitsCommand_ae23769965f48d3fc0f2045479b02c91d}{ChangeJointPositionLimitsCommand}}(std::string joint\_name, \textcolor{keywordtype}{double} lower, \textcolor{keywordtype}{double} upper)}
-\DoxyCodeLine{54     : \mbox{\hyperlink{classtesseract__environment_1_1Command}{Command}}(\mbox{\hyperlink{namespacetesseract__environment_afc00c1aecb519acba3afc24dbd367029}{CommandType}}::\mbox{\hyperlink{namespacetesseract__environment_afc00c1aecb519acba3afc24dbd367029a45b7ca4cbdf3997ccbb8e81e45c25c0f}{CHANGE\_JOINT\_POSITION\_LIMITS}})}
-\DoxyCodeLine{55     , \mbox{\hyperlink{classtesseract__environment_1_1ChangeJointPositionLimitsCommand_ad31393e96902b6ab071b997ea86b1810}{limits\_}}(\{ std::make\_pair(std::move(joint\_name), std::make\_pair(lower, upper)) \})}
-\DoxyCodeLine{56   \{}
-\DoxyCodeLine{57     assert(upper > lower);}
-\DoxyCodeLine{58   \}}
-\DoxyCodeLine{59 }
-\DoxyCodeLine{65   \mbox{\hyperlink{classtesseract__environment_1_1ChangeJointPositionLimitsCommand_a50f770a2aaa2203c9f63a799ffe8d242}{ChangeJointPositionLimitsCommand}}(std::unordered\_map<std::string, std::pair<double, double>> limits)}
-\DoxyCodeLine{66     : \mbox{\hyperlink{classtesseract__environment_1_1Command}{Command}}(\mbox{\hyperlink{namespacetesseract__environment_afc00c1aecb519acba3afc24dbd367029}{CommandType}}::\mbox{\hyperlink{namespacetesseract__environment_afc00c1aecb519acba3afc24dbd367029a45b7ca4cbdf3997ccbb8e81e45c25c0f}{CHANGE\_JOINT\_POSITION\_LIMITS}}), \mbox{\hyperlink{classtesseract__environment_1_1ChangeJointPositionLimitsCommand_ad31393e96902b6ab071b997ea86b1810}{limits\_}}(std::move(limits))}
-\DoxyCodeLine{67   \{}
-\DoxyCodeLine{68     assert(std::all\_of(\mbox{\hyperlink{classtesseract__environment_1_1ChangeJointPositionLimitsCommand_ad31393e96902b6ab071b997ea86b1810}{limits\_}}.begin(), \mbox{\hyperlink{classtesseract__environment_1_1ChangeJointPositionLimitsCommand_ad31393e96902b6ab071b997ea86b1810}{limits\_}}.end(), [](\textcolor{keyword}{const} \textcolor{keyword}{auto}\& p) \{ return p.second.second > p.second.first; \}));}
-\DoxyCodeLine{69   \}}
-\DoxyCodeLine{70 }
-\DoxyCodeLine{71   \textcolor{keyword}{const} std::unordered\_map<std::string, std::pair<double, double>>\& \mbox{\hyperlink{classtesseract__environment_1_1ChangeJointPositionLimitsCommand_a97c731af9ba9e883c76f666319bfc3ea}{getLimits}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classtesseract__environment_1_1ChangeJointPositionLimitsCommand_ad31393e96902b6ab071b997ea86b1810}{limits\_}}; \}}
+\DoxyCodeLine{48   \mbox{\hyperlink{classtesseract__environment_1_1ChangeJointPositionLimitsCommand_abea13eec2aa7c07d8dc54c0d80d3a0d4}{ChangeJointPositionLimitsCommand}}() : \mbox{\hyperlink{classtesseract__environment_1_1Command}{Command}}(\mbox{\hyperlink{namespacetesseract__environment_afc00c1aecb519acba3afc24dbd367029}{CommandType}}::\mbox{\hyperlink{namespacetesseract__environment_afc00c1aecb519acba3afc24dbd367029a45b7ca4cbdf3997ccbb8e81e45c25c0f}{CHANGE\_JOINT\_POSITION\_LIMITS}})\{\};}
+\DoxyCodeLine{49 }
+\DoxyCodeLine{55   \mbox{\hyperlink{classtesseract__environment_1_1ChangeJointPositionLimitsCommand_ae23769965f48d3fc0f2045479b02c91d}{ChangeJointPositionLimitsCommand}}(std::string joint\_name, \textcolor{keywordtype}{double} lower, \textcolor{keywordtype}{double} upper)}
+\DoxyCodeLine{56     : \mbox{\hyperlink{classtesseract__environment_1_1Command}{Command}}(\mbox{\hyperlink{namespacetesseract__environment_afc00c1aecb519acba3afc24dbd367029}{CommandType}}::\mbox{\hyperlink{namespacetesseract__environment_afc00c1aecb519acba3afc24dbd367029a45b7ca4cbdf3997ccbb8e81e45c25c0f}{CHANGE\_JOINT\_POSITION\_LIMITS}})}
+\DoxyCodeLine{57     , \mbox{\hyperlink{classtesseract__environment_1_1ChangeJointPositionLimitsCommand_ad31393e96902b6ab071b997ea86b1810}{limits\_}}(\{ std::make\_pair(std::move(joint\_name), std::make\_pair(lower, upper)) \})}
+\DoxyCodeLine{58   \{}
+\DoxyCodeLine{59     assert(upper > lower);}
+\DoxyCodeLine{60   \}}
+\DoxyCodeLine{61 }
+\DoxyCodeLine{67   \mbox{\hyperlink{classtesseract__environment_1_1ChangeJointPositionLimitsCommand_a50f770a2aaa2203c9f63a799ffe8d242}{ChangeJointPositionLimitsCommand}}(std::unordered\_map<std::string, std::pair<double, double>> limits)}
+\DoxyCodeLine{68     : \mbox{\hyperlink{classtesseract__environment_1_1Command}{Command}}(\mbox{\hyperlink{namespacetesseract__environment_afc00c1aecb519acba3afc24dbd367029}{CommandType}}::\mbox{\hyperlink{namespacetesseract__environment_afc00c1aecb519acba3afc24dbd367029a45b7ca4cbdf3997ccbb8e81e45c25c0f}{CHANGE\_JOINT\_POSITION\_LIMITS}}), \mbox{\hyperlink{classtesseract__environment_1_1ChangeJointPositionLimitsCommand_ad31393e96902b6ab071b997ea86b1810}{limits\_}}(std::move(limits))}
+\DoxyCodeLine{69   \{}
+\DoxyCodeLine{70     assert(std::all\_of(\mbox{\hyperlink{classtesseract__environment_1_1ChangeJointPositionLimitsCommand_ad31393e96902b6ab071b997ea86b1810}{limits\_}}.begin(), \mbox{\hyperlink{classtesseract__environment_1_1ChangeJointPositionLimitsCommand_ad31393e96902b6ab071b997ea86b1810}{limits\_}}.end(), [](\textcolor{keyword}{const} \textcolor{keyword}{auto}\& p) \{ return p.second.second > p.second.first; \}));}
+\DoxyCodeLine{71   \}}
 \DoxyCodeLine{72 }
-\DoxyCodeLine{73   \textcolor{keywordtype}{bool} \mbox{\hyperlink{classtesseract__environment_1_1ChangeJointPositionLimitsCommand_a84f4ff7a0eaa7d224dbc32df8047c852}{operator==}}(\textcolor{keyword}{const} \mbox{\hyperlink{classtesseract__environment_1_1ChangeJointPositionLimitsCommand}{ChangeJointPositionLimitsCommand}}\& rhs) \textcolor{keyword}{const};}
-\DoxyCodeLine{74   \textcolor{keywordtype}{bool} \mbox{\hyperlink{classtesseract__environment_1_1ChangeJointPositionLimitsCommand_a72986f6e16811c6fade4e120fe0efdcd}{operator!=}}(\textcolor{keyword}{const} \mbox{\hyperlink{classtesseract__environment_1_1ChangeJointPositionLimitsCommand}{ChangeJointPositionLimitsCommand}}\& rhs) \textcolor{keyword}{const};}
-\DoxyCodeLine{75 }
-\DoxyCodeLine{76 \textcolor{keyword}{private}:}
-\DoxyCodeLine{77   std::unordered\_map<std::string, std::pair<double, double>> \mbox{\hyperlink{classtesseract__environment_1_1ChangeJointPositionLimitsCommand_ad31393e96902b6ab071b997ea86b1810}{limits\_}};}
-\DoxyCodeLine{78 }
-\DoxyCodeLine{79   \textcolor{keyword}{friend} \textcolor{keyword}{class }\mbox{\hyperlink{classtesseract__environment_1_1ChangeJointPositionLimitsCommand_ac98d07dd8f7b70e16ccb9a01abf56b9c}{boost::serialization::access}};}
-\DoxyCodeLine{80   \textcolor{keyword}{template} <\textcolor{keyword}{class} Archive>}
-\DoxyCodeLine{81   \textcolor{keywordtype}{void} \mbox{\hyperlink{classtesseract__environment_1_1ChangeJointPositionLimitsCommand_a841b406c72756903983b6092caf472f2}{serialize}}(Archive\& ar, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} version);  \textcolor{comment}{// NOLINT}}
-\DoxyCodeLine{82 \};}
-\DoxyCodeLine{83 \}  \textcolor{comment}{// namespace tesseract\_environment}}
-\DoxyCodeLine{84 }
-\DoxyCodeLine{85 \textcolor{preprocessor}{\#include <boost/serialization/export.hpp>}}
-\DoxyCodeLine{86 \textcolor{preprocessor}{\#include <boost/serialization/tracking.hpp>}}
-\DoxyCodeLine{87 BOOST\_CLASS\_EXPORT\_KEY2(\mbox{\hyperlink{classtesseract__environment_1_1ChangeJointPositionLimitsCommand}{tesseract\_environment::ChangeJointPositionLimitsCommand}}, \textcolor{stringliteral}{"{}ChangeJointPositionLimitsCommand"{}})}
-\DoxyCodeLine{88 \textcolor{preprocessor}{\#endif  }\textcolor{comment}{// TESSERACT\_ENVIRONMENT\_CHANGE\_JOINT\_POSITION\_LIMITS\_COMMAND\_H}}
+\DoxyCodeLine{73   \textcolor{keyword}{const} std::unordered\_map<std::string, std::pair<double, double>>\& \mbox{\hyperlink{classtesseract__environment_1_1ChangeJointPositionLimitsCommand_a97c731af9ba9e883c76f666319bfc3ea}{getLimits}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classtesseract__environment_1_1ChangeJointPositionLimitsCommand_ad31393e96902b6ab071b997ea86b1810}{limits\_}}; \}}
+\DoxyCodeLine{74 }
+\DoxyCodeLine{75   \textcolor{keywordtype}{bool} \mbox{\hyperlink{classtesseract__environment_1_1ChangeJointPositionLimitsCommand_a84f4ff7a0eaa7d224dbc32df8047c852}{operator==}}(\textcolor{keyword}{const} \mbox{\hyperlink{classtesseract__environment_1_1ChangeJointPositionLimitsCommand}{ChangeJointPositionLimitsCommand}}\& rhs) \textcolor{keyword}{const};}
+\DoxyCodeLine{76   \textcolor{keywordtype}{bool} \mbox{\hyperlink{classtesseract__environment_1_1ChangeJointPositionLimitsCommand_a72986f6e16811c6fade4e120fe0efdcd}{operator!=}}(\textcolor{keyword}{const} \mbox{\hyperlink{classtesseract__environment_1_1ChangeJointPositionLimitsCommand}{ChangeJointPositionLimitsCommand}}\& rhs) \textcolor{keyword}{const};}
+\DoxyCodeLine{77 }
+\DoxyCodeLine{78 \textcolor{keyword}{private}:}
+\DoxyCodeLine{79   std::unordered\_map<std::string, std::pair<double, double>> \mbox{\hyperlink{classtesseract__environment_1_1ChangeJointPositionLimitsCommand_ad31393e96902b6ab071b997ea86b1810}{limits\_}};}
+\DoxyCodeLine{80 }
+\DoxyCodeLine{81   \textcolor{keyword}{friend} \textcolor{keyword}{class }\mbox{\hyperlink{classtesseract__environment_1_1ChangeJointPositionLimitsCommand_ac98d07dd8f7b70e16ccb9a01abf56b9c}{boost::serialization::access}};}
+\DoxyCodeLine{82   \textcolor{keyword}{template} <\textcolor{keyword}{class} Archive>}
+\DoxyCodeLine{83   \textcolor{keywordtype}{void} \mbox{\hyperlink{classtesseract__environment_1_1ChangeJointPositionLimitsCommand_a841b406c72756903983b6092caf472f2}{serialize}}(Archive\& ar, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} version);  \textcolor{comment}{// NOLINT}}
+\DoxyCodeLine{84 \};}
+\DoxyCodeLine{85 \}  \textcolor{comment}{// namespace tesseract\_environment}}
+\DoxyCodeLine{86 }
+\DoxyCodeLine{87 \textcolor{preprocessor}{\#include <boost/serialization/export.hpp>}}
+\DoxyCodeLine{88 \textcolor{preprocessor}{\#include <boost/serialization/tracking.hpp>}}
+\DoxyCodeLine{89 BOOST\_CLASS\_EXPORT\_KEY2(\mbox{\hyperlink{classtesseract__environment_1_1ChangeJointPositionLimitsCommand}{tesseract\_environment::ChangeJointPositionLimitsCommand}}, \textcolor{stringliteral}{"{}ChangeJointPositionLimitsCommand"{}})}
+\DoxyCodeLine{90 \textcolor{preprocessor}{\#endif  }\textcolor{comment}{// TESSERACT\_ENVIRONMENT\_CHANGE\_JOINT\_POSITION\_LIMITS\_COMMAND\_H}}
 
 \end{DoxyCode}

@@ -112,6 +112,16 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ae73347144bf79b795ed17959370f0559"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/da5/classtesseract__common_1_1PluginLoader.html#ae73347144bf79b795ed17959370f0559">isPluginAvailable</a> (const std::string &amp;plugin_name) const</td></tr>
 <tr class="memdesc:ae73347144bf79b795ed17959370f0559"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if plugin is available.  <a href="../../d1/da5/classtesseract__common_1_1PluginLoader.html#ae73347144bf79b795ed17959370f0559">More...</a><br /></td></tr>
 <tr class="separator:ae73347144bf79b795ed17959370f0559"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af2804966fad2fe792f75dd24cd593531"><td class="memTemplParams" colspan="2">template&lt;class PluginBase &gt; </td></tr>
+<tr class="memitem:af2804966fad2fe792f75dd24cd593531"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="../../db/dad/vhacdRaycastMesh_8cpp.html#adcf134d50025cc52907d0c8ac798d89d">std::vector</a>&lt; std::string &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d1/da5/classtesseract__common_1_1PluginLoader.html#af2804966fad2fe792f75dd24cd593531">getAvailablePlugins</a> () const</td></tr>
+<tr class="memdesc:af2804966fad2fe792f75dd24cd593531"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the available plugins for the provided PluginBase type.  <a href="../../d1/da5/classtesseract__common_1_1PluginLoader.html#af2804966fad2fe792f75dd24cd593531">More...</a><br /></td></tr>
+<tr class="separator:af2804966fad2fe792f75dd24cd593531"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae7e1cc1e230d726d41595f0ad0699247"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/dad/vhacdRaycastMesh_8cpp.html#adcf134d50025cc52907d0c8ac798d89d">std::vector</a>&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/da5/classtesseract__common_1_1PluginLoader.html#ae7e1cc1e230d726d41595f0ad0699247">getAvailablePlugins</a> (const std::string &amp;section) const</td></tr>
+<tr class="memdesc:ae7e1cc1e230d726d41595f0ad0699247"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the available plugins under the provided section.  <a href="../../d1/da5/classtesseract__common_1_1PluginLoader.html#ae7e1cc1e230d726d41595f0ad0699247">More...</a><br /></td></tr>
+<tr class="separator:ae7e1cc1e230d726d41595f0ad0699247"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f7905ef925785966dfba57db217da85"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/dad/vhacdRaycastMesh_8cpp.html#adcf134d50025cc52907d0c8ac798d89d">std::vector</a>&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/da5/classtesseract__common_1_1PluginLoader.html#a6f7905ef925785966dfba57db217da85">getAvailableSections</a> (bool include_hidden=false) const</td></tr>
+<tr class="memdesc:a6f7905ef925785966dfba57db217da85"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the available sections within the provided search libraries.  <a href="../../d1/da5/classtesseract__common_1_1PluginLoader.html#a6f7905ef925785966dfba57db217da85">More...</a><br /></td></tr>
+<tr class="separator:a6f7905ef925785966dfba57db217da85"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8f0b1bf448293e184888f791baba0341"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/da5/classtesseract__common_1_1PluginLoader.html#a8f0b1bf448293e184888f791baba0341">count</a> () const</td></tr>
 <tr class="memdesc:a8f0b1bf448293e184888f791baba0341"><td class="mdescLeft">&#160;</td><td class="mdescRight">The number of plugins stored. The size of plugins variable.  <a href="../../d1/da5/classtesseract__common_1_1PluginLoader.html#a8f0b1bf448293e184888f791baba0341">More...</a><br /></td></tr>
 <tr class="separator:a8f0b1bf448293e184888f791baba0341"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -166,6 +176,89 @@ Public Attributes</h2></td></tr>
 
 <p>The number of plugins stored. The size of plugins variable. </p>
 <dl class="section return"><dt>Returns</dt><dd>The number of plugins. </dd></dl>
+
+</div>
+</div>
+<a id="af2804966fad2fe792f75dd24cd593531" name="af2804966fad2fe792f75dd24cd593531"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af2804966fad2fe792f75dd24cd593531">&#9670;&nbsp;</a></span>getAvailablePlugins() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class PluginBase &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../db/dad/vhacdRaycastMesh_8cpp.html#adcf134d50025cc52907d0c8ac798d89d">std::vector</a>&lt; std::string &gt; tesseract_common::PluginLoader::getAvailablePlugins</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the available plugins for the provided PluginBase type. </p>
+<p >This expects the Plugin base to have a static std::string SECTION_NAME which is used for looking up plugins </p><dl class="section return"><dt>Returns</dt><dd>A list of available plugins for the provided PluginBase type </dd></dl>
+
+</div>
+</div>
+<a id="ae7e1cc1e230d726d41595f0ad0699247" name="ae7e1cc1e230d726d41595f0ad0699247"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae7e1cc1e230d726d41595f0ad0699247">&#9670;&nbsp;</a></span>getAvailablePlugins() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../db/dad/vhacdRaycastMesh_8cpp.html#adcf134d50025cc52907d0c8ac798d89d">std::vector</a>&lt; std::string &gt; tesseract_common::PluginLoader::getAvailablePlugins </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>section</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the available plugins under the provided section. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">section</td><td>The section name to get all available plugins </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A list of available plugins under the provided section </dd></dl>
+
+</div>
+</div>
+<a id="a6f7905ef925785966dfba57db217da85" name="a6f7905ef925785966dfba57db217da85"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6f7905ef925785966dfba57db217da85">&#9670;&nbsp;</a></span>getAvailableSections()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../db/dad/vhacdRaycastMesh_8cpp.html#adcf134d50025cc52907d0c8ac798d89d">std::vector</a>&lt; std::string &gt; tesseract_common::PluginLoader::getAvailableSections </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>include_hidden</em> = <code>false</code></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the available sections within the provided search libraries. </p>
+<dl class="section return"><dt>Returns</dt><dd>A list of available sections </dd></dl>
 
 </div>
 </div>
@@ -322,7 +415,7 @@ template&lt;class PluginBase &gt; </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Apr 13 2022 14:23:36 for Tesseract by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.3
+Generated on Wed Apr 13 2022 16:04:24 for Tesseract by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.3
 </small></address>
 </body>
 </html>

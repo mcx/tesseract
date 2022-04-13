@@ -89,26 +89,109 @@
 \DoxyCodeLine{109   \textcolor{keywordflow}{return} lib.has(symbol\_name);}
 \DoxyCodeLine{110 \}}
 \DoxyCodeLine{111 }
-\DoxyCodeLine{112 std::string \mbox{\hyperlink{structtesseract__common_1_1ClassLoader_af2749622fe3be804a464ce5d5ea62ca9}{ClassLoader::decorate}}(\textcolor{keyword}{const} std::string\& library\_name, \textcolor{keyword}{const} std::string\& library\_directory)}
-\DoxyCodeLine{113 \{}
-\DoxyCodeLine{114   boost::filesystem::path sl;}
-\DoxyCodeLine{115   \textcolor{keywordflow}{if} (library\_directory.empty())}
-\DoxyCodeLine{116     sl = boost::filesystem::path(library\_name);}
-\DoxyCodeLine{117   \textcolor{keywordflow}{else}}
-\DoxyCodeLine{118     sl = boost::filesystem::path(library\_directory) / library\_name;}
-\DoxyCodeLine{119 }
-\DoxyCodeLine{120   boost::filesystem::path actual\_path =}
-\DoxyCodeLine{121       (std::strncmp(sl.filename().string().c\_str(), \textcolor{stringliteral}{"{}lib"{}}, 3) != 0 ?}
-\DoxyCodeLine{122            boost::filesystem::path((sl.has\_parent\_path() ? sl.parent\_path() / L\textcolor{stringliteral}{"{}lib"{}} : L\textcolor{stringliteral}{"{}lib"{}}).native() +}
-\DoxyCodeLine{123                                    sl.filename().native()) :}
-\DoxyCodeLine{124            sl);}
-\DoxyCodeLine{125 }
-\DoxyCodeLine{126   actual\_path += boost::dll::shared\_library::suffix();}
-\DoxyCodeLine{127   \textcolor{keywordflow}{return} actual\_path.string();}
-\DoxyCodeLine{128 \}}
-\DoxyCodeLine{129 }
-\DoxyCodeLine{130 \}  \textcolor{comment}{// namespace tesseract\_common}}
-\DoxyCodeLine{131 }
-\DoxyCodeLine{132 \textcolor{preprocessor}{\#endif  }\textcolor{comment}{// TESSERACT\_COMMON\_CLASS\_LOADER\_HPP}}
+\DoxyCodeLine{112 std::vector<std::string> \mbox{\hyperlink{structtesseract__common_1_1ClassLoader_a8d2d1f0b2f092748c0b0450955a8d9e0}{ClassLoader::getAvailableSymbols}}(\textcolor{keyword}{const} std::string\& section,}
+\DoxyCodeLine{113                                                           \textcolor{keyword}{const} std::string\& library\_name,}
+\DoxyCodeLine{114                                                           \textcolor{keyword}{const} std::string\& library\_directory)}
+\DoxyCodeLine{115 \{}
+\DoxyCodeLine{116   boost::system::error\_code ec;}
+\DoxyCodeLine{117   boost::dll::shared\_library lib;}
+\DoxyCodeLine{118   \textcolor{keywordflow}{if} (library\_directory.empty())}
+\DoxyCodeLine{119   \{}
+\DoxyCodeLine{120     boost::filesystem::path sl(library\_name);}
+\DoxyCodeLine{121     boost::dll::load\_mode::type mode =}
+\DoxyCodeLine{122         boost::dll::load\_mode::append\_decorations | boost::dll::load\_mode::search\_system\_folders;}
+\DoxyCodeLine{123     lib = boost::dll::shared\_library(sl, ec, mode);}
+\DoxyCodeLine{124   \}}
+\DoxyCodeLine{125   \textcolor{keywordflow}{else}}
+\DoxyCodeLine{126   \{}
+\DoxyCodeLine{127     boost::filesystem::path sl = boost::filesystem::path(library\_directory) / library\_name;}
+\DoxyCodeLine{128     lib = boost::dll::shared\_library(sl, ec, boost::dll::load\_mode::append\_decorations);}
+\DoxyCodeLine{129   \}}
+\DoxyCodeLine{130 }
+\DoxyCodeLine{131   \textcolor{comment}{// Check if it failed to find or load library}}
+\DoxyCodeLine{132   \textcolor{keywordflow}{if} (ec)}
+\DoxyCodeLine{133   \{}
+\DoxyCodeLine{134     CONSOLE\_BRIDGE\_logDebug(\textcolor{stringliteral}{"{}Failed to find or load library: \%s with error: \%s"{}},}
+\DoxyCodeLine{135                             \mbox{\hyperlink{structtesseract__common_1_1ClassLoader_af2749622fe3be804a464ce5d5ea62ca9}{decorate}}(library\_name, library\_directory).c\_str(),}
+\DoxyCodeLine{136                             ec.message().c\_str());}
+\DoxyCodeLine{137     \textcolor{keywordflow}{return} std::vector<std::string>();}
+\DoxyCodeLine{138   \}}
+\DoxyCodeLine{139 }
+\DoxyCodeLine{140   \textcolor{comment}{// Class `library\_info` can extract information from a library}}
+\DoxyCodeLine{141   boost::dll::library\_info inf(lib.location());}
+\DoxyCodeLine{142 }
+\DoxyCodeLine{143   \textcolor{comment}{// Getting symbols exported from he provided section}}
+\DoxyCodeLine{144   \textcolor{keywordflow}{return} inf.symbols(section);}
+\DoxyCodeLine{145 \}}
+\DoxyCodeLine{146 }
+\DoxyCodeLine{147 std::vector<std::string> \mbox{\hyperlink{structtesseract__common_1_1ClassLoader_a816ec5cb50eb1a7011b561dd0d789494}{ClassLoader::getAvailableSections}}(\textcolor{keyword}{const} std::string\& library\_name,}
+\DoxyCodeLine{148                                                            \textcolor{keyword}{const} std::string\& library\_directory,}
+\DoxyCodeLine{149                                                            \textcolor{keywordtype}{bool} include\_hidden)}
+\DoxyCodeLine{150 \{}
+\DoxyCodeLine{151   boost::system::error\_code ec;}
+\DoxyCodeLine{152   boost::dll::shared\_library lib;}
+\DoxyCodeLine{153   \textcolor{keywordflow}{if} (library\_directory.empty())}
+\DoxyCodeLine{154   \{}
+\DoxyCodeLine{155     boost::filesystem::path sl(library\_name);}
+\DoxyCodeLine{156     boost::dll::load\_mode::type mode =}
+\DoxyCodeLine{157         boost::dll::load\_mode::append\_decorations | boost::dll::load\_mode::search\_system\_folders;}
+\DoxyCodeLine{158     lib = boost::dll::shared\_library(sl, ec, mode);}
+\DoxyCodeLine{159   \}}
+\DoxyCodeLine{160   \textcolor{keywordflow}{else}}
+\DoxyCodeLine{161   \{}
+\DoxyCodeLine{162     boost::filesystem::path sl = boost::filesystem::path(library\_directory) / library\_name;}
+\DoxyCodeLine{163     lib = boost::dll::shared\_library(sl, ec, boost::dll::load\_mode::append\_decorations);}
+\DoxyCodeLine{164   \}}
+\DoxyCodeLine{165 }
+\DoxyCodeLine{166   \textcolor{comment}{// Check if it failed to find or load library}}
+\DoxyCodeLine{167   \textcolor{keywordflow}{if} (ec)}
+\DoxyCodeLine{168   \{}
+\DoxyCodeLine{169     CONSOLE\_BRIDGE\_logDebug(\textcolor{stringliteral}{"{}Failed to find or load library: \%s with error: \%s"{}},}
+\DoxyCodeLine{170                             \mbox{\hyperlink{structtesseract__common_1_1ClassLoader_af2749622fe3be804a464ce5d5ea62ca9}{decorate}}(library\_name, library\_directory).c\_str(),}
+\DoxyCodeLine{171                             ec.message().c\_str());}
+\DoxyCodeLine{172     \textcolor{keywordflow}{return} std::vector<std::string>();}
+\DoxyCodeLine{173   \}}
+\DoxyCodeLine{174 }
+\DoxyCodeLine{175   \textcolor{comment}{// Class `library\_info` can extract information from a library}}
+\DoxyCodeLine{176   boost::dll::library\_info inf(lib.location());}
+\DoxyCodeLine{177 }
+\DoxyCodeLine{178   \textcolor{comment}{// Getting section from library}}
+\DoxyCodeLine{179   std::vector<std::string> sections = inf.sections();}
+\DoxyCodeLine{180 }
+\DoxyCodeLine{181   \textcolor{keyword}{auto} search\_fn = [include\_hidden](\textcolor{keyword}{const} std::string\& section) \{}
+\DoxyCodeLine{182     \textcolor{keywordflow}{if} (section.empty())}
+\DoxyCodeLine{183       \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{184 }
+\DoxyCodeLine{185     \textcolor{keywordflow}{if} (include\_hidden)}
+\DoxyCodeLine{186       \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{187 }
+\DoxyCodeLine{188     \textcolor{keywordflow}{return} (section.substr(0, 1) == \textcolor{stringliteral}{"{}."{}});}
+\DoxyCodeLine{189   \};}
+\DoxyCodeLine{190 }
+\DoxyCodeLine{191   sections.erase(std::remove\_if(sections.begin(), sections.end(), search\_fn), sections.end());}
+\DoxyCodeLine{192   \textcolor{keywordflow}{return} sections;}
+\DoxyCodeLine{193 \}}
+\DoxyCodeLine{194 }
+\DoxyCodeLine{195 std::string \mbox{\hyperlink{structtesseract__common_1_1ClassLoader_af2749622fe3be804a464ce5d5ea62ca9}{ClassLoader::decorate}}(\textcolor{keyword}{const} std::string\& library\_name, \textcolor{keyword}{const} std::string\& library\_directory)}
+\DoxyCodeLine{196 \{}
+\DoxyCodeLine{197   boost::filesystem::path sl;}
+\DoxyCodeLine{198   \textcolor{keywordflow}{if} (library\_directory.empty())}
+\DoxyCodeLine{199     sl = boost::filesystem::path(library\_name);}
+\DoxyCodeLine{200   \textcolor{keywordflow}{else}}
+\DoxyCodeLine{201     sl = boost::filesystem::path(library\_directory) / library\_name;}
+\DoxyCodeLine{202 }
+\DoxyCodeLine{203   boost::filesystem::path actual\_path =}
+\DoxyCodeLine{204       (std::strncmp(sl.filename().string().c\_str(), \textcolor{stringliteral}{"{}lib"{}}, 3) != 0 ?}
+\DoxyCodeLine{205            boost::filesystem::path((sl.has\_parent\_path() ? sl.parent\_path() / L\textcolor{stringliteral}{"{}lib"{}} : L\textcolor{stringliteral}{"{}lib"{}}).native() +}
+\DoxyCodeLine{206                                    sl.filename().native()) :}
+\DoxyCodeLine{207            sl);}
+\DoxyCodeLine{208 }
+\DoxyCodeLine{209   actual\_path += boost::dll::shared\_library::suffix();}
+\DoxyCodeLine{210   \textcolor{keywordflow}{return} actual\_path.string();}
+\DoxyCodeLine{211 \}}
+\DoxyCodeLine{212 }
+\DoxyCodeLine{213 \}  \textcolor{comment}{// namespace tesseract\_common}}
+\DoxyCodeLine{214 }
+\DoxyCodeLine{215 \textcolor{preprocessor}{\#endif  }\textcolor{comment}{// TESSERACT\_COMMON\_CLASS\_LOADER\_HPP}}
 
 \end{DoxyCode}
