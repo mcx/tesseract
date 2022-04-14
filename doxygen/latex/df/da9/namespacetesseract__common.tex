@@ -139,6 +139,8 @@ std\+::set$<$ std\+::string $>$ \mbox{\hyperlink{namespacetesseract__common_a664
 \begin{DoxyCompactList}\small\item\em Create a pair of strings, where the pair.\+first is always \texorpdfstring{$<$}{<}= pair.\+second. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename Serializable\+Type $>$ }\\void \mbox{\hyperlink{namespacetesseract__common_a5330a58c8c79cce5559a316e76118558}{test\+Serialization}} (const Serializable\+Type \&object, const std\+::string \&typename\+\_\+string)
 \begin{DoxyCompactList}\small\item\em Tests Boost serialization for a serializable type. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Serializable\+Type $>$ }\\void \mbox{\hyperlink{namespacetesseract__common_a1b449b344d06caa397190a9a82dd507a}{test\+Serialization\+Ptr}} (const std\+::shared\+\_\+ptr$<$ Serializable\+Type $>$ \&object, const std\+::string \&typename\+\_\+string)
+\begin{DoxyCompactList}\small\item\em Tests Boost serialization of shared pointer for a serializable type. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename Serializable\+Type\+Base , typename Serializable\+Type\+Derived $>$ }\\void \mbox{\hyperlink{namespacetesseract__common_aa8cf5fe962e9933b44d1f8248f0ab2fb}{test\+Serialization\+Derived\+Class}} (const std\+::shared\+\_\+ptr$<$ Serializable\+Type\+Base $>$ \&object, const std\+::string \&typename\+\_\+string)
 \begin{DoxyCompactList}\small\item\em Tests Boost serialization for a serializable derived type. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename... Args$>$ }\\std\+::string \mbox{\hyperlink{namespacetesseract__common_a7f13ad2a741226ab5255302f6750ed4a}{str\+Format}} (const std\+::string \&format, Args... args)
@@ -1221,6 +1223,24 @@ Tests Boost serialization for a serializable derived type.
 Serializes the type to XML file, binary file, and XML string using the base type. It then deserializes it, casts it to the derived type, and calls the equality operator on the results 
 \begin{DoxyParams}{Parameters}
 {\em object} & Base class pointer to the object to be serialized \\
+\hline
+{\em typename\+\_\+string} & Prefix used for filepaths. Serialized files are put in /tmp/$<$typename\+\_\+string$>$.$<$extension$>$ \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{namespacetesseract__common_a1b449b344d06caa397190a9a82dd507a}\label{namespacetesseract__common_a1b449b344d06caa397190a9a82dd507a}} 
+\index{tesseract\_common@{tesseract\_common}!testSerializationPtr@{testSerializationPtr}}
+\index{testSerializationPtr@{testSerializationPtr}!tesseract\_common@{tesseract\_common}}
+\doxysubsubsection{\texorpdfstring{testSerializationPtr()}{testSerializationPtr()}}
+{\footnotesize\ttfamily template$<$typename Serializable\+Type $>$ \\
+void tesseract\+\_\+common\+::test\+Serialization\+Ptr (\begin{DoxyParamCaption}\item[{const std\+::shared\+\_\+ptr$<$ Serializable\+Type $>$ \&}]{object,  }\item[{const std\+::string \&}]{typename\+\_\+string }\end{DoxyParamCaption})}
+
+
+
+Tests Boost serialization of shared pointer for a serializable type. 
+
+Serializes the type to XML file, binary file, and XML string. It then deserializes it and calls the equality operator on the results 
+\begin{DoxyParams}{Parameters}
+{\em object} & Object to be serialized \\
 \hline
 {\em typename\+\_\+string} & Prefix used for filepaths. Serialized files are put in /tmp/$<$typename\+\_\+string$>$.$<$extension$>$ \\
 \hline

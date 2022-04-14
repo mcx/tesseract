@@ -77,6 +77,7 @@ $(function() {
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="#pri-methods">Private Member Functions</a> &#124;
 <a href="#pri-static-methods">Static Private Member Functions</a> &#124;
+<a href="#friends">Friends</a> &#124;
 <a href="../../db/d00/classtesseract__environment_1_1Environment-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">tesseract_environment::Environment Class Reference</div></div>
 </div><!--header-->
@@ -357,6 +358,11 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a313b9e1b061718c86d08791719a4cf26"><td class="memItemLeft" align="right" valign="top">std::shared_lock&lt; std::shared_mutex &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d6a/classtesseract__environment_1_1Environment.html#a313b9e1b061718c86d08791719a4cf26">lockRead</a> () const</td></tr>
 <tr class="memdesc:a313b9e1b061718c86d08791719a4cf26"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lock the environment when wanting to make multiple reads.  <a href="../../d0/d6a/classtesseract__environment_1_1Environment.html#a313b9e1b061718c86d08791719a4cf26">More...</a><br /></td></tr>
 <tr class="separator:a313b9e1b061718c86d08791719a4cf26"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0543f695f01a3cc661394d490d8ff110"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d6a/classtesseract__environment_1_1Environment.html#a0543f695f01a3cc661394d490d8ff110">operator==</a> (const <a class="el" href="../../d0/d6a/classtesseract__environment_1_1Environment.html">Environment</a> &amp;rhs) const</td></tr>
+<tr class="memdesc:a0543f695f01a3cc661394d490d8ff110"><td class="mdescLeft">&#160;</td><td class="mdescRight">These operators are to facilitate checking serialization but may have value elsewhere.  <a href="../../d0/d6a/classtesseract__environment_1_1Environment.html#a0543f695f01a3cc661394d490d8ff110">More...</a><br /></td></tr>
+<tr class="separator:a0543f695f01a3cc661394d490d8ff110"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a51086c2db31c2f165bc6eada1e044f8b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d6a/classtesseract__environment_1_1Environment.html#a51086c2db31c2f165bc6eada1e044f8b">operator!=</a> (const <a class="el" href="../../d0/d6a/classtesseract__environment_1_1Environment.html">Environment</a> &amp;rhs) const</td></tr>
+<tr class="separator:a51086c2db31c2f165bc6eada1e044f8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
@@ -516,6 +522,15 @@ Private Member Functions</h2></td></tr>
 <tr class="separator:a9544f556b8dfe572a2701a352c00aedb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa4d30c468077a1c01e132ec945135e6f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d6a/classtesseract__environment_1_1Environment.html#aa4d30c468077a1c01e132ec945135e6f">applySetActiveDiscreteContactManagerCommand</a> (const <a class="el" href="../../dc/dd6/classtesseract__environment_1_1SetActiveDiscreteContactManagerCommand.html#ac55466a5ca8d649618abeedd58395a32">SetActiveDiscreteContactManagerCommand::ConstPtr</a> &amp;cmd)</td></tr>
 <tr class="separator:aa4d30c468077a1c01e132ec945135e6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac0945b18ce81d1b1ff3b25f3bcd929f5"><td class="memTemplParams" colspan="2">template&lt;class Archive &gt; </td></tr>
+<tr class="memitem:ac0945b18ce81d1b1ff3b25f3bcd929f5"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d0/d6a/classtesseract__environment_1_1Environment.html#ac0945b18ce81d1b1ff3b25f3bcd929f5">save</a> (Archive &amp;ar, const unsigned int version) const</td></tr>
+<tr class="separator:ac0945b18ce81d1b1ff3b25f3bcd929f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e3a2ee19bf9c557b0d27d40f15cfb05"><td class="memTemplParams" colspan="2">template&lt;class Archive &gt; </td></tr>
+<tr class="memitem:a8e3a2ee19bf9c557b0d27d40f15cfb05"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d0/d6a/classtesseract__environment_1_1Environment.html#a8e3a2ee19bf9c557b0d27d40f15cfb05">load</a> (Archive &amp;ar, const unsigned int version)</td></tr>
+<tr class="separator:a8e3a2ee19bf9c557b0d27d40f15cfb05"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a060f0fa55a188cbed740cead91629d13"><td class="memTemplParams" colspan="2">template&lt;class Archive &gt; </td></tr>
+<tr class="memitem:a060f0fa55a188cbed740cead91629d13"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d0/d6a/classtesseract__environment_1_1Environment.html#a060f0fa55a188cbed740cead91629d13">serialize</a> (Archive &amp;ar, const unsigned int version)</td></tr>
+<tr class="separator:a060f0fa55a188cbed740cead91629d13"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-static-methods" name="pri-static-methods"></a>
 Static Private Member Functions</h2></td></tr>
@@ -523,6 +538,11 @@ Static Private Member Functions</h2></td></tr>
 <tr class="separator:a7ac392b19841527a64d1c05b9050ed26"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4c2cf7b144f14ce37a5b45b6e08b68af"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="../../d2/d5f/namespacetesseract__environment.html#acb95740502ec41d80a94a7631d4b7a3c">Commands</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d6a/classtesseract__environment_1_1Environment.html#a4c2cf7b144f14ce37a5b45b6e08b68af">getInitCommands</a> (const <a class="el" href="../../d7/d5d/classtesseract__scene__graph_1_1SceneGraph.html">tesseract_scene_graph::SceneGraph</a> &amp;scene_graph, const <a class="el" href="../../dc/d03/classtesseract__srdf_1_1SRDFModel.html#a6e579a73e63af4e2d66448cdcc0998b5">tesseract_srdf::SRDFModel::ConstPtr</a> &amp;srdf_model=nullptr)</td></tr>
 <tr class="separator:a4c2cf7b144f14ce37a5b45b6e08b68af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="friends" name="friends"></a>
+Friends</h2></td></tr>
+<tr class="memitem:ac98d07dd8f7b70e16ccb9a01abf56b9c"><td class="memItemLeft" align="right" valign="top">class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d6a/classtesseract__environment_1_1Environment.html#ac98d07dd8f7b70e16ccb9a01abf56b9c">boost::serialization::access</a></td></tr>
+<tr class="separator:ac98d07dd8f7b70e16ccb9a01abf56b9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Typedef Documentation</h2>
 <a id="a9d9ecedaebeea1d7ba45be7670fbcd77" name="a9d9ecedaebeea1d7ba45be7670fbcd77"></a>
@@ -2885,6 +2905,44 @@ Static Private Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a8e3a2ee19bf9c557b0d27d40f15cfb05" name="a8e3a2ee19bf9c557b0d27d40f15cfb05"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8e3a2ee19bf9c557b0d27d40f15cfb05">&#9670;&nbsp;</a></span>load()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class Archive &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void tesseract_environment::Environment::load </td>
+          <td>(</td>
+          <td class="paramtype">Archive &amp;&#160;</td>
+          <td class="paramname"><em>ar</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned int&#160;</td>
+          <td class="paramname"><em>version</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a313b9e1b061718c86d08791719a4cf26" name="a313b9e1b061718c86d08791719a4cf26"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a313b9e1b061718c86d08791719a4cf26">&#9670;&nbsp;</a></span>lockRead()</h2>
 
@@ -2902,6 +2960,24 @@ Static Private Member Functions</h2></td></tr>
 
 <p>Lock the environment when wanting to make multiple reads. </p>
 <p >This is useful when making multiple read function calls and don't want the data to get updated between function calls when there a multiple threads updating a single environment </p>
+
+</div>
+</div>
+<a id="a51086c2db31c2f165bc6eada1e044f8b" name="a51086c2db31c2f165bc6eada1e044f8b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a51086c2db31c2f165bc6eada1e044f8b">&#9670;&nbsp;</a></span>operator!=()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool tesseract_environment::Environment::operator!= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d0/d6a/classtesseract__environment_1_1Environment.html">Environment</a> &amp;&#160;</td>
+          <td class="paramname"><em>rhs</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
 </div>
 </div>
@@ -2957,6 +3033,34 @@ Static Private Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a0543f695f01a3cc661394d490d8ff110" name="a0543f695f01a3cc661394d490d8ff110"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0543f695f01a3cc661394d490d8ff110">&#9670;&nbsp;</a></span>operator==()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool tesseract_environment::Environment::operator== </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d0/d6a/classtesseract__environment_1_1Environment.html">Environment</a> &amp;&#160;</td>
+          <td class="paramname"><em>rhs</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>These operators are to facilitate checking serialization but may have value elsewhere. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">rhs</td><td>The environment to compare </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if they are equal otherwise false </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000007">Todo:</a></b></dt><dd>uncomment after serialized </dd></dl>
+
+</div>
+</div>
 <a id="a4807aff4eab80577536294aabe6d0767" name="a4807aff4eab80577536294aabe6d0767"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a4807aff4eab80577536294aabe6d0767">&#9670;&nbsp;</a></span>removeLinkHelper()</h2>
 
@@ -3001,6 +3105,82 @@ Static Private Member Functions</h2></td></tr>
 
 <p>reset to initialized state </p>
 <p >If the environment has not been initialized then this returns false </p><dl class="section return"><dt>Returns</dt><dd>True if environment was successfully reset, otherwise false. </dd></dl>
+
+</div>
+</div>
+<a id="ac0945b18ce81d1b1ff3b25f3bcd929f5" name="ac0945b18ce81d1b1ff3b25f3bcd929f5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac0945b18ce81d1b1ff3b25f3bcd929f5">&#9670;&nbsp;</a></span>save()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class Archive &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void tesseract_environment::Environment::save </td>
+          <td>(</td>
+          <td class="paramtype">Archive &amp;&#160;</td>
+          <td class="paramname"><em>ar</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned int&#160;</td>
+          <td class="paramname"><em>version</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a060f0fa55a188cbed740cead91629d13" name="a060f0fa55a188cbed740cead91629d13"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a060f0fa55a188cbed740cead91629d13">&#9670;&nbsp;</a></span>serialize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class Archive &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void tesseract_environment::Environment::serialize </td>
+          <td>(</td>
+          <td class="paramtype">Archive &amp;&#160;</td>
+          <td class="paramname"><em>ar</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned int&#160;</td>
+          <td class="paramname"><em>version</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>
@@ -3261,6 +3441,29 @@ Static Private Member Functions</h2></td></tr>
 
 </div>
 </div>
+<h2 class="groupheader">Friends And Related Function Documentation</h2>
+<a id="ac98d07dd8f7b70e16ccb9a01abf56b9c" name="ac98d07dd8f7b70e16ccb9a01abf56b9c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac98d07dd8f7b70e16ccb9a01abf56b9c">&#9670;&nbsp;</a></span>boost::serialization::access</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">friend class boost::serialization::access</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">friend</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <h2 class="groupheader">Member Data Documentation</h2>
 <a id="a62a6ba1faafd93812a6bfe995d5ea8bb" name="a62a6ba1faafd93812a6bfe995d5ea8bb"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a62a6ba1faafd93812a6bfe995d5ea8bb">&#9670;&nbsp;</a></span>collision_margin_data_</h2>
@@ -3283,6 +3486,7 @@ Static Private Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>The collision margin data. </p>
+<dl class="section note"><dt>Note</dt><dd>This is intentionally not serialized it will auto updated </dd></dl>
 
 </div>
 </div>
@@ -3331,6 +3535,7 @@ Static Private Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>The contact managers factory. </p>
+<dl class="section note"><dt>Note</dt><dd>This is intentionally not serialized it will auto updated </dd></dl>
 
 </div>
 </div>
@@ -3355,6 +3560,7 @@ Static Private Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>The contact manager information. </p>
+<dl class="section note"><dt>Note</dt><dd>This is intentionally not serialized it will auto updated </dd></dl>
 
 </div>
 </div>
@@ -3379,6 +3585,7 @@ Static Private Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>The continuous contact manager object. </p>
+<dl class="section note"><dt>Note</dt><dd>This is intentionally not serialized it will auto updated </dd></dl>
 
 </div>
 </div>
@@ -3451,6 +3658,7 @@ Static Private Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>The discrete contact manager object. </p>
+<dl class="section note"><dt>Note</dt><dd>This is intentionally not serialized it will auto updated </dd></dl>
 
 </div>
 </div>
@@ -3500,6 +3708,7 @@ Static Private Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>A vector of user defined callbacks for locating tool center point. </p>
+<dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000006">Todo:</a></b></dt><dd>This needs to be switched to class so it may be serialized </dd></dl>
 
 </div>
 </div>
@@ -3524,7 +3733,7 @@ Static Private Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>A cache of group joint names to provide faster access. </p>
-<p >This will cleared when environment changes </p>
+<p >This will cleared when environment changes </p><dl class="section note"><dt>Note</dt><dd>This is intentionally not serialized it will auto updated </dd></dl>
 
 </div>
 </div>
@@ -3595,6 +3804,7 @@ Static Private Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Identifies if the object has been initialized. </p>
+<dl class="section note"><dt>Note</dt><dd>This is intentionally not serialized it will auto updated </dd></dl>
 
 </div>
 </div>
@@ -3619,6 +3829,7 @@ Static Private Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>The function used to determine if two objects are allowed in collision. </p>
+<dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000005">Todo:</a></b></dt><dd>This needs to be switched to class so it may be serialized </dd></dl>
 
 </div>
 </div>
@@ -3643,7 +3854,7 @@ Static Private Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>A cache of joint groups to provide faster access. </p>
-<p >This will cleared when environment changes </p>
+<p >This will cleared when environment changes </p><dl class="section note"><dt>Note</dt><dd>This is intentionally not serialized it will auto updated </dd></dl>
 
 </div>
 </div>
@@ -3690,7 +3901,7 @@ Static Private Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>A cache of kinematic groups to provide faster access. </p>
-<p >This will cleared when environment changes </p>
+<p >This will cleared when environment changes </p><dl class="section note"><dt>Note</dt><dd>This is intentionally not serialized it will auto updated </dd></dl>
 
 </div>
 </div>
@@ -3737,6 +3948,7 @@ Static Private Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>The kinematics factory. </p>
+<dl class="section note"><dt>Note</dt><dd>This is intentionally not serialized it will auto updated </dd></dl>
 
 </div>
 </div>
@@ -3761,6 +3973,7 @@ Static Private Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>The kinematics information. </p>
+<dl class="section note"><dt>Note</dt><dd>This is intentionally not serialized it will auto updated </dd></dl>
 
 </div>
 </div>
@@ -3833,6 +4046,7 @@ Static Private Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>This increments when the scene graph is modified. </p>
+<dl class="section note"><dt>Note</dt><dd>This is intentionally not serialized it will auto updated </dd></dl>
 
 </div>
 </div>
@@ -3857,6 +4071,7 @@ Static Private Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Tesseract Scene Graph. </p>
+<dl class="section note"><dt>Note</dt><dd>This is intentionally not serialized it will auto updated </dd></dl>
 
 </div>
 </div>
@@ -3881,6 +4096,7 @@ Static Private Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Tesseract Scene Graph Const. </p>
+<dl class="section note"><dt>Note</dt><dd>This is intentionally not serialized it will auto updated </dd></dl>
 
 </div>
 </div>
@@ -3905,6 +4121,7 @@ Static Private Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Tesseract State Solver. </p>
+<dl class="section note"><dt>Note</dt><dd>This is intentionally not serialized it will auto updated </dd></dl>
 
 </div>
 </div>
@@ -3939,7 +4156,7 @@ Static Private Member Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Apr 13 2022 16:04:24 for Tesseract by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.3
+Generated on Thu Apr 14 2022 18:54:25 for Tesseract by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.3
 </small></address>
 </body>
 </html>

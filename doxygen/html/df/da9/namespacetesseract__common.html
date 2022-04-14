@@ -243,6 +243,10 @@ Functions</h2></td></tr>
 <tr class="memitem:a5330a58c8c79cce5559a316e76118558"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../df/da9/namespacetesseract__common.html#a5330a58c8c79cce5559a316e76118558">testSerialization</a> (const SerializableType &amp;object, const std::string &amp;typename_string)</td></tr>
 <tr class="memdesc:a5330a58c8c79cce5559a316e76118558"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tests Boost serialization for a serializable type.  <a href="../../df/da9/namespacetesseract__common.html#a5330a58c8c79cce5559a316e76118558">More...</a><br /></td></tr>
 <tr class="separator:a5330a58c8c79cce5559a316e76118558"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b449b344d06caa397190a9a82dd507a"><td class="memTemplParams" colspan="2">template&lt;typename SerializableType &gt; </td></tr>
+<tr class="memitem:a1b449b344d06caa397190a9a82dd507a"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../df/da9/namespacetesseract__common.html#a1b449b344d06caa397190a9a82dd507a">testSerializationPtr</a> (const std::shared_ptr&lt; SerializableType &gt; &amp;object, const std::string &amp;typename_string)</td></tr>
+<tr class="memdesc:a1b449b344d06caa397190a9a82dd507a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tests Boost serialization of shared pointer for a serializable type.  <a href="../../df/da9/namespacetesseract__common.html#a1b449b344d06caa397190a9a82dd507a">More...</a><br /></td></tr>
+<tr class="separator:a1b449b344d06caa397190a9a82dd507a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa8cf5fe962e9933b44d1f8248f0ab2fb"><td class="memTemplParams" colspan="2">template&lt;typename SerializableTypeBase , typename SerializableTypeDerived &gt; </td></tr>
 <tr class="memitem:aa8cf5fe962e9933b44d1f8248f0ab2fb"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../df/da9/namespacetesseract__common.html#aa8cf5fe962e9933b44d1f8248f0ab2fb">testSerializationDerivedClass</a> (const std::shared_ptr&lt; SerializableTypeBase &gt; &amp;object, const std::string &amp;typename_string)</td></tr>
 <tr class="memdesc:aa8cf5fe962e9933b44d1f8248f0ab2fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tests Boost serialization for a serializable derived type.  <a href="../../df/da9/namespacetesseract__common.html#aa8cf5fe962e9933b44d1f8248f0ab2fb">More...</a><br /></td></tr>
@@ -2488,6 +2492,45 @@ template&lt;typename SerializableTypeBase , typename SerializableTypeDerived &gt
 
 </div>
 </div>
+<a id="a1b449b344d06caa397190a9a82dd507a" name="a1b449b344d06caa397190a9a82dd507a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1b449b344d06caa397190a9a82dd507a">&#9670;&nbsp;</a></span>testSerializationPtr()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename SerializableType &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void tesseract_common::testSerializationPtr </td>
+          <td>(</td>
+          <td class="paramtype">const std::shared_ptr&lt; SerializableType &gt; &amp;&#160;</td>
+          <td class="paramname"><em>object</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>typename_string</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Tests Boost serialization of shared pointer for a serializable type. </p>
+<p >Serializes the type to XML file, binary file, and XML string. It then deserializes it and calls the equality operator on the results </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">object</td><td>Object to be serialized </td></tr>
+    <tr><td class="paramname">typename_string</td><td>Prefix used for filepaths. Serialized files are put in /tmp/&lt;typename_string&gt;.&lt;extension&gt; </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a00bc131acfeba0eba8fe7ff7cd944860" name="a00bc131acfeba0eba8fe7ff7cd944860"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a00bc131acfeba0eba8fe7ff7cd944860">&#9670;&nbsp;</a></span>toNumeric()</h2>
 
@@ -2803,7 +2846,7 @@ template&lt;typename FloatType &gt; </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Apr 13 2022 16:04:24 for Tesseract by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.3
+Generated on Thu Apr 14 2022 18:54:25 for Tesseract by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.3
 </small></address>
 </body>
 </html>
