@@ -84,9 +84,13 @@ void \mbox{\hyperlink{classtesseract__environment_1_1Environment_a4962a7b695aa52
 \begin{DoxyCompactList}\small\item\em This allows for user defined callbacks for looking up TCP information. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{vhacdRaycastMesh_8cpp_adcf134d50025cc52907d0c8ac798d89d}{std\+::vector}}$<$ \mbox{\hyperlink{namespacetesseract__environment_a197ae00a2f4f5630ff6d044e2e6d7384}{Find\+TCPOffset\+Callback\+Fn}} $>$ \mbox{\hyperlink{classtesseract__environment_1_1Environment_a33bf42162c58e920492b15de4a5a5981}{get\+Find\+TCPOffset\+Callbacks}} () const
 \begin{DoxyCompactList}\small\item\em This get the current find tcp callbacks stored in the environment. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classtesseract__environment_1_1Environment_a125e92b32d648bf1a1fbaf9c7022add2}{add\+Event\+Callback}} (const \mbox{\hyperlink{namespacetesseract__environment_a842b4038cfb894a0b9cc45e6aea1e8c5}{Event\+Callback\+Fn}} \&fn)
+void \mbox{\hyperlink{classtesseract__environment_1_1Environment_ac60d19d0af267533a645c049476b8a2e}{add\+Event\+Callback}} (std\+::size\+\_\+t hash, const \mbox{\hyperlink{namespacetesseract__environment_a842b4038cfb894a0b9cc45e6aea1e8c5}{Event\+Callback\+Fn}} \&fn)
 \begin{DoxyCompactList}\small\item\em Add an event callback function. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{vhacdRaycastMesh_8cpp_adcf134d50025cc52907d0c8ac798d89d}{std\+::vector}}$<$ \mbox{\hyperlink{namespacetesseract__environment_a842b4038cfb894a0b9cc45e6aea1e8c5}{Event\+Callback\+Fn}} $>$ \mbox{\hyperlink{classtesseract__environment_1_1Environment_a387097458321f7d41d77e76ee0aeb3b3}{get\+Event\+Callbacks}} () const
+void \mbox{\hyperlink{classtesseract__environment_1_1Environment_a4b42351c64d03487e1439ea895ff2fe4}{remove\+Event\+Callback}} (std\+::size\+\_\+t hash)
+\begin{DoxyCompactList}\small\item\em Remove event callbacks. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classtesseract__environment_1_1Environment_ae16232142c1de8d3d27e4ca0e15cabc3}{clear\+Event\+Callbacks}} ()
+\begin{DoxyCompactList}\small\item\em clear all event callbacks \end{DoxyCompactList}\item 
+std\+::map$<$ std\+::size\+\_\+t, \mbox{\hyperlink{namespacetesseract__environment_a842b4038cfb894a0b9cc45e6aea1e8c5}{Event\+Callback\+Fn}} $>$ \mbox{\hyperlink{classtesseract__environment_1_1Environment_aadf700de601a2786166104f7cad9d363}{get\+Event\+Callbacks}} () const
 \begin{DoxyCompactList}\small\item\em Get the current event callbacks stored in the environment. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classtesseract__environment_1_1Environment_ac82d299c1b7f7855f76e13a14d856536}{set\+Resource\+Locator}} (\mbox{\hyperlink{classtesseract__common_1_1ResourceLocator_a61a53e45948c47a9612096d8e7b90252}{tesseract\+\_\+common\+::\+Resource\+Locator\+::\+Const\+Ptr}} locator)
 \begin{DoxyCompactList}\small\item\em Set resource locator for environment. \end{DoxyCompactList}\item 
@@ -218,8 +222,8 @@ std\+::chrono\+::system\+\_\+clock\+::time\+\_\+point \mbox{\hyperlink{classtess
 \begin{DoxyCompactList}\small\item\em The function used to determine if two objects are allowed in collision. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{vhacdRaycastMesh_8cpp_adcf134d50025cc52907d0c8ac798d89d}{std\+::vector}}$<$ \mbox{\hyperlink{namespacetesseract__environment_a197ae00a2f4f5630ff6d044e2e6d7384}{Find\+TCPOffset\+Callback\+Fn}} $>$ \mbox{\hyperlink{classtesseract__environment_1_1Environment_ae9a92e802b4924edfd5292874beb8c20}{find\+\_\+tcp\+\_\+cb\+\_\+}}
 \begin{DoxyCompactList}\small\item\em A vector of user defined callbacks for locating tool center point. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{vhacdRaycastMesh_8cpp_adcf134d50025cc52907d0c8ac798d89d}{std\+::vector}}$<$ \mbox{\hyperlink{namespacetesseract__environment_a842b4038cfb894a0b9cc45e6aea1e8c5}{Event\+Callback\+Fn}} $>$ \mbox{\hyperlink{classtesseract__environment_1_1Environment_aeb48a50d897030e80b3517fd4897374c}{event\+\_\+cb\+\_\+}}
-\begin{DoxyCompactList}\small\item\em A vector of user defined event callback functions. \end{DoxyCompactList}\item 
+std\+::map$<$ std\+::size\+\_\+t, \mbox{\hyperlink{namespacetesseract__environment_a842b4038cfb894a0b9cc45e6aea1e8c5}{Event\+Callback\+Fn}} $>$ \mbox{\hyperlink{classtesseract__environment_1_1Environment_a5fac827baa7afd75a1159e1621fa19db}{event\+\_\+cb\+\_\+}}
+\begin{DoxyCompactList}\small\item\em A map of user defined event callback functions. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classtesseract__common_1_1ResourceLocator_a61a53e45948c47a9612096d8e7b90252}{tesseract\+\_\+common\+::\+Resource\+Locator\+::\+Const\+Ptr}} \mbox{\hyperlink{classtesseract__environment_1_1Environment_a84cabfb4d751d01d53838dd8545b1c14}{resource\+\_\+locator\+\_\+}}
 \begin{DoxyCompactList}\small\item\em Used when initialized by URDF\+\_\+\+STRING, URDF\+\_\+\+STRING\+\_\+\+SRDF\+\_\+\+STRING, URDF\+\_\+\+PATH, and URDF\+\_\+\+PATH\+\_\+\+SRDF\+\_\+\+PATH. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{structtesseract__common_1_1ContactManagersPluginInfo}{tesseract\+\_\+common\+::\+Contact\+Managers\+Plugin\+Info}} \mbox{\hyperlink{classtesseract__environment_1_1Environment_ab66f1c154e58076c091231ffc4862d95}{contact\+\_\+managers\+\_\+plugin\+\_\+info\+\_\+}}
@@ -386,11 +390,11 @@ Default constructor.
 
 
 \doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{classtesseract__environment_1_1Environment_a125e92b32d648bf1a1fbaf9c7022add2}\label{classtesseract__environment_1_1Environment_a125e92b32d648bf1a1fbaf9c7022add2}} 
+\mbox{\Hypertarget{classtesseract__environment_1_1Environment_ac60d19d0af267533a645c049476b8a2e}\label{classtesseract__environment_1_1Environment_ac60d19d0af267533a645c049476b8a2e}} 
 \index{tesseract\_environment::Environment@{tesseract\_environment::Environment}!addEventCallback@{addEventCallback}}
 \index{addEventCallback@{addEventCallback}!tesseract\_environment::Environment@{tesseract\_environment::Environment}}
 \doxysubsubsection{\texorpdfstring{addEventCallback()}{addEventCallback()}}
-{\footnotesize\ttfamily void tesseract\+\_\+environment\+::\+Environment\+::add\+Event\+Callback (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespacetesseract__environment_a842b4038cfb894a0b9cc45e6aea1e8c5}{Event\+Callback\+Fn}} \&}]{fn }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void tesseract\+\_\+environment\+::\+Environment\+::add\+Event\+Callback (\begin{DoxyParamCaption}\item[{std\+::size\+\_\+t}]{hash,  }\item[{const \mbox{\hyperlink{namespacetesseract__environment_a842b4038cfb894a0b9cc45e6aea1e8c5}{Event\+Callback\+Fn}} \&}]{fn }\end{DoxyParamCaption})}
 
 
 
@@ -401,6 +405,8 @@ These do not get cloned or serialized
 \end{DoxyNote}
 
 \begin{DoxyParams}{Parameters}
+{\em hash} & The id associated with the callback to allow removal. It is recommended to use std\+::hash$<$\+Object$\ast$$>$\{\}(this) to associate the callback with the class it associated with. \\
+\hline
 {\em fn} & User defined callback function which gets called for different event triggers \\
 \hline
 \end{DoxyParams}
@@ -606,6 +612,16 @@ Apply \mbox{\hyperlink{classtesseract__environment_1_1Command}{Command}} Helper 
 
 
 clear content and uninitialized 
+
+\mbox{\Hypertarget{classtesseract__environment_1_1Environment_ae16232142c1de8d3d27e4ca0e15cabc3}\label{classtesseract__environment_1_1Environment_ae16232142c1de8d3d27e4ca0e15cabc3}} 
+\index{tesseract\_environment::Environment@{tesseract\_environment::Environment}!clearEventCallbacks@{clearEventCallbacks}}
+\index{clearEventCallbacks@{clearEventCallbacks}!tesseract\_environment::Environment@{tesseract\_environment::Environment}}
+\doxysubsubsection{\texorpdfstring{clearEventCallbacks()}{clearEventCallbacks()}}
+{\footnotesize\ttfamily void tesseract\+\_\+environment\+::\+Environment\+::clear\+Event\+Callbacks (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+clear all event callbacks 
 
 \mbox{\Hypertarget{classtesseract__environment_1_1Environment_a9f122e18d3e77dd1392a29eba248884d}\label{classtesseract__environment_1_1Environment_a9f122e18d3e77dd1392a29eba248884d}} 
 \index{tesseract\_environment::Environment@{tesseract\_environment::Environment}!clone@{clone}}
@@ -850,18 +866,18 @@ Get a copy of the environments available discrete contact manager by name.
 \doxysubsubsection{\texorpdfstring{getDiscreteContactManagerHelper()}{getDiscreteContactManagerHelper()}}
 {\footnotesize\ttfamily \mbox{\hyperlink{classtesseract__collision_1_1DiscreteContactManager_a52a7b770e7b6cec875254d7cdea3c314}{tesseract\+\_\+collision\+::\+Discrete\+Contact\+Manager\+::\+UPtr}} tesseract\+\_\+environment\+::\+Environment\+::get\+Discrete\+Contact\+Manager\+Helper (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [private]}}
 
-\mbox{\Hypertarget{classtesseract__environment_1_1Environment_a387097458321f7d41d77e76ee0aeb3b3}\label{classtesseract__environment_1_1Environment_a387097458321f7d41d77e76ee0aeb3b3}} 
+\mbox{\Hypertarget{classtesseract__environment_1_1Environment_aadf700de601a2786166104f7cad9d363}\label{classtesseract__environment_1_1Environment_aadf700de601a2786166104f7cad9d363}} 
 \index{tesseract\_environment::Environment@{tesseract\_environment::Environment}!getEventCallbacks@{getEventCallbacks}}
 \index{getEventCallbacks@{getEventCallbacks}!tesseract\_environment::Environment@{tesseract\_environment::Environment}}
 \doxysubsubsection{\texorpdfstring{getEventCallbacks()}{getEventCallbacks()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{vhacdRaycastMesh_8cpp_adcf134d50025cc52907d0c8ac798d89d}{std\+::vector}}$<$ \mbox{\hyperlink{namespacetesseract__environment_a842b4038cfb894a0b9cc45e6aea1e8c5}{Event\+Callback\+Fn}} $>$ tesseract\+\_\+environment\+::\+Environment\+::get\+Event\+Callbacks (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+{\footnotesize\ttfamily std\+::map$<$ std\+::size\+\_\+t, \mbox{\hyperlink{namespacetesseract__environment_a842b4038cfb894a0b9cc45e6aea1e8c5}{Event\+Callback\+Fn}} $>$ tesseract\+\_\+environment\+::\+Environment\+::get\+Event\+Callbacks (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
 
 
 
 Get the current event callbacks stored in the environment. 
 
 \begin{DoxyReturn}{Returns}
-A vector of callback functions 
+A map of callback functions 
 \end{DoxyReturn}
 \mbox{\Hypertarget{classtesseract__environment_1_1Environment_a33bf42162c58e920492b15de4a5a5981}\label{classtesseract__environment_1_1Environment_a33bf42162c58e920492b15de4a5a5981}} 
 \index{tesseract\_environment::Environment@{tesseract\_environment::Environment}!getFindTCPOffsetCallbacks@{getFindTCPOffsetCallbacks}}
@@ -1427,6 +1443,21 @@ True if they are equal otherwise false
 \end{DoxyReturn}
 \begin{DoxyRefDesc}{Todo}
 \item[\mbox{\hyperlink{todo__todo000007}{Todo}}]uncomment after serialized \end{DoxyRefDesc}
+\mbox{\Hypertarget{classtesseract__environment_1_1Environment_a4b42351c64d03487e1439ea895ff2fe4}\label{classtesseract__environment_1_1Environment_a4b42351c64d03487e1439ea895ff2fe4}} 
+\index{tesseract\_environment::Environment@{tesseract\_environment::Environment}!removeEventCallback@{removeEventCallback}}
+\index{removeEventCallback@{removeEventCallback}!tesseract\_environment::Environment@{tesseract\_environment::Environment}}
+\doxysubsubsection{\texorpdfstring{removeEventCallback()}{removeEventCallback()}}
+{\footnotesize\ttfamily void tesseract\+\_\+environment\+::\+Environment\+::remove\+Event\+Callback (\begin{DoxyParamCaption}\item[{std\+::size\+\_\+t}]{hash }\end{DoxyParamCaption})}
+
+
+
+Remove event callbacks. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em hash} & the id associated with the callback to be removed \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{classtesseract__environment_1_1Environment_a4807aff4eab80577536294aabe6d0767}\label{classtesseract__environment_1_1Environment_a4807aff4eab80577536294aabe6d0767}} 
 \index{tesseract\_environment::Environment@{tesseract\_environment::Environment}!removeLinkHelper@{removeLinkHelper}}
 \index{removeLinkHelper@{removeLinkHelper}!tesseract\_environment::Environment@{tesseract\_environment::Environment}}
@@ -1682,15 +1713,15 @@ The discrete contact manager object.
 \begin{DoxyNote}{Note}
 This is intentionally not serialized it will auto updated 
 \end{DoxyNote}
-\mbox{\Hypertarget{classtesseract__environment_1_1Environment_aeb48a50d897030e80b3517fd4897374c}\label{classtesseract__environment_1_1Environment_aeb48a50d897030e80b3517fd4897374c}} 
+\mbox{\Hypertarget{classtesseract__environment_1_1Environment_a5fac827baa7afd75a1159e1621fa19db}\label{classtesseract__environment_1_1Environment_a5fac827baa7afd75a1159e1621fa19db}} 
 \index{tesseract\_environment::Environment@{tesseract\_environment::Environment}!event\_cb\_@{event\_cb\_}}
 \index{event\_cb\_@{event\_cb\_}!tesseract\_environment::Environment@{tesseract\_environment::Environment}}
 \doxysubsubsection{\texorpdfstring{event\_cb\_}{event\_cb\_}}
-{\footnotesize\ttfamily \mbox{\hyperlink{vhacdRaycastMesh_8cpp_adcf134d50025cc52907d0c8ac798d89d}{std\+::vector}}$<$\mbox{\hyperlink{namespacetesseract__environment_a842b4038cfb894a0b9cc45e6aea1e8c5}{Event\+Callback\+Fn}}$>$ tesseract\+\_\+environment\+::\+Environment\+::event\+\_\+cb\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
+{\footnotesize\ttfamily std\+::map$<$std\+::size\+\_\+t, \mbox{\hyperlink{namespacetesseract__environment_a842b4038cfb894a0b9cc45e6aea1e8c5}{Event\+Callback\+Fn}}$>$ tesseract\+\_\+environment\+::\+Environment\+::event\+\_\+cb\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
 
 
 
-A vector of user defined event callback functions. 
+A map of user defined event callback functions. 
 
 This should not be cloned or serialized \mbox{\Hypertarget{classtesseract__environment_1_1Environment_ae9a92e802b4924edfd5292874beb8c20}\label{classtesseract__environment_1_1Environment_ae9a92e802b4924edfd5292874beb8c20}} 
 \index{tesseract\_environment::Environment@{tesseract\_environment::Environment}!find\_tcp\_cb\_@{find\_tcp\_cb\_}}
