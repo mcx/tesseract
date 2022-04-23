@@ -247,175 +247,177 @@
 \DoxyCodeLine{584   std::unordered\_map<std::string, std::pair<Joint::Ptr, Edge>> \mbox{\hyperlink{classtesseract__scene__graph_1_1SceneGraph_a85f128175c2dccbfd6441570811b1522}{joint\_map\_}};}
 \DoxyCodeLine{585   \mbox{\hyperlink{classtesseract__common_1_1AllowedCollisionMatrix_aeb97e65aad60fe0e5e1265c3f9e755a0}{tesseract\_common::AllowedCollisionMatrix::Ptr}} \mbox{\hyperlink{classtesseract__scene__graph_1_1SceneGraph_ad94e1c8d88d0cf1e98cca7da2bccc3d2}{acm\_}};}
 \DoxyCodeLine{586 }
-\DoxyCodeLine{587   \textcolor{keyword}{struct }\mbox{\hyperlink{structtesseract__scene__graph_1_1SceneGraph_1_1cycle__detector}{cycle\_detector}} : \textcolor{keyword}{public} boost::dfs\_visitor<>}
-\DoxyCodeLine{588   \{}
-\DoxyCodeLine{589     \mbox{\hyperlink{structtesseract__scene__graph_1_1SceneGraph_1_1cycle__detector_a7dff514722b3ffaadd95bdfe6a8dc473}{cycle\_detector}}(\textcolor{keywordtype}{bool}\& ascyclic) : ascyclic\_(ascyclic) \{\}}
-\DoxyCodeLine{590 }
-\DoxyCodeLine{591     \textcolor{keyword}{template} <\textcolor{keyword}{class} e, \textcolor{keyword}{class} g>}
-\DoxyCodeLine{592     \textcolor{keywordtype}{void} \mbox{\hyperlink{structtesseract__scene__graph_1_1SceneGraph_1_1cycle__detector_ac3d0c8e1a9f2ce009d5ce889999a1281}{back\_edge}}(e, g\&)}
-\DoxyCodeLine{593     \{}
-\DoxyCodeLine{594       ascyclic\_ = \textcolor{keyword}{false};}
-\DoxyCodeLine{595     \}}
-\DoxyCodeLine{596 }
-\DoxyCodeLine{597   \textcolor{keyword}{protected}:}
-\DoxyCodeLine{598     \textcolor{keywordtype}{bool}\& \mbox{\hyperlink{structtesseract__scene__graph_1_1SceneGraph_1_1cycle__detector_a68242229d9aa9601b8a1c59114adbd2a}{ascyclic\_}};}
-\DoxyCodeLine{599   \};}
-\DoxyCodeLine{600 }
-\DoxyCodeLine{601   \textcolor{keyword}{struct }\mbox{\hyperlink{structtesseract__scene__graph_1_1SceneGraph_1_1tree__detector}{tree\_detector}} : \textcolor{keyword}{public} boost::dfs\_visitor<>}
-\DoxyCodeLine{602   \{}
-\DoxyCodeLine{603     \mbox{\hyperlink{structtesseract__scene__graph_1_1SceneGraph_1_1tree__detector_aeb36fadb59dcb448453e1407126f4d41}{tree\_detector}}(\textcolor{keywordtype}{bool}\& tree) : tree\_(tree) \{\}}
-\DoxyCodeLine{604 }
-\DoxyCodeLine{605     \textcolor{keyword}{template} <\textcolor{keyword}{class} u, \textcolor{keyword}{class} g>}
-\DoxyCodeLine{606     \textcolor{keywordtype}{void} \mbox{\hyperlink{structtesseract__scene__graph_1_1SceneGraph_1_1tree__detector_aba16db17000eed13879dfca057c6bf35}{discover\_vertex}}(u vertex, \textcolor{keyword}{const} g\& graph)}
-\DoxyCodeLine{607     \{}
-\DoxyCodeLine{608       \textcolor{keyword}{auto} num\_in\_edges = \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(boost::in\_degree(vertex, graph));}
-\DoxyCodeLine{609 }
-\DoxyCodeLine{610       \textcolor{keywordflow}{if} (num\_in\_edges > 1)}
-\DoxyCodeLine{611       \{}
-\DoxyCodeLine{612         tree\_ = \textcolor{keyword}{false};}
-\DoxyCodeLine{613         \textcolor{keywordflow}{return};}
-\DoxyCodeLine{614       \}}
-\DoxyCodeLine{615 }
-\DoxyCodeLine{616       \textcolor{comment}{// Check if more that one root exist}}
-\DoxyCodeLine{617       \textcolor{keywordflow}{if} (num\_in\_edges == 0 \&\& found\_root\_)}
-\DoxyCodeLine{618       \{}
-\DoxyCodeLine{619         tree\_ = \textcolor{keyword}{false};}
-\DoxyCodeLine{620         \textcolor{keywordflow}{return};}
-\DoxyCodeLine{621       \}}
-\DoxyCodeLine{622 }
-\DoxyCodeLine{623       \textcolor{keywordflow}{if} (num\_in\_edges == 0)}
-\DoxyCodeLine{624         found\_root\_ = \textcolor{keyword}{true};}
+\DoxyCodeLine{588   \textcolor{keywordtype}{void} rebuildLinkAndJointMaps();}
+\DoxyCodeLine{589 }
+\DoxyCodeLine{590   \textcolor{keyword}{struct }\mbox{\hyperlink{structtesseract__scene__graph_1_1SceneGraph_1_1cycle__detector}{cycle\_detector}} : \textcolor{keyword}{public} boost::dfs\_visitor<>}
+\DoxyCodeLine{591   \{}
+\DoxyCodeLine{592     \mbox{\hyperlink{structtesseract__scene__graph_1_1SceneGraph_1_1cycle__detector_a7dff514722b3ffaadd95bdfe6a8dc473}{cycle\_detector}}(\textcolor{keywordtype}{bool}\& ascyclic) : ascyclic\_(ascyclic) \{\}}
+\DoxyCodeLine{593 }
+\DoxyCodeLine{594     \textcolor{keyword}{template} <\textcolor{keyword}{class} e, \textcolor{keyword}{class} g>}
+\DoxyCodeLine{595     \textcolor{keywordtype}{void} \mbox{\hyperlink{structtesseract__scene__graph_1_1SceneGraph_1_1cycle__detector_ac3d0c8e1a9f2ce009d5ce889999a1281}{back\_edge}}(e, g\&)}
+\DoxyCodeLine{596     \{}
+\DoxyCodeLine{597       ascyclic\_ = \textcolor{keyword}{false};}
+\DoxyCodeLine{598     \}}
+\DoxyCodeLine{599 }
+\DoxyCodeLine{600   \textcolor{keyword}{protected}:}
+\DoxyCodeLine{601     \textcolor{keywordtype}{bool}\& \mbox{\hyperlink{structtesseract__scene__graph_1_1SceneGraph_1_1cycle__detector_a68242229d9aa9601b8a1c59114adbd2a}{ascyclic\_}};}
+\DoxyCodeLine{602   \};}
+\DoxyCodeLine{603 }
+\DoxyCodeLine{604   \textcolor{keyword}{struct }\mbox{\hyperlink{structtesseract__scene__graph_1_1SceneGraph_1_1tree__detector}{tree\_detector}} : \textcolor{keyword}{public} boost::dfs\_visitor<>}
+\DoxyCodeLine{605   \{}
+\DoxyCodeLine{606     \mbox{\hyperlink{structtesseract__scene__graph_1_1SceneGraph_1_1tree__detector_aeb36fadb59dcb448453e1407126f4d41}{tree\_detector}}(\textcolor{keywordtype}{bool}\& tree) : tree\_(tree) \{\}}
+\DoxyCodeLine{607 }
+\DoxyCodeLine{608     \textcolor{keyword}{template} <\textcolor{keyword}{class} u, \textcolor{keyword}{class} g>}
+\DoxyCodeLine{609     \textcolor{keywordtype}{void} \mbox{\hyperlink{structtesseract__scene__graph_1_1SceneGraph_1_1tree__detector_aba16db17000eed13879dfca057c6bf35}{discover\_vertex}}(u vertex, \textcolor{keyword}{const} g\& graph)}
+\DoxyCodeLine{610     \{}
+\DoxyCodeLine{611       \textcolor{keyword}{auto} num\_in\_edges = \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(boost::in\_degree(vertex, graph));}
+\DoxyCodeLine{612 }
+\DoxyCodeLine{613       \textcolor{keywordflow}{if} (num\_in\_edges > 1)}
+\DoxyCodeLine{614       \{}
+\DoxyCodeLine{615         tree\_ = \textcolor{keyword}{false};}
+\DoxyCodeLine{616         \textcolor{keywordflow}{return};}
+\DoxyCodeLine{617       \}}
+\DoxyCodeLine{618 }
+\DoxyCodeLine{619       \textcolor{comment}{// Check if more that one root exist}}
+\DoxyCodeLine{620       \textcolor{keywordflow}{if} (num\_in\_edges == 0 \&\& found\_root\_)}
+\DoxyCodeLine{621       \{}
+\DoxyCodeLine{622         tree\_ = \textcolor{keyword}{false};}
+\DoxyCodeLine{623         \textcolor{keywordflow}{return};}
+\DoxyCodeLine{624       \}}
 \DoxyCodeLine{625 }
-\DoxyCodeLine{626       \textcolor{comment}{// Check if not vertex is unused.}}
-\DoxyCodeLine{627       \textcolor{keywordflow}{if} (num\_in\_edges == 0 \&\& boost::out\_degree(vertex, graph) == 0)}
-\DoxyCodeLine{628       \{}
-\DoxyCodeLine{629         tree\_ = \textcolor{keyword}{false};}
-\DoxyCodeLine{630         \textcolor{keywordflow}{return};}
-\DoxyCodeLine{631       \}}
-\DoxyCodeLine{632     \}}
-\DoxyCodeLine{633 }
-\DoxyCodeLine{634     \textcolor{keyword}{template} <\textcolor{keyword}{class} e, \textcolor{keyword}{class} g>}
-\DoxyCodeLine{635     \textcolor{keywordtype}{void} \mbox{\hyperlink{structtesseract__scene__graph_1_1SceneGraph_1_1tree__detector_a52252532f7a5f083ad35e96847c04a96}{back\_edge}}(e, \textcolor{keyword}{const} g\&)}
-\DoxyCodeLine{636     \{}
-\DoxyCodeLine{637       tree\_ = \textcolor{keyword}{false};}
-\DoxyCodeLine{638     \}}
-\DoxyCodeLine{639 }
-\DoxyCodeLine{640   \textcolor{keyword}{protected}:}
-\DoxyCodeLine{641     \textcolor{keywordtype}{bool}\& \mbox{\hyperlink{structtesseract__scene__graph_1_1SceneGraph_1_1tree__detector_aa87134ec0a2cba9c79dafb92061a66fa}{tree\_}};}
-\DoxyCodeLine{642     \textcolor{keywordtype}{bool} found\_root\_\{ \textcolor{keyword}{false} \};}
-\DoxyCodeLine{643   \};}
-\DoxyCodeLine{644 }
-\DoxyCodeLine{645   \textcolor{keyword}{struct }\mbox{\hyperlink{structtesseract__scene__graph_1_1SceneGraph_1_1children__detector}{children\_detector}} : \textcolor{keyword}{public} boost::default\_bfs\_visitor}
-\DoxyCodeLine{646   \{}
-\DoxyCodeLine{647     \mbox{\hyperlink{structtesseract__scene__graph_1_1SceneGraph_1_1children__detector_aa49dc63d31d247946610625e5cf4042d}{children\_detector}}(std::vector<std::string>\& children) : children\_(children) \{\}}
-\DoxyCodeLine{648 }
-\DoxyCodeLine{649     \textcolor{keyword}{template} <\textcolor{keyword}{class} u, \textcolor{keyword}{class} g>}
-\DoxyCodeLine{650     \textcolor{keywordtype}{void} \mbox{\hyperlink{structtesseract__scene__graph_1_1SceneGraph_1_1children__detector_a9e690daa97bc10317c4f8034897abf73}{discover\_vertex}}(u vertex, \textcolor{keyword}{const} g\& graph)}
-\DoxyCodeLine{651     \{}
-\DoxyCodeLine{652       children\_.push\_back(boost::get(\mbox{\hyperlink{namespaceboost_ab951500554c258d05de53b1a9e47c6f7aaa6eb1f0c641e015418e35bd1d9aa546}{boost::vertex\_link}}, graph)[vertex]-\/>getName());}
-\DoxyCodeLine{653     \}}
-\DoxyCodeLine{654 }
-\DoxyCodeLine{655   \textcolor{keyword}{protected}:}
-\DoxyCodeLine{656     std::vector<std::string>\& \mbox{\hyperlink{structtesseract__scene__graph_1_1SceneGraph_1_1children__detector_a04c947249fce499bad06eb2e23ab5cf5}{children\_}};}
-\DoxyCodeLine{657   \};}
-\DoxyCodeLine{658 }
-\DoxyCodeLine{659   \textcolor{keyword}{struct }\mbox{\hyperlink{structtesseract__scene__graph_1_1SceneGraph_1_1adjacency__detector}{adjacency\_detector}} : \textcolor{keyword}{public} boost::default\_bfs\_visitor}
-\DoxyCodeLine{660   \{}
-\DoxyCodeLine{661     \mbox{\hyperlink{structtesseract__scene__graph_1_1SceneGraph_1_1adjacency__detector_aa7c2eac26f2676d6d5dc0d5cb613deaf}{adjacency\_detector}}(std::unordered\_map<std::string, std::string>\& adjacency\_map,}
-\DoxyCodeLine{662                        std::map<Vertex, boost::default\_color\_type>\& color\_map,}
-\DoxyCodeLine{663                        \textcolor{keyword}{const} std::string\& base\_link\_name,}
-\DoxyCodeLine{664                        \textcolor{keyword}{const} std::vector<std::string>\& terminate\_on\_links)}
-\DoxyCodeLine{665       : adjacency\_map\_(adjacency\_map)}
-\DoxyCodeLine{666       , color\_map\_(color\_map)}
-\DoxyCodeLine{667       , base\_link\_name\_(base\_link\_name)}
-\DoxyCodeLine{668       , terminate\_on\_links\_(terminate\_on\_links)}
-\DoxyCodeLine{669     \{}
-\DoxyCodeLine{670     \}}
-\DoxyCodeLine{671 }
-\DoxyCodeLine{672     \textcolor{keyword}{template} <\textcolor{keyword}{class} u, \textcolor{keyword}{class} g>}
-\DoxyCodeLine{673     \textcolor{keywordtype}{void} \mbox{\hyperlink{structtesseract__scene__graph_1_1SceneGraph_1_1adjacency__detector_a4341daba1b27270e4bd9e147ad49a71c}{examine\_vertex}}(u vertex, \textcolor{keyword}{const} g\& graph)}
-\DoxyCodeLine{674     \{}
-\DoxyCodeLine{675       \textcolor{keywordflow}{for} (\textcolor{keyword}{auto} vd : boost::make\_iterator\_range(adjacent\_vertices(vertex, graph)))}
-\DoxyCodeLine{676       \{}
-\DoxyCodeLine{677         std::string adj\_link = boost::get(\mbox{\hyperlink{namespaceboost_ab951500554c258d05de53b1a9e47c6f7aaa6eb1f0c641e015418e35bd1d9aa546}{boost::vertex\_link}}, graph)[vd]-\/>getName();}
-\DoxyCodeLine{678         \textcolor{keywordflow}{if} (std::find(terminate\_on\_links\_.begin(), terminate\_on\_links\_.end(), adj\_link) != terminate\_on\_links\_.end())}
-\DoxyCodeLine{679           color\_map\_[vd] = boost::default\_color\_type::black\_color;}
-\DoxyCodeLine{680       \}}
-\DoxyCodeLine{681     \}}
-\DoxyCodeLine{682 }
-\DoxyCodeLine{683     \textcolor{keyword}{template} <\textcolor{keyword}{class} u, \textcolor{keyword}{class} g>}
-\DoxyCodeLine{684     \textcolor{keywordtype}{void} \mbox{\hyperlink{structtesseract__scene__graph_1_1SceneGraph_1_1adjacency__detector_ae59a2b3bd90a962a661c3dab9d9f98a0}{discover\_vertex}}(u vertex, \textcolor{keyword}{const} g\& graph)}
-\DoxyCodeLine{685     \{}
-\DoxyCodeLine{686       std::string adj\_link = boost::get(\mbox{\hyperlink{namespaceboost_ab951500554c258d05de53b1a9e47c6f7aaa6eb1f0c641e015418e35bd1d9aa546}{boost::vertex\_link}}, graph)[vertex]-\/>getName();}
-\DoxyCodeLine{687       adjacency\_map\_[adj\_link] = base\_link\_name\_;}
-\DoxyCodeLine{688     \}}
-\DoxyCodeLine{689 }
-\DoxyCodeLine{690   \textcolor{keyword}{protected}:}
-\DoxyCodeLine{691     std::unordered\_map<std::string, std::string>\& \mbox{\hyperlink{structtesseract__scene__graph_1_1SceneGraph_1_1adjacency__detector_a3392cab7c101e15ad824a0336160b2d6}{adjacency\_map\_}};}
-\DoxyCodeLine{692     std::map<Vertex, boost::default\_color\_type>\& \mbox{\hyperlink{structtesseract__scene__graph_1_1SceneGraph_1_1adjacency__detector_a6bd938326183d48975bafef1f9057861}{color\_map\_}};}
-\DoxyCodeLine{693     \textcolor{keyword}{const} std::string\& \mbox{\hyperlink{structtesseract__scene__graph_1_1SceneGraph_1_1adjacency__detector_a43a1177c51389ad5463301329b177200}{base\_link\_name\_}};}
-\DoxyCodeLine{694     \textcolor{keyword}{const} std::vector<std::string>\& \mbox{\hyperlink{structtesseract__scene__graph_1_1SceneGraph_1_1adjacency__detector_a8d93a26b5d40ddc73dec759d6669e311}{terminate\_on\_links\_}};}
-\DoxyCodeLine{695   \};}
-\DoxyCodeLine{696 }
-\DoxyCodeLine{705   std::vector<std::string> \mbox{\hyperlink{classtesseract__scene__graph_1_1SceneGraph_a6ecc5509931d807f6bc6160d9823c50d}{getLinkChildrenHelper}}(\mbox{\hyperlink{classtesseract__scene__graph_1_1SceneGraph_ac86f6f12f2ad6d9c96da0fa20fd3df68}{Vertex}} start\_vertex)\textcolor{keyword}{ const}}
-\DoxyCodeLine{706 \textcolor{keyword}{  }\{}
-\DoxyCodeLine{707     \textcolor{keyword}{const} \textcolor{keyword}{auto}\& graph = \textcolor{keyword}{static\_cast<}\textcolor{keyword}{const }\mbox{\hyperlink{namespacetesseract__scene__graph_acbaf9f6ad6831a8d42a5ece9f2d611a2}{Graph}}\&\textcolor{keyword}{>}(*this);}
-\DoxyCodeLine{708     std::vector<std::string> child\_link\_names;}
-\DoxyCodeLine{709 }
-\DoxyCodeLine{710     std::map<Vertex, size\_t> index\_map;}
-\DoxyCodeLine{711     boost::associative\_property\_map<std::map<Vertex, size\_t>> prop\_index\_map(index\_map);}
+\DoxyCodeLine{626       \textcolor{keywordflow}{if} (num\_in\_edges == 0)}
+\DoxyCodeLine{627         found\_root\_ = \textcolor{keyword}{true};}
+\DoxyCodeLine{628 }
+\DoxyCodeLine{629       \textcolor{comment}{// Check if not vertex is unused.}}
+\DoxyCodeLine{630       \textcolor{keywordflow}{if} (num\_in\_edges == 0 \&\& boost::out\_degree(vertex, graph) == 0)}
+\DoxyCodeLine{631       \{}
+\DoxyCodeLine{632         tree\_ = \textcolor{keyword}{false};}
+\DoxyCodeLine{633         \textcolor{keywordflow}{return};}
+\DoxyCodeLine{634       \}}
+\DoxyCodeLine{635     \}}
+\DoxyCodeLine{636 }
+\DoxyCodeLine{637     \textcolor{keyword}{template} <\textcolor{keyword}{class} e, \textcolor{keyword}{class} g>}
+\DoxyCodeLine{638     \textcolor{keywordtype}{void} \mbox{\hyperlink{structtesseract__scene__graph_1_1SceneGraph_1_1tree__detector_a52252532f7a5f083ad35e96847c04a96}{back\_edge}}(e, \textcolor{keyword}{const} g\&)}
+\DoxyCodeLine{639     \{}
+\DoxyCodeLine{640       tree\_ = \textcolor{keyword}{false};}
+\DoxyCodeLine{641     \}}
+\DoxyCodeLine{642 }
+\DoxyCodeLine{643   \textcolor{keyword}{protected}:}
+\DoxyCodeLine{644     \textcolor{keywordtype}{bool}\& \mbox{\hyperlink{structtesseract__scene__graph_1_1SceneGraph_1_1tree__detector_aa87134ec0a2cba9c79dafb92061a66fa}{tree\_}};}
+\DoxyCodeLine{645     \textcolor{keywordtype}{bool} found\_root\_\{ \textcolor{keyword}{false} \};}
+\DoxyCodeLine{646   \};}
+\DoxyCodeLine{647 }
+\DoxyCodeLine{648   \textcolor{keyword}{struct }\mbox{\hyperlink{structtesseract__scene__graph_1_1SceneGraph_1_1children__detector}{children\_detector}} : \textcolor{keyword}{public} boost::default\_bfs\_visitor}
+\DoxyCodeLine{649   \{}
+\DoxyCodeLine{650     \mbox{\hyperlink{structtesseract__scene__graph_1_1SceneGraph_1_1children__detector_aa49dc63d31d247946610625e5cf4042d}{children\_detector}}(std::vector<std::string>\& children) : children\_(children) \{\}}
+\DoxyCodeLine{651 }
+\DoxyCodeLine{652     \textcolor{keyword}{template} <\textcolor{keyword}{class} u, \textcolor{keyword}{class} g>}
+\DoxyCodeLine{653     \textcolor{keywordtype}{void} \mbox{\hyperlink{structtesseract__scene__graph_1_1SceneGraph_1_1children__detector_a9e690daa97bc10317c4f8034897abf73}{discover\_vertex}}(u vertex, \textcolor{keyword}{const} g\& graph)}
+\DoxyCodeLine{654     \{}
+\DoxyCodeLine{655       children\_.push\_back(boost::get(\mbox{\hyperlink{namespaceboost_ab951500554c258d05de53b1a9e47c6f7aaa6eb1f0c641e015418e35bd1d9aa546}{boost::vertex\_link}}, graph)[vertex]-\/>getName());}
+\DoxyCodeLine{656     \}}
+\DoxyCodeLine{657 }
+\DoxyCodeLine{658   \textcolor{keyword}{protected}:}
+\DoxyCodeLine{659     std::vector<std::string>\& \mbox{\hyperlink{structtesseract__scene__graph_1_1SceneGraph_1_1children__detector_a04c947249fce499bad06eb2e23ab5cf5}{children\_}};}
+\DoxyCodeLine{660   \};}
+\DoxyCodeLine{661 }
+\DoxyCodeLine{662   \textcolor{keyword}{struct }\mbox{\hyperlink{structtesseract__scene__graph_1_1SceneGraph_1_1adjacency__detector}{adjacency\_detector}} : \textcolor{keyword}{public} boost::default\_bfs\_visitor}
+\DoxyCodeLine{663   \{}
+\DoxyCodeLine{664     \mbox{\hyperlink{structtesseract__scene__graph_1_1SceneGraph_1_1adjacency__detector_aa7c2eac26f2676d6d5dc0d5cb613deaf}{adjacency\_detector}}(std::unordered\_map<std::string, std::string>\& adjacency\_map,}
+\DoxyCodeLine{665                        std::map<Vertex, boost::default\_color\_type>\& color\_map,}
+\DoxyCodeLine{666                        \textcolor{keyword}{const} std::string\& base\_link\_name,}
+\DoxyCodeLine{667                        \textcolor{keyword}{const} std::vector<std::string>\& terminate\_on\_links)}
+\DoxyCodeLine{668       : adjacency\_map\_(adjacency\_map)}
+\DoxyCodeLine{669       , color\_map\_(color\_map)}
+\DoxyCodeLine{670       , base\_link\_name\_(base\_link\_name)}
+\DoxyCodeLine{671       , terminate\_on\_links\_(terminate\_on\_links)}
+\DoxyCodeLine{672     \{}
+\DoxyCodeLine{673     \}}
+\DoxyCodeLine{674 }
+\DoxyCodeLine{675     \textcolor{keyword}{template} <\textcolor{keyword}{class} u, \textcolor{keyword}{class} g>}
+\DoxyCodeLine{676     \textcolor{keywordtype}{void} \mbox{\hyperlink{structtesseract__scene__graph_1_1SceneGraph_1_1adjacency__detector_a4341daba1b27270e4bd9e147ad49a71c}{examine\_vertex}}(u vertex, \textcolor{keyword}{const} g\& graph)}
+\DoxyCodeLine{677     \{}
+\DoxyCodeLine{678       \textcolor{keywordflow}{for} (\textcolor{keyword}{auto} vd : boost::make\_iterator\_range(adjacent\_vertices(vertex, graph)))}
+\DoxyCodeLine{679       \{}
+\DoxyCodeLine{680         std::string adj\_link = boost::get(\mbox{\hyperlink{namespaceboost_ab951500554c258d05de53b1a9e47c6f7aaa6eb1f0c641e015418e35bd1d9aa546}{boost::vertex\_link}}, graph)[vd]-\/>getName();}
+\DoxyCodeLine{681         \textcolor{keywordflow}{if} (std::find(terminate\_on\_links\_.begin(), terminate\_on\_links\_.end(), adj\_link) != terminate\_on\_links\_.end())}
+\DoxyCodeLine{682           color\_map\_[vd] = boost::default\_color\_type::black\_color;}
+\DoxyCodeLine{683       \}}
+\DoxyCodeLine{684     \}}
+\DoxyCodeLine{685 }
+\DoxyCodeLine{686     \textcolor{keyword}{template} <\textcolor{keyword}{class} u, \textcolor{keyword}{class} g>}
+\DoxyCodeLine{687     \textcolor{keywordtype}{void} \mbox{\hyperlink{structtesseract__scene__graph_1_1SceneGraph_1_1adjacency__detector_ae59a2b3bd90a962a661c3dab9d9f98a0}{discover\_vertex}}(u vertex, \textcolor{keyword}{const} g\& graph)}
+\DoxyCodeLine{688     \{}
+\DoxyCodeLine{689       std::string adj\_link = boost::get(\mbox{\hyperlink{namespaceboost_ab951500554c258d05de53b1a9e47c6f7aaa6eb1f0c641e015418e35bd1d9aa546}{boost::vertex\_link}}, graph)[vertex]-\/>getName();}
+\DoxyCodeLine{690       adjacency\_map\_[adj\_link] = base\_link\_name\_;}
+\DoxyCodeLine{691     \}}
+\DoxyCodeLine{692 }
+\DoxyCodeLine{693   \textcolor{keyword}{protected}:}
+\DoxyCodeLine{694     std::unordered\_map<std::string, std::string>\& \mbox{\hyperlink{structtesseract__scene__graph_1_1SceneGraph_1_1adjacency__detector_a3392cab7c101e15ad824a0336160b2d6}{adjacency\_map\_}};}
+\DoxyCodeLine{695     std::map<Vertex, boost::default\_color\_type>\& \mbox{\hyperlink{structtesseract__scene__graph_1_1SceneGraph_1_1adjacency__detector_a6bd938326183d48975bafef1f9057861}{color\_map\_}};}
+\DoxyCodeLine{696     \textcolor{keyword}{const} std::string\& \mbox{\hyperlink{structtesseract__scene__graph_1_1SceneGraph_1_1adjacency__detector_a43a1177c51389ad5463301329b177200}{base\_link\_name\_}};}
+\DoxyCodeLine{697     \textcolor{keyword}{const} std::vector<std::string>\& \mbox{\hyperlink{structtesseract__scene__graph_1_1SceneGraph_1_1adjacency__detector_a8d93a26b5d40ddc73dec759d6669e311}{terminate\_on\_links\_}};}
+\DoxyCodeLine{698   \};}
+\DoxyCodeLine{699 }
+\DoxyCodeLine{708   std::vector<std::string> \mbox{\hyperlink{classtesseract__scene__graph_1_1SceneGraph_a6ecc5509931d807f6bc6160d9823c50d}{getLinkChildrenHelper}}(\mbox{\hyperlink{classtesseract__scene__graph_1_1SceneGraph_ac86f6f12f2ad6d9c96da0fa20fd3df68}{Vertex}} start\_vertex)\textcolor{keyword}{ const}}
+\DoxyCodeLine{709 \textcolor{keyword}{  }\{}
+\DoxyCodeLine{710     \textcolor{keyword}{const} \textcolor{keyword}{auto}\& graph = \textcolor{keyword}{static\_cast<}\textcolor{keyword}{const }\mbox{\hyperlink{namespacetesseract__scene__graph_acbaf9f6ad6831a8d42a5ece9f2d611a2}{Graph}}\&\textcolor{keyword}{>}(*this);}
+\DoxyCodeLine{711     std::vector<std::string> child\_link\_names;}
 \DoxyCodeLine{712 }
-\DoxyCodeLine{713     std::map<Vertex, boost::default\_color\_type> color\_map;}
-\DoxyCodeLine{714     boost::associative\_property\_map<std::map<Vertex, boost::default\_color\_type>> prop\_color\_map(color\_map);}
+\DoxyCodeLine{713     std::map<Vertex, size\_t> index\_map;}
+\DoxyCodeLine{714     boost::associative\_property\_map<std::map<Vertex, size\_t>> prop\_index\_map(index\_map);}
 \DoxyCodeLine{715 }
-\DoxyCodeLine{716     \textcolor{keywordtype}{int} c = 0;}
-\DoxyCodeLine{717     Graph::vertex\_iterator i, iend;}
-\DoxyCodeLine{718     \textcolor{keywordflow}{for} (boost::tie(i, iend) = boost::vertices(graph); i != iend; ++i, ++c)}
-\DoxyCodeLine{719       boost::put(prop\_index\_map, *i, c);}
-\DoxyCodeLine{720 }
-\DoxyCodeLine{721     \mbox{\hyperlink{structtesseract__scene__graph_1_1SceneGraph_1_1children__detector}{children\_detector}} vis(child\_link\_names);}
-\DoxyCodeLine{722     \textcolor{comment}{// NOLINTNEXTLINE}}
-\DoxyCodeLine{723     boost::breadth\_first\_search(}
-\DoxyCodeLine{724         graph,}
-\DoxyCodeLine{725         start\_vertex,}
-\DoxyCodeLine{726         boost::visitor(vis).root\_vertex(start\_vertex).vertex\_index\_map(prop\_index\_map).color\_map(prop\_color\_map));}
-\DoxyCodeLine{727 }
-\DoxyCodeLine{728     \textcolor{keywordflow}{return} child\_link\_names;}
-\DoxyCodeLine{729   \}}
+\DoxyCodeLine{716     std::map<Vertex, boost::default\_color\_type> color\_map;}
+\DoxyCodeLine{717     boost::associative\_property\_map<std::map<Vertex, boost::default\_color\_type>> prop\_color\_map(color\_map);}
+\DoxyCodeLine{718 }
+\DoxyCodeLine{719     \textcolor{keywordtype}{int} c = 0;}
+\DoxyCodeLine{720     Graph::vertex\_iterator i, iend;}
+\DoxyCodeLine{721     \textcolor{keywordflow}{for} (boost::tie(i, iend) = boost::vertices(graph); i != iend; ++i, ++c)}
+\DoxyCodeLine{722       boost::put(prop\_index\_map, *i, c);}
+\DoxyCodeLine{723 }
+\DoxyCodeLine{724     \mbox{\hyperlink{structtesseract__scene__graph_1_1SceneGraph_1_1children__detector}{children\_detector}} vis(child\_link\_names);}
+\DoxyCodeLine{725     \textcolor{comment}{// NOLINTNEXTLINE}}
+\DoxyCodeLine{726     boost::breadth\_first\_search(}
+\DoxyCodeLine{727         graph,}
+\DoxyCodeLine{728         start\_vertex,}
+\DoxyCodeLine{729         boost::visitor(vis).root\_vertex(start\_vertex).vertex\_index\_map(prop\_index\_map).color\_map(prop\_color\_map));}
 \DoxyCodeLine{730 }
-\DoxyCodeLine{731   \textcolor{keyword}{friend} \textcolor{keyword}{class }boost::serialization::access;}
-\DoxyCodeLine{732   \textcolor{keyword}{template} <\textcolor{keyword}{class} Archive>}
-\DoxyCodeLine{733   \textcolor{keywordtype}{void} \mbox{\hyperlink{namespaceboost_1_1serialization_ac2d28988061f3431a765d4256c8ebb16}{save}}(Archive\& ar, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} version) \textcolor{keyword}{const};  \textcolor{comment}{// NOLINT}}
-\DoxyCodeLine{734 }
+\DoxyCodeLine{731     \textcolor{keywordflow}{return} child\_link\_names;}
+\DoxyCodeLine{732   \}}
+\DoxyCodeLine{733 }
+\DoxyCodeLine{734   \textcolor{keyword}{friend} \textcolor{keyword}{class }boost::serialization::access;}
 \DoxyCodeLine{735   \textcolor{keyword}{template} <\textcolor{keyword}{class} Archive>}
-\DoxyCodeLine{736   \textcolor{keywordtype}{void} \mbox{\hyperlink{namespaceboost_1_1serialization_a74575a96c829776955839ceea11a5145}{load}}(Archive\& ar, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} version);  \textcolor{comment}{// NOLINT}}
+\DoxyCodeLine{736   \textcolor{keywordtype}{void} \mbox{\hyperlink{namespaceboost_1_1serialization_ac2d28988061f3431a765d4256c8ebb16}{save}}(Archive\& ar, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} version) \textcolor{keyword}{const};  \textcolor{comment}{// NOLINT}}
 \DoxyCodeLine{737 }
 \DoxyCodeLine{738   \textcolor{keyword}{template} <\textcolor{keyword}{class} Archive>}
-\DoxyCodeLine{739   \textcolor{keywordtype}{void} \mbox{\hyperlink{namespaceboost_1_1serialization_aa09e7bc4ef1e47e77fdac84474259e71}{serialize}}(Archive\& ar, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} version);  \textcolor{comment}{// NOLINT}}
-\DoxyCodeLine{740 \};}
-\DoxyCodeLine{741 }
-\DoxyCodeLine{742 \textcolor{keyword}{inline} std::ostream\& \mbox{\hyperlink{namespacetesseract__scene__graph_ad25649d17ef5727a5717fb842c8e9735}{operator<<}}(std::ostream\& os, \textcolor{keyword}{const} \mbox{\hyperlink{structtesseract__scene__graph_1_1ShortestPath}{ShortestPath}}\& path)}
-\DoxyCodeLine{743 \{}
-\DoxyCodeLine{744   os << \textcolor{stringliteral}{"{}Links:"{}} << std::endl;}
-\DoxyCodeLine{745   \textcolor{keywordflow}{for} (\textcolor{keyword}{const} \textcolor{keyword}{auto}\& l : path.\mbox{\hyperlink{structtesseract__scene__graph_1_1ShortestPath_a819f61cbbe79a348aba7f64c765e220c}{links}})}
-\DoxyCodeLine{746     os << \textcolor{stringliteral}{"{}  "{}} << l << std::endl;}
-\DoxyCodeLine{747 }
-\DoxyCodeLine{748   os << \textcolor{stringliteral}{"{}Joints:"{}} << std::endl;}
-\DoxyCodeLine{749   \textcolor{keywordflow}{for} (\textcolor{keyword}{const} \textcolor{keyword}{auto}\& j : path.\mbox{\hyperlink{structtesseract__scene__graph_1_1ShortestPath_a58be125881e48e94acb3e889a85bfb8c}{joints}})}
-\DoxyCodeLine{750     os << \textcolor{stringliteral}{"{}  "{}} << j << std::endl;}
-\DoxyCodeLine{751 }
-\DoxyCodeLine{752   os << \textcolor{stringliteral}{"{}Active Joints:"{}} << std::endl;}
-\DoxyCodeLine{753   \textcolor{keywordflow}{for} (\textcolor{keyword}{const} \textcolor{keyword}{auto}\& j : path.\mbox{\hyperlink{structtesseract__scene__graph_1_1ShortestPath_a7bc901fd707db05c1adb1b9a4cdd5706}{active\_joints}})}
-\DoxyCodeLine{754     os << \textcolor{stringliteral}{"{}  "{}} << j << std::endl;}
-\DoxyCodeLine{755   \textcolor{keywordflow}{return} os;}
-\DoxyCodeLine{756 \}}
-\DoxyCodeLine{757 }
-\DoxyCodeLine{758 \}  \textcolor{comment}{// namespace tesseract\_scene\_graph}}
-\DoxyCodeLine{759 }
-\DoxyCodeLine{760 \textcolor{preprocessor}{\#include <boost/serialization/export.hpp>}}
-\DoxyCodeLine{761 \textcolor{preprocessor}{\#include <boost/serialization/tracking.hpp>}}
-\DoxyCodeLine{762 BOOST\_CLASS\_EXPORT\_KEY2(\mbox{\hyperlink{classtesseract__scene__graph_1_1SceneGraph}{tesseract\_scene\_graph::SceneGraph}}, \textcolor{stringliteral}{"{}SceneGraph"{}})}
-\DoxyCodeLine{763 }
-\DoxyCodeLine{764 \textcolor{preprocessor}{\#endif  }\textcolor{comment}{// TESSERACT\_SCENE\_GRAPH\_GRAPH\_H}}
+\DoxyCodeLine{739   \textcolor{keywordtype}{void} \mbox{\hyperlink{namespaceboost_1_1serialization_a74575a96c829776955839ceea11a5145}{load}}(Archive\& ar, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} version);  \textcolor{comment}{// NOLINT}}
+\DoxyCodeLine{740 }
+\DoxyCodeLine{741   \textcolor{keyword}{template} <\textcolor{keyword}{class} Archive>}
+\DoxyCodeLine{742   \textcolor{keywordtype}{void} \mbox{\hyperlink{namespaceboost_1_1serialization_aa09e7bc4ef1e47e77fdac84474259e71}{serialize}}(Archive\& ar, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} version);  \textcolor{comment}{// NOLINT}}
+\DoxyCodeLine{743 \};}
+\DoxyCodeLine{744 }
+\DoxyCodeLine{745 \textcolor{keyword}{inline} std::ostream\& \mbox{\hyperlink{namespacetesseract__scene__graph_ad25649d17ef5727a5717fb842c8e9735}{operator<<}}(std::ostream\& os, \textcolor{keyword}{const} \mbox{\hyperlink{structtesseract__scene__graph_1_1ShortestPath}{ShortestPath}}\& path)}
+\DoxyCodeLine{746 \{}
+\DoxyCodeLine{747   os << \textcolor{stringliteral}{"{}Links:"{}} << std::endl;}
+\DoxyCodeLine{748   \textcolor{keywordflow}{for} (\textcolor{keyword}{const} \textcolor{keyword}{auto}\& l : path.\mbox{\hyperlink{structtesseract__scene__graph_1_1ShortestPath_a819f61cbbe79a348aba7f64c765e220c}{links}})}
+\DoxyCodeLine{749     os << \textcolor{stringliteral}{"{}  "{}} << l << std::endl;}
+\DoxyCodeLine{750 }
+\DoxyCodeLine{751   os << \textcolor{stringliteral}{"{}Joints:"{}} << std::endl;}
+\DoxyCodeLine{752   \textcolor{keywordflow}{for} (\textcolor{keyword}{const} \textcolor{keyword}{auto}\& j : path.\mbox{\hyperlink{structtesseract__scene__graph_1_1ShortestPath_a58be125881e48e94acb3e889a85bfb8c}{joints}})}
+\DoxyCodeLine{753     os << \textcolor{stringliteral}{"{}  "{}} << j << std::endl;}
+\DoxyCodeLine{754 }
+\DoxyCodeLine{755   os << \textcolor{stringliteral}{"{}Active Joints:"{}} << std::endl;}
+\DoxyCodeLine{756   \textcolor{keywordflow}{for} (\textcolor{keyword}{const} \textcolor{keyword}{auto}\& j : path.\mbox{\hyperlink{structtesseract__scene__graph_1_1ShortestPath_a7bc901fd707db05c1adb1b9a4cdd5706}{active\_joints}})}
+\DoxyCodeLine{757     os << \textcolor{stringliteral}{"{}  "{}} << j << std::endl;}
+\DoxyCodeLine{758   \textcolor{keywordflow}{return} os;}
+\DoxyCodeLine{759 \}}
+\DoxyCodeLine{760 }
+\DoxyCodeLine{761 \}  \textcolor{comment}{// namespace tesseract\_scene\_graph}}
+\DoxyCodeLine{762 }
+\DoxyCodeLine{763 \textcolor{preprocessor}{\#include <boost/serialization/export.hpp>}}
+\DoxyCodeLine{764 \textcolor{preprocessor}{\#include <boost/serialization/tracking.hpp>}}
+\DoxyCodeLine{765 BOOST\_CLASS\_EXPORT\_KEY2(\mbox{\hyperlink{classtesseract__scene__graph_1_1SceneGraph}{tesseract\_scene\_graph::SceneGraph}}, \textcolor{stringliteral}{"{}SceneGraph"{}})}
+\DoxyCodeLine{766 }
+\DoxyCodeLine{767 \textcolor{preprocessor}{\#endif  }\textcolor{comment}{// TESSERACT\_SCENE\_GRAPH\_GRAPH\_H}}
 
 \end{DoxyCode}
