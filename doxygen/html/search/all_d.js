@@ -198,7 +198,7 @@ var searchData=
   ['max_5fconvehulls_195',['max_convehulls',['../d5/d45/structtesseract__collision_1_1VHACDParameters.html#a018d50462b69f5b7f166a95b40b68e1e',1,'tesseract_collision::VHACDParameters']]],
   ['max_5fdouble_196',['MAX_DOUBLE',['../d7/d02/VHACD_8cpp.html#a6b65f4b50d2d129e2fe16f8febc172c4',1,'VHACD.cpp']]],
   ['max_5fnum_5fvertices_5fper_5fch_197',['max_num_vertices_per_ch',['../d5/d45/structtesseract__collision_1_1VHACDParameters.html#ac13973f15e41f9cee5d17c8c1ed84622',1,'tesseract_collision::VHACDParameters::max_num_vertices_per_ch()'],['../d0/dfe/structtesseract__collision_1_1HACDParameters.html#a6b6b06c5e09923cbe13ebf2e63c42ad4',1,'tesseract_collision::HACDParameters::max_num_vertices_per_ch()']]],
-  ['max_5fsize_198',['max_size',['../d5/d28/structtesseract__common_1_1JointTrajectory.html#aa2d76d4cf249bbf3d8409b86b517b8b6',1,'tesseract_common::JointTrajectory']]],
+  ['max_5fsize_198',['max_size',['../da/d05/classtesseract__common_1_1JointTrajectory.html#aa2d76d4cf249bbf3d8409b86b517b8b6',1,'tesseract_common::JointTrajectory']]],
   ['maxpts_199',['MAXPTS',['../d0/d1b/FloatMath_8inl.html#aa8266ecfad8fc8522f2b1d4e2905a61b',1,'FloatMath.inl']]],
   ['maxsolutions_200',['maxsolutions',['../d6/ded/classikfast_1_1IkSingleDOFSolutionBase.html#a45404bf30c7b90131b7ce2b8045c6f6a',1,'ikfast::IkSingleDOFSolutionBase']]],
   ['mbundle_201',['mBundle',['../db/d5d/classtesseract__collision_1_1FLOAT__MATH_1_1VERTEX__INDEX_1_1KdTree.html#a7e69ed7139fe27b6f797b7f18f5c1d73',1,'tesseract_collision::FLOAT_MATH::VERTEX_INDEX::KdTree']]],

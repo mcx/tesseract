@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['value_5ftype_0',['value_type',['../d5/d28/structtesseract__common_1_1JointTrajectory.html#aca76108482457e9ada62a3bbbfb9b04a',1,'tesseract_common::JointTrajectory']]],
+  ['value_5ftype_0',['value_type',['../da/d05/classtesseract__common_1_1JointTrajectory.html#aca76108482457e9ada62a3bbbfb9b04a',1,'tesseract_common::JointTrajectory']]],
   ['vectorisometry3d_1',['VectorIsometry3d',['../df/da9/namespacetesseract__common.html#a94d9921fc7ed323609ac57d06f939cb6',1,'tesseract_common']]],
   ['vectorvector2d_2',['VectorVector2d',['../df/da9/namespacetesseract__common.html#ac60e1af30f961fc086b69e330c6434d4',1,'tesseract_common']]],
   ['vectorvector3d_3',['VectorVector3d',['../df/da9/namespacetesseract__common.html#af89ed6517f4c84bdb2b037bb40f7d9d9',1,'tesseract_common']]],

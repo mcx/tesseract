@@ -17,7 +17,7 @@ var searchData=
   ['default_5fscene_5ftopic_5fname_14',['DEFAULT_SCENE_TOPIC_NAME',['../d6/dbe/tesseract__ignition__visualization_8cpp.html#aa2f916ffa18e2a1ab6d704776db8c9ed',1,'tesseract_ignition_visualization.cpp']]],
   ['default_5ftesseract_5fmaterial_15',['DEFAULT_TESSERACT_MATERIAL',['../d9/d42/namespacetesseract__scene__graph.html#a7cc4d6d52cec84a34e4dad908a65c88f',1,'tesseract_scene_graph']]],
   ['deletion_5fpub_5f_16',['deletion_pub_',['../d9/d98/classtesseract__visualization_1_1TesseractIgnitionVisualization.html#a52bd000c3f144b3d2af36d9ce41362f5',1,'tesseract_visualization::TesseractIgnitionVisualization']]],
-  ['description_17',['description',['../d5/d28/structtesseract__common_1_1JointTrajectory.html#a6e67ae319ee05e5346b7ee1b6be07c20',1,'tesseract_common::JointTrajectory']]],
+  ['description_17',['description',['../da/d05/classtesseract__common_1_1JointTrajectory.html#a6e67ae319ee05e5346b7ee1b6be07c20',1,'tesseract_common::JointTrajectory']]],
   ['dim_18',['DIM',['../df/d70/collision__profile_8cpp.html#adbae0877c4c14b7669b48b0289b0f607',1,'collision_profile.cpp']]],
   ['disableccd_19',['disableCcd',['../d4/d0f/namespacetesseract__collision_1_1tesseract__collision__bullet.html#ab98cd88ba8479c4635bf36aefc7575f8',1,'tesseract_collision::tesseract_collision_bullet']]],
   ['discrete_5ffactories_5f_20',['discrete_factories_',['../db/d0b/classtesseract__collision_1_1ContactManagersPluginFactory.html#a0fd083c648e4ec85463320a7a1e50041',1,'tesseract_collision::ContactManagersPluginFactory']]],
