@@ -55,7 +55,7 @@
 \DoxyCodeLine{91 }
 \DoxyCodeLine{92     rhs.\mbox{\hyperlink{structtesseract__common_1_1PluginInfo_a799c037060abd59bb3475f16ef19ef6b}{class\_name}} = node[\textcolor{stringliteral}{"{}class"{}}].as<std::string>();}
 \DoxyCodeLine{93 }
-\DoxyCodeLine{94     \textcolor{keywordflow}{if} (node[\textcolor{stringliteral}{"{}config"{}}] != \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{94     \textcolor{keywordflow}{if} (node[\textcolor{stringliteral}{"{}config"{}}])  \textcolor{comment}{// NOLINT}}
 \DoxyCodeLine{95       rhs.\mbox{\hyperlink{structtesseract__common_1_1PluginInfo_a94f240db508f5cc8080598142254ba37}{config}} = node[\textcolor{stringliteral}{"{}config"{}}];}
 \DoxyCodeLine{96 }
 \DoxyCodeLine{97     \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
@@ -78,10 +78,10 @@
 \DoxyCodeLine{114 }
 \DoxyCodeLine{115   \textcolor{keyword}{static} \textcolor{keywordtype}{bool} \mbox{\hyperlink{structYAML_1_1convert_3_01tesseract__common_1_1PluginInfoContainer_01_4_a643ba50683ee05f379811e1980b04b39}{decode}}(\textcolor{keyword}{const} Node\& node, \mbox{\hyperlink{structtesseract__common_1_1PluginInfoContainer}{tesseract\_common::PluginInfoContainer}}\& rhs)}
 \DoxyCodeLine{116   \{}
-\DoxyCodeLine{117     \textcolor{keywordflow}{if} (node[\textcolor{stringliteral}{"{}default"{}}] != \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{117     \textcolor{keywordflow}{if} (node[\textcolor{stringliteral}{"{}default"{}}])  \textcolor{comment}{// NOLINT}}
 \DoxyCodeLine{118       rhs.\mbox{\hyperlink{structtesseract__common_1_1PluginInfoContainer_a7e37004869c25acd06cd39295f974c8d}{default\_plugin}} = node[\textcolor{stringliteral}{"{}default"{}}].as<std::string>();}
 \DoxyCodeLine{119 }
-\DoxyCodeLine{120     \textcolor{keywordflow}{if} (node[\textcolor{stringliteral}{"{}plugins"{}}] == \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{120     \textcolor{keywordflow}{if} (!node[\textcolor{stringliteral}{"{}plugins"{}}])  \textcolor{comment}{// NOLINT}}
 \DoxyCodeLine{121       \textcolor{keywordflow}{throw} std::runtime\_error(\textcolor{stringliteral}{"{}PluginInfoContainer, missing 'plugins' entry!"{}});}
 \DoxyCodeLine{122 }
 \DoxyCodeLine{123     \textcolor{keyword}{const} Node\& plugins = node[\textcolor{stringliteral}{"{}plugins"{}}];}
