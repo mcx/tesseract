@@ -164,12 +164,16 @@ bool \mbox{\hyperlink{classtesseract__environment_1_1Environment_ae9e502d1e5f4a7
 \begin{DoxyCompactList}\small\item\em Set the active discrete contact manager. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classtesseract__collision_1_1DiscreteContactManager_a52a7b770e7b6cec875254d7cdea3c314}{tesseract\+\_\+collision\+::\+Discrete\+Contact\+Manager\+::\+UPtr}} \mbox{\hyperlink{classtesseract__environment_1_1Environment_a6394d4dde8fa7109c07fdccc6c955c66}{get\+Discrete\+Contact\+Manager}} () const
 \begin{DoxyCompactList}\small\item\em Get a copy of the environments active discrete contact manager. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classtesseract__environment_1_1Environment_a7a89228cc5535b44ee46b607621f3fcf}{clear\+Discrete\+Contact\+Manager}} ()
+\begin{DoxyCompactList}\small\item\em Set the internal copy of the environments active discrete contact manager not nullptr. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classtesseract__collision_1_1DiscreteContactManager_a52a7b770e7b6cec875254d7cdea3c314}{tesseract\+\_\+collision\+::\+Discrete\+Contact\+Manager\+::\+UPtr}} \mbox{\hyperlink{classtesseract__environment_1_1Environment_a65a947cd9335e692480fd09be24e587e}{get\+Discrete\+Contact\+Manager}} (const std\+::string \&name) const
 \begin{DoxyCompactList}\small\item\em Get a copy of the environments available discrete contact manager by name. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{classtesseract__environment_1_1Environment_a4ab1e3d2b9420b08a8ab2ad52ba0c74c}{set\+Active\+Continuous\+Contact\+Manager}} (const std\+::string \&name)
 \begin{DoxyCompactList}\small\item\em Set the active continuous contact manager. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classtesseract__collision_1_1ContinuousContactManager_af3e8b59ffc319924eb2a7e3925bb6e56}{tesseract\+\_\+collision\+::\+Continuous\+Contact\+Manager\+::\+UPtr}} \mbox{\hyperlink{classtesseract__environment_1_1Environment_aea8340415227e94a502247f3880ae6bb}{get\+Continuous\+Contact\+Manager}} () const
 \begin{DoxyCompactList}\small\item\em Get a copy of the environments active continuous contact manager. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classtesseract__environment_1_1Environment_a8109bd81730849e247970cee61b3fe16}{clear\+Continuous\+Contact\+Manager}} ()
+\begin{DoxyCompactList}\small\item\em Set the internal copy of the environments active continuous contact manager not nullptr. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classtesseract__collision_1_1ContinuousContactManager_af3e8b59ffc319924eb2a7e3925bb6e56}{tesseract\+\_\+collision\+::\+Continuous\+Contact\+Manager\+::\+UPtr}} \mbox{\hyperlink{classtesseract__environment_1_1Environment_ada1bbee0356c54b84bcd5b5903b1d5fd}{get\+Continuous\+Contact\+Manager}} (const std\+::string \&name) const
 \begin{DoxyCompactList}\small\item\em Get a copy of the environments available continuous contact manager by name. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classtesseract__common_1_1CollisionMarginData}{tesseract\+\_\+common\+::\+Collision\+Margin\+Data}} \mbox{\hyperlink{classtesseract__environment_1_1Environment_ad526de2abbc241612f0cd2d2a5fb45de}{get\+Collision\+Margin\+Data}} () const
@@ -613,7 +617,27 @@ Apply \mbox{\hyperlink{classtesseract__environment_1_1Command}{Command}} Helper 
 
 clear content and uninitialized 
 
-\mbox{\Hypertarget{classtesseract__environment_1_1Environment_ae16232142c1de8d3d27e4ca0e15cabc3}\label{classtesseract__environment_1_1Environment_ae16232142c1de8d3d27e4ca0e15cabc3}} 
+\mbox{\Hypertarget{classtesseract__environment_1_1Environment_a8109bd81730849e247970cee61b3fe16}\label{classtesseract__environment_1_1Environment_a8109bd81730849e247970cee61b3fe16}} 
+\index{tesseract\_environment::Environment@{tesseract\_environment::Environment}!clearContinuousContactManager@{clearContinuousContactManager}}
+\index{clearContinuousContactManager@{clearContinuousContactManager}!tesseract\_environment::Environment@{tesseract\_environment::Environment}}
+\doxysubsubsection{\texorpdfstring{clearContinuousContactManager()}{clearContinuousContactManager()}}
+{\footnotesize\ttfamily void tesseract\+\_\+environment\+::\+Environment\+::clear\+Continuous\+Contact\+Manager (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Set the internal copy of the environments active continuous contact manager not nullptr. 
+
+This can be useful to save space in the event the environment is being saved \mbox{\Hypertarget{classtesseract__environment_1_1Environment_a7a89228cc5535b44ee46b607621f3fcf}\label{classtesseract__environment_1_1Environment_a7a89228cc5535b44ee46b607621f3fcf}} 
+\index{tesseract\_environment::Environment@{tesseract\_environment::Environment}!clearDiscreteContactManager@{clearDiscreteContactManager}}
+\index{clearDiscreteContactManager@{clearDiscreteContactManager}!tesseract\_environment::Environment@{tesseract\_environment::Environment}}
+\doxysubsubsection{\texorpdfstring{clearDiscreteContactManager()}{clearDiscreteContactManager()}}
+{\footnotesize\ttfamily void tesseract\+\_\+environment\+::\+Environment\+::clear\+Discrete\+Contact\+Manager (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Set the internal copy of the environments active discrete contact manager not nullptr. 
+
+This can be useful to save space in the event the environment is being saved \mbox{\Hypertarget{classtesseract__environment_1_1Environment_ae16232142c1de8d3d27e4ca0e15cabc3}\label{classtesseract__environment_1_1Environment_ae16232142c1de8d3d27e4ca0e15cabc3}} 
 \index{tesseract\_environment::Environment@{tesseract\_environment::Environment}!clearEventCallbacks@{clearEventCallbacks}}
 \index{clearEventCallbacks@{clearEventCallbacks}!tesseract\_environment::Environment@{tesseract\_environment::Environment}}
 \doxysubsubsection{\texorpdfstring{clearEventCallbacks()}{clearEventCallbacks()}}
@@ -1671,7 +1695,7 @@ This is intentionally not serialized it will auto updated
 \index{tesseract\_environment::Environment@{tesseract\_environment::Environment}!continuous\_manager\_@{continuous\_manager\_}}
 \index{continuous\_manager\_@{continuous\_manager\_}!tesseract\_environment::Environment@{tesseract\_environment::Environment}}
 \doxysubsubsection{\texorpdfstring{continuous\_manager\_}{continuous\_manager\_}}
-{\footnotesize\ttfamily \mbox{\hyperlink{classtesseract__collision_1_1ContinuousContactManager_af3e8b59ffc319924eb2a7e3925bb6e56}{tesseract\+\_\+collision\+::\+Continuous\+Contact\+Manager\+::\+UPtr}} tesseract\+\_\+environment\+::\+Environment\+::continuous\+\_\+manager\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classtesseract__collision_1_1ContinuousContactManager_af3e8b59ffc319924eb2a7e3925bb6e56}{tesseract\+\_\+collision\+::\+Continuous\+Contact\+Manager\+::\+UPtr}} tesseract\+\_\+environment\+::\+Environment\+::continuous\+\_\+manager\+\_\+\hspace{0.3cm}{\ttfamily [mutable]}, {\ttfamily [protected]}}
 
 
 
@@ -1704,7 +1728,7 @@ Current state timestamp.
 \index{tesseract\_environment::Environment@{tesseract\_environment::Environment}!discrete\_manager\_@{discrete\_manager\_}}
 \index{discrete\_manager\_@{discrete\_manager\_}!tesseract\_environment::Environment@{tesseract\_environment::Environment}}
 \doxysubsubsection{\texorpdfstring{discrete\_manager\_}{discrete\_manager\_}}
-{\footnotesize\ttfamily \mbox{\hyperlink{classtesseract__collision_1_1DiscreteContactManager_a52a7b770e7b6cec875254d7cdea3c314}{tesseract\+\_\+collision\+::\+Discrete\+Contact\+Manager\+::\+UPtr}} tesseract\+\_\+environment\+::\+Environment\+::discrete\+\_\+manager\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classtesseract__collision_1_1DiscreteContactManager_a52a7b770e7b6cec875254d7cdea3c314}{tesseract\+\_\+collision\+::\+Discrete\+Contact\+Manager\+::\+UPtr}} tesseract\+\_\+environment\+::\+Environment\+::discrete\+\_\+manager\+\_\+\hspace{0.3cm}{\ttfamily [mutable]}, {\ttfamily [protected]}}
 
 
 
