@@ -44,8 +44,8 @@
 \DoxyCodeLine{65 \textcolor{keyword}{template} <\textcolor{keyword}{typename} ConcreteType, \textcolor{keyword}{typename} Interface>}
 \DoxyCodeLine{66 \textcolor{keyword}{struct }\mbox{\hyperlink{structtesseract__common_1_1TypeErasureInstance}{TypeErasureInstance}} : Interface}
 \DoxyCodeLine{67 \{}
-\DoxyCodeLine{68   \textcolor{keyword}{using} \mbox{\hyperlink{structtesseract__common_1_1TypeErasureInstance_ac9e01156a1f3a92ef3693db3938b4172}{ValueType}} = ConcreteType;}
-\DoxyCodeLine{69   \textcolor{keyword}{using} \mbox{\hyperlink{structtesseract__common_1_1TypeErasureInstance_af51cd9c867086327eec25d43ab79ea02}{InterfaceType}} = Interface;}
+\DoxyCodeLine{68   \textcolor{keyword}{using }\mbox{\hyperlink{structtesseract__common_1_1TypeErasureInstance_ac9e01156a1f3a92ef3693db3938b4172}{ValueType}} = ConcreteType;}
+\DoxyCodeLine{69   \textcolor{keyword}{using }\mbox{\hyperlink{structtesseract__common_1_1TypeErasureInstance_af51cd9c867086327eec25d43ab79ea02}{InterfaceType}} = Interface;}
 \DoxyCodeLine{70 }
 \DoxyCodeLine{71   \mbox{\hyperlink{structtesseract__common_1_1TypeErasureInstance_a4256824e49b1c6c83b9d130bee346597}{TypeErasureInstance}}() = \textcolor{keywordflow}{default};}
 \DoxyCodeLine{72 }
@@ -85,8 +85,8 @@
 \DoxyCodeLine{106 \textcolor{keyword}{template} <\textcolor{keyword}{typename} F>}
 \DoxyCodeLine{107 \textcolor{keyword}{struct }\mbox{\hyperlink{structtesseract__common_1_1TypeErasureInstanceWrapper}{TypeErasureInstanceWrapper}} : F  \textcolor{comment}{// NOLINT}}
 \DoxyCodeLine{108 \{}
-\DoxyCodeLine{109   \textcolor{keyword}{using} \mbox{\hyperlink{structtesseract__common_1_1TypeErasureInstanceWrapper_aad512785444ebb9bca421a7aa64da36a}{ValueType}} = \textcolor{keyword}{typename} F::ValueType;}
-\DoxyCodeLine{110   \textcolor{keyword}{using} \mbox{\hyperlink{structtesseract__common_1_1TypeErasureInstanceWrapper_acc90b3067104b979fd9e16324d04c5df}{InterfaceType}} = \textcolor{keyword}{typename} F::InterfaceType;}
+\DoxyCodeLine{109   \textcolor{keyword}{using }\mbox{\hyperlink{structtesseract__common_1_1TypeErasureInstanceWrapper_aad512785444ebb9bca421a7aa64da36a}{ValueType}} = \textcolor{keyword}{typename} F::ValueType;}
+\DoxyCodeLine{110   \textcolor{keyword}{using }\mbox{\hyperlink{structtesseract__common_1_1TypeErasureInstanceWrapper_acc90b3067104b979fd9e16324d04c5df}{InterfaceType}} = \textcolor{keyword}{typename} F::InterfaceType;}
 \DoxyCodeLine{111 }
 \DoxyCodeLine{112   \mbox{\hyperlink{structtesseract__common_1_1TypeErasureInstanceWrapper_ac08c51ea7f9193ed946d4e74f2fbca9a}{TypeErasureInstanceWrapper}}() = \textcolor{keywordflow}{default};}
 \DoxyCodeLine{113   \mbox{\hyperlink{structtesseract__common_1_1TypeErasureInstanceWrapper_af070cf0ef9046c86ff0adc36be54475e}{TypeErasureInstanceWrapper}}(\textcolor{keyword}{const} \mbox{\hyperlink{structtesseract__common_1_1TypeErasureInstanceWrapper_aad512785444ebb9bca421a7aa64da36a}{ValueType}}\& x) : F(x) \{\}}
@@ -113,15 +113,15 @@
 \DoxyCodeLine{134 \{}
 \DoxyCodeLine{135 \textcolor{keyword}{private}:}
 \DoxyCodeLine{136   \textcolor{keyword}{template} <\textcolor{keyword}{typename} T>}
-\DoxyCodeLine{137   \textcolor{keyword}{using} \mbox{\hyperlink{structtesseract__common_1_1TypeErasureBase_af3c055f092ec883c3023ae8723df8c09}{uncvref\_t}} = std::remove\_cv\_t<typename std::remove\_reference<T>::type>;}
+\DoxyCodeLine{137   \textcolor{keyword}{using }\mbox{\hyperlink{structtesseract__common_1_1TypeErasureBase_af3c055f092ec883c3023ae8723df8c09}{uncvref\_t}} = std::remove\_cv\_t<typename std::remove\_reference<T>::type>;}
 \DoxyCodeLine{138 }
 \DoxyCodeLine{139   \textcolor{comment}{// Enable the generic ctor only if ``T`` is not a ForwardKinematics (after removing const/reference qualifiers)}}
 \DoxyCodeLine{140   \textcolor{comment}{// If ``T`` is of type ForwardKinematics we disable so it will use the copy or move constructors of this class.}}
 \DoxyCodeLine{141   \textcolor{keyword}{template} <\textcolor{keyword}{typename} T>}
-\DoxyCodeLine{142   \textcolor{keyword}{using} \mbox{\hyperlink{structtesseract__common_1_1TypeErasureBase_a44d7d3a3eab622f2599e247931e4896c}{generic\_ctor\_enabler}} = std::enable\_if\_t<!std::is\_base\_of<TypeErasureBase, uncvref\_t<T>>::value, \textcolor{keywordtype}{int}>;}
+\DoxyCodeLine{142   \textcolor{keyword}{using }\mbox{\hyperlink{structtesseract__common_1_1TypeErasureBase_a44d7d3a3eab622f2599e247931e4896c}{generic\_ctor\_enabler}} = std::enable\_if\_t<!std::is\_base\_of<TypeErasureBase, uncvref\_t<T>>::value, \textcolor{keywordtype}{int}>;}
 \DoxyCodeLine{143 }
 \DoxyCodeLine{144 \textcolor{keyword}{public}:}
-\DoxyCodeLine{145   \textcolor{keyword}{using} \mbox{\hyperlink{structtesseract__common_1_1TypeErasureBase_a14db1891b1edb6af862a8b156a03dbdb}{InterfaceType}} = Interface;}
+\DoxyCodeLine{145   \textcolor{keyword}{using }\mbox{\hyperlink{structtesseract__common_1_1TypeErasureBase_a14db1891b1edb6af862a8b156a03dbdb}{InterfaceType}} = Interface;}
 \DoxyCodeLine{146 }
 \DoxyCodeLine{147   \textcolor{keyword}{template} <\textcolor{keyword}{typename} T, \textcolor{keyword}{generic}\_ctor\_enabler<T> = 0>}
 \DoxyCodeLine{148   \mbox{\hyperlink{structtesseract__common_1_1TypeErasureBase_aa0cce17aaebf12126df8d5bc48b50703}{TypeErasureBase}}(T\&\& value)  \textcolor{comment}{// NOLINT}}
@@ -181,7 +181,7 @@
 \DoxyCodeLine{202   T\& \mbox{\hyperlink{structtesseract__common_1_1TypeErasureBase_ad62906529725ec9857273ff50cdbc08b}{as}}()}
 \DoxyCodeLine{203   \{}
 \DoxyCodeLine{204     \textcolor{keywordflow}{if} (\mbox{\hyperlink{structtesseract__common_1_1TypeErasureBase_ac3714363cd2bfc7bb38f0f64f980b28f}{getType}}() != \textcolor{keyword}{typeid}(T))}
-\DoxyCodeLine{205       \textcolor{keywordflow}{throw} std::runtime\_error(\textcolor{stringliteral}{"{}PolyBase, tried to cast '"{}} + std::string(\mbox{\hyperlink{structtesseract__common_1_1TypeErasureBase_ac3714363cd2bfc7bb38f0f64f980b28f}{getType}}().name()) + \textcolor{stringliteral}{"{}' to '"{}} +}
+\DoxyCodeLine{205       \textcolor{keywordflow}{throw} std::runtime\_error(\textcolor{stringliteral}{"{}TypeErasureBase, tried to cast '"{}} + std::string(\mbox{\hyperlink{structtesseract__common_1_1TypeErasureBase_ac3714363cd2bfc7bb38f0f64f980b28f}{getType}}().name()) + \textcolor{stringliteral}{"{}' to '"{}} +}
 \DoxyCodeLine{206                                std::string(\textcolor{keyword}{typeid}(T).name()) + \textcolor{stringliteral}{"{}'!"{}});}
 \DoxyCodeLine{207 }
 \DoxyCodeLine{208     \textcolor{keyword}{auto}* p = \textcolor{keyword}{static\_cast<}\mbox{\hyperlink{structtesseract__common_1_1TypeErasureBase_af3c055f092ec883c3023ae8723df8c09}{uncvref\_t<T>}}*\textcolor{keyword}{>}(\mbox{\hyperlink{structtesseract__common_1_1TypeErasureBase_a8adcc6cad0893c332a828dd8a662e5c6}{value\_}}-\/>recover());}
@@ -192,7 +192,7 @@
 \DoxyCodeLine{213   \textcolor{keyword}{const} T\& \mbox{\hyperlink{structtesseract__common_1_1TypeErasureBase_a17d29af667b6d6d1e8a8fb49bc36a501}{as}}()\textcolor{keyword}{ const}}
 \DoxyCodeLine{214 \textcolor{keyword}{  }\{}
 \DoxyCodeLine{215     \textcolor{keywordflow}{if} (\mbox{\hyperlink{structtesseract__common_1_1TypeErasureBase_ac3714363cd2bfc7bb38f0f64f980b28f}{getType}}() != \textcolor{keyword}{typeid}(T))}
-\DoxyCodeLine{216       \textcolor{keywordflow}{throw} std::runtime\_error(\textcolor{stringliteral}{"{}PolyBase, tried to cast '"{}} + std::string(\mbox{\hyperlink{structtesseract__common_1_1TypeErasureBase_ac3714363cd2bfc7bb38f0f64f980b28f}{getType}}().name()) + \textcolor{stringliteral}{"{}' to '"{}} +}
+\DoxyCodeLine{216       \textcolor{keywordflow}{throw} std::runtime\_error(\textcolor{stringliteral}{"{}TypeErasureBase, tried to cast '"{}} + std::string(\mbox{\hyperlink{structtesseract__common_1_1TypeErasureBase_ac3714363cd2bfc7bb38f0f64f980b28f}{getType}}().name()) + \textcolor{stringliteral}{"{}' to '"{}} +}
 \DoxyCodeLine{217                                std::string(\textcolor{keyword}{typeid}(T).name()) + \textcolor{stringliteral}{"{}'!"{}});}
 \DoxyCodeLine{218 }
 \DoxyCodeLine{219     \textcolor{keyword}{const} \textcolor{keyword}{auto}* p = \textcolor{keyword}{static\_cast<}\textcolor{keyword}{const }\mbox{\hyperlink{structtesseract__common_1_1TypeErasureBase_af3c055f092ec883c3023ae8723df8c09}{uncvref\_t<T>}}*\textcolor{keyword}{>}(\mbox{\hyperlink{structtesseract__common_1_1TypeErasureBase_a8adcc6cad0893c332a828dd8a662e5c6}{value\_}}-\/>recover());}

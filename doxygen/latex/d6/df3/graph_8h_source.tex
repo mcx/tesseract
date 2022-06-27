@@ -73,17 +73,17 @@
 \DoxyCodeLine{93 \{}
 \DoxyCodeLine{94 \textcolor{preprocessor}{\#ifndef SWIG}}
 \DoxyCodeLine{95 }
-\DoxyCodeLine{97 \textcolor{keyword}{using} \mbox{\hyperlink{namespacetesseract__scene__graph_a8a54db22a9b9c10174389d74fc6a46bc}{GraphProperty}} =}
+\DoxyCodeLine{97 \textcolor{keyword}{using }\mbox{\hyperlink{namespacetesseract__scene__graph_a8a54db22a9b9c10174389d74fc6a46bc}{GraphProperty}} =}
 \DoxyCodeLine{98     boost::property<boost::graph\_name\_t, std::string, boost::property<boost::graph\_root\_t, std::string>>;}
 \DoxyCodeLine{99 }
-\DoxyCodeLine{101 \textcolor{keyword}{using} \mbox{\hyperlink{namespacetesseract__scene__graph_a87d88949e8773cc1ab1a583b4bc6824f}{VertexProperty}} = boost::property<}
+\DoxyCodeLine{101 \textcolor{keyword}{using }\mbox{\hyperlink{namespacetesseract__scene__graph_a87d88949e8773cc1ab1a583b4bc6824f}{VertexProperty}} = boost::property<}
 \DoxyCodeLine{102     \mbox{\hyperlink{namespaceboost_ab951500554c258d05de53b1a9e47c6f7}{boost::vertex\_link\_t}},}
 \DoxyCodeLine{103     \mbox{\hyperlink{classtesseract__scene__graph_1_1Link_a424c06b5c02fe0b92fee449ef1190bf0}{Link::Ptr}},}
 \DoxyCodeLine{104     boost::property<boost::vertex\_link\_visible\_t, bool, boost::property<boost::vertex\_link\_collision\_enabled\_t, bool>>>;}
 \DoxyCodeLine{105 }
-\DoxyCodeLine{111 \textcolor{keyword}{using} \mbox{\hyperlink{namespacetesseract__scene__graph_a9dc21bc544723df21ec27052717c4e1e}{EdgeProperty}} = boost::property<boost::edge\_joint\_t, Joint::Ptr, boost::property<boost::edge\_weight\_t, double>>;}
+\DoxyCodeLine{111 \textcolor{keyword}{using }\mbox{\hyperlink{namespacetesseract__scene__graph_a9dc21bc544723df21ec27052717c4e1e}{EdgeProperty}} = boost::property<boost::edge\_joint\_t, Joint::Ptr, boost::property<boost::edge\_weight\_t, double>>;}
 \DoxyCodeLine{112 }
-\DoxyCodeLine{113 \textcolor{keyword}{using} \mbox{\hyperlink{namespacetesseract__scene__graph_acbaf9f6ad6831a8d42a5ece9f2d611a2}{Graph}} = boost::}
+\DoxyCodeLine{113 \textcolor{keyword}{using }\mbox{\hyperlink{namespacetesseract__scene__graph_acbaf9f6ad6831a8d42a5ece9f2d611a2}{Graph}} = boost::}
 \DoxyCodeLine{114     adjacency\_list<boost::listS, boost::listS, boost::bidirectionalS, VertexProperty, EdgeProperty, GraphProperty>;}
 \DoxyCodeLine{115 }
 \DoxyCodeLine{116 \textcolor{preprocessor}{\#endif  }\textcolor{comment}{// SWIG}}
@@ -104,13 +104,13 @@
 \DoxyCodeLine{135 \textcolor{preprocessor}{\#endif  }\textcolor{comment}{// SWIG}}
 \DoxyCodeLine{136 \{}
 \DoxyCodeLine{137 \textcolor{keyword}{public}:}
-\DoxyCodeLine{138   \textcolor{keyword}{using} \mbox{\hyperlink{classtesseract__scene__graph_1_1SceneGraph_ac86f6f12f2ad6d9c96da0fa20fd3df68}{Vertex}} = SceneGraph::vertex\_descriptor;}
-\DoxyCodeLine{139   \textcolor{keyword}{using} \mbox{\hyperlink{classtesseract__scene__graph_1_1SceneGraph_a672cca11486cfaff6c0ce0794eca7220}{Edge}} = SceneGraph::edge\_descriptor;}
+\DoxyCodeLine{138   \textcolor{keyword}{using }\mbox{\hyperlink{classtesseract__scene__graph_1_1SceneGraph_ac86f6f12f2ad6d9c96da0fa20fd3df68}{Vertex}} = SceneGraph::vertex\_descriptor;}
+\DoxyCodeLine{139   \textcolor{keyword}{using }\mbox{\hyperlink{classtesseract__scene__graph_1_1SceneGraph_a672cca11486cfaff6c0ce0794eca7220}{Edge}} = SceneGraph::edge\_descriptor;}
 \DoxyCodeLine{140 }
-\DoxyCodeLine{141   \textcolor{keyword}{using} \mbox{\hyperlink{classtesseract__scene__graph_1_1SceneGraph_a4421b8568bd664cf203613a054e1847b}{Ptr}} = std::shared\_ptr<SceneGraph>;}
-\DoxyCodeLine{142   \textcolor{keyword}{using} \mbox{\hyperlink{classtesseract__scene__graph_1_1SceneGraph_a9ee303b2514bfedd8c914d09551b00ff}{ConstPtr}} = std::shared\_ptr<const SceneGraph>;}
-\DoxyCodeLine{143   \textcolor{keyword}{using} \mbox{\hyperlink{classtesseract__scene__graph_1_1SceneGraph_aacd7acf57071e94cd87fbae62dbaafba}{UPtr}} = std::unique\_ptr<SceneGraph>;}
-\DoxyCodeLine{144   \textcolor{keyword}{using} \mbox{\hyperlink{classtesseract__scene__graph_1_1SceneGraph_a67b1fe51efd7235110520e1d79da2f6b}{ConstUPtr}} = std::unique\_ptr<const SceneGraph>;}
+\DoxyCodeLine{141   \textcolor{keyword}{using }\mbox{\hyperlink{classtesseract__scene__graph_1_1SceneGraph_a4421b8568bd664cf203613a054e1847b}{Ptr}} = std::shared\_ptr<SceneGraph>;}
+\DoxyCodeLine{142   \textcolor{keyword}{using }\mbox{\hyperlink{classtesseract__scene__graph_1_1SceneGraph_a9ee303b2514bfedd8c914d09551b00ff}{ConstPtr}} = std::shared\_ptr<const SceneGraph>;}
+\DoxyCodeLine{143   \textcolor{keyword}{using }\mbox{\hyperlink{classtesseract__scene__graph_1_1SceneGraph_aacd7acf57071e94cd87fbae62dbaafba}{UPtr}} = std::unique\_ptr<SceneGraph>;}
+\DoxyCodeLine{144   \textcolor{keyword}{using }\mbox{\hyperlink{classtesseract__scene__graph_1_1SceneGraph_a67b1fe51efd7235110520e1d79da2f6b}{ConstUPtr}} = std::unique\_ptr<const SceneGraph>;}
 \DoxyCodeLine{145 }
 \DoxyCodeLine{146   \mbox{\hyperlink{classtesseract__scene__graph_1_1SceneGraph}{SceneGraph}}(\textcolor{keyword}{const} std::string\& name = \textcolor{stringliteral}{"{}"{}});}
 \DoxyCodeLine{147   \mbox{\hyperlink{classtesseract__scene__graph_1_1SceneGraph_a340e75c583d4ce53c14a62816bfeb04b}{\string~SceneGraph}}() = \textcolor{keywordflow}{default};}

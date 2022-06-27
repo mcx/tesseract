@@ -1,9 +1,9 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$de/d52/classtesseract__scene__graph_1_1OFKTNode.html" title="The OFKT node is contains multiple trasformation which are described below." alt="" coords="5,136,163,177"/>
-<area shape="rect" id="node2" href="$d0/da9/classtesseract__scene__graph_1_1OFKTBaseNode.html" title=" " alt="" coords="211,136,368,177"/>
-<area shape="rect" id="node3" href="$db/dfb/classtesseract__scene__graph_1_1OFKTContinuousNode.html" title=" " alt="" coords="416,5,575,47"/>
-<area shape="rect" id="node4" href="$d9/d00/classtesseract__scene__graph_1_1OFKTFixedNode.html" title=" " alt="" coords="417,71,574,112"/>
-<area shape="rect" id="node5" href="$dc/df4/classtesseract__scene__graph_1_1OFKTPrismaticNode.html" title=" " alt="" coords="417,136,574,177"/>
-<area shape="rect" id="node6" href="$dc/dee/classtesseract__scene__graph_1_1OFKTRevoluteNode.html" title=" " alt="" coords="417,201,574,243"/>
-<area shape="rect" id="node7" href="$d1/d20/classtesseract__scene__graph_1_1OFKTRootNode.html" title=" " alt="" coords="417,267,574,308"/>
+<area shape="rect" id="node1" href="$dd/d6d/classtesseract__kinematics_1_1InvKinFactory.html" title="Define a inverse kinematics plugin which the factory can create an instance." alt="" coords="5,169,152,211"/>
+<area shape="rect" id="node2" href="$d6/da5/classtesseract__kinematics_1_1KDLInvKinChainLMAFactory.html" title=" " alt="" coords="200,5,395,47"/>
+<area shape="rect" id="node3" href="$d4/d9a/classtesseract__kinematics_1_1KDLInvKinChainNRFactory.html" title=" " alt="" coords="204,71,391,112"/>
+<area shape="rect" id="node4" href="$d9/d2a/classtesseract__kinematics_1_1OPWInvKinFactory.html" title=" " alt="" coords="224,136,371,177"/>
+<area shape="rect" id="node5" href="$da/d89/classtesseract__kinematics_1_1REPInvKinFactory.html" title=" " alt="" coords="224,201,371,243"/>
+<area shape="rect" id="node6" href="$dc/dac/classtesseract__kinematics_1_1ROPInvKinFactory.html" title=" " alt="" coords="224,267,371,308"/>
+<area shape="rect" id="node7" href="$df/da6/classtesseract__kinematics_1_1URInvKinFactory.html" title=" " alt="" coords="224,332,371,373"/>
 </map>

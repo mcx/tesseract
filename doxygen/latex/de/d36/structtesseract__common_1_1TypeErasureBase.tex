@@ -14,6 +14,16 @@ Inheritance diagram for tesseract\+\_\+common\+::Type\+Erasure\+Base\texorpdfstr
 \includegraphics[width=238pt]{d1/d05/structtesseract__common_1_1TypeErasureBase__inherit__graph}
 \end{center}
 \end{figure}
+
+
+Collaboration diagram for tesseract\+\_\+common\+::Type\+Erasure\+Base\texorpdfstring{$<$}{<} Interface, Instance \texorpdfstring{$>$}{>}\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=244pt]{d7/d65/structtesseract__common_1_1TypeErasureBase__coll__graph}
+\end{center}
+\end{figure}
 \doxysubsection*{Public Types}
 \begin{DoxyCompactItemize}
 \item 
@@ -85,14 +95,14 @@ struct \mbox{\hyperlink{structtesseract__common_1_1TypeErasureBase_a9d42ad7bb402
 \doxysubsubsection{\texorpdfstring{generic\_ctor\_enabler}{generic\_ctor\_enabler}}
 {\footnotesize\ttfamily template$<$typename Interface , template$<$ typename $>$ class Instance$>$ \\
 template$<$typename T $>$ \\
-using \mbox{\hyperlink{structtesseract__common_1_1TypeErasureBase}{tesseract\+\_\+common\+::\+Type\+Erasure\+Base}}$<$ Interface, Instance $>$\+::\mbox{\hyperlink{structtesseract__common_1_1TypeErasureBase_a44d7d3a3eab622f2599e247931e4896c}{generic\+\_\+ctor\+\_\+enabler}} =  std\+::enable\+\_\+if\+\_\+t$<$!std\+::is\+\_\+base\+\_\+of$<$\mbox{\hyperlink{structtesseract__common_1_1TypeErasureBase}{Type\+Erasure\+Base}}, \mbox{\hyperlink{structtesseract__common_1_1TypeErasureBase_af3c055f092ec883c3023ae8723df8c09}{uncvref\+\_\+t}}$<$T$>$ $>$\+::value, int$>$\hspace{0.3cm}{\ttfamily [private]}}
+using \mbox{\hyperlink{structtesseract__common_1_1TypeErasureBase}{tesseract\+\_\+common\+::\+Type\+Erasure\+Base}}$<$ Interface, Instance $>$\+::generic\+\_\+ctor\+\_\+enabler =  std\+::enable\+\_\+if\+\_\+t$<$!std\+::is\+\_\+base\+\_\+of$<$\mbox{\hyperlink{structtesseract__common_1_1TypeErasureBase}{Type\+Erasure\+Base}}, \mbox{\hyperlink{structtesseract__common_1_1TypeErasureBase_af3c055f092ec883c3023ae8723df8c09}{uncvref\+\_\+t}}$<$T$>$ $>$\+::value, int$>$\hspace{0.3cm}{\ttfamily [private]}}
 
 \mbox{\Hypertarget{structtesseract__common_1_1TypeErasureBase_a14db1891b1edb6af862a8b156a03dbdb}\label{structtesseract__common_1_1TypeErasureBase_a14db1891b1edb6af862a8b156a03dbdb}} 
 \index{tesseract\_common::TypeErasureBase$<$ Interface, Instance $>$@{tesseract\_common::TypeErasureBase$<$ Interface, Instance $>$}!InterfaceType@{InterfaceType}}
 \index{InterfaceType@{InterfaceType}!tesseract\_common::TypeErasureBase$<$ Interface, Instance $>$@{tesseract\_common::TypeErasureBase$<$ Interface, Instance $>$}}
 \doxysubsubsection{\texorpdfstring{InterfaceType}{InterfaceType}}
 {\footnotesize\ttfamily template$<$typename Interface , template$<$ typename $>$ class Instance$>$ \\
-using \mbox{\hyperlink{structtesseract__common_1_1TypeErasureBase}{tesseract\+\_\+common\+::\+Type\+Erasure\+Base}}$<$ Interface, Instance $>$\+::\mbox{\hyperlink{structtesseract__common_1_1TypeErasureBase_a14db1891b1edb6af862a8b156a03dbdb}{Interface\+Type}} =  Interface}
+using \mbox{\hyperlink{structtesseract__common_1_1TypeErasureBase}{tesseract\+\_\+common\+::\+Type\+Erasure\+Base}}$<$ Interface, Instance $>$\+::\+Interface\+Type =  Interface}
 
 \mbox{\Hypertarget{structtesseract__common_1_1TypeErasureBase_af3c055f092ec883c3023ae8723df8c09}\label{structtesseract__common_1_1TypeErasureBase_af3c055f092ec883c3023ae8723df8c09}} 
 \index{tesseract\_common::TypeErasureBase$<$ Interface, Instance $>$@{tesseract\_common::TypeErasureBase$<$ Interface, Instance $>$}!uncvref\_t@{uncvref\_t}}
@@ -100,7 +110,7 @@ using \mbox{\hyperlink{structtesseract__common_1_1TypeErasureBase}{tesseract\+\_
 \doxysubsubsection{\texorpdfstring{uncvref\_t}{uncvref\_t}}
 {\footnotesize\ttfamily template$<$typename Interface , template$<$ typename $>$ class Instance$>$ \\
 template$<$typename T $>$ \\
-using \mbox{\hyperlink{structtesseract__common_1_1TypeErasureBase}{tesseract\+\_\+common\+::\+Type\+Erasure\+Base}}$<$ Interface, Instance $>$\+::\mbox{\hyperlink{structtesseract__common_1_1TypeErasureBase_af3c055f092ec883c3023ae8723df8c09}{uncvref\+\_\+t}} =  std\+::remove\+\_\+cv\+\_\+t$<$typename std\+::remove\+\_\+reference$<$T$>$\+::type$>$\hspace{0.3cm}{\ttfamily [private]}}
+using \mbox{\hyperlink{structtesseract__common_1_1TypeErasureBase}{tesseract\+\_\+common\+::\+Type\+Erasure\+Base}}$<$ Interface, Instance $>$\+::uncvref\+\_\+t =  std\+::remove\+\_\+cv\+\_\+t$<$typename std\+::remove\+\_\+reference$<$T$>$\+::type$>$\hspace{0.3cm}{\ttfamily [private]}}
 
 
 
@@ -111,14 +121,14 @@ using \mbox{\hyperlink{structtesseract__common_1_1TypeErasureBase}{tesseract\+\_
 \doxysubsubsection{\texorpdfstring{TypeErasureBase()}{TypeErasureBase()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
 {\footnotesize\ttfamily template$<$typename Interface , template$<$ typename $>$ class Instance$>$ \\
 template$<$typename T , \mbox{\hyperlink{structtesseract__common_1_1TypeErasureBase_a44d7d3a3eab622f2599e247931e4896c}{generic\+\_\+ctor\+\_\+enabler}}$<$ T $>$  = 0$>$ \\
-\mbox{\hyperlink{structtesseract__common_1_1TypeErasureBase}{tesseract\+\_\+common\+::\+Type\+Erasure\+Base}}$<$ Interface, Instance $>$\+::\mbox{\hyperlink{structtesseract__common_1_1TypeErasureBase}{Type\+Erasure\+Base}} (\begin{DoxyParamCaption}\item[{T \&\&}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+\mbox{\hyperlink{structtesseract__common_1_1TypeErasureBase}{tesseract\+\_\+common\+::\+Type\+Erasure\+Base}}$<$ Interface, Instance $>$\+::\+Type\+Erasure\+Base (\begin{DoxyParamCaption}\item[{T \&\&}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 \mbox{\Hypertarget{structtesseract__common_1_1TypeErasureBase_adf4fab08807489fd754390624d827818}\label{structtesseract__common_1_1TypeErasureBase_adf4fab08807489fd754390624d827818}} 
 \index{tesseract\_common::TypeErasureBase$<$ Interface, Instance $>$@{tesseract\_common::TypeErasureBase$<$ Interface, Instance $>$}!TypeErasureBase@{TypeErasureBase}}
 \index{TypeErasureBase@{TypeErasureBase}!tesseract\_common::TypeErasureBase$<$ Interface, Instance $>$@{tesseract\_common::TypeErasureBase$<$ Interface, Instance $>$}}
 \doxysubsubsection{\texorpdfstring{TypeErasureBase()}{TypeErasureBase()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
 {\footnotesize\ttfamily template$<$typename Interface , template$<$ typename $>$ class Instance$>$ \\
-\mbox{\hyperlink{structtesseract__common_1_1TypeErasureBase}{tesseract\+\_\+common\+::\+Type\+Erasure\+Base}}$<$ Interface, Instance $>$\+::\mbox{\hyperlink{structtesseract__common_1_1TypeErasureBase}{Type\+Erasure\+Base}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+\mbox{\hyperlink{structtesseract__common_1_1TypeErasureBase}{tesseract\+\_\+common\+::\+Type\+Erasure\+Base}}$<$ Interface, Instance $>$\+::\+Type\+Erasure\+Base (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 \mbox{\Hypertarget{structtesseract__common_1_1TypeErasureBase_a042b04f172b3f2fb14ea41714abb4da7}\label{structtesseract__common_1_1TypeErasureBase_a042b04f172b3f2fb14ea41714abb4da7}} 
 \index{tesseract\_common::TypeErasureBase$<$ Interface, Instance $>$@{tesseract\_common::TypeErasureBase$<$ Interface, Instance $>$}!````~TypeErasureBase@{$\sim$TypeErasureBase}}
@@ -132,14 +142,14 @@ template$<$typename T , \mbox{\hyperlink{structtesseract__common_1_1TypeErasureB
 \index{TypeErasureBase@{TypeErasureBase}!tesseract\_common::TypeErasureBase$<$ Interface, Instance $>$@{tesseract\_common::TypeErasureBase$<$ Interface, Instance $>$}}
 \doxysubsubsection{\texorpdfstring{TypeErasureBase()}{TypeErasureBase()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
 {\footnotesize\ttfamily template$<$typename Interface , template$<$ typename $>$ class Instance$>$ \\
-\mbox{\hyperlink{structtesseract__common_1_1TypeErasureBase}{tesseract\+\_\+common\+::\+Type\+Erasure\+Base}}$<$ Interface, Instance $>$\+::\mbox{\hyperlink{structtesseract__common_1_1TypeErasureBase}{Type\+Erasure\+Base}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structtesseract__common_1_1TypeErasureBase}{Type\+Erasure\+Base}}$<$ Interface, Instance $>$ \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+\mbox{\hyperlink{structtesseract__common_1_1TypeErasureBase}{tesseract\+\_\+common\+::\+Type\+Erasure\+Base}}$<$ Interface, Instance $>$\+::\+Type\+Erasure\+Base (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structtesseract__common_1_1TypeErasureBase}{Type\+Erasure\+Base}}$<$ Interface, Instance $>$ \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 \mbox{\Hypertarget{structtesseract__common_1_1TypeErasureBase_a07cb6d77988929ccc1e2ef0db27725aa}\label{structtesseract__common_1_1TypeErasureBase_a07cb6d77988929ccc1e2ef0db27725aa}} 
 \index{tesseract\_common::TypeErasureBase$<$ Interface, Instance $>$@{tesseract\_common::TypeErasureBase$<$ Interface, Instance $>$}!TypeErasureBase@{TypeErasureBase}}
 \index{TypeErasureBase@{TypeErasureBase}!tesseract\_common::TypeErasureBase$<$ Interface, Instance $>$@{tesseract\_common::TypeErasureBase$<$ Interface, Instance $>$}}
 \doxysubsubsection{\texorpdfstring{TypeErasureBase()}{TypeErasureBase()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
 {\footnotesize\ttfamily template$<$typename Interface , template$<$ typename $>$ class Instance$>$ \\
-\mbox{\hyperlink{structtesseract__common_1_1TypeErasureBase}{tesseract\+\_\+common\+::\+Type\+Erasure\+Base}}$<$ Interface, Instance $>$\+::\mbox{\hyperlink{structtesseract__common_1_1TypeErasureBase}{Type\+Erasure\+Base}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structtesseract__common_1_1TypeErasureBase}{Type\+Erasure\+Base}}$<$ Interface, Instance $>$ \&\&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+\mbox{\hyperlink{structtesseract__common_1_1TypeErasureBase}{tesseract\+\_\+common\+::\+Type\+Erasure\+Base}}$<$ Interface, Instance $>$\+::\+Type\+Erasure\+Base (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structtesseract__common_1_1TypeErasureBase}{Type\+Erasure\+Base}}$<$ Interface, Instance $>$ \&\&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
 
 
 
