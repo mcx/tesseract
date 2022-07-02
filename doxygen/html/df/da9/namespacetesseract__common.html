@@ -247,6 +247,9 @@ Functions</h2></td></tr>
 <tr class="separator:a4d07851ebdfbd06448599d1c188a2a50"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6649a8ac1b3dcd569656074bbcfce030"><td class="memItemLeft" align="right" valign="top">std::set&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/da9/namespacetesseract__common.html#a6649a8ac1b3dcd569656074bbcfce030">getAllSearchLibraries</a> (const std::string &amp;search_libraries_env, const std::set&lt; std::string &gt; &amp;existing_search_libraries)</td></tr>
 <tr class="separator:a6649a8ac1b3dcd569656074bbcfce030"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad10d68b681f3d352a15736ffef688010"><td class="memItemLeft" align="right" valign="top">std::set&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/da9/namespacetesseract__common.html#ad10d68b681f3d352a15736ffef688010">extractLibrariesWithFullPath</a> (std::set&lt; std::string &gt; &amp;library_names)</td></tr>
+<tr class="memdesc:ad10d68b681f3d352a15736ffef688010"><td class="mdescLeft">&#160;</td><td class="mdescRight">This will remove libraries with full path in the provided library_names and return them.  <a href="../../df/da9/namespacetesseract__common.html#ad10d68b681f3d352a15736ffef688010">More...</a><br /></td></tr>
+<tr class="separator:ad10d68b681f3d352a15736ffef688010"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a11bc9620a27eede3300420410e0b4a7a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../df/da9/namespacetesseract__common.html#a5b28b7ae665b374a7ca166d496f648ce">LinkNamesPair</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/da9/namespacetesseract__common.html#a11bc9620a27eede3300420410e0b4a7a">makeOrderedLinkPair</a> (const std::string &amp;link_name1, const std::string &amp;link_name2)</td></tr>
 <tr class="memdesc:a11bc9620a27eede3300420410e0b4a7a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a pair of strings, where the pair.first is always &lt;= pair.second.  <a href="../../df/da9/namespacetesseract__common.html#a11bc9620a27eede3300420410e0b4a7a">More...</a><br /></td></tr>
 <tr class="separator:a11bc9620a27eede3300420410e0b4a7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -976,6 +979,41 @@ template&lt;typename T &gt; </div>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="ad10d68b681f3d352a15736ffef688010" name="ad10d68b681f3d352a15736ffef688010"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad10d68b681f3d352a15736ffef688010">&#9670;&nbsp;</a></span>extractLibrariesWithFullPath()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::set&lt; std::string &gt; tesseract_common::extractLibrariesWithFullPath </td>
+          <td>(</td>
+          <td class="paramtype">std::set&lt; std::string &gt; &amp;&#160;</td>
+          <td class="paramname"><em>library_names</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>This will remove libraries with full path in the provided library_names and return them. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">library_names</td><td>The set to search and remove libraries with full paths </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A set of the libraries provided as full path </dd></dl>
 
 </div>
 </div>
@@ -2855,7 +2893,7 @@ template&lt;typename FloatType &gt; </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jul 1 2022 02:43:28 for Tesseract by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.4
+Generated on Sat Jul 2 2022 16:36:16 for Tesseract by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.4
 </small></address>
 </body>
 </html>

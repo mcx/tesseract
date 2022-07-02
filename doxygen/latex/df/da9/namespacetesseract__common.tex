@@ -145,6 +145,8 @@ std\+::set$<$ std\+::string $>$ \mbox{\hyperlink{namespacetesseract__common_a4d0
 \item 
 std\+::set$<$ std\+::string $>$ \mbox{\hyperlink{namespacetesseract__common_a6649a8ac1b3dcd569656074bbcfce030}{get\+All\+Search\+Libraries}} (const std\+::string \&search\+\_\+libraries\+\_\+env, const std\+::set$<$ std\+::string $>$ \&existing\+\_\+search\+\_\+libraries)
 \item 
+std\+::set$<$ std\+::string $>$ \mbox{\hyperlink{namespacetesseract__common_ad10d68b681f3d352a15736ffef688010}{extract\+Libraries\+With\+Full\+Path}} (std\+::set$<$ std\+::string $>$ \&library\+\_\+names)
+\begin{DoxyCompactList}\small\item\em This will remove libraries with full path in the provided library\+\_\+names and return them. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{namespacetesseract__common_a5b28b7ae665b374a7ca166d496f648ce}{Link\+Names\+Pair}} \mbox{\hyperlink{namespacetesseract__common_a11bc9620a27eede3300420410e0b4a7a}{make\+Ordered\+Link\+Pair}} (const std\+::string \&link\+\_\+name1, const std\+::string \&link\+\_\+name2)
 \begin{DoxyCompactList}\small\item\em Create a pair of strings, where the pair.\+first is always \texorpdfstring{$<$}{<}= pair.\+second. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename Serializable\+Type $>$ }\\void \mbox{\hyperlink{namespacetesseract__common_a5330a58c8c79cce5559a316e76118558}{test\+Serialization}} (const Serializable\+Type \&object, const std\+::string \&typename\+\_\+string)
@@ -556,6 +558,24 @@ Enforce position to be within the provided limits.
 {\em joint\+\_\+limits} & The limits to perform check \\
 \hline
 \end{DoxyParams}
+\mbox{\Hypertarget{namespacetesseract__common_ad10d68b681f3d352a15736ffef688010}\label{namespacetesseract__common_ad10d68b681f3d352a15736ffef688010}} 
+\index{tesseract\_common@{tesseract\_common}!extractLibrariesWithFullPath@{extractLibrariesWithFullPath}}
+\index{extractLibrariesWithFullPath@{extractLibrariesWithFullPath}!tesseract\_common@{tesseract\_common}}
+\doxysubsubsection{\texorpdfstring{extractLibrariesWithFullPath()}{extractLibrariesWithFullPath()}}
+{\footnotesize\ttfamily std\+::set$<$ std\+::string $>$ tesseract\+\_\+common\+::extract\+Libraries\+With\+Full\+Path (\begin{DoxyParamCaption}\item[{std\+::set$<$ std\+::string $>$ \&}]{library\+\_\+names }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+This will remove libraries with full path in the provided library\+\_\+names and return them. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em library\+\_\+names} & The set to search and remove libraries with full paths \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A set of the libraries provided as full path 
+\end{DoxyReturn}
 \mbox{\Hypertarget{namespacetesseract__common_ac8f354484775381dd5c207ee0dfe21f2}\label{namespacetesseract__common_ac8f354484775381dd5c207ee0dfe21f2}} 
 \index{tesseract\_common@{tesseract\_common}!fromYAMLString@{fromYAMLString}}
 \index{fromYAMLString@{fromYAMLString}!tesseract\_common@{tesseract\_common}}
