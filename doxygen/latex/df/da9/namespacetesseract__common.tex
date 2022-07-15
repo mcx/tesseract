@@ -231,6 +231,8 @@ bool \mbox{\hyperlink{namespacetesseract__common_ac9961ff2a5d322165a817241b7746f
 \begin{DoxyCompactList}\small\item\em Check if two double are relatively equal. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{namespacetesseract__common_a12eb899ec3967699e946431730eed959}{almost\+Equal\+Relative\+And\+Abs}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&v1, const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&v2, double max\+\_\+diff=1e-\/6, double max\+\_\+rel\+\_\+diff=std\+::numeric\+\_\+limits$<$ double $>$\+::epsilon())
 \begin{DoxyCompactList}\small\item\em Check if two Eigen Vector\+Xd are relatively and absolute equal. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{namespacetesseract__common_a8eb8b43bdac2751a9a899e4552537cda}{almost\+Equal\+Relative\+And\+Abs}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&v1, const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&v2, const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&max\+\_\+diff, const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&max\+\_\+rel\+\_\+diff)
+\begin{DoxyCompactList}\small\item\em Check if two Eigen Vector\+Xd are relatively and absolute equal. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename Float\+Type $>$ }\\bool \mbox{\hyperlink{namespacetesseract__common_a00bc131acfeba0eba8fe7ff7cd944860}{to\+Numeric}} (const std\+::string \&s, Float\+Type \&value)
 \begin{DoxyCompactList}\small\item\em Convert a string to a numeric value type. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{vhacdRaycastMesh_8cpp_adcf134d50025cc52907d0c8ac798d89d}{std\+::vector}}$<$ std\+::string $>$ \mbox{\hyperlink{namespacetesseract__common_aaca6ae7b6cbd8d28ad6e141239a0206f}{get\+Allowed\+Collisions}} (const \mbox{\hyperlink{vhacdRaycastMesh_8cpp_adcf134d50025cc52907d0c8ac798d89d}{std\+::vector}}$<$ std\+::string $>$ \&link\+\_\+names, const \mbox{\hyperlink{namespacetesseract__common_a79d2a34647d0da5e574629878c142086}{Allowed\+Collision\+Entries}} \&acm\+\_\+entries, bool remove\+\_\+duplicates=true)
@@ -430,10 +432,34 @@ MODIFY\+\_\+\+PAIR\+\_\+\+MARGIN&Modify the contact managers pair margin only. T
 
 
 \doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespacetesseract__common_a8eb8b43bdac2751a9a899e4552537cda}\label{namespacetesseract__common_a8eb8b43bdac2751a9a899e4552537cda}} 
+\index{tesseract\_common@{tesseract\_common}!almostEqualRelativeAndAbs@{almostEqualRelativeAndAbs}}
+\index{almostEqualRelativeAndAbs@{almostEqualRelativeAndAbs}!tesseract\_common@{tesseract\_common}}
+\doxysubsubsection{\texorpdfstring{almostEqualRelativeAndAbs()}{almostEqualRelativeAndAbs()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily bool tesseract\+\_\+common\+::almost\+Equal\+Relative\+And\+Abs (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&}]{v1,  }\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&}]{v2,  }\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&}]{max\+\_\+diff,  }\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&}]{max\+\_\+rel\+\_\+diff }\end{DoxyParamCaption})}
+
+
+
+Check if two Eigen Vector\+Xd are relatively and absolute equal. 
+
+This is a vectorized implementation of the function above. The max\+\_\+diff is for handling when comparing numbers near zero 
+\begin{DoxyParams}{Parameters}
+{\em a} & A vector of double \\
+\hline
+{\em b} & A vector of double \\
+\hline
+{\em max\+\_\+diff} & The max diff when comparing max(abs(a -\/ b)) \texorpdfstring{$<$}{<}= max\+\_\+diff, if true they are considered equal \\
+\hline
+{\em max\+\_\+rel\+\_\+diff} & The max relative diff abs(a -\/ b) \texorpdfstring{$<$}{<}= largest $\ast$ max\+\_\+rel\+\_\+diff, if true considered equal. The largest is the largest of the absolute values of a and b. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if they are relatively equal, otherwise false. 
+\end{DoxyReturn}
 \mbox{\Hypertarget{namespacetesseract__common_a12eb899ec3967699e946431730eed959}\label{namespacetesseract__common_a12eb899ec3967699e946431730eed959}} 
 \index{tesseract\_common@{tesseract\_common}!almostEqualRelativeAndAbs@{almostEqualRelativeAndAbs}}
 \index{almostEqualRelativeAndAbs@{almostEqualRelativeAndAbs}!tesseract\_common@{tesseract\_common}}
-\doxysubsubsection{\texorpdfstring{almostEqualRelativeAndAbs()}{almostEqualRelativeAndAbs()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+\doxysubsubsection{\texorpdfstring{almostEqualRelativeAndAbs()}{almostEqualRelativeAndAbs()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
 {\footnotesize\ttfamily bool tesseract\+\_\+common\+::almost\+Equal\+Relative\+And\+Abs (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&}]{v1,  }\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&}]{v2,  }\item[{double}]{max\+\_\+diff = {\ttfamily 1e-\/6},  }\item[{double}]{max\+\_\+rel\+\_\+diff = {\ttfamily std\+:\+:numeric\+\_\+limits$<$double$>$\+:\+:epsilon()} }\end{DoxyParamCaption})}
 
 
@@ -452,12 +478,12 @@ This is a vectorized implementation of the function above. The max\+\_\+diff is 
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-True if they are relativily equal, otherwise false. 
+True if they are relatively equal, otherwise false. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{namespacetesseract__common_ac9961ff2a5d322165a817241b7746f64}\label{namespacetesseract__common_ac9961ff2a5d322165a817241b7746f64}} 
 \index{tesseract\_common@{tesseract\_common}!almostEqualRelativeAndAbs@{almostEqualRelativeAndAbs}}
 \index{almostEqualRelativeAndAbs@{almostEqualRelativeAndAbs}!tesseract\_common@{tesseract\_common}}
-\doxysubsubsection{\texorpdfstring{almostEqualRelativeAndAbs()}{almostEqualRelativeAndAbs()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+\doxysubsubsection{\texorpdfstring{almostEqualRelativeAndAbs()}{almostEqualRelativeAndAbs()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
 {\footnotesize\ttfamily bool tesseract\+\_\+common\+::almost\+Equal\+Relative\+And\+Abs (\begin{DoxyParamCaption}\item[{double}]{a,  }\item[{double}]{b,  }\item[{double}]{max\+\_\+diff = {\ttfamily 1e-\/6},  }\item[{double}]{max\+\_\+rel\+\_\+diff = {\ttfamily std\+:\+:numeric\+\_\+limits$<$double$>$\+:\+:epsilon()} }\end{DoxyParamCaption})}
 
 
@@ -476,7 +502,7 @@ The max\+\_\+diff is for handling when comparing numbers near zero
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-True if they are relativily equal, otherwise false. 
+True if they are relatively equal, otherwise false. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{namespacetesseract__common_a715e8a56239e73ccfa00e82cda79a28c}\label{namespacetesseract__common_a715e8a56239e73ccfa00e82cda79a28c}} 
 \index{tesseract\_common@{tesseract\_common}!calcRotationalError@{calcRotationalError}}
@@ -1402,7 +1428,7 @@ Convert a string to a numeric value type.
 \begin{DoxyParams}{Parameters}
 {\em s} & The string to be converted \\
 \hline
-{\em value} & The value to be loaded with coverted string \\
+{\em value} & The value to be loaded with converted string \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
