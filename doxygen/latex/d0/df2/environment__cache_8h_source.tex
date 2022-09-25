@@ -55,7 +55,7 @@
 \DoxyCodeLine{96 }
 \DoxyCodeLine{98   \textcolor{keywordtype}{void} \mbox{\hyperlink{classtesseract__environment_1_1DefaultEnvironmentCache_a08a45638e7dd8692b51464a56d095641}{refreshCache}}() const override final;}
 \DoxyCodeLine{99 }
-\DoxyCodeLine{104   \mbox{\hyperlink{classtesseract__environment_1_1Environment}{Environment}}::\mbox{\hyperlink{classtesseract__environment_1_1EnvironmentCache_a6b283b7f3b7b6885b08949140370dbb3}{UPtr}} \mbox{\hyperlink{classtesseract__environment_1_1DefaultEnvironmentCache_a7fb27544f022a07e6a69075888acaf77}{getCachedEnvironment}}() const override final;}
+\DoxyCodeLine{104   \mbox{\hyperlink{classtesseract__environment_1_1Environment}{Environment}}::\mbox{\hyperlink{classtesseract__environment_1_1EnvironmentCache_a6b283b7f3b7b6885b08949140370dbb3}{UPtr}} \mbox{\hyperlink{classtesseract__environment_1_1DefaultEnvironmentCache_a28d344ff825c0c6748f85227cf3d00f2}{getCachedEnvironment}}() const override final;}
 \DoxyCodeLine{105 }
 \DoxyCodeLine{106 protected:}
 \DoxyCodeLine{108   \mbox{\hyperlink{classtesseract__environment_1_1Environment}{Environment}}::\mbox{\hyperlink{classtesseract__environment_1_1EnvironmentCache_a3f66434e28acbb44c38f22ac0f41af8b}{ConstPtr}} \mbox{\hyperlink{classtesseract__environment_1_1DefaultEnvironmentCache_ae675f148282536ff436ed6b85616b24f}{env\_}};}
@@ -67,9 +67,11 @@
 \DoxyCodeLine{117   \textcolor{keyword}{mutable} std::deque<Environment::UPtr> \mbox{\hyperlink{classtesseract__environment_1_1DefaultEnvironmentCache_ab44babdf52c6eb9765fd61781d73db64}{cache\_}};}
 \DoxyCodeLine{118 }
 \DoxyCodeLine{120   \textcolor{keyword}{mutable} std::shared\_mutex \mbox{\hyperlink{classtesseract__environment_1_1DefaultEnvironmentCache_a30c2f18edbc4ca33cbe7b6ded25d601d}{cache\_mutex\_}};}
-\DoxyCodeLine{121 \};}
-\DoxyCodeLine{122 \}  \textcolor{comment}{// namespace tesseract\_environment}}
-\DoxyCodeLine{123 }
-\DoxyCodeLine{124 \textcolor{preprocessor}{\#endif  }\textcolor{comment}{// TESSERACT\_ENVIRONMENT\_ENVIRONMENT\_CACHE\_H}}
+\DoxyCodeLine{121 }
+\DoxyCodeLine{123   \textcolor{keywordtype}{void} \mbox{\hyperlink{classtesseract__environment_1_1DefaultEnvironmentCache_acc5cc03ea1f6a9931d2f1375fa62783c}{refreshCacheHelper}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{124 \};}
+\DoxyCodeLine{125 \}  \textcolor{comment}{// namespace tesseract\_environment}}
+\DoxyCodeLine{126 }
+\DoxyCodeLine{127 \textcolor{preprocessor}{\#endif  }\textcolor{comment}{// TESSERACT\_ENVIRONMENT\_ENVIRONMENT\_CACHE\_H}}
 
 \end{DoxyCode}

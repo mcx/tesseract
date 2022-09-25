@@ -42,8 +42,13 @@ long \mbox{\hyperlink{classtesseract__environment_1_1DefaultEnvironmentCache_a5b
 \begin{DoxyCompactList}\small\item\em Get the cache size used to hold tesseract objects for motion planning. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classtesseract__environment_1_1DefaultEnvironmentCache_a08a45638e7dd8692b51464a56d095641}{refresh\+Cache}} () const override final
 \begin{DoxyCompactList}\small\item\em If the environment has changed it will rebuild the cache of tesseract objects. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classtesseract__environment_1_1Environment_a182513d107a55c729afb5e6482e2ac87}{Environment\+::\+UPtr}} \mbox{\hyperlink{classtesseract__environment_1_1DefaultEnvironmentCache_a7fb27544f022a07e6a69075888acaf77}{get\+Cached\+Environment}} () const override final
+\mbox{\hyperlink{classtesseract__environment_1_1Environment_a182513d107a55c729afb5e6482e2ac87}{Environment\+::\+UPtr}} \mbox{\hyperlink{classtesseract__environment_1_1DefaultEnvironmentCache_a28d344ff825c0c6748f85227cf3d00f2}{get\+Cached\+Environment}} () const override final
 \begin{DoxyCompactList}\small\item\em This will pop an \mbox{\hyperlink{classtesseract__environment_1_1Environment}{Environment}} object from the queue. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classtesseract__environment_1_1DefaultEnvironmentCache_acc5cc03ea1f6a9931d2f1375fa62783c}{refresh\+Cache\+Helper}} () const
+\begin{DoxyCompactList}\small\item\em This does not take a lock. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -84,11 +89,11 @@ std\+::shared\+\_\+mutex \mbox{\hyperlink{classtesseract__environment_1_1Default
 
 
 \doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{classtesseract__environment_1_1DefaultEnvironmentCache_a7fb27544f022a07e6a69075888acaf77}\label{classtesseract__environment_1_1DefaultEnvironmentCache_a7fb27544f022a07e6a69075888acaf77}} 
+\mbox{\Hypertarget{classtesseract__environment_1_1DefaultEnvironmentCache_a28d344ff825c0c6748f85227cf3d00f2}\label{classtesseract__environment_1_1DefaultEnvironmentCache_a28d344ff825c0c6748f85227cf3d00f2}} 
 \index{tesseract\_environment::DefaultEnvironmentCache@{tesseract\_environment::DefaultEnvironmentCache}!getCachedEnvironment@{getCachedEnvironment}}
 \index{getCachedEnvironment@{getCachedEnvironment}!tesseract\_environment::DefaultEnvironmentCache@{tesseract\_environment::DefaultEnvironmentCache}}
 \doxysubsubsection{\texorpdfstring{getCachedEnvironment()}{getCachedEnvironment()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{classtesseract__environment_1_1Environment_a182513d107a55c729afb5e6482e2ac87}{Environment\+::\+UPtr}} tesseract\+\_\+environment\+::\+Default\+Environment\+Cache\+::get\+Cached\+Environment (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [final]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classtesseract__environment_1_1Environment_a182513d107a55c729afb5e6482e2ac87}{tesseract\+\_\+environment\+::\+Environment\+::\+UPtr}} tesseract\+\_\+environment\+::\+Default\+Environment\+Cache\+::get\+Cached\+Environment (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [final]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
 
 
 
@@ -128,6 +133,16 @@ If the environment has changed it will rebuild the cache of tesseract objects.
 
 
 Implements \mbox{\hyperlink{classtesseract__environment_1_1EnvironmentCache_a00ecabd934f0a3670b69ffe2f4499926}{tesseract\+\_\+environment\+::\+Environment\+Cache}}.
+
+\mbox{\Hypertarget{classtesseract__environment_1_1DefaultEnvironmentCache_acc5cc03ea1f6a9931d2f1375fa62783c}\label{classtesseract__environment_1_1DefaultEnvironmentCache_acc5cc03ea1f6a9931d2f1375fa62783c}} 
+\index{tesseract\_environment::DefaultEnvironmentCache@{tesseract\_environment::DefaultEnvironmentCache}!refreshCacheHelper@{refreshCacheHelper}}
+\index{refreshCacheHelper@{refreshCacheHelper}!tesseract\_environment::DefaultEnvironmentCache@{tesseract\_environment::DefaultEnvironmentCache}}
+\doxysubsubsection{\texorpdfstring{refreshCacheHelper()}{refreshCacheHelper()}}
+{\footnotesize\ttfamily void tesseract\+\_\+environment\+::\+Default\+Environment\+Cache\+::refresh\+Cache\+Helper (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+This does not take a lock. 
 
 \mbox{\Hypertarget{classtesseract__environment_1_1DefaultEnvironmentCache_ab30b5528b50095b44552404e644e830c}\label{classtesseract__environment_1_1DefaultEnvironmentCache_ab30b5528b50095b44552404e644e830c}} 
 \index{tesseract\_environment::DefaultEnvironmentCache@{tesseract\_environment::DefaultEnvironmentCache}!setCacheSize@{setCacheSize}}
