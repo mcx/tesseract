@@ -159,6 +159,8 @@ std\+::set$<$ std\+::string $>$ \mbox{\hyperlink{namespacetesseract__common_ad10
 \begin{DoxyCompactList}\small\item\em Tests Boost serialization for a serializable derived type. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename... Args$>$ }\\std\+::string \mbox{\hyperlink{namespacetesseract__common_a7f13ad2a741226ab5255302f6750ed4a}{str\+Format}} (const std\+::string \&format, Args... args)
 \item 
+std\+::string \mbox{\hyperlink{namespacetesseract__common_aca142577b0d587606411468a2163106f}{file\+To\+String}} (const tesseract\+\_\+common\+::fs\+::path \&filepath)
+\begin{DoxyCompactList}\small\item\em Read in the contents of the file into a string. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{namespacetesseract__common_a4ed12ea384452e2d5d4f7a0854035384}{twist\+Change\+Ref\+Point}} (Eigen\+::\+Ref$<$ Eigen\+::\+Vector\+Xd $>$ twist, const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector3d $>$ \&ref\+\_\+point)
 \begin{DoxyCompactList}\small\item\em Change the reference point of the provided Twist. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{namespacetesseract__common_a98c27df906a6e17d088772d3d1c21a5d}{twist\+Change\+Base}} (Eigen\+::\+Ref$<$ Eigen\+::\+Vector\+Xd $>$ twist, const Eigen\+::\+Isometry3d \&change\+\_\+base)
@@ -632,6 +634,24 @@ This will remove libraries with full path in the provided library\+\_\+names and
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 A set of the libraries provided as full path 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespacetesseract__common_aca142577b0d587606411468a2163106f}\label{namespacetesseract__common_aca142577b0d587606411468a2163106f}} 
+\index{tesseract\_common@{tesseract\_common}!fileToString@{fileToString}}
+\index{fileToString@{fileToString}!tesseract\_common@{tesseract\_common}}
+\doxysubsubsection{\texorpdfstring{fileToString()}{fileToString()}}
+{\footnotesize\ttfamily std\+::string tesseract\+\_\+common\+::file\+To\+String (\begin{DoxyParamCaption}\item[{const tesseract\+\_\+common\+::fs\+::path \&}]{filepath }\end{DoxyParamCaption})}
+
+
+
+Read in the contents of the file into a string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filepath} & The file to read \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The contents of the file 
 \end{DoxyReturn}
 \mbox{\Hypertarget{namespacetesseract__common_ac8f354484775381dd5c207ee0dfe21f2}\label{namespacetesseract__common_ac8f354484775381dd5c207ee0dfe21f2}} 
 \index{tesseract\_common@{tesseract\_common}!fromYAMLString@{fromYAMLString}}

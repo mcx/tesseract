@@ -277,6 +277,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a7f13ad2a741226ab5255302f6750ed4a"><td class="memTemplParams" colspan="2">template&lt;typename... Args&gt; </td></tr>
 <tr class="memitem:a7f13ad2a741226ab5255302f6750ed4a"><td class="memTemplItemLeft" align="right" valign="top">std::string&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../df/da9/namespacetesseract__common.html#a7f13ad2a741226ab5255302f6750ed4a">strFormat</a> (const std::string &amp;format, Args... args)</td></tr>
 <tr class="separator:a7f13ad2a741226ab5255302f6750ed4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aca142577b0d587606411468a2163106f"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/da9/namespacetesseract__common.html#aca142577b0d587606411468a2163106f">fileToString</a> (const tesseract_common::fs::path &amp;filepath)</td></tr>
+<tr class="memdesc:aca142577b0d587606411468a2163106f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read in the contents of the file into a string.  <a href="../../df/da9/namespacetesseract__common.html#aca142577b0d587606411468a2163106f">More...</a><br /></td></tr>
+<tr class="separator:aca142577b0d587606411468a2163106f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4ed12ea384452e2d5d4f7a0854035384"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/da9/namespacetesseract__common.html#a4ed12ea384452e2d5d4f7a0854035384">twistChangeRefPoint</a> (Eigen::Ref&lt; Eigen::VectorXd &gt; twist, const Eigen::Ref&lt; const Eigen::Vector3d &gt; &amp;ref_point)</td></tr>
 <tr class="memdesc:a4ed12ea384452e2d5d4f7a0854035384"><td class="mdescLeft">&#160;</td><td class="mdescRight">Change the reference point of the provided Twist.  <a href="../../df/da9/namespacetesseract__common.html#a4ed12ea384452e2d5d4f7a0854035384">More...</a><br /></td></tr>
 <tr class="separator:a4ed12ea384452e2d5d4f7a0854035384"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1152,6 +1155,33 @@ template&lt;typename FloatType &gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A set of the libraries provided as full path </dd></dl>
+
+</div>
+</div>
+<a id="aca142577b0d587606411468a2163106f" name="aca142577b0d587606411468a2163106f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aca142577b0d587606411468a2163106f">&#9670;&nbsp;</a></span>fileToString()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string tesseract_common::fileToString </td>
+          <td>(</td>
+          <td class="paramtype">const tesseract_common::fs::path &amp;&#160;</td>
+          <td class="paramname"><em>filepath</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Read in the contents of the file into a string. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">filepath</td><td>The file to read </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The contents of the file </dd></dl>
 
 </div>
 </div>
@@ -3343,7 +3373,7 @@ template&lt;typename FloatType &gt; </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Sep 28 2022 22:13:18 for Tesseract by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.4
+Generated on Tue Oct 4 2022 15:39:45 for Tesseract by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.4
 </small></address>
 </body>
 </html>
