@@ -56,8 +56,7 @@ GroupTCPs parseGroupTCPs(const tesseract_scene_graph::SceneGraph& /*scene_graph*
        xml_group_element = xml_group_element->NextSiblingElement("group_tcps"))
   {
     std::string group_name_string;
-    tinyxml2::XMLError status =
-        tesseract_common::QueryStringAttributeRequired(xml_group_element, "group", group_name_string);
+    int status = tesseract_common::QueryStringAttributeRequired(xml_group_element, "group", group_name_string);
     if (status != tinyxml2::XML_SUCCESS)
       std::throw_with_nested(std::runtime_error("GroupTCPs: Missing or failed to parse attribute 'group'!"));
 
@@ -68,11 +67,11 @@ GroupTCPs parseGroupTCPs(const tesseract_scene_graph::SceneGraph& /*scene_graph*
 
       if (xml_element->Attribute("name") == nullptr || xml_element->Attribute("xyz") == nullptr ||
           (xml_element->Attribute("rpy") == nullptr && xml_element->Attribute("wxyz") == nullptr))
-        std::throw_with_nested(
-            std::runtime_error(strFormat("GroupTCPs: Invalid tcp definition for group '%s'!", group_name_string)));
+        std::throw_with_nested(std::runtime_error(
+            strFormat("GroupTCPs: Invalid tcp definition for group '%s'!", group_name_string.c_str())));
 
       std::string tcp_name_string;
-      tinyxml2::XMLError status = tesseract_common::QueryStringAttributeRequired(xml_element, "name", tcp_name_string);
+      int status = tesseract_common::QueryStringAttributeRequired(xml_element, "name", tcp_name_string);
       // LCOV_EXCL_START
       if (status != tinyxml2::XML_SUCCESS)
         std::throw_with_nested(
@@ -85,8 +84,8 @@ GroupTCPs parseGroupTCPs(const tesseract_scene_graph::SceneGraph& /*scene_graph*
       if (status != tinyxml2::XML_NO_ATTRIBUTE && status != tinyxml2::XML_SUCCESS)
         std::throw_with_nested(std::runtime_error(strFormat("GroupTCPS: TCP '%s' for group '%s' failed to parse "
                                                             "attribute 'xyz'!",
-                                                            tcp_name_string,
-                                                            group_name_string)));
+                                                            tcp_name_string.c_str(),
+                                                            group_name_string.c_str())));
       // LCOV_EXCL_STOP
 
       if (status != tinyxml2::XML_NO_ATTRIBUTE)
@@ -96,8 +95,8 @@ GroupTCPs parseGroupTCPs(const tesseract_scene_graph::SceneGraph& /*scene_graph*
         if (tokens.size() != 3 || !tesseract_common::isNumeric(tokens))
           std::throw_with_nested(std::runtime_error(strFormat("GroupTCPS: TCP '%s' for group '%s' failed to parse "
                                                               "attribute 'xyz'!",
-                                                              tcp_name_string,
-                                                              group_name_string)));
+                                                              tcp_name_string.c_str(),
+                                                              group_name_string.c_str())));
 
         double x{ 0 }, y{ 0 }, z{ 0 };
         // No need to check return values because the tokens are verified above
@@ -115,8 +114,8 @@ GroupTCPs parseGroupTCPs(const tesseract_scene_graph::SceneGraph& /*scene_graph*
         if (status != tinyxml2::XML_NO_ATTRIBUTE && status != tinyxml2::XML_SUCCESS)
           std::throw_with_nested(std::runtime_error(strFormat("GroupTCPS: TCP '%s' for group '%s' failed to parse "
                                                               "attribute 'rpy'!",
-                                                              tcp_name_string,
-                                                              group_name_string)));
+                                                              tcp_name_string.c_str(),
+                                                              group_name_string.c_str())));
         // LCOV_EXCL_STOP
 
         if (status != tinyxml2::XML_NO_ATTRIBUTE)
@@ -126,8 +125,8 @@ GroupTCPs parseGroupTCPs(const tesseract_scene_graph::SceneGraph& /*scene_graph*
           if (tokens.size() != 3 || !tesseract_common::isNumeric(tokens))
             std::throw_with_nested(std::runtime_error(strFormat("GroupTCPS: TCP '%s' for group '%s' failed to parse "
                                                                 "attribute 'rpy'!",
-                                                                tcp_name_string,
-                                                                group_name_string)));
+                                                                tcp_name_string.c_str(),
+                                                                group_name_string.c_str())));
 
           double r{ 0 }, p{ 0 }, y{ 0 };
           // No need to check return values because the tokens are verified above
@@ -151,8 +150,8 @@ GroupTCPs parseGroupTCPs(const tesseract_scene_graph::SceneGraph& /*scene_graph*
         if (status != tinyxml2::XML_NO_ATTRIBUTE && status != tinyxml2::XML_SUCCESS)
           std::throw_with_nested(std::runtime_error(strFormat("GroupTCPS: TCP '%s' for group '%s' failed to parse "
                                                               "attribute 'wxyz'!",
-                                                              tcp_name_string,
-                                                              group_name_string)));
+                                                              tcp_name_string.c_str(),
+                                                              group_name_string.c_str())));
         // LCOV_EXCL_STOP
 
         if (status != tinyxml2::XML_NO_ATTRIBUTE)
@@ -162,8 +161,8 @@ GroupTCPs parseGroupTCPs(const tesseract_scene_graph::SceneGraph& /*scene_graph*
           if (tokens.size() != 4 || !tesseract_common::isNumeric(tokens))
             std::throw_with_nested(std::runtime_error(strFormat("GroupTCPS: TCP '%s' for group '%s' failed to parse "
                                                                 "attribute 'wxyz'!",
-                                                                tcp_name_string,
-                                                                group_name_string)));
+                                                                tcp_name_string.c_str(),
+                                                                group_name_string.c_str())));
 
           double qw{ 0 }, qx{ 0 }, qy{ 0 }, qz{ 0 };
           // No need to check return values because the tokens are verified above

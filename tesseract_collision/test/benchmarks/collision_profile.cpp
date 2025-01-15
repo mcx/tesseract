@@ -12,6 +12,8 @@ TESSERACT_COMMON_IGNORE_WARNINGS_POP
 #include <tesseract_collision/bullet/convex_hull_utils.h>
 #include <tesseract_collision/fcl/fcl_discrete_managers.h>
 
+#include <tesseract_geometry/impl/sphere.h>
+#include <tesseract_common/resource_locator.h>
 static const std::size_t DIM = 10;
 
 using namespace tesseract_collision;
@@ -29,8 +31,12 @@ void addCollisionObjects(DiscreteContactManager& checker, bool use_single_link, 
   {
     auto mesh_vertices = std::make_shared<tesseract_common::VectorVector3d>();
     auto mesh_faces = std::make_shared<Eigen::VectorXi>();
-    loadSimplePlyFile(
-        std::string(TESSERACT_SUPPORT_DIR) + "/meshes/sphere_p25m.ply", *mesh_vertices, *mesh_faces, true);
+
+    tesseract_common::GeneralResourceLocator locator;
+    loadSimplePlyFile(locator.locateResource("package://tesseract_support/meshes/sphere_p25m.ply")->getFilePath(),
+                      *mesh_vertices,
+                      *mesh_faces,
+                      true);
 
     auto mesh = std::make_shared<tesseract_geometry::Mesh>(mesh_vertices, mesh_faces);
     sphere = makeConvexMesh(*mesh);
@@ -96,8 +102,12 @@ void addCollisionObjects(ContinuousContactManager& checker, bool use_single_link
   {
     auto mesh_vertices = std::make_shared<tesseract_common::VectorVector3d>();
     auto mesh_faces = std::make_shared<Eigen::VectorXi>();
-    loadSimplePlyFile(
-        std::string(TESSERACT_SUPPORT_DIR) + "/meshes/sphere_p25m.ply", *mesh_vertices, *mesh_faces, true);
+
+    tesseract_common::GeneralResourceLocator locator;
+    loadSimplePlyFile(locator.locateResource("package://tesseract_support/meshes/sphere_p25m.ply")->getFilePath(),
+                      *mesh_vertices,
+                      *mesh_faces,
+                      true);
 
     auto mesh = std::make_shared<tesseract_geometry::Mesh>(mesh_vertices, mesh_faces);
     sphere = makeConvexMesh(*mesh);
@@ -174,10 +184,11 @@ void runDiscreteProfile(bool use_single_link, bool use_convex_mesh, double conta
   std::vector<Eigen::Isometry3d> poses = getTransforms(50);
   std::vector<DiscreteContactManager::Ptr> checkers = { bt_simple_checker, bt_bvh_checker, fcl_bvh_checker };
   std::vector<std::string> checker_names = { "BtSimple", "BtBVH", "FCLBVH" };
-  std::vector<std::size_t> checker_contacts = { 0, 0, 0 };
+  std::vector<long> checker_contacts = { 0, 0, 0 };
 
   std::printf("Total number of shape: %d\n", int(DIM * DIM * DIM));
   //  for (std::size_t i = 0; i < checkers.size(); ++i)
+  ContactResultMap result;
   for (std::size_t i = 0; i < 2; ++i)
   {
     addCollisionObjects(*checkers[i], use_single_link, use_convex_mesh);
@@ -189,9 +200,9 @@ void runDiscreteProfile(bool use_single_link, bool use_convex_mesh, double conta
       checkers[i]->setCollisionObjectsTransform("move_link", pose);
 
       // Perform collision check
-      ContactResultMap result;
+      result.clear();
       checkers[i]->contactTest(result, ContactTestType::FIRST);
-      checker_contacts[i] += result.size();
+      checker_contacts[i] += result.count();
     }
     auto end_time = std::chrono::high_resolution_clock::now();
     double total_time = std::chrono::duration<double, std::milli>(end_time - start_time).count();
@@ -209,7 +220,7 @@ void runContinuousProfile(bool use_single_link, bool use_convex_mesh, double con
   std::vector<Eigen::Isometry3d> poses = getTransforms(50);
   std::vector<ContinuousContactManager::Ptr> checkers = { bt_simple_checker, bt_bvh_checker };
   std::vector<std::string> checker_names = { "BtCastSimple", "BtCastBVH" };
-  std::vector<std::size_t> checker_contacts = { 0, 0, 0 };
+  std::vector<long> checker_contacts = { 0, 0, 0 };
 
   Eigen::Isometry3d delta_pose;
   delta_pose.setIdentity();
@@ -217,6 +228,7 @@ void runContinuousProfile(bool use_single_link, bool use_convex_mesh, double con
 
   std::printf("Total number of shape: %d\n", int(DIM * DIM * DIM));
   //  for (std::size_t i = 0; i < checkers.size(); ++i)
+  ContactResultMap result;
   for (std::size_t i = 0; i < 2; ++i)
   {
     addCollisionObjects(*checkers[i], use_single_link, use_convex_mesh);
@@ -228,9 +240,9 @@ void runContinuousProfile(bool use_single_link, bool use_convex_mesh, double con
       checkers[i]->setCollisionObjectsTransform("move_link", pose, pose * delta_pose);
 
       // Perform collision check
-      ContactResultMap result;
+      result.clear();
       checkers[i]->contactTest(result, ContactTestType::FIRST);
-      checker_contacts[i] += result.size();
+      checker_contacts[i] += result.count();
     }
     auto end_time = std::chrono::high_resolution_clock::now();
     double total_time = std::chrono::duration<double, std::milli>(end_time - start_time).count();

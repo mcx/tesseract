@@ -42,7 +42,6 @@ target_link_libraries(
   PRIVATE ${PROJECT_NAME}_bullet
           ${PROJECT_NAME}_fcl
           tesseract::tesseract_geometry
-          tesseract::tesseract_support
           ${Boost_LIBRARIES}
           ${OCTOMAP_LIBRARIES}
           ${LIBFCL_LIBRARIES})
