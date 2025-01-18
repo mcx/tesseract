@@ -4,11 +4,14 @@ TESSERACT_COMMON_IGNORE_WARNINGS_PUSH
 #include <iostream>
 #include <fstream>
 #include <yaml-cpp/yaml.h>
+#include <tinyxml2.h>
 TESSERACT_COMMON_IGNORE_WARNINGS_POP
 
 #include <tesseract_common/utils.h>
 #include <tesseract_common/resource_locator.h>
+#include <tesseract_common/collision_margin_data.h>
 #include <tesseract_common/yaml_utils.h>
+#include <tesseract_common/yaml_extenstions.h>
 #include <tesseract_scene_graph/graph.h>
 #include <tesseract_srdf/collision_margins.h>
 #include <tesseract_srdf/configs.h>
@@ -18,7 +21,9 @@ TESSERACT_COMMON_IGNORE_WARNINGS_POP
 #include <tesseract_srdf/groups.h>
 #include <tesseract_srdf/srdf_model.h>
 #include <tesseract_srdf/utils.h>
-#include <tesseract_support/tesseract_support_resource_locator.h>
+#include <tesseract_scene_graph/graph.h>
+#include <tesseract_scene_graph/link.h>
+#include <tesseract_scene_graph/joint.h>
 
 enum class ABBConfig
 {
@@ -65,7 +70,7 @@ tesseract_scene_graph::SceneGraph::Ptr getABBSceneGraph(ABBConfig config = ABBCo
     joint_a.parent_link_name = "world";
     joint_a.child_link_name = "axis_1";
     joint_a.type = JointType::PRISMATIC;
-    joint_a.limits = std::make_shared<JointLimits>(-10, 10, 0, 5, 10);
+    joint_a.limits = std::make_shared<JointLimits>(-10, 10, 0, 5, 10, 20);
     EXPECT_TRUE(g->addJoint(joint_a));
 
     Joint joint_b("joint_axis_2");
@@ -73,7 +78,7 @@ tesseract_scene_graph::SceneGraph::Ptr getABBSceneGraph(ABBConfig config = ABBCo
     joint_b.parent_link_name = "axis_1";
     joint_b.child_link_name = "axis_2";
     joint_b.type = JointType::PRISMATIC;
-    joint_b.limits = std::make_shared<JointLimits>(-10, 10, 0, 5, 10);
+    joint_b.limits = std::make_shared<JointLimits>(-10, 10, 0, 5, 10, 20);
     EXPECT_TRUE(g->addJoint(joint_b));
 
     Joint joint_c("joint_base_link");
@@ -95,7 +100,7 @@ tesseract_scene_graph::SceneGraph::Ptr getABBSceneGraph(ABBConfig config = ABBCo
     joint_a.parent_link_name = "world";
     joint_a.child_link_name = "axis_1";
     joint_a.type = JointType::PRISMATIC;
-    joint_a.limits = std::make_shared<JointLimits>(-10, 10, 0, 5, 10);
+    joint_a.limits = std::make_shared<JointLimits>(-10, 10, 0, 5, 10, 20);
     EXPECT_TRUE(g->addJoint(joint_a));
 
     Joint joint_b("joint_axis_2");
@@ -104,7 +109,7 @@ tesseract_scene_graph::SceneGraph::Ptr getABBSceneGraph(ABBConfig config = ABBCo
     joint_b.parent_link_name = "axis_1";
     joint_b.child_link_name = "axis_2";
     joint_b.type = JointType::PRISMATIC;
-    joint_b.limits = std::make_shared<JointLimits>(-10, 10, 0, 5, 10);
+    joint_b.limits = std::make_shared<JointLimits>(-10, 10, 0, 5, 10, 20);
     EXPECT_TRUE(g->addJoint(joint_b));
 
     Joint joint_c("joint_base_link");
@@ -124,7 +129,7 @@ tesseract_scene_graph::SceneGraph::Ptr getABBSceneGraph(ABBConfig config = ABBCo
   joint_2.parent_link_name = "link_1";
   joint_2.child_link_name = "link_2";
   joint_2.type = JointType::REVOLUTE;
-  joint_2.limits = std::make_shared<JointLimits>(-7, 7, 0, 5, 10);
+  joint_2.limits = std::make_shared<JointLimits>(-7, 7, 0, 5, 10, 20);
   EXPECT_TRUE(g->addJoint(joint_2));
 
   Joint joint_3("joint_3");
@@ -132,7 +137,7 @@ tesseract_scene_graph::SceneGraph::Ptr getABBSceneGraph(ABBConfig config = ABBCo
   joint_3.parent_link_name = "link_2";
   joint_3.child_link_name = "link_3";
   joint_3.type = JointType::REVOLUTE;
-  joint_3.limits = std::make_shared<JointLimits>(-7, 7, 0, 5, 10);
+  joint_3.limits = std::make_shared<JointLimits>(-7, 7, 0, 5, 10, 20);
   EXPECT_TRUE(g->addJoint(joint_3));
 
   Joint joint_4("joint_4");
@@ -140,7 +145,7 @@ tesseract_scene_graph::SceneGraph::Ptr getABBSceneGraph(ABBConfig config = ABBCo
   joint_4.parent_link_name = "link_3";
   joint_4.child_link_name = "link_4";
   joint_4.type = JointType::REVOLUTE;
-  joint_4.limits = std::make_shared<JointLimits>(-7, 7, 0, 5, 10);
+  joint_4.limits = std::make_shared<JointLimits>(-7, 7, 0, 5, 10, 20);
   EXPECT_TRUE(g->addJoint(joint_4));
 
   Joint joint_5("joint_5");
@@ -148,7 +153,7 @@ tesseract_scene_graph::SceneGraph::Ptr getABBSceneGraph(ABBConfig config = ABBCo
   joint_5.parent_link_name = "link_4";
   joint_5.child_link_name = "link_5";
   joint_5.type = JointType::REVOLUTE;
-  joint_5.limits = std::make_shared<JointLimits>(-7, 7, 0, 5, 10);
+  joint_5.limits = std::make_shared<JointLimits>(-7, 7, 0, 5, 10, 20);
   EXPECT_TRUE(g->addJoint(joint_5));
 
   Joint joint_6("joint_6");
@@ -156,7 +161,7 @@ tesseract_scene_graph::SceneGraph::Ptr getABBSceneGraph(ABBConfig config = ABBCo
   joint_6.parent_link_name = "link_5";
   joint_6.child_link_name = "link_6";
   joint_6.type = JointType::REVOLUTE;
-  joint_6.limits = std::make_shared<JointLimits>(-7, 7, 0, 5, 10);
+  joint_6.limits = std::make_shared<JointLimits>(-7, 7, 0, 5, 10, 20);
   EXPECT_TRUE(g->addJoint(joint_6));
 
   Joint joint_tool0("joint_tool0");
@@ -197,7 +202,7 @@ tesseract_scene_graph::SceneGraph buildTestSceneGraph()
   joint_1.parent_link_name = "link_1";
   joint_1.child_link_name = "link_2";
   joint_1.type = JointType::REVOLUTE;
-  joint_1.limits = std::make_shared<JointLimits>(-7, 7, 0, 5, 10);
+  joint_1.limits = std::make_shared<JointLimits>(-7, 7, 0, 5, 10, 20);
   EXPECT_TRUE(g.addJoint(joint_1));
 
   Joint joint_2("joint_2");
@@ -205,7 +210,7 @@ tesseract_scene_graph::SceneGraph buildTestSceneGraph()
   joint_2.parent_link_name = "link_2";
   joint_2.child_link_name = "link_3";
   joint_2.type = JointType::REVOLUTE;
-  joint_2.limits = std::make_shared<JointLimits>(-7, 7, 0, 5, 10);
+  joint_2.limits = std::make_shared<JointLimits>(-7, 7, 0, 5, 10, 20);
   EXPECT_TRUE(g.addJoint(joint_2));
 
   Joint joint_3("joint_3");
@@ -213,7 +218,7 @@ tesseract_scene_graph::SceneGraph buildTestSceneGraph()
   joint_3.parent_link_name = "link_3";
   joint_3.child_link_name = "link_4";
   joint_3.type = JointType::REVOLUTE;
-  joint_3.limits = std::make_shared<JointLimits>(-7, 7, 0, 5, 10);
+  joint_3.limits = std::make_shared<JointLimits>(-7, 7, 0, 5, 10, 20);
   EXPECT_TRUE(g.addJoint(joint_3));
 
   Joint joint_4("joint_4");
@@ -221,7 +226,7 @@ tesseract_scene_graph::SceneGraph buildTestSceneGraph()
   joint_4.parent_link_name = "link_2";
   joint_4.child_link_name = "link_5";
   joint_4.type = JointType::REVOLUTE;
-  joint_4.limits = std::make_shared<JointLimits>(-7, 7, 0, 5, 10);
+  joint_4.limits = std::make_shared<JointLimits>(-7, 7, 0, 5, 10, 20);
   EXPECT_TRUE(g.addJoint(joint_4));
 
   return g;
@@ -233,9 +238,10 @@ TEST(TesseractSRDFUnit, LoadSRDFFileUnit)  // NOLINT
   using namespace tesseract_srdf;
   using namespace tesseract_common;
 
-  std::string srdf_file = std::string(TESSERACT_SUPPORT_DIR) + "/urdf/lbr_iiwa_14_r820.srdf";
+  GeneralResourceLocator locator;
+  std::string srdf_file =
+      locator.locateResource("package://tesseract_support/urdf/lbr_iiwa_14_r820.srdf")->getFilePath();
 
-  TesseractSupportResourceLocator locator;
   SceneGraph g;
 
   g.setName("kuka_lbr_iiwa_14_r820");
@@ -270,7 +276,7 @@ TEST(TesseractSRDFUnit, LoadSRDFFileUnit)  // NOLINT
   joint_2.parent_link_name = "link_1";
   joint_2.child_link_name = "link_2";
   joint_2.type = JointType::REVOLUTE;
-  joint_2.limits = std::make_shared<JointLimits>(-7, 7, 0, 5, 10);
+  joint_2.limits = std::make_shared<JointLimits>(-7, 7, 0, 5, 10, 20);
   EXPECT_TRUE(g.addJoint(joint_2));
 
   Joint joint_3("joint_a3");
@@ -278,7 +284,7 @@ TEST(TesseractSRDFUnit, LoadSRDFFileUnit)  // NOLINT
   joint_3.parent_link_name = "link_2";
   joint_3.child_link_name = "link_3";
   joint_3.type = JointType::REVOLUTE;
-  joint_3.limits = std::make_shared<JointLimits>(-7, 7, 0, 5, 10);
+  joint_3.limits = std::make_shared<JointLimits>(-7, 7, 0, 5, 10, 20);
   EXPECT_TRUE(g.addJoint(joint_3));
 
   Joint joint_4("joint_a4");
@@ -286,7 +292,7 @@ TEST(TesseractSRDFUnit, LoadSRDFFileUnit)  // NOLINT
   joint_4.parent_link_name = "link_3";
   joint_4.child_link_name = "link_4";
   joint_4.type = JointType::REVOLUTE;
-  joint_4.limits = std::make_shared<JointLimits>(-7, 7, 0, 5, 10);
+  joint_4.limits = std::make_shared<JointLimits>(-7, 7, 0, 5, 10, 20);
   EXPECT_TRUE(g.addJoint(joint_4));
 
   Joint joint_5("joint_a5");
@@ -294,7 +300,7 @@ TEST(TesseractSRDFUnit, LoadSRDFFileUnit)  // NOLINT
   joint_5.parent_link_name = "link_4";
   joint_5.child_link_name = "link_5";
   joint_5.type = JointType::REVOLUTE;
-  joint_5.limits = std::make_shared<JointLimits>(-7, 7, 0, 5, 10);
+  joint_5.limits = std::make_shared<JointLimits>(-7, 7, 0, 5, 10, 20);
   EXPECT_TRUE(g.addJoint(joint_5));
 
   Joint joint_6("joint_a6");
@@ -302,7 +308,7 @@ TEST(TesseractSRDFUnit, LoadSRDFFileUnit)  // NOLINT
   joint_6.parent_link_name = "link_5";
   joint_6.child_link_name = "link_6";
   joint_6.type = JointType::REVOLUTE;
-  joint_6.limits = std::make_shared<JointLimits>(-7, 7, 0, 5, 10);
+  joint_6.limits = std::make_shared<JointLimits>(-7, 7, 0, 5, 10, 20);
   EXPECT_TRUE(g.addJoint(joint_6));
 
   Joint joint_7("joint_a7");
@@ -310,7 +316,7 @@ TEST(TesseractSRDFUnit, LoadSRDFFileUnit)  // NOLINT
   joint_7.parent_link_name = "link_6";
   joint_7.child_link_name = "link_7";
   joint_7.type = JointType::REVOLUTE;
-  joint_7.limits = std::make_shared<JointLimits>(-7, 7, 0, 5, 10);
+  joint_7.limits = std::make_shared<JointLimits>(-7, 7, 0, 5, 10, 20);
   EXPECT_TRUE(g.addJoint(joint_7));
 
   Joint joint_tool0("joint_tool0");
@@ -350,7 +356,7 @@ TEST(TesseractSRDFUnit, TesseractSRDFModelUnit)  // NOLINT
   using namespace tesseract_srdf;
   using namespace tesseract_common;
 
-  TesseractSupportResourceLocator locator;
+  GeneralResourceLocator locator;
   SRDFModel srdf;
 
   // Set Name
@@ -442,7 +448,7 @@ TEST(TesseractSRDFUnit, LoadSRDFFailureCasesUnit)  // NOLINT
   using namespace tesseract_srdf;
   using namespace tesseract_common;
 
-  TesseractSupportResourceLocator locator;
+  GeneralResourceLocator locator;
   SceneGraph::Ptr g = getABBSceneGraph();
 
   {  // Success
@@ -691,15 +697,15 @@ TEST(TesseractSRDFUnit, LoadSRDFSaveUnit)  // NOLINT
   SRDFModel srdf_save;
   srdf_save.initString(*g, xml_string, locator);
 
-  YAML::Node kinematics_plugin_config = YAML::Load(yaml_kin_plugins_string);
+  YAML::Node kinematics_plugin_config = tesseract_common::loadYamlString(yaml_kin_plugins_string, locator);
   srdf_save.kinematics_information.kinematics_plugin_info =
       kinematics_plugin_config[KinematicsPluginInfo::CONFIG_KEY].as<KinematicsPluginInfo>();
 
-  YAML::Node contact_managers_plugin_config = YAML::Load(yaml_cm_plugins_string);
+  YAML::Node contact_managers_plugin_config = tesseract_common::loadYamlString(yaml_cm_plugins_string, locator);
   srdf_save.contact_managers_plugin_info =
       contact_managers_plugin_config[ContactManagersPluginInfo::CONFIG_KEY].as<ContactManagersPluginInfo>();
 
-  YAML::Node calibration_config = YAML::Load(yaml_calibration_string);
+  YAML::Node calibration_config = tesseract_common::loadYamlString(yaml_calibration_string, locator);
   srdf_save.calibration_info = calibration_config[CalibrationInfo::CONFIG_KEY].as<CalibrationInfo>();
 
   std::string save_path = tesseract_common::getTempPath() + "unit_test_save_srdf.srdf";
@@ -785,7 +791,7 @@ TEST(TesseractSRDFUnit, LoadSRDFSaveUnit)  // NOLINT
                  y: 0
                  z: 0
                  w: 1)";
-  YAML::Node bad_calibration_config = YAML::Load(yaml_calibration_string);
+  YAML::Node bad_calibration_config = tesseract_common::loadYamlString(yaml_calibration_string, locator);
   srdf_save.calibration_info = bad_calibration_config[CalibrationInfo::CONFIG_KEY].as<CalibrationInfo>();
 
   save_path = tesseract_common::getTempPath() + "unit_test_save_bad_srdf.srdf";
@@ -1972,7 +1978,7 @@ TEST(TesseractSRDFUnit, AddRemoveGroupTCPUnit)  // NOLINT
 TEST(TesseractSRDFUnit, ParseConfigFilePathUnit)  // NOLINT
 {
   std::array<int, 3> version{ 1, 0, 0 };
-  tesseract_common::TesseractSupportResourceLocator locator;
+  tesseract_common::GeneralResourceLocator locator;
   tesseract_scene_graph::SceneGraph::Ptr g = getABBSceneGraph();
 
   {  // valid
@@ -2057,7 +2063,7 @@ TEST(TesseractSRDFUnit, ParseConfigFilePathUnit)  // NOLINT
 TEST(TesseractSRDFUnit, ParseContactManagersPluginConfigUnit)  // NOLINT
 {
   std::array<int, 3> version{ 1, 0, 0 };
-  tesseract_common::TesseractSupportResourceLocator locator;
+  tesseract_common::GeneralResourceLocator locator;
   tesseract_scene_graph::SceneGraph::Ptr g = getABBSceneGraph();
 
   {  // valid
@@ -2123,7 +2129,7 @@ TEST(TesseractSRDFUnit, ParseContactManagersPluginConfigUnit)  // NOLINT
 TEST(TesseractSRDFUnit, ParseKinematicsPluginConfigUnit)  // NOLINT
 {
   std::array<int, 3> version{ 1, 0, 0 };
-  tesseract_common::TesseractSupportResourceLocator locator;
+  tesseract_common::GeneralResourceLocator locator;
   tesseract_scene_graph::SceneGraph::Ptr g = getABBSceneGraph();
 
   {  // valid
@@ -2209,7 +2215,7 @@ TEST(TesseractSRDFUnit, ParseKinematicsPluginConfigUnit)  // NOLINT
 TEST(TesseractSRDFUnit, ParseCalibrationConfigUnit)  // NOLINT
 {
   std::array<int, 3> version{ 1, 0, 0 };
-  tesseract_common::TesseractSupportResourceLocator locator;
+  tesseract_common::GeneralResourceLocator locator;
   tesseract_scene_graph::SceneGraph::Ptr g = getABBSceneGraph();
 
   {  // valid

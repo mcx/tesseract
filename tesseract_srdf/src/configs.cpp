@@ -26,13 +26,14 @@
 
 #include <tesseract_common/macros.h>
 TESSERACT_COMMON_IGNORE_WARNINGS_PUSH
-#include <console_bridge/console.h>
 #include <tinyxml2.h>
 TESSERACT_COMMON_IGNORE_WARNINGS_POP
 
 #include <tesseract_scene_graph/graph.h>
+#include <tesseract_common/resource_locator.h>
 #include <tesseract_common/utils.h>
 #include <tesseract_common/yaml_utils.h>
+#include <tesseract_common/yaml_extenstions.h>
 #include <tesseract_srdf/configs.h>
 
 namespace tesseract_srdf
@@ -42,7 +43,7 @@ tesseract_common::fs::path parseConfigFilePath(const tesseract_common::ResourceL
                                                const std::array<int, 3>& /*version*/)
 {
   std::string filename;
-  tinyxml2::XMLError status = tesseract_common::QueryStringAttributeRequired(xml_element, "filename", filename);
+  int status = tesseract_common::QueryStringAttributeRequired(xml_element, "filename", filename);
   if (status != tinyxml2::XML_SUCCESS)
     std::throw_with_nested(std::runtime_error(std::string(xml_element->Value()) + ": Missing or failed to parse "
                                                                                   "'filename' attribute."));
@@ -70,7 +71,7 @@ tesseract_common::CalibrationInfo parseCalibrationConfig(const tesseract_scene_g
   YAML::Node config;
   try
   {
-    config = YAML::LoadFile(cal_config_file_path.string());
+    config = tesseract_common::processYamlIncludeDirective(YAML::LoadFile(cal_config_file_path.string()), locator);
   }
   // LCOV_EXCL_START
   catch (...)
@@ -102,7 +103,7 @@ tesseract_common::KinematicsPluginInfo parseKinematicsPluginConfig(const tessera
   YAML::Node config;
   try
   {
-    config = YAML::LoadFile(kin_plugin_file_path.string());
+    config = tesseract_common::processYamlIncludeDirective(YAML::LoadFile(kin_plugin_file_path.string()), locator);
   }
   // LCOV_EXCL_START
   catch (...)
@@ -127,7 +128,7 @@ parseContactManagersPluginConfig(const tesseract_common::ResourceLocator& locato
   YAML::Node config;
   try
   {
-    config = YAML::LoadFile(cm_plugin_file_path.string());
+    config = tesseract_common::processYamlIncludeDirective(YAML::LoadFile(cm_plugin_file_path.string()), locator);
   }
   // LCOV_EXCL_START
   catch (...)

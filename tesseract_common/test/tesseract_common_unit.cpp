@@ -4,6 +4,8 @@ TESSERACT_COMMON_IGNORE_WARNINGS_PUSH
 #include <type_traits>
 #include <boost/archive/xml_oarchive.hpp>
 #include <boost/archive/xml_iarchive.hpp>
+#include <boost/serialization/shared_ptr.hpp>
+#include <tinyxml2.h>
 TESSERACT_COMMON_IGNORE_WARNINGS_POP
 
 #include <tesseract_common/utils.h>
@@ -15,6 +17,47 @@ TESSERACT_COMMON_IGNORE_WARNINGS_POP
 #include <tesseract_common/any_poly.h>
 #include <tesseract_common/kinematic_limits.h>
 #include <tesseract_common/yaml_utils.h>
+#include <tesseract_common/yaml_extenstions.h>
+#include <tesseract_common/collision_margin_data.h>
+
+/** @brief Resource locator implementation using a provided function to locate file resources */
+class TestResourceLocator : public tesseract_common::ResourceLocator
+{
+public:
+  using Ptr = std::shared_ptr<TestResourceLocator>;
+  using ConstPtr = std::shared_ptr<const TestResourceLocator>;
+
+  ~TestResourceLocator() override = default;
+
+  tesseract_common::Resource::Ptr locateResource(const std::string& url) const override final
+  {
+    std::string mod_url = url;
+    if (url.find("package://tesseract_common") == 0)
+    {
+      mod_url.erase(0, strlen("package://tesseract_common"));
+      size_t pos = mod_url.find('/');
+      if (pos == std::string::npos)
+        return nullptr;
+
+      std::string package = mod_url.substr(0, pos);
+      mod_url.erase(0, pos);
+
+      tesseract_common::fs::path file_path(__FILE__);
+      std::string package_path = file_path.parent_path().parent_path().string();
+
+      if (package_path.empty())
+        return nullptr;
+
+      mod_url = package_path + mod_url;
+    }
+
+    if (!tesseract_common::fs::path(mod_url).is_absolute())
+      return nullptr;
+
+    return std::make_shared<tesseract_common::SimpleLocatedResource>(
+        url, mod_url, std::make_shared<TestResourceLocator>(*this));
+  }
+};
 
 TEST(TesseractCommonUnit, isNumeric)  // NOLINT
 {
@@ -251,6 +294,14 @@ TEST(TesseractCommonUnit, bytesResource)  // NOLINT
   EXPECT_EQ(bytes_resource->getResourceContents().size(), data.size());
 }
 
+TEST(TesseractCommonUnit, fileToString)  // NOLINT
+{
+  tesseract_common::ResourceLocator::Ptr locator = std::make_shared<TestResourceLocator>();
+  tesseract_common::Resource::Ptr resource = locator->locateResource("package://tesseract_common/package.xml");
+  std::string data = tesseract_common::fileToString(tesseract_common::fs::path(resource->getFilePath()));
+  EXPECT_FALSE(data.empty());
+}
+
 TEST(TesseractCommonUnit, ManipulatorInfo)  // NOLINT
 {
   // Empty tcp
@@ -305,7 +356,8 @@ TEST(TesseractCommonUnit, JointStateTest)  // NOLINT
   EXPECT_TRUE(joint_state.position.isApprox(positons, 1e-5));
 }
 
-TESSERACT_ANY_EXPORT(tesseract_common, JointState);  // NOLINT
+TESSERACT_ANY_EXPORT(tesseract_common::JointState, TesseractCommonJointState);  // NOLINT
+TESSERACT_ANY_EXPORT(std::shared_ptr<tesseract_common::JointState>, TesseractCommonJointStateSharedPtr)
 
 TEST(TesseractCommonUnit, anyUnit)  // NOLINT
 {
@@ -363,6 +415,164 @@ TEST(TesseractCommonUnit, anyUnit)  // NOLINT
   EXPECT_ANY_THROW(nany_type.as<tesseract_common::Toolpath>());  // NOLINT
 }
 
+template <typename T>
+void runAnyPolyIntegralTest(T value, const std::string& type_str)
+{
+  tesseract_common::AnyPoly any_type{ value };
+  EXPECT_TRUE(any_type.getType() == std::type_index(typeid(T)));
+  EXPECT_TRUE(any_type.as<T>() == value);
+
+  // Check clone
+  tesseract_common::AnyPoly any_copy = any_type;
+  EXPECT_TRUE(any_copy == any_type);
+  EXPECT_TRUE(any_copy.as<T>() == value);
+
+  const std::string filepath{ tesseract_common::getTempPath() + "any_" + type_str + "_type_boost.xml" };
+  {
+    std::ofstream os(filepath);
+    boost::archive::xml_oarchive oa(os);
+    oa << BOOST_SERIALIZATION_NVP(any_type);
+  }
+
+  tesseract_common::AnyPoly nany_type;
+  {
+    std::ifstream ifs(filepath);
+    assert(ifs.good());
+    boost::archive::xml_iarchive ia(ifs);
+
+    // restore the schedule from the archive
+    ia >> BOOST_SERIALIZATION_NVP(nany_type);
+  }
+
+  EXPECT_TRUE(nany_type.getType() == std::type_index(typeid(T)));
+  EXPECT_TRUE(nany_type.as<T>() == value);
+
+  // Test bad cast
+  EXPECT_ANY_THROW(nany_type.as<tesseract_common::Toolpath>());  // NOLINT
+}
+
+TEST(TesseractCommonUnit, anyIntegralTypesUnit)  // NOLINT
+{
+  runAnyPolyIntegralTest<bool>(true, "bool");
+  runAnyPolyIntegralTest<int>(-10, "int");
+  runAnyPolyIntegralTest<unsigned>(5, "unsigned");
+  runAnyPolyIntegralTest<double>(1.2, "double");
+  runAnyPolyIntegralTest<float>(-0.2F, "float");
+  runAnyPolyIntegralTest<std::string>("this", "string");
+  runAnyPolyIntegralTest<std::size_t>(10, "std_size_t");
+}
+
+template <typename T>
+void runAnyPolyUnorderedMapIntegralTest(T value, const std::string& type_str)
+{
+  std::unordered_map<std::string, T> data;
+  data["test"] = value;
+  tesseract_common::AnyPoly any_type{ data };
+  EXPECT_TRUE(any_type.getType() == std::type_index(typeid(std::unordered_map<std::string, T>)));
+  bool check = any_type.as<std::unordered_map<std::string, T>>() == data;
+  EXPECT_TRUE(check);
+
+  // Check clone
+  tesseract_common::AnyPoly any_copy = any_type;
+  EXPECT_TRUE(any_copy == any_type);
+  check = any_copy.as<std::unordered_map<std::string, T>>() == data;
+  EXPECT_TRUE(check);
+
+  const std::string filepath{ tesseract_common::getTempPath() + "any_unordered_map_string_" + type_str +
+                              "_type_boost.xml" };
+  {
+    std::ofstream os(filepath);
+    boost::archive::xml_oarchive oa(os);
+    oa << BOOST_SERIALIZATION_NVP(any_type);
+  }
+
+  tesseract_common::AnyPoly nany_type;
+  {
+    std::ifstream ifs(filepath);
+    assert(ifs.good());
+    boost::archive::xml_iarchive ia(ifs);
+
+    // restore the schedule from the archive
+    ia >> BOOST_SERIALIZATION_NVP(nany_type);
+  }
+
+  EXPECT_TRUE(nany_type.getType() == std::type_index(typeid(std::unordered_map<std::string, T>)));
+  check = nany_type.as<std::unordered_map<std::string COMMA T>>() == data;
+  EXPECT_TRUE(check);
+
+  // Test bad cast
+  EXPECT_ANY_THROW(nany_type.as<tesseract_common::Toolpath>());  // NOLINT
+}
+
+TEST(TesseractCommonUnit, anyUnorderedMapIntegralTypesUnit)  // NOLINT
+{
+  runAnyPolyUnorderedMapIntegralTest<bool>(true, "bool");
+  runAnyPolyUnorderedMapIntegralTest<int>(-10, "int");
+  runAnyPolyUnorderedMapIntegralTest<unsigned>(5, "unsigned");
+  runAnyPolyUnorderedMapIntegralTest<double>(1.2, "double");
+  runAnyPolyUnorderedMapIntegralTest<float>(-0.2F, "float");
+  runAnyPolyUnorderedMapIntegralTest<std::string>("this", "string");
+  runAnyPolyUnorderedMapIntegralTest<std::size_t>(10, "std_size_t");
+}
+
+TEST(TesseractCommonUnit, anySharedPtrUnit)  // NOLINT
+{
+  tesseract_common::AnyPoly any_type;
+  EXPECT_TRUE(any_type.getType() == std::type_index(typeid(nullptr)));
+
+  tesseract_common::JointState joint_state;
+  joint_state.joint_names = { "joint_1", "joint_2", "joint_3" };
+  joint_state.position = Eigen::VectorXd::Constant(3, 5);
+  joint_state.velocity = Eigen::VectorXd::Constant(3, 6);
+  joint_state.acceleration = Eigen::VectorXd::Constant(3, 7);
+  joint_state.effort = Eigen::VectorXd::Constant(3, 8);
+  joint_state.time = 100;
+
+  auto joint_state_ptr = std::make_shared<tesseract_common::JointState>(joint_state);
+  any_type = joint_state_ptr;
+  EXPECT_TRUE(any_type.getType() == std::type_index(typeid(std::shared_ptr<tesseract_common::JointState>)));
+  EXPECT_TRUE(*any_type.as<std::shared_ptr<tesseract_common::JointState>>() == joint_state);
+  EXPECT_TRUE(any_type.as<std::shared_ptr<tesseract_common::JointState>>() == joint_state_ptr);
+
+  // Check clone
+  tesseract_common::AnyPoly any_copy = any_type;
+  EXPECT_TRUE(any_copy == any_type);
+
+  // Check to make sure it is not making a copy during cast
+  auto& any_type_ref1 = any_type.as<std::shared_ptr<tesseract_common::JointState>>();
+  auto& any_type_ref2 = any_type.as<std::shared_ptr<tesseract_common::JointState>>();
+  auto& any_copy_ref = any_copy.as<std::shared_ptr<tesseract_common::JointState>>();
+  EXPECT_TRUE(&any_type_ref1 == &any_type_ref2);
+  EXPECT_TRUE(&any_type_ref1 != &any_copy_ref);
+  EXPECT_TRUE(&any_type_ref2 != &any_copy_ref);
+
+  const auto& any_type_const_ref1 = any_type.as<std::shared_ptr<tesseract_common::JointState>>();
+  const auto& any_type_const_ref2 = any_type.as<std::shared_ptr<tesseract_common::JointState>>();
+  EXPECT_TRUE(&any_type_const_ref1 == &any_type_const_ref2);
+
+  {
+    std::ofstream os(tesseract_common::getTempPath() + "any_shared_ptr_type_boost.xml");
+    boost::archive::xml_oarchive oa(os);
+    oa << BOOST_SERIALIZATION_NVP(any_type);
+  }
+
+  tesseract_common::AnyPoly nany_type;
+  {
+    std::ifstream ifs(tesseract_common::getTempPath() + "any_shared_ptr_type_boost.xml");
+    assert(ifs.good());
+    boost::archive::xml_iarchive ia(ifs);
+
+    // restore the schedule from the archive
+    ia >> BOOST_SERIALIZATION_NVP(nany_type);
+  }
+
+  EXPECT_TRUE(nany_type.getType() == std::type_index(typeid(std::shared_ptr<tesseract_common::JointState>)));
+  EXPECT_TRUE(*nany_type.as<std::shared_ptr<tesseract_common::JointState>>() == joint_state);
+
+  // Test bad cast
+  EXPECT_ANY_THROW(nany_type.as<tesseract_common::JointState>());  // NOLINT
+}
+
 TEST(TesseractCommonUnit, boundsUnit)  // NOLINT
 {
   Eigen::VectorXd v = Eigen::VectorXd::Ones(6);
@@ -371,45 +581,45 @@ TEST(TesseractCommonUnit, boundsUnit)  // NOLINT
   limits.col(0) = -Eigen::VectorXd::Ones(6);
   limits.col(1) = Eigen::VectorXd::Ones(6);
 
-  EXPECT_FALSE(tesseract_common::isWithinPositionLimits<double>(v, limits));
-  EXPECT_TRUE(tesseract_common::satisfiesPositionLimits<double>(v, limits, std::numeric_limits<float>::epsilon()));
-  EXPECT_FALSE(tesseract_common::satisfiesPositionLimits<double>(v, limits, std::numeric_limits<double>::epsilon()));
-  tesseract_common::enforcePositionLimits<double>(v, limits);
-  EXPECT_TRUE(tesseract_common::satisfiesPositionLimits<double>(v, limits, std::numeric_limits<double>::epsilon()));
+  EXPECT_FALSE(tesseract_common::isWithinLimits<double>(v, limits));
+  EXPECT_TRUE(tesseract_common::satisfiesLimits<double>(v, limits, std::numeric_limits<float>::epsilon()));
+  EXPECT_FALSE(tesseract_common::satisfiesLimits<double>(v, limits, std::numeric_limits<double>::epsilon()));
+  tesseract_common::enforceLimits<double>(v, limits);
+  EXPECT_TRUE(tesseract_common::satisfiesLimits<double>(v, limits, std::numeric_limits<double>::epsilon()));
 
   v = -Eigen::VectorXd::Ones(6);
   v = v.array() - std::numeric_limits<float>::epsilon();
 
-  EXPECT_FALSE(tesseract_common::isWithinPositionLimits<double>(v, limits));
-  EXPECT_TRUE(tesseract_common::satisfiesPositionLimits<double>(v, limits, std::numeric_limits<float>::epsilon()));
-  EXPECT_FALSE(tesseract_common::satisfiesPositionLimits<double>(v, limits, std::numeric_limits<double>::epsilon()));
-  tesseract_common::enforcePositionLimits<double>(v, limits);
-  EXPECT_TRUE(tesseract_common::satisfiesPositionLimits<double>(v, limits, std::numeric_limits<double>::epsilon()));
+  EXPECT_FALSE(tesseract_common::isWithinLimits<double>(v, limits));
+  EXPECT_TRUE(tesseract_common::satisfiesLimits<double>(v, limits, std::numeric_limits<float>::epsilon()));
+  EXPECT_FALSE(tesseract_common::satisfiesLimits<double>(v, limits, std::numeric_limits<double>::epsilon()));
+  tesseract_common::enforceLimits<double>(v, limits);
+  EXPECT_TRUE(tesseract_common::satisfiesLimits<double>(v, limits, std::numeric_limits<double>::epsilon()));
 
   // Check that clamp is done correctly on both sides
   v = Eigen::VectorXd::Constant(6, -2);
-  EXPECT_FALSE(tesseract_common::isWithinPositionLimits<double>(v, limits));
-  EXPECT_FALSE(tesseract_common::satisfiesPositionLimits<double>(v, limits, std::numeric_limits<double>::epsilon()));
-  tesseract_common::enforcePositionLimits<double>(v, limits);
+  EXPECT_FALSE(tesseract_common::isWithinLimits<double>(v, limits));
+  EXPECT_FALSE(tesseract_common::satisfiesLimits<double>(v, limits, std::numeric_limits<double>::epsilon()));
+  tesseract_common::enforceLimits<double>(v, limits);
   ASSERT_EQ((v - limits.col(0)).norm(), 0);
 
   v = Eigen::VectorXd::Constant(6, 2);
-  EXPECT_FALSE(tesseract_common::isWithinPositionLimits<double>(v, limits));
-  EXPECT_FALSE(tesseract_common::satisfiesPositionLimits<double>(v, limits, std::numeric_limits<double>::epsilon()));
-  tesseract_common::enforcePositionLimits<double>(v, limits);
+  EXPECT_FALSE(tesseract_common::isWithinLimits<double>(v, limits));
+  EXPECT_FALSE(tesseract_common::satisfiesLimits<double>(v, limits, std::numeric_limits<double>::epsilon()));
+  tesseract_common::enforceLimits<double>(v, limits);
   ASSERT_EQ((v - limits.col(1)).norm(), 0);
 
   v = Eigen::VectorXd::Ones(6);
   v = v.array() - std::numeric_limits<float>::epsilon();
-  EXPECT_TRUE(tesseract_common::isWithinPositionLimits<double>(v, limits));
+  EXPECT_TRUE(tesseract_common::isWithinLimits<double>(v, limits));
 
   v = Eigen::VectorXd::Ones(6);
   v(3) = v(3) + std::numeric_limits<float>::epsilon();
-  EXPECT_FALSE(tesseract_common::isWithinPositionLimits<double>(v, limits));
+  EXPECT_FALSE(tesseract_common::isWithinLimits<double>(v, limits));
 
   v = -Eigen::VectorXd::Ones(6);
   v(3) = v(3) - std::numeric_limits<float>::epsilon();
-  EXPECT_FALSE(tesseract_common::isWithinPositionLimits<double>(v, limits));
+  EXPECT_FALSE(tesseract_common::isWithinLimits<double>(v, limits));
 }
 
 TEST(TesseractCommonUnit, isIdenticalUnit)  // NOLINT
@@ -607,7 +817,7 @@ TEST(TesseractCommonUnit, QueryStringValueUnit)  // NOLINT
     EXPECT_TRUE(element != nullptr);
 
     std::string string_value;
-    tinyxml2::XMLError status = tesseract_common::QueryStringValue(element, string_value);
+    int status = tesseract_common::QueryStringValue(element, string_value);
     EXPECT_TRUE(status == tinyxml2::XML_SUCCESS);
     EXPECT_TRUE(string_value == "box");
   }
@@ -624,7 +834,7 @@ TEST(TesseractCommonUnit, QueryStringTextUnit)  // NOLINT
     EXPECT_TRUE(element != nullptr);
 
     std::string string_value;
-    tinyxml2::XMLError status = tesseract_common::QueryStringText(element, string_value);
+    int status = tesseract_common::QueryStringText(element, string_value);
     EXPECT_TRUE(status == tinyxml2::XML_SUCCESS);
     EXPECT_TRUE(string_value == "Test");
   }
@@ -638,7 +848,7 @@ TEST(TesseractCommonUnit, QueryStringTextUnit)  // NOLINT
     EXPECT_TRUE(element != nullptr);
 
     std::string string_value;
-    tinyxml2::XMLError status = tesseract_common::QueryStringText(element, string_value);
+    int status = tesseract_common::QueryStringText(element, string_value);
     EXPECT_TRUE(status == tinyxml2::XML_NO_ATTRIBUTE);
   }
 }
@@ -654,7 +864,7 @@ TEST(TesseractCommonUnit, QueryStringAttributeUnit)  // NOLINT
     EXPECT_TRUE(element != nullptr);
 
     std::string string_value;
-    tinyxml2::XMLError status = tesseract_common::QueryStringAttribute(element, "name", string_value);
+    int status = tesseract_common::QueryStringAttribute(element, "name", string_value);
     EXPECT_TRUE(status == tinyxml2::XML_SUCCESS);
     EXPECT_TRUE(string_value == "test");
   }
@@ -668,7 +878,7 @@ TEST(TesseractCommonUnit, QueryStringAttributeUnit)  // NOLINT
     EXPECT_TRUE(element != nullptr);
 
     std::string string_value;
-    tinyxml2::XMLError status = tesseract_common::QueryStringAttribute(element, "name", string_value);
+    int status = tesseract_common::QueryStringAttribute(element, "name", string_value);
     EXPECT_TRUE(status == tinyxml2::XML_NO_ATTRIBUTE);
   }
 }
@@ -711,7 +921,7 @@ TEST(TesseractCommonUnit, QueryStringAttributeRequiredUnit)  // NOLINT
     EXPECT_TRUE(element != nullptr);
 
     std::string string_value;
-    tinyxml2::XMLError status = tesseract_common::QueryStringAttributeRequired(element, "name", string_value);
+    int status = tesseract_common::QueryStringAttributeRequired(element, "name", string_value);
     EXPECT_TRUE(status == tinyxml2::XML_SUCCESS);
     EXPECT_TRUE(string_value == "test");
   }
@@ -725,7 +935,7 @@ TEST(TesseractCommonUnit, QueryStringAttributeRequiredUnit)  // NOLINT
     EXPECT_TRUE(element != nullptr);
 
     std::string string_value;
-    tinyxml2::XMLError status = tesseract_common::QueryStringAttributeRequired(element, "missing", string_value);
+    int status = tesseract_common::QueryStringAttributeRequired(element, "missing", string_value);
     EXPECT_TRUE(status == tinyxml2::XML_NO_ATTRIBUTE);
   }
 }
@@ -741,7 +951,7 @@ TEST(TesseractCommonUnit, QueryDoubleAttributeRequiredUnit)  // NOLINT
     EXPECT_TRUE(element != nullptr);
 
     double double_value{ 0 };
-    tinyxml2::XMLError status = tesseract_common::QueryDoubleAttributeRequired(element, "name", double_value);
+    int status = tesseract_common::QueryDoubleAttributeRequired(element, "name", double_value);
     EXPECT_TRUE(status == tinyxml2::XML_SUCCESS);
     EXPECT_NEAR(double_value, 1.5, 1e-6);
   }
@@ -755,7 +965,7 @@ TEST(TesseractCommonUnit, QueryDoubleAttributeRequiredUnit)  // NOLINT
     EXPECT_TRUE(element != nullptr);
 
     double double_value{ 0 };
-    tinyxml2::XMLError status = tesseract_common::QueryDoubleAttributeRequired(element, "missing", double_value);
+    int status = tesseract_common::QueryDoubleAttributeRequired(element, "missing", double_value);
     EXPECT_TRUE(status == tinyxml2::XML_NO_ATTRIBUTE);
   }
 
@@ -768,7 +978,7 @@ TEST(TesseractCommonUnit, QueryDoubleAttributeRequiredUnit)  // NOLINT
     EXPECT_TRUE(element != nullptr);
 
     double double_value{ 0 };
-    tinyxml2::XMLError status = tesseract_common::QueryDoubleAttributeRequired(element, "name", double_value);
+    int status = tesseract_common::QueryDoubleAttributeRequired(element, "name", double_value);
     EXPECT_TRUE(status == tinyxml2::XML_WRONG_ATTRIBUTE_TYPE);
   }
 }
@@ -784,7 +994,7 @@ TEST(TesseractCommonUnit, QueryIntAttributeRequiredUnit)  // NOLINT
     EXPECT_TRUE(element != nullptr);
 
     int int_value{ 0 };
-    tinyxml2::XMLError status = tesseract_common::QueryIntAttributeRequired(element, "name", int_value);
+    int status = tesseract_common::QueryIntAttributeRequired(element, "name", int_value);
     EXPECT_TRUE(status == tinyxml2::XML_SUCCESS);
     EXPECT_NEAR(int_value, 1, 1e-6);
   }
@@ -798,7 +1008,7 @@ TEST(TesseractCommonUnit, QueryIntAttributeRequiredUnit)  // NOLINT
     EXPECT_TRUE(element != nullptr);
 
     int int_value{ 0 };
-    tinyxml2::XMLError status = tesseract_common::QueryIntAttributeRequired(element, "missing", int_value);
+    int status = tesseract_common::QueryIntAttributeRequired(element, "missing", int_value);
     EXPECT_TRUE(status == tinyxml2::XML_NO_ATTRIBUTE);
   }
 
@@ -811,7 +1021,7 @@ TEST(TesseractCommonUnit, QueryIntAttributeRequiredUnit)  // NOLINT
     EXPECT_TRUE(element != nullptr);
 
     int int_value{ 0 };
-    tinyxml2::XMLError status = tesseract_common::QueryIntAttributeRequired(element, "name", int_value);
+    int status = tesseract_common::QueryIntAttributeRequired(element, "name", int_value);
     EXPECT_TRUE(status == tinyxml2::XML_WRONG_ATTRIBUTE_TYPE);
   }
 }
@@ -1013,7 +1223,8 @@ TEST(TesseractPluginFactoryUnit, KinematicsPluginInfoYamlUnit)  // NOLINT
                                            tip_link: tool0)";
 
   {  // Success
-    YAML::Node plugin_config = YAML::Load(yaml_string);
+    tesseract_common::GeneralResourceLocator locator;
+    YAML::Node plugin_config = tesseract_common::loadYamlString(yaml_string, locator);
     YAML::Node config = plugin_config[tesseract_common::KinematicsPluginInfo::CONFIG_KEY];
     auto cmpi = config.as<tesseract_common::KinematicsPluginInfo>();
 
@@ -1082,7 +1293,8 @@ TEST(TesseractPluginFactoryUnit, KinematicsPluginInfoYamlUnit)  // NOLINT
                                              base_link: base_link
                                              tip_link: tool0)";
 
-    YAML::Node plugin_config = YAML::Load(yaml_string);
+    tesseract_common::GeneralResourceLocator locator;
+    YAML::Node plugin_config = tesseract_common::loadYamlString(yaml_string, locator);
     YAML::Node config = plugin_config[tesseract_common::KinematicsPluginInfo::CONFIG_KEY];
     EXPECT_ANY_THROW(config.as<tesseract_common::KinematicsPluginInfo>());  // NOLINT
   }
@@ -1117,7 +1329,8 @@ TEST(TesseractPluginFactoryUnit, KinematicsPluginInfoYamlUnit)  // NOLINT
                                              base_link: base_link
                                              tip_link: tool0)";
 
-    YAML::Node plugin_config = YAML::Load(yaml_string);
+    tesseract_common::GeneralResourceLocator locator;
+    YAML::Node plugin_config = tesseract_common::loadYamlString(yaml_string, locator);
     YAML::Node config = plugin_config[tesseract_common::KinematicsPluginInfo::CONFIG_KEY];
     EXPECT_ANY_THROW(config.as<tesseract_common::KinematicsPluginInfo>());  // NOLINT
   }
@@ -1146,7 +1359,8 @@ TEST(TesseractPluginFactoryUnit, KinematicsPluginInfoYamlUnit)  // NOLINT
                                              base_link: base_link
                                              tip_link: tool0)";
 
-    YAML::Node plugin_config = YAML::Load(yaml_string);
+    tesseract_common::GeneralResourceLocator locator;
+    YAML::Node plugin_config = tesseract_common::loadYamlString(yaml_string, locator);
     YAML::Node config = plugin_config[tesseract_common::KinematicsPluginInfo::CONFIG_KEY];
     EXPECT_ANY_THROW(config.as<tesseract_common::KinematicsPluginInfo>());  // NOLINT
   }
@@ -1177,7 +1391,8 @@ TEST(TesseractPluginFactoryUnit, KinematicsPluginInfoYamlUnit)  // NOLINT
                                              base_link: base_link
                                              tip_link: tool0)";
 
-    YAML::Node plugin_config = YAML::Load(yaml_string);
+    tesseract_common::GeneralResourceLocator locator;
+    YAML::Node plugin_config = tesseract_common::loadYamlString(yaml_string, locator);
     YAML::Node config = plugin_config[tesseract_common::KinematicsPluginInfo::CONFIG_KEY];
     EXPECT_ANY_THROW(config.as<tesseract_common::KinematicsPluginInfo>());  // NOLINT
   }
@@ -1201,7 +1416,8 @@ TEST(TesseractPluginFactoryUnit, KinematicsPluginInfoYamlUnit)  // NOLINT
                                      iiwa_manipulator:
                                        default: KDLInvKinChainLMA)";
 
-    YAML::Node plugin_config = YAML::Load(yaml_string);
+    tesseract_common::GeneralResourceLocator locator;
+    YAML::Node plugin_config = tesseract_common::loadYamlString(yaml_string, locator);
     YAML::Node config = plugin_config[tesseract_common::KinematicsPluginInfo::CONFIG_KEY];
     EXPECT_ANY_THROW(config.as<tesseract_common::KinematicsPluginInfo>());  // NOLINT
   }
@@ -1226,7 +1442,8 @@ TEST(TesseractPluginFactoryUnit, KinematicsPluginInfoYamlUnit)  // NOLINT
                                        - tesseract_collision_bullet_factories
                                        - tesseract_collision_fcl_factories)";
 
-    YAML::Node plugin_config = YAML::Load(yaml_string);
+    tesseract_common::GeneralResourceLocator locator;
+    YAML::Node plugin_config = tesseract_common::loadYamlString(yaml_string, locator);
     YAML::Node config = plugin_config[tesseract_common::KinematicsPluginInfo::CONFIG_KEY];
     EXPECT_ANY_THROW(config.as<tesseract_common::KinematicsPluginInfo>());  // NOLINT
   }
@@ -1258,7 +1475,8 @@ TEST(TesseractPluginFactoryUnit, ContactManagersPluginInfoYamlUnit)  // NOLINT
                                        class: BulletCastSimpleManagerFactory)";
 
   {  // Success
-    YAML::Node plugin_config = YAML::Load(yaml_string);
+    tesseract_common::GeneralResourceLocator locator;
+    YAML::Node plugin_config = tesseract_common::loadYamlString(yaml_string, locator);
     YAML::Node config = plugin_config[tesseract_common::ContactManagersPluginInfo::CONFIG_KEY];
     auto cmpi = config.as<tesseract_common::ContactManagersPluginInfo>();
 
@@ -1320,7 +1538,8 @@ TEST(TesseractPluginFactoryUnit, ContactManagersPluginInfoYamlUnit)  // NOLINT
                                          class: BulletCastBVHManagerFactory
                                        BulletCastSimpleManager:
                                          class: BulletCastSimpleManagerFactory)";
-    YAML::Node plugin_config = YAML::Load(yaml_string);
+    tesseract_common::GeneralResourceLocator locator;
+    YAML::Node plugin_config = tesseract_common::loadYamlString(yaml_string, locator);
     YAML::Node config = plugin_config[tesseract_common::ContactManagersPluginInfo::CONFIG_KEY];
     EXPECT_ANY_THROW(config.as<tesseract_common::ContactManagersPluginInfo>());  // NOLINT
   }
@@ -1347,7 +1566,8 @@ TEST(TesseractPluginFactoryUnit, ContactManagersPluginInfoYamlUnit)  // NOLINT
                                          class: BulletCastBVHManagerFactory
                                        BulletCastSimpleManager:
                                          class: BulletCastSimpleManagerFactory)";
-    YAML::Node plugin_config = YAML::Load(yaml_string);
+    tesseract_common::GeneralResourceLocator locator;
+    YAML::Node plugin_config = tesseract_common::loadYamlString(yaml_string, locator);
     YAML::Node config = plugin_config[tesseract_common::ContactManagersPluginInfo::CONFIG_KEY];
     EXPECT_ANY_THROW(config.as<tesseract_common::ContactManagersPluginInfo>());  // NOLINT
   }
@@ -1368,7 +1588,8 @@ TEST(TesseractPluginFactoryUnit, ContactManagersPluginInfoYamlUnit)  // NOLINT
                                          class: BulletCastBVHManagerFactory
                                        BulletCastSimpleManager:
                                          class: BulletCastSimpleManagerFactory)";
-    YAML::Node plugin_config = YAML::Load(yaml_string);
+    tesseract_common::GeneralResourceLocator locator;
+    YAML::Node plugin_config = tesseract_common::loadYamlString(yaml_string, locator);
     YAML::Node config = plugin_config[tesseract_common::ContactManagersPluginInfo::CONFIG_KEY];
     EXPECT_ANY_THROW(config.as<tesseract_common::ContactManagersPluginInfo>());  // NOLINT
   }
@@ -1390,7 +1611,8 @@ TEST(TesseractPluginFactoryUnit, ContactManagersPluginInfoYamlUnit)  // NOLINT
                                          class: BulletCastBVHManagerFactory
                                        BulletCastSimpleManager:
                                          class: BulletCastSimpleManagerFactory)";
-    YAML::Node plugin_config = YAML::Load(yaml_string);
+    tesseract_common::GeneralResourceLocator locator;
+    YAML::Node plugin_config = tesseract_common::loadYamlString(yaml_string, locator);
     YAML::Node config = plugin_config[tesseract_common::ContactManagersPluginInfo::CONFIG_KEY];
     EXPECT_ANY_THROW(config.as<tesseract_common::ContactManagersPluginInfo>());  // NOLINT
   }
@@ -1413,7 +1635,8 @@ TEST(TesseractPluginFactoryUnit, ContactManagersPluginInfoYamlUnit)  // NOLINT
                                          class: FCLDiscreteBVHManagerFactory
                                    continuous_plugins:
                                      default: BulletCastBVHManager)";
-    YAML::Node plugin_config = YAML::Load(yaml_string);
+    tesseract_common::GeneralResourceLocator locator;
+    YAML::Node plugin_config = tesseract_common::loadYamlString(yaml_string, locator);
     YAML::Node config = plugin_config[tesseract_common::ContactManagersPluginInfo::CONFIG_KEY];
     EXPECT_ANY_THROW(config.as<tesseract_common::ContactManagersPluginInfo>());  // NOLINT
   }
@@ -1437,7 +1660,8 @@ TEST(TesseractPluginFactoryUnit, ContactManagersPluginInfoYamlUnit)  // NOLINT
                                    continuous_plugins:
                                      - tesseract_collision_bullet_factories
                                      - tesseract_collision_fcl_factories)";
-    YAML::Node plugin_config = YAML::Load(yaml_string);
+    tesseract_common::GeneralResourceLocator locator;
+    YAML::Node plugin_config = tesseract_common::loadYamlString(yaml_string, locator);
     YAML::Node config = plugin_config[tesseract_common::ContactManagersPluginInfo::CONFIG_KEY];
     EXPECT_ANY_THROW(config.as<tesseract_common::ContactManagersPluginInfo>());  // NOLINT
   }
@@ -1481,7 +1705,8 @@ TEST(TesseractPluginFactoryUnit, TaskComposerPluginInfoYamlUnit)  // NOLINT
                                          output_key: "output")";
 
   {  // Success
-    YAML::Node plugin_config = YAML::Load(yaml_string);
+    tesseract_common::GeneralResourceLocator locator;
+    YAML::Node plugin_config = tesseract_common::loadYamlString(yaml_string, locator);
     YAML::Node config = plugin_config[tesseract_common::TaskComposerPluginInfo::CONFIG_KEY];
     auto tcpi = config.as<tesseract_common::TaskComposerPluginInfo>();
 
@@ -1555,7 +1780,8 @@ TEST(TesseractPluginFactoryUnit, TaskComposerPluginInfoYamlUnit)  // NOLINT
                                          config:
                                            input_key: "input"
                                            output_key: "output")";
-    YAML::Node plugin_config = YAML::Load(yaml_string);
+    tesseract_common::GeneralResourceLocator locator;
+    YAML::Node plugin_config = tesseract_common::loadYamlString(yaml_string, locator);
     YAML::Node config = plugin_config[tesseract_common::TaskComposerPluginInfo::CONFIG_KEY];
     EXPECT_ANY_THROW(config.as<tesseract_common::TaskComposerPluginInfo>());  // NOLINT
   }
@@ -1594,7 +1820,8 @@ TEST(TesseractPluginFactoryUnit, TaskComposerPluginInfoYamlUnit)  // NOLINT
                                          config:
                                            input_key: "input"
                                            output_key: "output")";
-    YAML::Node plugin_config = YAML::Load(yaml_string);
+    tesseract_common::GeneralResourceLocator locator;
+    YAML::Node plugin_config = tesseract_common::loadYamlString(yaml_string, locator);
     YAML::Node config = plugin_config[tesseract_common::TaskComposerPluginInfo::CONFIG_KEY];
     EXPECT_ANY_THROW(config.as<tesseract_common::TaskComposerPluginInfo>());  // NOLINT
   }
@@ -1621,7 +1848,8 @@ TEST(TesseractPluginFactoryUnit, TaskComposerPluginInfoYamlUnit)  // NOLINT
                                          config:
                                            input_key: "input"
                                            output_key: "output")";
-    YAML::Node plugin_config = YAML::Load(yaml_string);
+    tesseract_common::GeneralResourceLocator locator;
+    YAML::Node plugin_config = tesseract_common::loadYamlString(yaml_string, locator);
     YAML::Node config = plugin_config[tesseract_common::TaskComposerPluginInfo::CONFIG_KEY];
     EXPECT_ANY_THROW(config.as<tesseract_common::TaskComposerPluginInfo>());  // NOLINT
   }
@@ -1659,7 +1887,8 @@ TEST(TesseractPluginFactoryUnit, TaskComposerPluginInfoYamlUnit)  // NOLINT
                                          config:
                                            input_key: "input"
                                            output_key: "output")";
-    YAML::Node plugin_config = YAML::Load(yaml_string);
+    tesseract_common::GeneralResourceLocator locator;
+    YAML::Node plugin_config = tesseract_common::loadYamlString(yaml_string, locator);
     YAML::Node config = plugin_config[tesseract_common::TaskComposerPluginInfo::CONFIG_KEY];
     EXPECT_ANY_THROW(config.as<tesseract_common::TaskComposerPluginInfo>());  // NOLINT
   }
@@ -1688,7 +1917,8 @@ TEST(TesseractPluginFactoryUnit, TaskComposerPluginInfoYamlUnit)  // NOLINT
                                            threads: 15
                                    tasks:
                                      default: CartesianMotionPipeline)";
-    YAML::Node plugin_config = YAML::Load(yaml_string);
+    tesseract_common::GeneralResourceLocator locator;
+    YAML::Node plugin_config = tesseract_common::loadYamlString(yaml_string, locator);
     YAML::Node config = plugin_config[tesseract_common::TaskComposerPluginInfo::CONFIG_KEY];
     EXPECT_ANY_THROW(config.as<tesseract_common::TaskComposerPluginInfo>());  // NOLINT
   }
@@ -1726,7 +1956,8 @@ TEST(TesseractPluginFactoryUnit, TaskComposerPluginInfoYamlUnit)  // NOLINT
                                          config:
                                            input_key: "input"
                                            output_key: "output")";
-    YAML::Node plugin_config = YAML::Load(yaml_string);
+    tesseract_common::GeneralResourceLocator locator;
+    YAML::Node plugin_config = tesseract_common::loadYamlString(yaml_string, locator);
     YAML::Node config = plugin_config[tesseract_common::TaskComposerPluginInfo::CONFIG_KEY];
     EXPECT_ANY_THROW(config.as<tesseract_common::TaskComposerPluginInfo>());  // NOLINT
   }
@@ -1758,7 +1989,8 @@ TEST(TesseractCommonUnit, TransformMapYamlUnit)  // NOLINT
                w: 1)";
 
   {  // valid string
-    YAML::Node node = YAML::Load(yaml_string);
+    tesseract_common::GeneralResourceLocator locator;
+    YAML::Node node = tesseract_common::loadYamlString(yaml_string, locator);
     auto trans_map = node["joints"].as<tesseract_common::TransformMap>();
     EXPECT_EQ(trans_map.size(), 2);
     EXPECT_FALSE(trans_map.empty());
@@ -1789,7 +2021,8 @@ TEST(TesseractCommonUnit, TransformMapYamlUnit)  // NOLINT
                  z: 0
                  w: 1)";
   {  // invalid string
-    YAML::Node node = YAML::Load(bad_yaml_string);
+    tesseract_common::GeneralResourceLocator locator;
+    YAML::Node node = tesseract_common::loadYamlString(bad_yaml_string, locator);
     EXPECT_ANY_THROW(node["joints"].as<tesseract_common::TransformMap>());  // NOLINT
   }
 }
@@ -1820,7 +2053,8 @@ TEST(TesseractCommonUnit, CalibrationInfoYamlUnit)  // NOLINT
                  z: 0
                  w: 1)";
 
-  YAML::Node node = YAML::Load(yaml_string);
+  tesseract_common::GeneralResourceLocator locator;
+  YAML::Node node = tesseract_common::loadYamlString(yaml_string, locator);
   auto cal_info = node[tesseract_common::CalibrationInfo::CONFIG_KEY].as<tesseract_common::CalibrationInfo>();
   EXPECT_FALSE(cal_info.empty());
   EXPECT_TRUE(cal_info.joints.find("joint_1") != cal_info.joints.end());
@@ -1988,80 +2222,6 @@ TEST(TesseractCommonUnit, calcRotationalError)  // NOLINT
   }
 }
 
-/** @brief Tests calcRotationalError2 which return angle between [0, 2 * PI]*/
-TEST(TesseractCommonUnit, calcRotationalError2)  // NOLINT
-{
-  auto check_axis = [](const Eigen::Vector3d& axis) {
-    return (axis.normalized().isApprox(Eigen::Vector3d::UnitZ(), 1e-6) ||
-            axis.normalized().isApprox(-Eigen::Vector3d::UnitZ(), 1e-6));
-  };
-  Eigen::Isometry3d identity = Eigen::Isometry3d::Identity();
-  Eigen::Isometry3d pi_rot = identity * Eigen::AngleAxisd(3 * M_PI_2, Eigen::Vector3d::UnitZ());
-  Eigen::Vector3d rot_err = tesseract_common::calcRotationalError2(pi_rot.rotation());
-  EXPECT_NEAR(rot_err.norm(), M_PI_2, 1e-6);
-  EXPECT_TRUE(check_axis(rot_err.normalized()));
-
-  pi_rot = identity * Eigen::AngleAxisd(0.0001, Eigen::Vector3d::UnitZ());
-  rot_err = tesseract_common::calcRotationalError2(pi_rot.rotation());
-  EXPECT_NEAR(rot_err.norm(), 0.0001, 1e-6);
-  EXPECT_TRUE(check_axis(rot_err.normalized()));
-
-  // Test greater than 2 * PI
-  pi_rot = identity * Eigen::AngleAxisd(3 * M_PI, Eigen::Vector3d::UnitZ());
-  rot_err = tesseract_common::calcRotationalError2(pi_rot.rotation());
-  EXPECT_NEAR(rot_err.norm(), M_PI, 1e-6);
-  EXPECT_TRUE(check_axis(rot_err.normalized()));
-
-  // Test lessthan than 0
-  pi_rot = identity * Eigen::AngleAxisd(-M_PI, Eigen::Vector3d::UnitZ());
-  rot_err = tesseract_common::calcRotationalError2(pi_rot.rotation());
-  EXPECT_NEAR(rot_err.norm(), M_PI, 1e-6);
-  EXPECT_TRUE(check_axis(rot_err.normalized()));
-
-  // Test for angle between [0, 2 * PI]
-  Eigen::Isometry3d pi_rot_plus = identity * Eigen::AngleAxisd(M_PI + 0.001, Eigen::Vector3d::UnitZ());
-  Eigen::Isometry3d pi_rot_minus = identity * Eigen::AngleAxisd(M_PI - 0.001, Eigen::Vector3d::UnitZ());
-  Eigen::Vector3d pi_rot_delta = tesseract_common::calcRotationalError2(pi_rot_plus.rotation()) -
-                                 tesseract_common::calcRotationalError2(pi_rot_minus.rotation());
-  EXPECT_NEAR(pi_rot_delta.norm(), 0.002, 1e-6);
-
-  // Test for angle at 0
-  pi_rot_plus = identity * Eigen::AngleAxisd(0.001, Eigen::Vector3d::UnitZ());
-  pi_rot_minus = identity * Eigen::AngleAxisd(-0.001, Eigen::Vector3d::UnitZ());
-  pi_rot_delta = tesseract_common::calcRotationalError2(pi_rot_plus.rotation()) -
-                 tesseract_common::calcRotationalError2(pi_rot_minus.rotation());
-  EXPECT_NEAR(pi_rot_delta.norm(), 0.002, 1e-6);
-
-  // Test for angle at 2 * PI
-  pi_rot_plus = identity * Eigen::AngleAxisd((2 * M_PI) + 0.001, Eigen::Vector3d::UnitZ());
-  pi_rot_minus = identity * Eigen::AngleAxisd((2 * M_PI) - 0.001, Eigen::Vector3d::UnitZ());
-  pi_rot_delta = tesseract_common::calcRotationalError2(pi_rot_plus.rotation()) -
-                 tesseract_common::calcRotationalError2(pi_rot_minus.rotation());
-  EXPECT_NEAR(pi_rot_delta.norm(), 0.002, 1e-6);
-
-  // Test random axis
-  for (int i = 0; i < 100; i++)
-  {
-    Eigen::Vector3d axis = Eigen::Vector3d::Random().normalized();
-
-    // Avoid M_PI angle because this breaks down
-    Eigen::VectorXd angles = Eigen::VectorXd::LinSpaced(1000, -5 * M_PI, 5 * M_PI);
-    for (Eigen::Index j = 0; j < angles.rows(); j++)
-    {
-      pi_rot_plus = identity * Eigen::AngleAxisd(angles(j) + 0.001, axis);
-      pi_rot_minus = identity * Eigen::AngleAxisd(angles(j) - 0.001, axis);
-      Eigen::Vector3d e1 = tesseract_common::calcRotationalError2(pi_rot_plus.rotation());
-      Eigen::Vector3d e2 = tesseract_common::calcRotationalError2(pi_rot_minus.rotation());
-      EXPECT_FALSE((e1.norm() < 0));
-      EXPECT_FALSE((e1.norm() > 2 * M_PI));
-      EXPECT_FALSE((e2.norm() < 0));
-      EXPECT_FALSE((e2.norm() > 2 * M_PI));
-      pi_rot_delta = e1 - e2;
-      EXPECT_NEAR(pi_rot_delta.norm(), 0.002, 1e-6);
-    }
-  }
-}
-
 /** @brief Tests calcTransformError */
 TEST(TesseractCommonUnit, calcTransformError)  // NOLINT
 {
@@ -2096,6 +2256,303 @@ TEST(TesseractCommonUnit, calcTransformError)  // NOLINT
   }
 }
 
+void runCalcJacobianTransformErrorDiffTest(double anlge)
+{
+  Eigen::Isometry3d identity = Eigen::Isometry3d::Identity();
+  const double eps = 0.001;
+  {  // X-Axis positive
+    Eigen::Isometry3d target_tf{ identity };
+    target_tf.translation() = Eigen::Vector3d(1, 2, 3);
+    Eigen::Isometry3d source_tf = identity * Eigen::AngleAxisd(anlge, Eigen::Vector3d::UnitX());
+    Eigen::Isometry3d source_tf_perturbed = identity * Eigen::AngleAxisd(anlge + eps, Eigen::Vector3d::UnitX());
+    Eigen::VectorXd diff = tesseract_common::calcJacobianTransformErrorDiff(target_tf, source_tf, source_tf_perturbed);
+    EXPECT_TRUE(diff.head(3).isApprox(Eigen::Vector3d::Zero()));
+    EXPECT_TRUE(diff.tail(3).isApprox(Eigen::Vector3d(eps, 0, 0)));
+  }
+
+  {  // X-Axis negative
+    Eigen::Isometry3d target_tf{ identity };
+    target_tf.translation() = Eigen::Vector3d(1, 2, 3);
+    Eigen::Isometry3d source_tf = identity * Eigen::AngleAxisd(anlge, Eigen::Vector3d::UnitX());
+    Eigen::Isometry3d source_tf_perturbed = identity * Eigen::AngleAxisd(anlge - eps, Eigen::Vector3d::UnitX());
+    Eigen::VectorXd diff = tesseract_common::calcJacobianTransformErrorDiff(target_tf, source_tf, source_tf_perturbed);
+    EXPECT_TRUE(diff.head(3).isApprox(Eigen::Vector3d::Zero()));
+    EXPECT_TRUE(diff.tail(3).isApprox(Eigen::Vector3d(-eps, 0, 0)));
+  }
+
+  {  // X-Axis positive and negative
+    Eigen::Isometry3d target_tf{ identity };
+    target_tf.translation() = Eigen::Vector3d(1, 2, 3);
+    Eigen::Isometry3d source_tf = identity * Eigen::AngleAxisd(anlge + eps, Eigen::Vector3d::UnitX());
+    Eigen::Isometry3d source_tf_perturbed = identity * Eigen::AngleAxisd(anlge - eps, Eigen::Vector3d::UnitX());
+    Eigen::VectorXd diff = tesseract_common::calcJacobianTransformErrorDiff(target_tf, source_tf, source_tf_perturbed);
+    EXPECT_TRUE(diff.head(3).isApprox(Eigen::Vector3d::Zero()));
+    EXPECT_TRUE(diff.tail(3).isApprox(Eigen::Vector3d(-2 * eps, 0, 0)));
+  }
+
+  {  // X-Axis translation
+    Eigen::Isometry3d target_tf{ identity };
+    target_tf.translation() = Eigen::Vector3d(1, 2, 3);
+    Eigen::Isometry3d source_tf = identity * Eigen::AngleAxisd(anlge, Eigen::Vector3d::UnitX());
+    Eigen::Isometry3d source_tf_perturbed = identity * Eigen::AngleAxisd(anlge - eps, Eigen::Vector3d::UnitX());
+    source_tf_perturbed.translation() += Eigen::Vector3d(eps, -eps, eps);
+    Eigen::VectorXd diff = tesseract_common::calcJacobianTransformErrorDiff(target_tf, source_tf, source_tf_perturbed);
+    EXPECT_TRUE(diff.head(3).isApprox(Eigen::Vector3d(eps, -eps, eps)));
+    EXPECT_TRUE(diff.tail(3).isApprox(Eigen::Vector3d(-eps, 0, 0)));
+  }
+
+  {  // Y-Axis positive
+    Eigen::Isometry3d target_tf{ identity };
+    target_tf.translation() = Eigen::Vector3d(1, 2, 3);
+    Eigen::Isometry3d source_tf = identity * Eigen::AngleAxisd(anlge, Eigen::Vector3d::UnitY());
+    Eigen::Isometry3d source_tf_perturbed = identity * Eigen::AngleAxisd(anlge + eps, Eigen::Vector3d::UnitY());
+    Eigen::VectorXd diff = tesseract_common::calcJacobianTransformErrorDiff(target_tf, source_tf, source_tf_perturbed);
+    EXPECT_TRUE(diff.head(3).isApprox(Eigen::Vector3d::Zero()));
+    EXPECT_TRUE(diff.tail(3).isApprox(Eigen::Vector3d(0, eps, 0)));
+  }
+
+  {  // Y-Axis negative
+    Eigen::Isometry3d target_tf{ identity };
+    target_tf.translation() = Eigen::Vector3d(1, 2, 3);
+    Eigen::Isometry3d source_tf = identity * Eigen::AngleAxisd(anlge, Eigen::Vector3d::UnitY());
+    Eigen::Isometry3d source_tf_perturbed = identity * Eigen::AngleAxisd(anlge - eps, Eigen::Vector3d::UnitY());
+    Eigen::VectorXd diff = tesseract_common::calcJacobianTransformErrorDiff(target_tf, source_tf, source_tf_perturbed);
+    EXPECT_TRUE(diff.head(3).isApprox(Eigen::Vector3d::Zero()));
+    EXPECT_TRUE(diff.tail(3).isApprox(Eigen::Vector3d(0, -eps, 0)));
+  }
+
+  {  // Y-Axis positive and negative
+    Eigen::Isometry3d target_tf{ identity };
+    target_tf.translation() = Eigen::Vector3d(1, 2, 3);
+    Eigen::Isometry3d source_tf = identity * Eigen::AngleAxisd(anlge + eps, Eigen::Vector3d::UnitY());
+    Eigen::Isometry3d source_tf_perturbed = identity * Eigen::AngleAxisd(anlge - eps, Eigen::Vector3d::UnitY());
+    Eigen::VectorXd diff = tesseract_common::calcJacobianTransformErrorDiff(target_tf, source_tf, source_tf_perturbed);
+    EXPECT_TRUE(diff.head(3).isApprox(Eigen::Vector3d::Zero()));
+    EXPECT_TRUE(diff.tail(3).isApprox(Eigen::Vector3d(0, -2 * eps, 0)));
+  }
+
+  {  // Y-Axis translation
+    Eigen::Isometry3d target_tf{ identity };
+    target_tf.translation() = Eigen::Vector3d(1, 2, 3);
+    Eigen::Isometry3d source_tf = identity * Eigen::AngleAxisd(anlge, Eigen::Vector3d::UnitY());
+    Eigen::Isometry3d source_tf_perturbed = identity * Eigen::AngleAxisd(anlge - eps, Eigen::Vector3d::UnitY());
+    source_tf_perturbed.translation() += Eigen::Vector3d(-eps, eps, -eps);
+    Eigen::VectorXd diff = tesseract_common::calcJacobianTransformErrorDiff(target_tf, source_tf, source_tf_perturbed);
+    EXPECT_TRUE(diff.head(3).isApprox(Eigen::Vector3d(-eps, eps, -eps)));
+    EXPECT_TRUE(diff.tail(3).isApprox(Eigen::Vector3d(0, -eps, 0)));
+  }
+
+  {  // Z-Axis positive
+    Eigen::Isometry3d target_tf{ identity };
+    target_tf.translation() = Eigen::Vector3d(1, 2, 3);
+    Eigen::Isometry3d source_tf = identity * Eigen::AngleAxisd(anlge, Eigen::Vector3d::UnitZ());
+    Eigen::Isometry3d source_tf_perturbed = identity * Eigen::AngleAxisd(anlge + eps, Eigen::Vector3d::UnitZ());
+    Eigen::VectorXd diff = tesseract_common::calcJacobianTransformErrorDiff(target_tf, source_tf, source_tf_perturbed);
+    EXPECT_TRUE(diff.head(3).isApprox(Eigen::Vector3d::Zero()));
+    EXPECT_TRUE(diff.tail(3).isApprox(Eigen::Vector3d(0, 0, eps)));
+  }
+
+  {  // Z-Axis negative
+    Eigen::Isometry3d target_tf{ identity };
+    target_tf.translation() = Eigen::Vector3d(1, 2, 3);
+    Eigen::Isometry3d source_tf = identity * Eigen::AngleAxisd(anlge, Eigen::Vector3d::UnitZ());
+    Eigen::Isometry3d source_tf_perturbed = identity * Eigen::AngleAxisd(anlge - eps, Eigen::Vector3d::UnitZ());
+    Eigen::VectorXd diff = tesseract_common::calcJacobianTransformErrorDiff(target_tf, source_tf, source_tf_perturbed);
+    EXPECT_TRUE(diff.head(3).isApprox(Eigen::Vector3d::Zero()));
+    EXPECT_TRUE(diff.tail(3).isApprox(Eigen::Vector3d(0, 0, -eps)));
+  }
+
+  {  // Z-Axis positive and negative
+    Eigen::Isometry3d target_tf{ identity };
+    target_tf.translation() = Eigen::Vector3d(1, 2, 3);
+    Eigen::Isometry3d source_tf = identity * Eigen::AngleAxisd(anlge + eps, Eigen::Vector3d::UnitZ());
+    Eigen::Isometry3d source_tf_perturbed = identity * Eigen::AngleAxisd(anlge - eps, Eigen::Vector3d::UnitZ());
+    Eigen::VectorXd diff = tesseract_common::calcJacobianTransformErrorDiff(target_tf, source_tf, source_tf_perturbed);
+    EXPECT_TRUE(diff.head(3).isApprox(Eigen::Vector3d::Zero()));
+    EXPECT_TRUE(diff.tail(3).isApprox(Eigen::Vector3d(0, 0, -2 * eps)));
+  }
+
+  {  // Z-Axis translation
+    Eigen::Isometry3d target_tf{ identity };
+    target_tf.translation() = Eigen::Vector3d(1, 2, 3);
+    Eigen::Isometry3d source_tf = identity * Eigen::AngleAxisd(anlge, Eigen::Vector3d::UnitZ());
+    Eigen::Isometry3d source_tf_perturbed = identity * Eigen::AngleAxisd(anlge - eps, Eigen::Vector3d::UnitZ());
+    source_tf_perturbed.translation() += Eigen::Vector3d(-eps, -eps, eps);
+    Eigen::VectorXd diff = tesseract_common::calcJacobianTransformErrorDiff(target_tf, source_tf, source_tf_perturbed);
+    EXPECT_TRUE(diff.head(3).isApprox(Eigen::Vector3d(-eps, -eps, eps)));
+    EXPECT_TRUE(diff.tail(3).isApprox(Eigen::Vector3d(0, 0, -eps)));
+  }
+}
+
+void runCalcJacobianTransformErrorDiffDynamicTargetTest(double angle)
+{
+  Eigen::Isometry3d identity = Eigen::Isometry3d::Identity();
+  const double eps = 0.001;
+  {  // X-Axis positive
+    Eigen::Isometry3d target_tf{ identity };
+    target_tf.translation() = Eigen::Vector3d(1, 2, 3);
+    Eigen::Isometry3d target_tf_perturbed = Eigen::AngleAxisd(-eps, Eigen::Vector3d::UnitX()) * target_tf;
+    Eigen::Isometry3d source_tf = identity * Eigen::AngleAxisd(angle, Eigen::Vector3d::UnitX());
+    Eigen::Isometry3d source_tf_perturbed = identity * Eigen::AngleAxisd(angle + eps, Eigen::Vector3d::UnitX());
+    Eigen::VectorXd diff = tesseract_common::calcJacobianTransformErrorDiff(
+        target_tf, target_tf_perturbed, source_tf, source_tf_perturbed);
+    EXPECT_TRUE(tesseract_common::almostEqualRelativeAndAbs(diff.head(3), Eigen::Vector3d::Zero()));
+    EXPECT_TRUE(diff.tail(3).isApprox(Eigen::Vector3d(2 * eps, 0, 0)));
+  }
+
+  {  // X-Axis negative
+    Eigen::Isometry3d target_tf{ identity };
+    target_tf.translation() = Eigen::Vector3d(1, 2, 3);
+    Eigen::Isometry3d target_tf_perturbed = Eigen::AngleAxisd(eps, Eigen::Vector3d::UnitX()) * target_tf;
+    Eigen::Isometry3d source_tf = identity * Eigen::AngleAxisd(angle, Eigen::Vector3d::UnitX());
+    Eigen::Isometry3d source_tf_perturbed = identity * Eigen::AngleAxisd(angle - eps, Eigen::Vector3d::UnitX());
+    Eigen::VectorXd diff = tesseract_common::calcJacobianTransformErrorDiff(
+        target_tf, target_tf_perturbed, source_tf, source_tf_perturbed);
+    EXPECT_TRUE(tesseract_common::almostEqualRelativeAndAbs(diff.head(3), Eigen::Vector3d::Zero()));
+    EXPECT_TRUE(diff.tail(3).isApprox(Eigen::Vector3d(-2 * eps, 0, 0)));
+  }
+
+  {  // X-Axis positive and negative
+    Eigen::Isometry3d target_tf{ identity };
+    target_tf.translation() = Eigen::Vector3d(1, 2, 3);
+    Eigen::Isometry3d target_tf_perturbed = Eigen::AngleAxisd(eps, Eigen::Vector3d::UnitX()) * target_tf;
+    Eigen::Isometry3d source_tf = identity * Eigen::AngleAxisd(angle + eps, Eigen::Vector3d::UnitX());
+    Eigen::Isometry3d source_tf_perturbed = identity * Eigen::AngleAxisd(angle - eps, Eigen::Vector3d::UnitX());
+    Eigen::VectorXd diff = tesseract_common::calcJacobianTransformErrorDiff(
+        target_tf, target_tf_perturbed, source_tf, source_tf_perturbed);
+    EXPECT_TRUE(tesseract_common::almostEqualRelativeAndAbs(diff.head(3), Eigen::Vector3d::Zero()));
+    EXPECT_TRUE(diff.tail(3).isApprox(Eigen::Vector3d(-3 * eps, 0, 0)));
+  }
+
+  {  // X-Axis translation
+    Eigen::Isometry3d target_tf{ identity };
+    target_tf.translation() = Eigen::Vector3d(1, 2, 3);
+    Eigen::Isometry3d target_tf_perturbed =
+        Eigen::AngleAxisd(eps, Eigen::Vector3d::UnitX()) * target_tf * Eigen::Translation3d(eps, -eps, eps);
+    ;
+    Eigen::Isometry3d source_tf = identity * Eigen::AngleAxisd(angle, Eigen::Vector3d::UnitX());
+    Eigen::Isometry3d source_tf_perturbed = identity * Eigen::AngleAxisd(angle - eps, Eigen::Vector3d::UnitX());
+    Eigen::VectorXd diff = tesseract_common::calcJacobianTransformErrorDiff(
+        target_tf, target_tf_perturbed, source_tf, source_tf_perturbed);
+    EXPECT_TRUE(diff.head(3).isApprox(Eigen::Vector3d(-eps, eps, -eps)));
+    EXPECT_TRUE(diff.tail(3).isApprox(Eigen::Vector3d(-2 * eps, 0, 0)));
+  }
+
+  {  // Y-Axis positive
+    Eigen::Isometry3d target_tf{ identity };
+    target_tf.translation() = Eigen::Vector3d(1, 2, 3);
+    Eigen::Isometry3d target_tf_perturbed = Eigen::AngleAxisd(-eps, Eigen::Vector3d::UnitY()) * target_tf;
+    Eigen::Isometry3d source_tf = identity * Eigen::AngleAxisd(angle, Eigen::Vector3d::UnitY());
+    Eigen::Isometry3d source_tf_perturbed = identity * Eigen::AngleAxisd(angle + eps, Eigen::Vector3d::UnitY());
+    Eigen::VectorXd diff = tesseract_common::calcJacobianTransformErrorDiff(
+        target_tf, target_tf_perturbed, source_tf, source_tf_perturbed);
+    EXPECT_TRUE(tesseract_common::almostEqualRelativeAndAbs(diff.head(3), Eigen::Vector3d::Zero()));
+    EXPECT_TRUE(diff.tail(3).isApprox(Eigen::Vector3d(0, 2 * eps, 0)));
+  }
+
+  {  // Y-Axis negative
+    Eigen::Isometry3d target_tf{ identity };
+    target_tf.translation() = Eigen::Vector3d(1, 2, 3);
+    Eigen::Isometry3d target_tf_perturbed = Eigen::AngleAxisd(eps, Eigen::Vector3d::UnitY()) * target_tf;
+    Eigen::Isometry3d source_tf = identity * Eigen::AngleAxisd(angle, Eigen::Vector3d::UnitY());
+    Eigen::Isometry3d source_tf_perturbed = identity * Eigen::AngleAxisd(angle - eps, Eigen::Vector3d::UnitY());
+    Eigen::VectorXd diff = tesseract_common::calcJacobianTransformErrorDiff(
+        target_tf, target_tf_perturbed, source_tf, source_tf_perturbed);
+    EXPECT_TRUE(tesseract_common::almostEqualRelativeAndAbs(diff.head(3), Eigen::Vector3d::Zero()));
+    EXPECT_TRUE(diff.tail(3).isApprox(Eigen::Vector3d(0, -2 * eps, 0)));
+  }
+
+  {  // Y-Axis positive and negative
+    Eigen::Isometry3d target_tf{ identity };
+    target_tf.translation() = Eigen::Vector3d(1, 2, 3);
+    Eigen::Isometry3d target_tf_perturbed = Eigen::AngleAxisd(eps, Eigen::Vector3d::UnitY()) * target_tf;
+    Eigen::Isometry3d source_tf = identity * Eigen::AngleAxisd(angle + eps, Eigen::Vector3d::UnitY());
+    Eigen::Isometry3d source_tf_perturbed = identity * Eigen::AngleAxisd(angle - eps, Eigen::Vector3d::UnitY());
+    Eigen::VectorXd diff = tesseract_common::calcJacobianTransformErrorDiff(
+        target_tf, target_tf_perturbed, source_tf, source_tf_perturbed);
+    EXPECT_TRUE(tesseract_common::almostEqualRelativeAndAbs(diff.head(3), Eigen::Vector3d::Zero()));
+    EXPECT_TRUE(diff.tail(3).isApprox(Eigen::Vector3d(0, -3 * eps, 0)));
+  }
+
+  {  // Y-Axis translation
+    Eigen::Isometry3d target_tf{ identity };
+    target_tf.translation() = Eigen::Vector3d(1, 2, 3);
+    Eigen::Isometry3d target_tf_perturbed =
+        Eigen::AngleAxisd(eps, Eigen::Vector3d::UnitY()) * target_tf * Eigen::Translation3d(-eps, eps, -eps);
+    Eigen::Isometry3d source_tf = identity * Eigen::AngleAxisd(angle, Eigen::Vector3d::UnitY());
+    Eigen::Isometry3d source_tf_perturbed = identity * Eigen::AngleAxisd(angle - eps, Eigen::Vector3d::UnitY());
+    Eigen::VectorXd diff = tesseract_common::calcJacobianTransformErrorDiff(
+        target_tf, target_tf_perturbed, source_tf, source_tf_perturbed);
+    EXPECT_TRUE(diff.head(3).isApprox(Eigen::Vector3d(eps, -eps, eps)));
+    EXPECT_TRUE(diff.tail(3).isApprox(Eigen::Vector3d(0, -2 * eps, 0)));
+  }
+
+  {  // Z-Axis positive
+    Eigen::Isometry3d target_tf{ identity };
+    target_tf.translation() = Eigen::Vector3d(1, 2, 3);
+    Eigen::Isometry3d target_tf_perturbed = Eigen::AngleAxisd(-eps, Eigen::Vector3d::UnitZ()) * target_tf;
+    Eigen::Isometry3d source_tf = identity * Eigen::AngleAxisd(angle, Eigen::Vector3d::UnitZ());
+    Eigen::Isometry3d source_tf_perturbed = identity * Eigen::AngleAxisd(angle + eps, Eigen::Vector3d::UnitZ());
+    Eigen::VectorXd diff = tesseract_common::calcJacobianTransformErrorDiff(
+        target_tf, target_tf_perturbed, source_tf, source_tf_perturbed);
+    EXPECT_TRUE(tesseract_common::almostEqualRelativeAndAbs(diff.head(3), Eigen::Vector3d::Zero()));
+    EXPECT_TRUE(diff.tail(3).isApprox(Eigen::Vector3d(0, 0, 2 * eps)));
+  }
+
+  {  // Z-Axis negative
+    Eigen::Isometry3d target_tf{ identity };
+    target_tf.translation() = Eigen::Vector3d(1, 2, 3);
+    Eigen::Isometry3d target_tf_perturbed = Eigen::AngleAxisd(eps, Eigen::Vector3d::UnitZ()) * target_tf;
+    Eigen::Isometry3d source_tf = identity * Eigen::AngleAxisd(angle, Eigen::Vector3d::UnitZ());
+    Eigen::Isometry3d source_tf_perturbed = identity * Eigen::AngleAxisd(angle - eps, Eigen::Vector3d::UnitZ());
+    Eigen::VectorXd diff = tesseract_common::calcJacobianTransformErrorDiff(
+        target_tf, target_tf_perturbed, source_tf, source_tf_perturbed);
+    EXPECT_TRUE(tesseract_common::almostEqualRelativeAndAbs(diff.head(3), Eigen::Vector3d::Zero()));
+    EXPECT_TRUE(diff.tail(3).isApprox(Eigen::Vector3d(0, 0, -2 * eps)));
+  }
+
+  {  // Z-Axis positive and negative
+    Eigen::Isometry3d target_tf{ identity };
+    target_tf.translation() = Eigen::Vector3d(1, 2, 3);
+    Eigen::Isometry3d target_tf_perturbed = Eigen::AngleAxisd(eps, Eigen::Vector3d::UnitZ()) * target_tf;
+    Eigen::Isometry3d source_tf = identity * Eigen::AngleAxisd(angle + eps, Eigen::Vector3d::UnitZ());
+    Eigen::Isometry3d source_tf_perturbed = identity * Eigen::AngleAxisd(angle - eps, Eigen::Vector3d::UnitZ());
+    Eigen::VectorXd diff = tesseract_common::calcJacobianTransformErrorDiff(
+        target_tf, target_tf_perturbed, source_tf, source_tf_perturbed);
+    EXPECT_TRUE(tesseract_common::almostEqualRelativeAndAbs(diff.head(3), Eigen::Vector3d::Zero()));
+    EXPECT_TRUE(diff.tail(3).isApprox(Eigen::Vector3d(0, 0, -3 * eps)));
+  }
+
+  {  // Z-Axis translation
+    Eigen::Isometry3d target_tf{ identity };
+    target_tf.translation() = Eigen::Vector3d(1, 2, 3);
+    Eigen::Isometry3d target_tf_perturbed =
+        Eigen::AngleAxisd(eps, Eigen::Vector3d::UnitZ()) * target_tf * Eigen::Translation3d(-eps, -eps, eps);
+    Eigen::Isometry3d source_tf = identity * Eigen::AngleAxisd(angle, Eigen::Vector3d::UnitZ());
+    Eigen::Isometry3d source_tf_perturbed = identity * Eigen::AngleAxisd(angle - eps, Eigen::Vector3d::UnitZ());
+    Eigen::VectorXd diff = tesseract_common::calcJacobianTransformErrorDiff(
+        target_tf, target_tf_perturbed, source_tf, source_tf_perturbed);
+    EXPECT_TRUE(diff.head(3).isApprox(Eigen::Vector3d(eps, eps, -eps)));
+    EXPECT_TRUE(diff.tail(3).isApprox(Eigen::Vector3d(0, 0, -2 * eps)));
+  }
+}
+
+/** @brief Tests calcJacobianTransformErrorDiff */
+TEST(TesseractCommonUnit, calcJacobianTransformErrorDiff)  // NOLINT
+{
+  runCalcJacobianTransformErrorDiffTest(0);
+  runCalcJacobianTransformErrorDiffTest(M_PI_2);
+  runCalcJacobianTransformErrorDiffTest(M_PI);
+  runCalcJacobianTransformErrorDiffTest(3 * M_PI_2);
+  runCalcJacobianTransformErrorDiffTest(2 * M_PI);
+
+  runCalcJacobianTransformErrorDiffDynamicTargetTest(0);
+  runCalcJacobianTransformErrorDiffDynamicTargetTest(M_PI_2);
+  runCalcJacobianTransformErrorDiffDynamicTargetTest(M_PI);
+  runCalcJacobianTransformErrorDiffDynamicTargetTest(3 * M_PI_2);
+  runCalcJacobianTransformErrorDiffDynamicTargetTest(2 * M_PI);
+}
+
 /** @brief Tests calcTransformError */
 TEST(TesseractCommonUnit, computeRandomColor)  // NOLINT
 {
@@ -2120,6 +2577,287 @@ TEST(TesseractCommonUnit, concat)  // NOLINT
   EXPECT_EQ(c.rows(), a.rows() + b.rows());
   EXPECT_TRUE(c.head(3).isApprox(a));
   EXPECT_TRUE(c.tail(3).isApprox(b));
+}
+
+TEST(TesseractCommonUnit, TestAllowedCollisionEntriesCompare)  // NOLINT
+{
+  tesseract_common::AllowedCollisionMatrix acm1;
+  acm1.addAllowedCollision("link1", "link2", "test");
+
+  tesseract_common::AllowedCollisionMatrix acm2;
+  acm2.addAllowedCollision("link1", "link2", "test");
+
+  EXPECT_TRUE(acm1.getAllAllowedCollisions() == acm2.getAllAllowedCollisions());
+
+  acm2.addAllowedCollision("link1", "link3", "test");
+  EXPECT_FALSE(acm1.getAllAllowedCollisions() == acm2.getAllAllowedCollisions());
+
+  acm2.clearAllowedCollisions();
+  acm2.addAllowedCollision("link1", "link3", "test");
+  EXPECT_FALSE(acm1.getAllAllowedCollisions() == acm2.getAllAllowedCollisions());
+
+  acm2.clearAllowedCollisions();
+  acm2.addAllowedCollision("link1", "link2", "do_not_match");
+  EXPECT_FALSE(acm1.getAllAllowedCollisions() == acm2.getAllAllowedCollisions());
+}
+
+TEST(TesseractCommonUnit, CollisionMarginDataCompare)  // NOLINT
+{
+  {  // EQUAL Default
+    tesseract_common::CollisionMarginData margin_data1;
+    tesseract_common::CollisionMarginData margin_data2;
+
+    EXPECT_TRUE(margin_data1 == margin_data2);
+  }
+
+  {  // EQUAL with pair data
+    tesseract_common::CollisionMarginData margin_data1;
+    margin_data1.setPairCollisionMargin("link_1", "link_2", 1);
+    tesseract_common::CollisionMarginData margin_data2;
+    margin_data2.setPairCollisionMargin("link_1", "link_2", 1);
+
+    EXPECT_TRUE(margin_data1 == margin_data2);
+  }
+
+  {  // Not EQUAL Default
+    tesseract_common::CollisionMarginData margin_data1(0.1);
+    tesseract_common::CollisionMarginData margin_data2(0.2);
+
+    EXPECT_FALSE(margin_data1 == margin_data2);
+  }
+
+  {  // Not EQUAL with pair data
+    tesseract_common::CollisionMarginData margin_data1;
+    margin_data1.setPairCollisionMargin("link_1", "link_2", 1);
+    tesseract_common::CollisionMarginData margin_data2;
+    margin_data2.setPairCollisionMargin("link_1", "link_2", 1);
+    margin_data2.setPairCollisionMargin("link_1", "link_3", 1);
+
+    EXPECT_FALSE(margin_data1 == margin_data2);
+  }
+
+  {  // Not EQUAL with pair data
+    tesseract_common::CollisionMarginData margin_data1;
+    margin_data1.setPairCollisionMargin("link_1", "link_2", 1);
+    tesseract_common::CollisionMarginData margin_data2;
+    margin_data2.setPairCollisionMargin("link_1", "link_2", 2);
+
+    EXPECT_FALSE(margin_data1 == margin_data2);
+  }
+
+  {  // Not EQUAL with pair data
+    tesseract_common::CollisionMarginData margin_data1;
+    margin_data1.setPairCollisionMargin("link_1", "link_2", 1);
+    tesseract_common::CollisionMarginData margin_data2;
+    margin_data2.setPairCollisionMargin("link_1", "link_3", 1);
+
+    EXPECT_FALSE(margin_data1 == margin_data2);
+  }
+}
+
+// Helper function to create temporary test files
+void createTestYamlWithIncludeDirectivesFile(const std::string& filePath, const std::string& content)
+{
+  std::ofstream file(filePath);
+  ASSERT_TRUE(file.is_open());
+  file << content;
+  file.close();
+}
+
+TEST(TesseractCommonUnit, YamlBasicIncludeTest)  // NOLINT
+{
+  std::string separator(1, tesseract_common::fs::path::preferred_separator);
+  std::string test_dir = tesseract_common::getTempPath() + "test_yaml_1" + separator;
+
+  // Create a temporary test directory
+  tesseract_common::fs::create_directory(test_dir);
+
+  // Resource locator
+  tesseract_common::GeneralResourceLocator locator;
+
+  // Create test files
+  createTestYamlWithIncludeDirectivesFile(test_dir + "main.yaml", R"(
+key1: value1
+key2: !include included.yaml
+)");
+  createTestYamlWithIncludeDirectivesFile(test_dir + "included.yaml", R"(
+included_key1: included_value1
+included_key2: included_value2
+)");
+
+  // Load the main file
+  YAML::Node root = loadYamlFile(test_dir + "main.yaml", locator);
+  tesseract_common::writeYamlToFile(root, test_dir + "processed.yaml");
+
+  // Validate the structure
+  ASSERT_TRUE(root["key1"].IsScalar());
+  ASSERT_EQ(root["key1"].as<std::string>(), "value1");
+
+  ASSERT_TRUE(root["key2"].IsMap());
+  ASSERT_EQ(root["key2"]["included_key1"].as<std::string>(), "included_value1");
+  ASSERT_EQ(root["key2"]["included_key2"].as<std::string>(), "included_value2");
+
+  // Clean up the test directory
+  tesseract_common::fs::remove_all(test_dir);
+}
+
+TEST(TesseractCommonUnit, YamlIncludeNestedIncludesTest)  // NOLINT
+{
+  std::string separator(1, tesseract_common::fs::path::preferred_separator);
+  std::string test_dir = tesseract_common::getTempPath() + "test_yaml_2" + separator;
+
+  // Create a temporary test directory
+  tesseract_common::fs::create_directory(test_dir);
+
+  // Resource locator
+  tesseract_common::GeneralResourceLocator locator;
+
+  // Create test files
+  createTestYamlWithIncludeDirectivesFile(test_dir + "main.yaml", R"(
+key1: value1
+key2: !include included.yaml
+)");
+  createTestYamlWithIncludeDirectivesFile(test_dir + "included.yaml", R"(
+nested_key1: !include nested.yaml
+)");
+  createTestYamlWithIncludeDirectivesFile(test_dir + "nested.yaml", R"(
+deep_key1: deep_value1
+)");
+
+  // Load the main file
+  YAML::Node root = loadYamlFile(test_dir + "main.yaml", locator);
+  tesseract_common::writeYamlToFile(root, test_dir + "processed.yaml");
+
+  // Validate the structure
+  ASSERT_TRUE(root["key2"].IsMap());
+  ASSERT_TRUE(root["key2"]["nested_key1"].IsMap());
+  ASSERT_EQ(root["key2"]["nested_key1"]["deep_key1"].as<std::string>(), "deep_value1");
+
+  // Clean up the test directory
+  tesseract_common::fs::remove_all(test_dir);
+}
+
+TEST(TesseractCommonUnit, YamlIncludeSequenceIncludesTest)  // NOLINT
+{
+  std::string separator(1, tesseract_common::fs::path::preferred_separator);
+  std::string test_dir = tesseract_common::getTempPath() + "test_yaml_3" + separator;
+
+  // Create a temporary test directory
+  tesseract_common::fs::create_directory(test_dir);
+
+  // Resource locator
+  tesseract_common::GeneralResourceLocator locator;
+
+  // Create test files
+  createTestYamlWithIncludeDirectivesFile(test_dir + "main.yaml", R"(
+key1:
+  - item1
+  - !include included.yaml
+)");
+  createTestYamlWithIncludeDirectivesFile(test_dir + "included.yaml", R"(
+- included_item1
+- included_item2
+)");
+
+  // Load the main file
+  YAML::Node root = loadYamlFile(test_dir + "main.yaml", locator);
+  tesseract_common::writeYamlToFile(root, test_dir + "processed.yaml");
+
+  // Validate the structure
+  ASSERT_TRUE(root["key1"].IsSequence());
+  ASSERT_EQ(root["key1"].size(), 2);
+  ASSERT_EQ(root["key1"][0].as<std::string>(), "item1");
+  ASSERT_EQ(root["key1"][1][0].as<std::string>(), "included_item1");
+  ASSERT_EQ(root["key1"][1][1].as<std::string>(), "included_item2");
+
+  // Clean up the test directory
+  tesseract_common::fs::remove_all(test_dir);
+}
+
+TEST(TesseractCommonUnit, YamlIncludeSequenceIncludesMapTest)  // NOLINT
+{
+  std::string separator(1, tesseract_common::fs::path::preferred_separator);
+  std::string test_dir = tesseract_common::getTempPath() + "test_yaml_4" + separator;
+
+  // Create a temporary test directory
+  tesseract_common::fs::create_directory(test_dir);
+
+  // Resource locator
+  tesseract_common::GeneralResourceLocator locator;
+
+  // Create test files
+  createTestYamlWithIncludeDirectivesFile(test_dir + "main.yaml", R"(
+key1:
+  - item1
+  - !include included.yaml
+)");
+  createTestYamlWithIncludeDirectivesFile(test_dir + "included.yaml", R"(
+keyA: valueA
+keyB: valueB
+)");
+
+  // Load the main file
+  YAML::Node root = loadYamlFile(test_dir + "main.yaml", locator);
+  tesseract_common::writeYamlToFile(root, test_dir + "processed.yaml");
+
+  // Validate the structure
+  ASSERT_TRUE(root["key1"].IsSequence());
+  ASSERT_EQ(root["key1"].size(), 2);
+  ASSERT_EQ(root["key1"][0].as<std::string>(), "item1");
+
+  // Check the included map
+  ASSERT_TRUE(root["key1"][1].IsMap());
+  ASSERT_EQ(root["key1"][1]["keyA"].as<std::string>(), "valueA");
+  ASSERT_EQ(root["key1"][1]["keyB"].as<std::string>(), "valueB");
+
+  // Clean up the test directory
+  tesseract_common::fs::remove_all(test_dir);
+}
+
+TEST(TesseractCommonUnit, YamlIncludeMissingIncludeFileTest)  // NOLINT
+{
+  std::string separator(1, tesseract_common::fs::path::preferred_separator);
+  std::string test_dir = tesseract_common::getTempPath() + "test_yaml_5" + separator;
+
+  // Create a temporary test directory
+  tesseract_common::fs::create_directory(test_dir);
+
+  // Resource locator
+  tesseract_common::GeneralResourceLocator locator;
+
+  // Create a test file
+  createTestYamlWithIncludeDirectivesFile(test_dir + "main.yaml", R"(
+key1: !include missing.yaml
+)");
+
+  // Attempt to load the main file and expect an exception
+  EXPECT_THROW(loadYamlFile(test_dir + "main.yaml", locator), std::runtime_error);  // NOLINT
+
+  // Clean up the test directory
+  tesseract_common::fs::remove_all(test_dir);
+}
+
+TEST(TesseractCommonUnit, YamlIncludeInvalidIncludeTagTest)  // NOLINT
+{
+  std::string separator(1, tesseract_common::fs::path::preferred_separator);
+  std::string test_dir = tesseract_common::getTempPath() + "test_yaml_6" + separator;
+
+  // Create a temporary test directory
+  tesseract_common::fs::create_directory(test_dir);
+
+  // Resource locator
+  tesseract_common::GeneralResourceLocator locator;
+
+  // Create a test file with an invalid !include tag
+  createTestYamlWithIncludeDirectivesFile(test_dir + "main.yaml", R"(
+key1: !include
+)");
+
+  // Attempt to load the main file and expect an exception
+  EXPECT_THROW(loadYamlFile(test_dir + "main.yaml", locator), std::runtime_error);  // NOLINT
+
+  // Clean up the test directory
+  tesseract_common::fs::remove_all(test_dir);
 }
 
 int main(int argc, char** argv)

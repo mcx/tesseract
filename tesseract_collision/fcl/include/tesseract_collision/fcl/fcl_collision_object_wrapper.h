@@ -29,7 +29,6 @@
 #include <tesseract_common/macros.h>
 TESSERACT_COMMON_IGNORE_WARNINGS_PUSH
 #include <fcl/narrowphase/collision_object-inl.h>
-#include <memory>
 TESSERACT_COMMON_IGNORE_WARNINGS_POP
 
 namespace tesseract_collision::tesseract_collision_fcl
@@ -65,8 +64,23 @@ public:
    */
   void updateAABB();
 
+  /**
+   * @brief Set the shape index. This is the geometries index in the urdf.
+   * @param index The index
+   */
+  void setShapeIndex(int index);
+
+  /**
+   * @brief Get the shape index. This is the geometries index in the urdf.
+   * @return The shape index
+   */
+  int getShapeIndex() const;
+
 protected:
   double contact_distance_{ 0 }; /**< @brief The contact distance threshold. */
+
+  /** @brief The shape index, which is the geometries index in the urdf. */
+  int shape_index_{ -1 };
 };
 
 }  // namespace tesseract_collision::tesseract_collision_fcl
