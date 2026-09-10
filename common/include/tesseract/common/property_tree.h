@@ -29,6 +29,7 @@
 #include <map>
 #include <vector>
 #include <optional>
+#include <cstdint>
 #include <functional>
 #include <iosfwd>
 #include <yaml-cpp/yaml.h>
@@ -93,8 +94,16 @@ constexpr std::string_view DEFAULT{ "default" };
 constexpr std::string_view ENUM{ "enum" };
 constexpr std::string_view MINIMUM{ "minimum" };
 constexpr std::string_view MAXIMUM{ "maximum" };
+constexpr std::string_view MINIMUM_LENGTH{ "minimum_length" };
+constexpr std::string_view MAXIMUM_LENGTH{ "maximum_length" };
 constexpr std::string_view ACCEPTS_DERIVED_TYPES{ "accepts_derived_types" }; /**< Allow derived types for custom type
                                                                                   validation */
+
+// Plugin discovery metadata attributes
+constexpr std::string_view CONFIG_KEY{ "config_key" }; /**< YAML document key containing this schema */
+constexpr std::string_view PLUGIN_DISCOVERY_ROLE{ "plugin_discovery_role" }; /**< Role of a loader input property */
+constexpr std::string_view PLUGIN_SECTION{ "plugin_section" };               /**< boost_plugin_loader export section */
+constexpr std::string_view PLUGIN_BASE_TYPE{ "plugin_base_type" };           /**< Registered plugin factory base type */
 
 // GUI metadata attributes
 constexpr std::string_view LABEL{ "label" };             /**< Display name for the property (e.g. "Format Result") */
@@ -103,6 +112,12 @@ constexpr std::string_view GROUP{ "group" };             /**< Category/section f
 constexpr std::string_view READ_ONLY{ "read_only" };     /**< If true, the property is not user-editable */
 constexpr std::string_view HIDDEN{ "hidden" };           /**< If true, the property is hidden from the GUI */
 }  // namespace property_attribute
+
+namespace plugin_discovery_role
+{
+constexpr std::string_view SEARCH_PATHS{ "search_paths" };
+constexpr std::string_view SEARCH_LIBRARIES{ "search_libraries" };
+}  // namespace plugin_discovery_role
 
 /**
  * @file property_tree.h
@@ -328,6 +343,20 @@ public:
   bool empty() const;
 
 private:
+  /**
+   * @brief Tracks whether and how a configuration node participated in the most recent merge.
+   *
+   * This state distinguishes an unmerged schema node from an omitted configuration node and
+   * an explicitly present node. The distinction allows validation to skip required descendants
+   * of omitted optional containers while still validating explicitly present empty containers.
+   */
+  enum class ConfigPresence : std::uint8_t
+  {
+    UNMERGED, /**< mergeConfig() has not processed this node */
+    ABSENT,   /**< The node was missing or null in the merged configuration */
+    PRESENT   /**< The node was explicitly present in the merged configuration */
+  };
+
   friend void validateCustomType(const PropertyTree& node, const std::string& path, std::vector<std::string>& errors);
 
   /** @brief Rebuild auto-validators from current attributes (type, required, enum). */
@@ -343,6 +372,7 @@ private:
   std::vector<ValidatorFn> auto_validators_; /**< Validators derived from attributes (rebuilt, not user-added) */
   std::vector<ValidatorFn> validators_;      /**< User-added validators to invoke */
   std::unique_ptr<PropertyTree> oneof_;      /**< Store the property content on merge */
+  ConfigPresence merged_config_presence_{ ConfigPresence::UNMERGED }; /**< Configuration merge state */
 };
 
 /**
@@ -360,9 +390,41 @@ private:
  *   .build();
  * @endcode
  *
+ * Schema composition example (reuse base schemas):
+ * @code
+ * auto base = PropertyTreeBuilder()
+ *   .attribute(TYPE, CONTAINER)
+ *   .string("name").required().done()
+ *   .build();
+ *
+ * auto extended = PropertyTreeBuilder()
+ *   .attribute(TYPE, CONTAINER)
+ *   .compose(base)              // copies name field
+ *   .int32("priority").done()
+ *   .build();
+ * @endcode
+ *
+ * Inline oneOf example (shared fields with mutually exclusive parts):
+ * @code
+ * auto schema = PropertyTreeBuilder()
+ *   .string(\"name\").required().done()
+ *   .beginOneOf()
+ *     .container(\"option_a\")
+ *       .string(\"field_a\").required().done()
+ *     .done()
+ *     .container(\"option_b\")
+ *       .int32(\"field_b\").required().done()
+ *     .done()
+ *   .endOneOf()
+ *   .build();
+ * @endcode
+ *
  * Type-creating methods (container, string, boolean, etc.) create a child node,
  * set its type, and push it as the current scope. Attribute setters (doc, required,
  * defaultVal, etc.) apply to the current scope. done() pops back to the parent.
+ * Use compose() to copy all children from an existing PropertyTree into the current scope.
+ * Use beginOneOf()/endOneOf() to define mutually exclusive branches inline within
+ * a container — shared fields are defined outside the oneOf block.
  */
 class PropertyTreeBuilder
 {
@@ -386,6 +448,18 @@ public:
   PropertyTreeBuilder& eigenVector2d(std::string_view name);
   PropertyTreeBuilder& eigenVector3d(std::string_view name);
   PropertyTreeBuilder& customType(std::string_view name, std::string_view type_str);
+
+  /**
+   * @brief Begin an inline oneOf group inside a container.
+   *
+   * Define mutually exclusive branches as container children within this group.
+   * During mergeConfig the parent's full config is used for branch selection, and
+   * the chosen branch's children are hoisted into the parent.  Close with endOneOf().
+   */
+  PropertyTreeBuilder& beginOneOf();
+
+  /** @brief Close an inline oneOf group opened by beginOneOf(). */
+  PropertyTreeBuilder& endOneOf();
   ///@}
 
   /** @name Attribute setters -- apply to the current node. */
@@ -403,6 +477,8 @@ public:
   PropertyTreeBuilder& minimum(double val);
   PropertyTreeBuilder& maximum(int val);
   PropertyTreeBuilder& maximum(double val);
+  PropertyTreeBuilder& minimumLength(std::size_t length);
+  PropertyTreeBuilder& maximumLength(std::size_t length);
   PropertyTreeBuilder& label(std::string_view text);
   PropertyTreeBuilder& placeholder(std::string_view text);
   PropertyTreeBuilder& group(std::string_view text);
@@ -420,6 +496,42 @@ public:
   PropertyTreeBuilder& acceptsDerivedTypes();
   ///@}
 
+  /** @name Plugin helpers -- self-closing convenience methods for PluginInfoContainer schemas. */
+  ///@{
+  /**
+   * @brief Create a PluginInfoContainer child with plugin discovery metadata.
+   * @param name Child property name.
+   * @param factory_base_type Fully-qualified factory base class.
+   * @param plugin_section boost_plugin_loader export section containing compatible plugins.
+   */
+  PropertyTreeBuilder& pluginContainer(std::string_view name,
+                                       std::string_view factory_base_type,
+                                       std::string_view plugin_section);
+
+  /**
+   * @brief Create a Map[string, PluginInfoContainer] child with plugin discovery metadata.
+   * @param name Child property name.
+   * @param factory_base_type Fully-qualified factory base class.
+   * @param plugin_section boost_plugin_loader export section containing compatible plugins.
+   */
+  PropertyTreeBuilder& pluginContainerMap(std::string_view name,
+                                          std::string_view factory_base_type,
+                                          std::string_view plugin_section);
+  ///@}
+
+  /**
+   * @brief Copy all children from another PropertyTree into the current scope.
+   *
+   * This allows composing schemas together. The source tree's immediate children
+   * (with their full subtrees, attributes, and validators) are appended to the
+   * current builder scope.  The source tree's own root-level attributes are ignored;
+   * only its children are composed.
+   *
+   * @param source The PropertyTree whose children should be copied into this scope.
+   * @return Reference to this builder for method chaining.
+   */
+  PropertyTreeBuilder& compose(const PropertyTree& source);
+
   /** @brief Pop current node, return to parent scope. */
   PropertyTreeBuilder& done();
 
@@ -430,7 +542,15 @@ private:
   PropertyTree& current();
   PropertyTree root_;
   std::vector<PropertyTree*> stack_;
+  std::size_t inline_oneof_counter_{ 0 };
 };
+
+/**
+ * @brief Build a PluginInfoContainer schema for the given factory base type.
+ * @param factory_base_type Fully-qualified factory base class name.
+ * @return A PropertyTree with { default (string), plugins (Map of derived types) }.
+ */
+PropertyTree makePluginInfoContainerSchema(std::string_view factory_base_type);
 
 /**
  * @brief Check if type is a sequence
@@ -461,6 +581,14 @@ void validateRequired(const PropertyTree& node, const std::string& path, std::ve
  * @param errors Output vector to append errors to.
  */
 void validateEnum(const PropertyTree& node, const std::string& path, std::vector<std::string>& errors);
+
+/**
+ * @brief Validator: enforce minimum_length and maximum_length constraints on strings.
+ * @param node   Node to validate.
+ * @param path   Dot-separated path for error messages.
+ * @param errors Output vector to append errors to.
+ */
+void validateStringLength(const PropertyTree& node, const std::string& path, std::vector<std::string>& errors);
 
 /**
  * @brief Validator: ensure node value is of type YAML::NodeType::Map

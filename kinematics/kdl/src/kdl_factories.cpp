@@ -31,10 +31,68 @@
 #include <tesseract/scene_graph/graph.h>
 #include <tesseract/scene_graph/scene_state.h>
 
+#include <tesseract/common/schema_registration.h>
+#include <tesseract/common/property_tree.h>
+
 #include <console_bridge/console.h>
+
+namespace
+{
+tesseract::common::PropertyTree kdlFwdKinChainFactorySchema()
+{
+  using namespace tesseract::common;
+  // clang-format off
+  return PropertyTreeBuilder()
+      .attribute(property_attribute::TYPE, property_type::CONTAINER)
+      .string("base_link").required().minimumLength(1).done()
+      .string("tip_link").required().minimumLength(1).done()
+      .build();
+  // clang-format on
+}
+
+tesseract::common::PropertyTree kdlInvKinChainLMAFactorySchema()
+{
+  using namespace tesseract::common;
+  // clang-format off
+  return PropertyTreeBuilder()
+      .attribute(property_attribute::TYPE, property_type::CONTAINER)
+      .string("base_link").required().minimumLength(1).done()
+      .string("tip_link").required().minimumLength(1).done()
+      .eigenVectorXd("task_weights").done()
+      .float64("eps").done()
+      .int32("max_iterations").done()
+      .float64("eps_joints").done()
+      .build();
+  // clang-format on
+}
+
+tesseract::common::PropertyTree kdlInvKinChainNRFactorySchema()
+{
+  using namespace tesseract::common;
+  // clang-format off
+  return PropertyTreeBuilder()
+      .attribute(property_attribute::TYPE, property_type::CONTAINER)
+      .string("base_link").required().minimumLength(1).done()
+      .string("tip_link").required().minimumLength(1).done()
+      .float64("velocity_eps").done()
+      .int32("velocity_iterations").done()
+      .float64("position_eps").done()
+      .int32("position_iterations").done()
+      .build();
+  // clang-format on
+}
+}  // namespace
 
 namespace tesseract::kinematics
 {
+tesseract::common::PropertyTree KDLFwdKinChainFactory::schema() const { return kdlFwdKinChainFactorySchema(); }
+
+tesseract::common::PropertyTree KDLInvKinChainLMAFactory::schema() const { return kdlInvKinChainLMAFactorySchema(); }
+
+tesseract::common::PropertyTree KDLInvKinChainNRFactory::schema() const { return kdlInvKinChainNRFactorySchema(); }
+
+tesseract::common::PropertyTree KDLInvKinChainNR_JLFactory::schema() const { return kdlInvKinChainNRFactorySchema(); }
+
 std::unique_ptr<ForwardKinematics>
 KDLFwdKinChainFactory::create(const std::string& solver_name,
                               const tesseract::scene_graph::SceneGraph& scene_graph,
@@ -218,3 +276,13 @@ TESSERACT_ADD_INV_KIN_PLUGIN(tesseract::kinematics::KDLInvKinChainLMAFactory, KD
 TESSERACT_ADD_INV_KIN_PLUGIN(tesseract::kinematics::KDLInvKinChainNRFactory, KDLInvKinChainNRFactory);
 // NOLINTNEXTLINE(cppcoreguidelines-avoid-non-const-global-variables)
 TESSERACT_ADD_INV_KIN_PLUGIN(tesseract::kinematics::KDLInvKinChainNR_JLFactory, KDLInvKinChainNR_JLFactory);
+
+TESSERACT_SCHEMA_REGISTER(KDLFwdKinChainFactory, kdlFwdKinChainFactorySchema);
+TESSERACT_SCHEMA_REGISTER(KDLInvKinChainLMAFactory, kdlInvKinChainLMAFactorySchema);
+TESSERACT_SCHEMA_REGISTER(KDLInvKinChainNRFactory, kdlInvKinChainNRFactorySchema);
+TESSERACT_SCHEMA_REGISTER(KDLInvKinChainNR_JLFactory, kdlInvKinChainNRFactorySchema);
+
+TESSERACT_SCHEMA_REGISTER_DERIVED_TYPE(tesseract::kinematics::FwdKinFactory, KDLFwdKinChainFactory);
+TESSERACT_SCHEMA_REGISTER_DERIVED_TYPE(tesseract::kinematics::InvKinFactory, KDLInvKinChainLMAFactory);
+TESSERACT_SCHEMA_REGISTER_DERIVED_TYPE(tesseract::kinematics::InvKinFactory, KDLInvKinChainNRFactory);
+TESSERACT_SCHEMA_REGISTER_DERIVED_TYPE(tesseract::kinematics::InvKinFactory, KDLInvKinChainNR_JLFactory);

@@ -30,6 +30,7 @@
 #include <mutex>
 #include <ostream>
 #include <regex>
+#include <set>
 
 const static std::string ATTRIBUTES_KEY{ "_attributes" };
 const static std::string VALUE_KEY{ "_value" };
@@ -62,6 +63,7 @@ PropertyTree::PropertyTree(const PropertyTree& other)
   , children_(other.children_)
   , auto_validators_(other.auto_validators_)
   , validators_(other.validators_)
+  , merged_config_presence_(other.merged_config_presence_)
 {
   if (other.oneof_ != nullptr)
     oneof_ = std::make_unique<PropertyTree>(*other.oneof_);
@@ -89,6 +91,7 @@ PropertyTree& PropertyTree::operator=(const PropertyTree& other)
   children_ = other.children_;
   auto_validators_ = other.auto_validators_;
   validators_ = other.validators_;
+  merged_config_presence_ = other.merged_config_presence_;
 
   // Copy oneOf
   if (other.oneof_ != nullptr)
@@ -101,6 +104,8 @@ PropertyTree& PropertyTree::operator=(const PropertyTree& other)
 
 void PropertyTree::mergeConfig(const YAML::Node& config, bool allow_extra_properties)
 {
+  merged_config_presence_ = (config && !config.IsNull()) ? ConfigPresence::PRESENT : ConfigPresence::ABSENT;
+
   // Handle oneOf nodes up front
   auto t = getAttribute(property_attribute::TYPE);
   if (t.has_value() && t->as<std::string>() == property_type::ONEOF)
@@ -113,6 +118,10 @@ void PropertyTree::mergeConfig(const YAML::Node& config, bool allow_extra_proper
     for (const auto& [branch_name, branch_schema] : children_)
     {
       bool matches = true;
+      auto accepts_derived = branch_schema.getAttribute(property_attribute::ACCEPTS_DERIVED_TYPES);
+      if (branch_schema.empty() && accepts_derived.has_value() && accepts_derived->as<bool>())
+        matches = static_cast<bool>(config["class"]);
+
       for (const auto& key : branch_schema.keys())
       {
         if (branch_schema.at(key).isRequired() && !config[key])
@@ -168,9 +177,56 @@ void PropertyTree::mergeConfig(const YAML::Node& config, bool allow_extra_proper
   // Map: recurse into declared children
   if (config && config.IsMap())
   {
-    // Fill declared children
+    // Handle inline oneOf children first: run branch selection on parent's config,
+    // hoist chosen branch's children into this node, then remove the oneOf child.
+    std::set<std::string> parent_keys;
+    for (const auto& [key, child_schema] : children_)
+    {
+      auto child_type = child_schema.getAttribute(property_attribute::TYPE);
+      if (!child_type.has_value() || child_type->as<std::string>() != property_type::ONEOF)
+        parent_keys.insert(key);
+    }
+
+    std::set<std::string> hoisted_keys;
+    std::vector<std::pair<std::string, PropertyTree>> rebuilt_children;
+    rebuilt_children.reserve(children_.size());
     for (auto& [key, child_schema] : children_)
     {
+      auto child_type = child_schema.getAttribute(property_attribute::TYPE);
+      if (child_type.has_value() && child_type->as<std::string>() == property_type::ONEOF)
+      {
+        // Run oneOf branch selection using parent's full config
+        PropertyTree oneof_copy = child_schema;
+        oneof_copy.mergeConfig(config, allow_extra_properties);
+
+        // Hoist only the chosen branch's declared children into this node.
+        // Parent-level shared fields appear as extras inside the temporary oneOf merge
+        // and must not overwrite the parent's existing schema entries.
+        for (auto& [hoisted_key, hoisted_child] : oneof_copy.children_)
+        {
+          if (hoisted_child.hasAttribute(EXTRA_KEY))
+            continue;
+
+          if (parent_keys.count(hoisted_key) > 0 || hoisted_keys.count(hoisted_key) > 0)
+            throw std::runtime_error("inline oneOf: branch property '" + hoisted_key +
+                                     "' conflicts with another property in the parent container");
+
+          rebuilt_children.emplace_back(hoisted_key, std::move(hoisted_child));
+          hoisted_keys.insert(hoisted_key);
+        }
+      }
+      else
+      {
+        rebuilt_children.emplace_back(key, std::move(child_schema));
+      }
+    }
+    children_ = std::move(rebuilt_children);
+
+    // Fill declared children (skip already-merged hoisted keys)
+    for (auto& [key, child_schema] : children_)
+    {
+      if (hoisted_keys.count(key) > 0)
+        continue;
       auto sub = config[key];
       child_schema.mergeConfig(sub, allow_extra_properties);
     }
@@ -222,6 +278,12 @@ void PropertyTree::collectErrors(std::vector<std::string>& errors,
                                  const std::string& path,
                                  bool allow_extra_properties) const
 {
+  // An optional container omitted from the merged config does not activate
+  // required fields declared inside that container. An explicitly present
+  // container, including an empty map, still validates all descendants.
+  if (!path.empty() && merged_config_presence_ == ConfigPresence::ABSENT && !isRequired())
+    return;
+
   // check if it is an extra property not found in schema
   if (!allow_extra_properties && hasAttribute(EXTRA_KEY))
   {
@@ -234,6 +296,10 @@ void PropertyTree::collectErrors(std::vector<std::string>& errors,
   // recurse ALL children
   for (const auto& [key, child] : children_)
   {
+    if (merged_config_presence_ == ConfigPresence::ABSENT &&
+        child.merged_config_presence_ == ConfigPresence::UNMERGED && !child.isRequired())
+      continue;
+
     std::string child_path = path;
     if (!path.empty())
       child_path += ".";
@@ -335,6 +401,7 @@ void PropertyTree::setAttribute(std::string_view name, const YAML::Node& attr)
 
   // Rebuild auto-validators whenever a relevant attribute changes
   if (name == property_attribute::REQUIRED || name == property_attribute::ENUM || name == property_attribute::TYPE ||
+      name == property_attribute::MINIMUM_LENGTH || name == property_attribute::MAXIMUM_LENGTH ||
       name == property_attribute::ACCEPTS_DERIVED_TYPES)
     rebuildAutoValidators();
 }
@@ -396,7 +463,11 @@ void PropertyTree::rebuildAutoValidators()
       if (str_type == property_type::CONTAINER)
         auto_validators_.emplace_back(validateContainer);
       else if (str_type == property_type::STRING)
+      {
         auto_validators_.emplace_back(validateTypeCast<std::string>);
+        if (hasAttribute(property_attribute::MINIMUM_LENGTH) || hasAttribute(property_attribute::MAXIMUM_LENGTH))
+          auto_validators_.emplace_back(validateStringLength);
+      }
       else if (str_type == property_type::BOOL)
         auto_validators_.emplace_back(validateTypeCast<bool>);
       else if (str_type == property_type::CHAR)
@@ -829,6 +900,18 @@ PropertyTreeBuilder& PropertyTreeBuilder::maximum(double val)
   return *this;
 }
 
+PropertyTreeBuilder& PropertyTreeBuilder::minimumLength(std::size_t length)
+{
+  current().setAttribute(property_attribute::MINIMUM_LENGTH, YAML::Node(length));
+  return *this;
+}
+
+PropertyTreeBuilder& PropertyTreeBuilder::maximumLength(std::size_t length)
+{
+  current().setAttribute(property_attribute::MAXIMUM_LENGTH, YAML::Node(length));
+  return *this;
+}
+
 PropertyTreeBuilder& PropertyTreeBuilder::label(std::string_view text)
 {
   current().setAttribute(property_attribute::LABEL, text);
@@ -883,6 +966,52 @@ PropertyTreeBuilder& PropertyTreeBuilder::acceptsDerivedTypes()
   return *this;
 }
 
+PropertyTreeBuilder& PropertyTreeBuilder::beginOneOf()
+{
+  std::string name = "__oneOf_" + std::to_string(inline_oneof_counter_++) + "__";
+  auto& child = current()[name];
+  child.setAttribute(property_attribute::TYPE, property_type::ONEOF);
+  stack_.push_back(&child);
+  return *this;
+}
+
+PropertyTreeBuilder& PropertyTreeBuilder::endOneOf() { return done(); }
+
+PropertyTreeBuilder& PropertyTreeBuilder::pluginContainer(std::string_view name,
+                                                          std::string_view factory_base_type,
+                                                          std::string_view plugin_section)
+{
+  // clang-format off
+  container(name);
+    string("default").done();
+    customType("plugins", property_type::createMap(factory_base_type))
+        .required()
+        .acceptsDerivedTypes()
+    .done();
+  done();
+  // clang-format on
+  current().at(name).setAttribute(property_attribute::PLUGIN_BASE_TYPE, factory_base_type);
+  current().at(name).setAttribute(property_attribute::PLUGIN_SECTION, plugin_section);
+  return *this;
+}
+
+PropertyTreeBuilder& PropertyTreeBuilder::pluginContainerMap(std::string_view name,
+                                                             std::string_view factory_base_type,
+                                                             std::string_view plugin_section)
+{
+  // Register the inner PluginInfoContainer schema idempotently
+  std::string registry_key = std::string(factory_base_type) + "::PluginInfoContainer";
+  auto reg = SchemaRegistry::instance();
+  if (!reg->contains(registry_key))
+    reg->registerSchema(registry_key, makePluginInfoContainerSchema(factory_base_type));
+
+  // Create a Map[string, <registry_key>] child with custom type validation
+  customType(name, property_type::createMap(registry_key)).done();
+  current().at(name).setAttribute(property_attribute::PLUGIN_BASE_TYPE, factory_base_type);
+  current().at(name).setAttribute(property_attribute::PLUGIN_SECTION, plugin_section);
+  return *this;
+}
+
 PropertyTreeBuilder& PropertyTreeBuilder::done()
 {
   if (stack_.size() <= 1)
@@ -891,11 +1020,32 @@ PropertyTreeBuilder& PropertyTreeBuilder::done()
   return *this;
 }
 
+PropertyTreeBuilder& PropertyTreeBuilder::compose(const PropertyTree& source)
+{
+  for (const auto& key : source.keys())
+    current()[key] = source.at(key);
+  return *this;
+}
+
 PropertyTree PropertyTreeBuilder::build()
 {
   if (stack_.size() != 1)
     throw std::runtime_error("PropertyTreeBuilder::build() called with unclosed scopes — missing done() calls");
   return std::move(root_);
+}
+
+PropertyTree makePluginInfoContainerSchema(std::string_view factory_base_type)
+{
+  // clang-format off
+  return PropertyTreeBuilder()
+      .attribute(property_attribute::TYPE, property_type::CONTAINER)
+      .string("default").done()
+      .customType("plugins", property_type::createMap(factory_base_type))
+          .required()
+          .acceptsDerivedTypes()
+          .done()
+      .build();
+  // clang-format on
 }
 
 std::optional<std::pair<std::string, std::size_t>> isSequenceType(std::string_view type)
@@ -972,6 +1122,35 @@ void validateEnum(const PropertyTree& node, const std::string& path, std::vector
       msg += val;
       msg += "' not in enum list";
       errors.push_back(msg);
+    }
+  }
+}
+
+void validateStringLength(const PropertyTree& node, const std::string& path, std::vector<std::string>& errors)
+{
+  if (!node.getValue().IsScalar())
+    return;
+
+  const std::size_t length = node.getValue().as<std::string>().size();
+  const auto minimum = node.getAttribute(property_attribute::MINIMUM_LENGTH);
+  if (minimum.has_value())
+  {
+    const auto minimum_length = minimum->as<std::size_t>();
+    if (length < minimum_length)
+    {
+      errors.push_back(path + ": string length " + std::to_string(length) + " is less than minimum " +
+                       std::to_string(minimum_length));
+    }
+  }
+
+  const auto maximum = node.getAttribute(property_attribute::MAXIMUM_LENGTH);
+  if (maximum.has_value())
+  {
+    const auto maximum_length = maximum->as<std::size_t>();
+    if (length > maximum_length)
+    {
+      errors.push_back(path + ": string length " + std::to_string(length) + " is greater than maximum " +
+                       std::to_string(maximum_length));
     }
   }
 }
@@ -1100,8 +1279,9 @@ void validateCustomType(const PropertyTree& node, const std::string& path, std::
   {
     // Sequence type
     std::string base_element_type = is_sequence.value().first;
+    bool base_in_registry = registry->contains(base_element_type);
 
-    if (!registry->contains(base_element_type))
+    if (!base_in_registry && !accepts_derived)
     {
       std::stringstream ss;
       ss << path << ": no schema registry entry found for key: " << base_element_type;
@@ -1110,7 +1290,6 @@ void validateCustomType(const PropertyTree& node, const std::string& path, std::
     }
 
     const YAML::Node& sequence = node.getValue();
-    PropertyTree base_schema = registry->get(base_element_type);
     std::size_t idx = 0;
     for (auto it = sequence.begin(); it != sequence.end(); ++it, ++idx)
     {
@@ -1129,6 +1308,14 @@ void validateCustomType(const PropertyTree& node, const std::string& path, std::
             std::stringstream ss;
             ss << path << "[" << idx << "]: type '" << actual_element_type << "' does not derive from '"
                << base_element_type << "'";
+            errors.push_back(ss.str());
+            continue;
+          }
+
+          if (!registry->contains(actual_element_type))
+          {
+            std::stringstream ss;
+            ss << path << "[" << idx << "]: no schema registry entry found for derived type: " << actual_element_type;
             errors.push_back(ss.str());
             continue;
           }
@@ -1155,7 +1342,7 @@ void validateCustomType(const PropertyTree& node, const std::string& path, std::
       }
 
       // Get the appropriate schema (actual or base)
-      PropertyTree schema = registry->contains(actual_element_type) ? registry->get(actual_element_type) : base_schema;
+      PropertyTree schema = registry->get(actual_element_type);
 
       PropertyTree copy_schema(schema);
       copy_schema.mergeConfig(*it);
@@ -1177,8 +1364,9 @@ void validateCustomType(const PropertyTree& node, const std::string& path, std::
   {
     // Map type
     std::string map_value_type = is_map.value().second;
+    bool base_in_registry = registry->contains(map_value_type);
 
-    if (!registry->contains(map_value_type))
+    if (!base_in_registry && !accepts_derived)
     {
       std::stringstream ss;
       ss << path << ": no schema registry entry found for map value type: " << map_value_type;
@@ -1203,7 +1391,6 @@ void validateCustomType(const PropertyTree& node, const std::string& path, std::
       return;
     }
 
-    PropertyTree value_schema = registry->get(map_value_type);
     for (auto it = map_node.begin(); it != map_node.end(); ++it)
     {
       auto key = it->first.as<std::string>();
@@ -1224,6 +1411,14 @@ void validateCustomType(const PropertyTree& node, const std::string& path, std::
             std::stringstream ss;
             ss << path << "[" << key << "]: type '" << actual_value_type << "' does not derive from '" << map_value_type
                << "'";
+            errors.push_back(ss.str());
+            continue;
+          }
+
+          if (!registry->contains(actual_value_type))
+          {
+            std::stringstream ss;
+            ss << path << "[" << key << "]: no schema registry entry found for derived type: " << actual_value_type;
             errors.push_back(ss.str());
             continue;
           }
@@ -1250,7 +1445,7 @@ void validateCustomType(const PropertyTree& node, const std::string& path, std::
       }
 
       // Get the appropriate schema (actual or base)
-      PropertyTree schema = registry->contains(actual_value_type) ? registry->get(actual_value_type) : value_schema;
+      PropertyTree schema = registry->get(actual_value_type);
 
       PropertyTree copy_schema(schema);
       copy_schema.mergeConfig(value_node);

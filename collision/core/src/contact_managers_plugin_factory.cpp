@@ -30,6 +30,8 @@ TESSERACT_COMMON_IGNORE_WARNINGS_POP
 
 #include <tesseract/collision/discrete_contact_manager.h>
 #include <tesseract/collision/continuous_contact_manager.h>
+#include <tesseract/common/property_tree.h>
+#include <tesseract/common/schema_registry.h>
 #include <tesseract/common/resource_locator.h>
 #include <tesseract/common/yaml_utils.h>
 #include <tesseract/common/yaml_extensions.h>
@@ -42,12 +44,23 @@ static const std::string TESSERACT_CONTACT_MANAGERS_PLUGIN_DIRECTORIES_ENV = "TE
 static const std::string TESSERACT_CONTACT_MANAGERS_PLUGINS_ENV = "TESSERACT_CONTACT_MANAGERS_PLUGINS";
 
 using tesseract::common::ContactManagersPluginInfo;
+using tesseract::common::PluginDiscoveryInfo;
 
 namespace tesseract::collision
 {
 std::string DiscreteContactManagerFactory::getSection() { return "DiscColl"; }
 
+tesseract::common::PropertyTree DiscreteContactManagerFactory::schema() const
+{
+  return tesseract::common::PropertyTreeBuilder().build();
+}
+
 std::string ContinuousContactManagerFactory::getSection() { return "ContColl"; }
+
+tesseract::common::PropertyTree ContinuousContactManagerFactory::schema() const
+{
+  return tesseract::common::PropertyTreeBuilder().build();
+}
 
 ContactManagersPluginFactory::ContactManagersPluginFactory()
 {
@@ -67,17 +80,58 @@ void ContactManagersPluginFactory::loadConfig(const YAML::Node& config)
 {
   if (const YAML::Node& plugin_info = config[ContactManagersPluginInfo::CONFIG_KEY])
   {
-    auto cm_plugin_info = plugin_info.as<tesseract::common::ContactManagersPluginInfo>();
-    plugin_loader_.search_paths.insert(
-        plugin_loader_.search_paths.end(), cm_plugin_info.search_paths.begin(), cm_plugin_info.search_paths.end());
-    plugin_loader_.search_libraries.insert(plugin_loader_.search_libraries.end(),
-                                           cm_plugin_info.search_libraries.begin(),
-                                           cm_plugin_info.search_libraries.end());
-    discrete_plugin_info_ = cm_plugin_info.discrete_plugin_infos;
-    continuous_plugin_info_ = cm_plugin_info.continuous_plugin_infos;
+    YAML::Node plugin_info_for_decode = YAML::Clone(plugin_info);
 
-    tesseract::common::removeDuplicates(plugin_loader_.search_paths);
-    tesseract::common::removeDuplicates(plugin_loader_.search_libraries);
+    // Stage 1 validates only the metadata required to discover plugin schemas.
+    auto discovery_schema = YAML::convert<PluginDiscoveryInfo>::schema();
+    YAML::Node plugin_info_for_discovery_validation = YAML::Clone(plugin_info_for_decode);
+    discovery_schema.mergeConfig(plugin_info_for_discovery_validation, true);
+    auto discovery_errors = discovery_schema.validate(true);
+    if (!discovery_errors.empty())
+    {
+      std::string error_msg = "ContactManagersPluginFactory: Plugin discovery validation failed:\n";
+      for (const auto& error : discovery_errors)
+        error_msg += "  - " + error + "\n";
+
+      throw std::runtime_error(error_msg);
+    }
+
+    const auto discovery_info = plugin_info_for_decode.as<PluginDiscoveryInfo>();
+    boost_plugin_loader::PluginLoader candidate_loader = plugin_loader_;
+    candidate_loader.search_paths.insert(
+        candidate_loader.search_paths.end(), discovery_info.search_paths.begin(), discovery_info.search_paths.end());
+    candidate_loader.search_libraries.insert(candidate_loader.search_libraries.end(),
+                                             discovery_info.search_libraries.begin(),
+                                             discovery_info.search_libraries.end());
+    tesseract::common::removeDuplicates(candidate_loader.search_paths);
+    tesseract::common::removeDuplicates(candidate_loader.search_libraries);
+
+    // Loading the libraries runs their static schema registrations before strict validation.
+    // The registry retains their lifetime handles alongside the registered schemas.
+    tesseract::common::SchemaRegistry::instance()->loadAndRetainPluginLibraries(candidate_loader);
+
+    // Stage 2 strictly validates the complete configuration after plugin schemas are registered.
+    auto schema = YAML::convert<tesseract::common::ContactManagersPluginInfo>::schema();
+    auto config_tree = schema;
+    YAML::Node plugin_info_for_validation = YAML::Clone(plugin_info_for_decode);
+    config_tree.mergeConfig(plugin_info_for_validation, false);
+
+    auto errors = config_tree.validate(false);
+
+    if (!errors.empty())
+    {
+      std::string error_msg = "ContactManagersPluginFactory: Configuration validation failed:\n";
+      for (const auto& error : errors)
+      {
+        error_msg += "  - " + error + "\n";
+      }
+      throw std::runtime_error(error_msg);
+    }
+
+    auto cm_plugin_info = plugin_info_for_decode.as<tesseract::common::ContactManagersPluginInfo>();
+    discrete_plugin_info_ = std::move(cm_plugin_info.discrete_plugin_infos);
+    continuous_plugin_info_ = std::move(cm_plugin_info.continuous_plugin_infos);
+    plugin_loader_ = std::move(candidate_loader);
   }
 }
 

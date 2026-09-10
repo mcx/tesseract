@@ -18,6 +18,133 @@ using namespace tesseract::common::property_attribute;
 using namespace tesseract::common::property_type;
 
 // ===========================================================================
+//  Plugin discovery schema
+// ===========================================================================
+
+TEST(PluginDiscoverySchema, ValidMetadataAndExtraProperties)  // NOLINT
+{
+  YAML::Node config = YAML::Load(R"(
+search_paths: [/tmp/plugins, /opt/plugins]
+search_libraries: [plugin_a, plugin_b]
+plugins:
+  default: plugin_a
+)");
+
+  auto schema = YAML::convert<PluginDiscoveryInfo>::schema();
+  schema.mergeConfig(config, true);
+  EXPECT_TRUE(schema.validate(true).empty());
+
+  const auto discovery_info = config.as<PluginDiscoveryInfo>();
+  EXPECT_EQ(discovery_info.search_paths, (std::vector<std::string>{ "/tmp/plugins", "/opt/plugins" }));
+  EXPECT_EQ(discovery_info.search_libraries, (std::vector<std::string>{ "plugin_a", "plugin_b" }));
+}
+
+TEST(PluginDiscoverySchema, OmittedMetadataIsValid)  // NOLINT
+{
+  YAML::Node config = YAML::Load("plugins: {}");
+  auto schema = YAML::convert<PluginDiscoveryInfo>::schema();
+  schema.mergeConfig(config, true);
+  EXPECT_TRUE(schema.validate(true).empty());
+
+  const auto discovery_info = config.as<PluginDiscoveryInfo>();
+  EXPECT_TRUE(discovery_info.search_paths.empty());
+  EXPECT_TRUE(discovery_info.search_libraries.empty());
+}
+
+TEST(PluginDiscoverySchema, InvalidMetadataTypes)  // NOLINT
+{
+  {
+    YAML::Node config = YAML::Load("search_paths: /tmp/plugins");
+    auto schema = YAML::convert<PluginDiscoveryInfo>::schema();
+    schema.mergeConfig(config, true);
+    const auto errors = schema.validate(true);
+    EXPECT_FALSE(errors.empty());
+    EXPECT_TRUE(std::any_of(errors.begin(), errors.end(), [](const std::string& error) {
+      return error.find("search_paths") != std::string::npos;
+    }));
+  }
+
+  {
+    YAML::Node config = YAML::Load("search_libraries: [plugin_a, { invalid: value }]");
+    auto schema = YAML::convert<PluginDiscoveryInfo>::schema();
+    schema.mergeConfig(config, true);
+    const auto errors = schema.validate(true);
+    EXPECT_FALSE(errors.empty());
+    EXPECT_TRUE(std::any_of(errors.begin(), errors.end(), [](const std::string& error) {
+      return error.find("search_libraries") != std::string::npos;
+    }));
+  }
+}
+
+TEST(PluginDiscoverySchema, DeclaresDiscoveryRoles)  // NOLINT
+{
+  const auto schema = YAML::convert<PluginDiscoveryInfo>::schema();
+
+  const auto search_paths_role = schema.at("search_paths").getAttribute(PLUGIN_DISCOVERY_ROLE);
+  ASSERT_TRUE(search_paths_role.has_value());
+  EXPECT_EQ(search_paths_role->as<std::string>(), plugin_discovery_role::SEARCH_PATHS);
+
+  const auto search_libraries_role = schema.at("search_libraries").getAttribute(PLUGIN_DISCOVERY_ROLE);
+  ASSERT_TRUE(search_libraries_role.has_value());
+  EXPECT_EQ(search_libraries_role->as<std::string>(), plugin_discovery_role::SEARCH_LIBRARIES);
+}
+
+TEST(PluginDiscoverySchema, KinematicsDeclaresPluginSections)  // NOLINT
+{
+  const auto schema = YAML::convert<KinematicsPluginInfo>::schema();
+
+  const auto config_key = schema.getAttribute(CONFIG_KEY);
+  ASSERT_TRUE(config_key.has_value());
+  EXPECT_EQ(config_key->as<std::string>(), KinematicsPluginInfo::CONFIG_KEY);
+
+  const auto& fwd_plugins = schema.at("fwd_kin_plugins");
+  EXPECT_EQ(fwd_plugins.getAttribute(PLUGIN_SECTION)->as<std::string>(), "FwdKin");
+  EXPECT_EQ(fwd_plugins.getAttribute(PLUGIN_BASE_TYPE)->as<std::string>(), "tesseract::kinematics::FwdKinFactory");
+
+  const auto& inv_plugins = schema.at("inv_kin_plugins");
+  EXPECT_EQ(inv_plugins.getAttribute(PLUGIN_SECTION)->as<std::string>(), "InvKin");
+  EXPECT_EQ(inv_plugins.getAttribute(PLUGIN_BASE_TYPE)->as<std::string>(), "tesseract::kinematics::InvKinFactory");
+}
+
+TEST(PluginDiscoverySchema, ContactManagersDeclarePluginSections)  // NOLINT
+{
+  const auto schema = YAML::convert<ContactManagersPluginInfo>::schema();
+
+  const auto config_key = schema.getAttribute(CONFIG_KEY);
+  ASSERT_TRUE(config_key.has_value());
+  EXPECT_EQ(config_key->as<std::string>(), ContactManagersPluginInfo::CONFIG_KEY);
+
+  const auto& discrete_plugins = schema.at("discrete_plugins");
+  EXPECT_EQ(discrete_plugins.getAttribute(PLUGIN_SECTION)->as<std::string>(), "DiscColl");
+  EXPECT_EQ(discrete_plugins.getAttribute(PLUGIN_BASE_TYPE)->as<std::string>(),
+            "tesseract::collision::DiscreteContactManagerFactory");
+
+  const auto& continuous_plugins = schema.at("continuous_plugins");
+  EXPECT_EQ(continuous_plugins.getAttribute(PLUGIN_SECTION)->as<std::string>(), "ContColl");
+  EXPECT_EQ(continuous_plugins.getAttribute(PLUGIN_BASE_TYPE)->as<std::string>(),
+            "tesseract::collision::ContinuousContactManagerFactory");
+}
+
+TEST(PluginDiscoverySchema, TaskComposerDeclaresPluginSections)  // NOLINT
+{
+  const auto schema = YAML::convert<TaskComposerPluginInfo>::schema();
+
+  const auto config_key = schema.getAttribute(CONFIG_KEY);
+  ASSERT_TRUE(config_key.has_value());
+  EXPECT_EQ(config_key->as<std::string>(), TaskComposerPluginInfo::CONFIG_KEY);
+
+  const auto& executors = schema.at("executors");
+  EXPECT_EQ(executors.getAttribute(PLUGIN_SECTION)->as<std::string>(), "TaskExec");
+  EXPECT_EQ(executors.getAttribute(PLUGIN_BASE_TYPE)->as<std::string>(),
+            "tesseract::task_composer::TaskComposerExecutorFactory");
+
+  const auto& tasks = schema.at("tasks");
+  EXPECT_EQ(tasks.getAttribute(PLUGIN_SECTION)->as<std::string>(), "TaskNode");
+  EXPECT_EQ(tasks.getAttribute(PLUGIN_BASE_TYPE)->as<std::string>(),
+            "tesseract::task_composer::TaskComposerNodeFactory");
+}
+
+// ===========================================================================
 //  PropertyTree – Core API
 // ===========================================================================
 
@@ -598,6 +725,24 @@ TEST(PropertyTreeValidate, EnumValidationFails)  // NOLINT
   EXPECT_FALSE(errors.empty());
 }
 
+TEST(PropertyTreeValidate, StringLengthConstraints)  // NOLINT
+{
+  auto schema = PropertyTreeBuilder().string("name").minimumLength(2).maximumLength(5).done().build();
+
+  schema.mergeConfig(YAML::Load("name: a"));
+  auto errors = schema.validate();
+  ASSERT_EQ(errors.size(), 1U);
+  EXPECT_NE(errors.front().find("string length 1 is less than minimum 2"), std::string::npos);
+
+  schema.mergeConfig(YAML::Load("name: valid"));
+  EXPECT_TRUE(schema.validate().empty());
+
+  schema.mergeConfig(YAML::Load("name: too_long"));
+  errors = schema.validate();
+  ASSERT_EQ(errors.size(), 1U);
+  EXPECT_NE(errors.front().find("string length 8 is greater than maximum 5"), std::string::npos);
+}
+
 TEST(PropertyTreeValidate, IntRangePass)  // NOLINT
 {
   PropertyTree schema;
@@ -962,6 +1107,18 @@ TEST(PropertyTreeBuilder, EnumAndRange)  // NOLINT
   auto enum_attr = child.getAttribute(ENUM);
   ASSERT_TRUE(enum_attr.has_value());
   EXPECT_EQ(enum_attr->size(), 3U);  // NOLINT
+}
+
+TEST(PropertyTreeBuilder, StringLength)  // NOLINT
+{
+  auto tree = PropertyTreeBuilder().string("name").minimumLength(1).maximumLength(64).done().build();
+
+  const auto minimum_length = tree.at("name").getAttribute(MINIMUM_LENGTH);
+  ASSERT_TRUE(minimum_length.has_value());
+  EXPECT_EQ(minimum_length->as<std::size_t>(), 1U);
+  const auto maximum_length = tree.at("name").getAttribute(MAXIMUM_LENGTH);
+  ASSERT_TRUE(maximum_length.has_value());
+  EXPECT_EQ(maximum_length->as<std::size_t>(), 64U);
 }
 
 TEST(PropertyTreeBuilder, DefaultValues)  // NOLINT
@@ -2290,6 +2447,372 @@ TEST(PropertyTreeOneOf, ValidationCollectsErrorsAfterBranchSelection)  // NOLINT
   EXPECT_TRUE(found_range_error);
 }
 
+TEST(PropertyTreeOneOf, DerivedCustomBranchUsesClassDiscriminator)  // NOLINT
+{
+  auto reg = SchemaRegistry::instance();
+  reg->registerSchema("test::OneOfPluginBase", PropertyTreeBuilder().attribute(TYPE, CONTAINER).build());
+  reg->registerDerivedType("test::OneOfPluginBase", "test::OneOfConcretePlugin");
+  reg->registerSchema("test::OneOfConcretePlugin", PropertyTreeBuilder().attribute(TYPE, CONTAINER).build());
+
+  // clang-format off
+  auto schema = PropertyTreeBuilder()
+      .attribute(TYPE, ONEOF)
+      .customType("by_class", "test::OneOfPluginBase").acceptsDerivedTypes().done()
+      .container("by_reference").string("task").required().done().done()
+      .build();
+  // clang-format on
+
+  YAML::Node config;
+  config["task"] = "registered_task";
+
+  EXPECT_NO_THROW(schema.mergeConfig(config));
+  EXPECT_TRUE(schema.validate().empty());
+}
+
+// ===========================================================================
+//  PropertyTree – Inline OneOf (beginOneOf / endOneOf)
+// ===========================================================================
+
+TEST(PropertyTreeInlineOneOf, SelectFirstBranch)  // NOLINT
+{
+  // Schema with shared fields + inline oneOf
+  // clang-format off
+  auto schema = PropertyTreeBuilder()
+      .attribute(TYPE, CONTAINER)
+      .string("base_link").required().done()
+      .string("tip_link").required().done()
+      .beginOneOf()
+          .container("by_model")
+              .string("model").required()
+                  .enumValues({"UR3", "UR5", "UR10"}).done()
+          .done()
+          .container("by_params")
+              .container("params").required()
+                  .float64("d1").required().done()
+              .done()
+          .done()
+      .endOneOf()
+      .build();
+  // clang-format on
+
+  YAML::Node config;
+  config["base_link"] = "base";
+  config["tip_link"] = "tool0";
+  config["model"] = "UR5";
+
+  schema.mergeConfig(config);
+  auto errors = schema.validate();
+
+  EXPECT_TRUE(errors.empty()) << errors.front();
+  EXPECT_EQ(schema.at("base_link").as<std::string>(), "base");
+  EXPECT_EQ(schema.at("tip_link").as<std::string>(), "tool0");
+  EXPECT_EQ(schema.at("model").as<std::string>(), "UR5");
+}
+
+TEST(PropertyTreeInlineOneOf, SelectSecondBranch)  // NOLINT
+{
+  // clang-format off
+  auto schema = PropertyTreeBuilder()
+      .attribute(TYPE, CONTAINER)
+      .string("base_link").required().done()
+      .string("tip_link").required().done()
+      .beginOneOf()
+          .container("by_model")
+              .string("model").required().done()
+          .done()
+          .container("by_params")
+              .container("params").required()
+                  .float64("d1").required().done()
+                  .float64("a2").required().done()
+              .done()
+          .done()
+      .endOneOf()
+      .build();
+  // clang-format on
+
+  YAML::Node config;
+  config["base_link"] = "base";
+  config["tip_link"] = "tool0";
+  config["params"]["d1"] = 0.089;
+  config["params"]["a2"] = -0.425;
+
+  schema.mergeConfig(config);
+  auto errors = schema.validate();
+
+  EXPECT_TRUE(errors.empty()) << errors.front();
+  EXPECT_EQ(schema.at("base_link").as<std::string>(), "base");
+  EXPECT_EQ(schema.at("params").at("d1").as<double>(), 0.089);
+  EXPECT_EQ(schema.at("params").at("a2").as<double>(), -0.425);
+}
+
+TEST(PropertyTreeInlineOneOf, NoBranchMatchesThrows)  // NOLINT
+{
+  // clang-format off
+  auto schema = PropertyTreeBuilder()
+      .attribute(TYPE, CONTAINER)
+      .string("name").required().done()
+      .beginOneOf()
+          .container("option_a")
+              .string("field_a").required().done()
+          .done()
+          .container("option_b")
+              .int32("field_b").required().done()
+          .done()
+      .endOneOf()
+      .build();
+  // clang-format on
+
+  // Config has shared field but neither branch's required fields
+  YAML::Node config;
+  config["name"] = "test";
+
+  EXPECT_THROW(schema.mergeConfig(config), std::runtime_error);
+}
+
+TEST(PropertyTreeInlineOneOf, MultipleBranchesMatchThrows)  // NOLINT
+{
+  // Both branches have no required fields — both match
+  // clang-format off
+  auto schema = PropertyTreeBuilder()
+      .attribute(TYPE, CONTAINER)
+      .string("name").required().done()
+      .beginOneOf()
+          .container("a")
+              .string("x").done()
+          .done()
+          .container("b")
+              .string("y").done()
+          .done()
+      .endOneOf()
+      .build();
+  // clang-format on
+
+  YAML::Node config;
+  config["name"] = "test";
+
+  EXPECT_THROW(schema.mergeConfig(config), std::runtime_error);
+}
+
+TEST(PropertyTreeInlineOneOf, ValidationAppliesToSelectedBranch)  // NOLINT
+{
+  // clang-format off
+  auto schema = PropertyTreeBuilder()
+      .attribute(TYPE, CONTAINER)
+      .string("name").required().done()
+      .beginOneOf()
+          .container("int_branch")
+              .int32("value").required().minimum(0).maximum(100).done()
+          .done()
+          .container("str_branch")
+              .string("text").required().done()
+          .done()
+      .endOneOf()
+      .build();
+  // clang-format on
+
+  YAML::Node config;
+  config["name"] = "test";
+  config["value"] = 150;  // exceeds maximum(100)
+
+  schema.mergeConfig(config);
+  auto errors = schema.validate();
+
+  EXPECT_FALSE(errors.empty());
+  bool found_max_error = false;
+  for (const auto& err : errors)
+  {
+    if (err.find("maximum") != std::string::npos)
+      found_max_error = true;
+  }
+  EXPECT_TRUE(found_max_error);
+}
+
+TEST(PropertyTreeInlineOneOf, SharedFieldsValidationStillApplies)  // NOLINT
+{
+  // clang-format off
+  auto schema = PropertyTreeBuilder()
+      .attribute(TYPE, CONTAINER)
+      .string("name").required().done()
+      .int32("priority").required().minimum(1).done()
+      .beginOneOf()
+          .container("simple")
+              .string("mode").required().done()
+          .done()
+          .container("advanced")
+              .container("settings").required()
+                  .boolean("enabled").required().done()
+              .done()
+          .done()
+      .endOneOf()
+      .build();
+  // clang-format on
+
+  // Missing required shared field 'name', but oneOf branch matches
+  YAML::Node config;
+  config["priority"] = 5;
+  config["mode"] = "fast";
+
+  schema.mergeConfig(config);
+  auto errors = schema.validate();
+
+  EXPECT_FALSE(errors.empty());
+  bool found_required_error = false;
+  for (const auto& err : errors)
+  {
+    if (err.find("name") != std::string::npos && err.find("required") != std::string::npos)
+      found_required_error = true;
+  }
+  EXPECT_TRUE(found_required_error);
+}
+
+TEST(PropertyTreeInlineOneOf, EnumValidationInSelectedBranch)  // NOLINT
+{
+  // clang-format off
+  auto schema = PropertyTreeBuilder()
+      .attribute(TYPE, CONTAINER)
+      .string("base_link").required().done()
+      .beginOneOf()
+          .container("by_model")
+              .string("model").required()
+                  .enumValues({"UR3", "UR5", "UR10"}).done()
+          .done()
+          .container("by_params")
+              .container("params").required()
+                  .float64("d1").required().done()
+              .done()
+          .done()
+      .endOneOf()
+      .build();
+  // clang-format on
+
+  // Invalid enum value
+  YAML::Node config;
+  config["base_link"] = "base";
+  config["model"] = "INVALID_MODEL";
+
+  schema.mergeConfig(config);
+  auto errors = schema.validate();
+
+  EXPECT_FALSE(errors.empty());
+  bool found_enum_error = false;
+  for (const auto& err : errors)
+  {
+    if (err.find("enum") != std::string::npos || err.find("INVALID_MODEL") != std::string::npos)
+      found_enum_error = true;
+  }
+  EXPECT_TRUE(found_enum_error);
+}
+
+TEST(PropertyTreeInlineOneOf, CopyPreservesInlineOneOf)  // NOLINT
+{
+  // clang-format off
+  auto schema = PropertyTreeBuilder()
+      .attribute(TYPE, CONTAINER)
+      .string("name").required().done()
+      .beginOneOf()
+          .container("a")
+              .string("x").required().done()
+          .done()
+          .container("b")
+              .int32("y").required().done()
+          .done()
+      .endOneOf()
+      .build();
+  // clang-format on
+
+  // Copy before merge — both should work independently
+  auto schema_copy = schema;
+
+  YAML::Node config_a;
+  config_a["name"] = "alpha";
+  config_a["x"] = "hello";
+  schema.mergeConfig(config_a);
+
+  YAML::Node config_b;
+  config_b["name"] = "beta";
+  config_b["y"] = 42;
+  schema_copy.mergeConfig(config_b);
+
+  auto errors_a = schema.validate();
+  auto errors_b = schema_copy.validate();
+
+  EXPECT_TRUE(errors_a.empty()) << errors_a.front();
+  EXPECT_TRUE(errors_b.empty()) << errors_b.front();
+
+  EXPECT_EQ(schema.at("x").as<std::string>(), "hello");
+  EXPECT_EQ(schema_copy.at("y").as<int>(), 42);
+}
+
+TEST(PropertyTreeInlineOneOf, MultipleGroupsSelectIndependently)  // NOLINT
+{
+  // clang-format off
+  auto schema = PropertyTreeBuilder()
+      .attribute(TYPE, CONTAINER)
+      .beginOneOf()
+          .container("first_a").string("a").required().done().done()
+          .container("first_b").string("b").required().done().done()
+      .endOneOf()
+      .beginOneOf()
+          .container("second_c").string("c").required().done().done()
+          .container("second_d").string("d").required().done().done()
+      .endOneOf()
+      .build();
+  // clang-format on
+
+  YAML::Node config;
+  config["a"] = "first";
+  config["d"] = "second";
+
+  schema.mergeConfig(config);
+  EXPECT_TRUE(schema.validate().empty());
+  EXPECT_EQ(schema.at("a").as<std::string>(), "first");
+  EXPECT_EQ(schema.at("d").as<std::string>(), "second");
+}
+
+TEST(PropertyTreeInlineOneOf, RejectsParentPropertyConflict)  // NOLINT
+{
+  // clang-format off
+  auto schema = PropertyTreeBuilder()
+      .attribute(TYPE, CONTAINER)
+      .string("value").required().done()
+      .beginOneOf()
+          .container("conflicting").int32("value").required().done().done()
+          .container("other").string("other").required().done().done()
+      .endOneOf()
+      .build();
+  // clang-format on
+
+  YAML::Node config;
+  config["value"] = 42;
+  EXPECT_THROW(schema.mergeConfig(config), std::runtime_error);
+}
+
+TEST(PropertyTreePluginContainer, PluginsIsRequired)  // NOLINT
+{
+  auto schema =
+      PropertyTreeBuilder().pluginContainer("container", "test::RequiredPluginBase", "RequiredPlugin").build();
+
+  YAML::Node config;
+  config["container"]["default"] = "plugin";
+  schema.mergeConfig(config);
+
+  auto errors = schema.validate();
+  EXPECT_TRUE(std::any_of(errors.begin(), errors.end(), [](const auto& error) {
+    return error.find("container.plugins") != std::string::npos && error.find("required") != std::string::npos;
+  }));
+}
+
+TEST(PropertyTreePluginContainer, EmptyPluginsMapIsValid)  // NOLINT
+{
+  auto schema = PropertyTreeBuilder().pluginContainer("container", "test::EmptyPluginBase", "EmptyPlugin").build();
+
+  YAML::Node config;
+  config["container"]["plugins"] = YAML::Node(YAML::NodeType::Map);
+  schema.mergeConfig(config);
+
+  EXPECT_TRUE(schema.validate().empty());
+}
+
 // ===========================================================================
 //  SchemaRegistrar
 // ===========================================================================
@@ -3319,6 +3842,45 @@ TEST(ValidateCustomType, MapTypeRejectsInvalidDerivedType)  // NOLINT
   map_schema.mergeConfig(map);
   auto errors = map_schema.validate();
   EXPECT_FALSE(errors.empty());
+}
+
+TEST(ValidateCustomType, SequenceRejectsDerivedTypeWithoutSchema)  // NOLINT
+{
+  auto reg = SchemaRegistry::instance();
+  reg->registerSchema("test::StrictSequenceBase", PropertyTreeBuilder().attribute(TYPE, CONTAINER).build());
+  reg->registerDerivedType("test::StrictSequenceBase", "test::StrictSequenceDerivedWithoutSchema");
+
+  auto schema =
+      PropertyTreeBuilder().attribute(TYPE, createList("test::StrictSequenceBase")).acceptsDerivedTypes().build();
+
+  YAML::Node config(YAML::NodeType::Sequence);
+  YAML::Node element;
+  element["type"] = "test::StrictSequenceDerivedWithoutSchema";
+  config.push_back(element);
+  schema.mergeConfig(config);
+
+  auto errors = schema.validate();
+  EXPECT_TRUE(std::any_of(errors.begin(), errors.end(), [](const auto& error) {
+    return error.find("no schema registry entry found for derived type") != std::string::npos;
+  }));
+}
+
+TEST(ValidateCustomType, MapRejectsDerivedTypeWithoutSchema)  // NOLINT
+{
+  auto reg = SchemaRegistry::instance();
+  reg->registerSchema("test::StrictMapBase", PropertyTreeBuilder().attribute(TYPE, CONTAINER).build());
+  reg->registerDerivedType("test::StrictMapBase", "test::StrictMapDerivedWithoutSchema");
+
+  auto schema = PropertyTreeBuilder().attribute(TYPE, createMap("test::StrictMapBase")).acceptsDerivedTypes().build();
+
+  YAML::Node config(YAML::NodeType::Map);
+  config["entry"]["type"] = "test::StrictMapDerivedWithoutSchema";
+  schema.mergeConfig(config);
+
+  auto errors = schema.validate();
+  EXPECT_TRUE(std::any_of(errors.begin(), errors.end(), [](const auto& error) {
+    return error.find("no schema registry entry found for derived type") != std::string::npos;
+  }));
 }
 
 TEST(ValidateCustomType, MapTypePluginInfoStructure)  // NOLINT

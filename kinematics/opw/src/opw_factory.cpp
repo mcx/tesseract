@@ -28,10 +28,41 @@
 #include <tesseract/scene_graph/graph.h>
 #include <tesseract/scene_graph/scene_state.h>
 
+#include <tesseract/common/schema_registration.h>
+#include <tesseract/common/property_tree.h>
+
 #include <console_bridge/console.h>
+
+namespace
+{
+tesseract::common::PropertyTree opwInvKinFactorySchema()
+{
+  using namespace tesseract::common;
+  // clang-format off
+  return PropertyTreeBuilder()
+      .attribute(property_attribute::TYPE, property_type::CONTAINER)
+      .string("base_link").required().minimumLength(1).done()
+      .string("tip_link").required().minimumLength(1).done()
+      .container("params").required()
+          .float64("a1").required().done()
+          .float64("a2").required().done()
+          .float64("b").required().done()
+          .float64("c1").required().done()
+          .float64("c2").required().done()
+          .float64("c3").required().done()
+          .float64("c4").required().done()
+          .customType("offsets", property_type::createList(property_type::FLOAT64, 6)).done()
+          .customType("sign_corrections", property_type::createList(property_type::INT32, 6)).done()
+      .done()
+      .build();
+  // clang-format on
+}
+}  // namespace
 
 namespace tesseract::kinematics
 {
+tesseract::common::PropertyTree OPWInvKinFactory::schema() const { return opwInvKinFactorySchema(); }
+
 std::unique_ptr<InverseKinematics> OPWInvKinFactory::create(const std::string& solver_name,
                                                             const tesseract::scene_graph::SceneGraph& scene_graph,
                                                             const tesseract::scene_graph::SceneState& /*scene_state*/,
@@ -140,3 +171,5 @@ PLUGIN_ANCHOR_IMPL(OPWFactoriesAnchor)
 
 // NOLINTNEXTLINE(cppcoreguidelines-avoid-non-const-global-variables)
 TESSERACT_ADD_INV_KIN_PLUGIN(tesseract::kinematics::OPWInvKinFactory, OPWInvKinFactory);
+TESSERACT_SCHEMA_REGISTER(OPWInvKinFactory, opwInvKinFactorySchema);
+TESSERACT_SCHEMA_REGISTER_DERIVED_TYPE(tesseract::kinematics::InvKinFactory, OPWInvKinFactory);
